@@ -10,7 +10,8 @@ Le framework **REIO** (**Réalisme Expérimental Instrumenté Optimisé**) coupl
 
 ### 🔬 Fondations Théoriques & Spécifications (Zenodo DOI)
 
-* **REIO-CORE :** Cadre logique formel s'appuyant sur une approche paraconsistante et des machines d'états (FSM) durcies pour garantir un confinement contextuel déterministe malgré les fautes physiques (*bit-flips*). Document de recherche officiel enregistré sous l'identifiant académique permanent permanent **[DOI: 10.5281/zenodo.20743411](https://doi.org)**.
+* **REIO-CORE :** Cadre logique formel s'appuyant sur une approche paraconsistante et des machines d'états (FSM) durcies pour garantir un confinement contextuel déterministe malgré les fautes physiques (*bit-flips*). Document de recherche officiel enregistré sous l'identifiant académique permanent : [![DOI](https://zenodo.org)]([https://doi.org](https://doi.org/10.5281/zenodo.20743411))
+
 
 ---
 
