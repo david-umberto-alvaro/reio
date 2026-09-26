@@ -14,7 +14,7 @@ Le framework **REIO** (**Réalisme Expérimental Instrumenté Optimisé**) coupl
 
 ### 📐 Cartographie de Co-Design : De la Logique Pure au Silicium
 
-L'infrastructure matérielle implémentée sous Vivado est la traduction physique directe des règles de sûreté formalisées dans notre notice d'architecture :
+L'infrastructure matérielle implémentée sous Vivado est la traduction physique directe des règles de sûreté formalisées dans ma notice d'architecture :
 
 | Pilier de Sûreté Théorique | Traduction Matérielle (Vivado) | Impact sur la Sûreté Réelle |
 | :--- | :--- | :--- |
