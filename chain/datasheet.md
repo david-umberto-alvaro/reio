@@ -68,4 +68,4 @@ The REIO-Chain (SPU_103) architecture is part of a professional co-design portfo
 *   **Consulting & Custom IP Adaptation:** Tailoring to custom networking fabrics, bus boundaries mitigation (CDC), and driver interfacing.
 *   **Engagement Model:** Engineering missions are available under freelance contracts or payroll umbrella structures (**SMART Belgium** / direct enterprise contracts).
 
-> 💡 **Engineering Note:** While the current open-core hardware implementation reports are targeted and verified on a commercial-grade matrix (xc7a35tcsg324-1) for physical footprint validation, the architecture's Dual-Core Lockstep (DCLS) RTL logic is natively prepared for migration to extended automotive temperature grades down to qualification boundaries.
+💡 **Engineering Note:** The open-core hardware implementation reports are targeted and verified on the xc7a12tlcpg238-2L matrix for physical footprint validation.
