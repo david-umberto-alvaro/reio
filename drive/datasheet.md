@@ -6,9 +6,7 @@ REIO-Drive (SPU_105) is an ultra-low-latency hardware-based protection shield de
 Engineered to mitigate malicious frame injections, spoofing attacks, and hardware failures (such as *babbling idiot* conditions), the IP core sits inline between the physical layer transceiver and the protocol controller to surgically isolate faulty or compromised nodes.
 
 ### Functional Safety Compliance (ISO 26262):
-*   **Safety Integrity Level:** Aligned with **ASIL-D** requirements (the highest automotive criticality class).
-*   **Hardware Architecture:** Dual-Core Lockstep (DCLS) configuration with cycle-by-cycle comparator logic and instantaneous *Fail-Safe* isolation fallback.
-*   **Fault Tolerant Time Interval (FTTI):** Bus confinement and full hardware disjunction guaranteed in **under 10 microseconds (µs)** (Internal RTL interception executes in exactly one clock cycle at 100 MHz).
+* **Design Philosophy:** Designed under compact hardware safety architecture principles, delegating heavy application analysis to the software control plane to guarantee strict determinism within a single clock cycle.
 
 ---
 
