@@ -27,7 +27,7 @@ Deux Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** ont été synthétis�
 
 - 🚗 **[REIO-Drive (SPU_105)](./drive)**
   - **Fonction :** Bouclier pour bus d'interception (Couplage Direct Stream 100 MHz).
-  - **Architecture de Sûreté :** Conçu selon les principes de résilience compacte (Lockstep, mode Fail-Safe matériel).
+  - **Architecture de Sûreté :** Conception inspirée des principes de résilience ISO 26262 / ASIL-D (Pattern de redondance matérielle Lockstep et mode Fail-Safe matériel).
   - **Validation :** Validé à 100 MHz (WNS : +7,606 ns, WHS : +0,279 ns). Interception déterministe en 1 cycle.
 
 ---
