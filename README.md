@@ -16,11 +16,10 @@ Les mécanismes d'atténuation s'appuient sur la **logique multi-valeurs** et de
 
 Deux Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** ont été synthétisés sur cible **AMD/Xilinx Artix-7**.
 
-### 🚗 [REIO-Drive (SPU_105)](./drive)
-
-* **Fonction :** Bouclier pour bus CAN/LIN.
-* **Sûreté (ISO 26262) :** Aligné ASIL-D (Lockstep, mode *Fail-Safe*).
-* **Validation :** Validé à 100 MHz (WNS : +7,606 ns, WHS : +0,279 ns). Interception en 1 cycle.
+* **REIO-Drive (SPU_105)**
+  * **Fonction :** Bouclier pour bus d'interception (Couplage Direct Stream 100 MHz).
+  * **Architecture de Sûreté :** Conçu selon les principes de résilience compacte (Lockstep, mode Fail-Safe matériel).
+  * **Validation :** Validé à 100 MHz (WNS : +7,606 ns, WHS : +0,279 ns). Interception déterministe en 1 cycle.
 
 
 ### ⛓️ [REIO-Chain (SPU_103)](./chain)
