@@ -8,11 +8,9 @@ Le framework **REIO** (**Réalisme Expérimental Instrumenté Optimisé**) coupl
 * **Instrumenté :** Certification des métriques réelles (Slacks, primitives, puissance) via les rapports de CAO Vivado.
 * **Optimisé :** Densification extrême du circuit et réduction de l'empreinte logique par co-conception assistée.
 
-### Fondations Théoriques & Résilience Matérielle
+### 🔬 Fondations Théoriques & Spécifications (Zenodo DOI)
 
-Les mécanismes d'atténuation s'appuient sur la **logique multi-valeurs** et des architectures FSM durcies pour garantir un confinement contextuel déterministe malgré les fautes physiques (*bit-flips*).
-
-* **REIO-CORE :** Spécification théorique initiale et cadre logique mathématique. Document de recherche officiel enregistré sous l'identifiant permanent **[DOI: 10.5281/zenodo.20743411]([![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20743411.svg)](https://doi.org/10.5281/zenodo.20743411))**.
+* **REIO-CORE :** Cadre logique formel s'appuyant sur une approche paraconsistante et des machines d'états (FSM) durcies pour garantir un confinement contextuel déterministe malgré les fautes physiques (*bit-flips*). Document de recherche officiel enregistré sous l'identifiant académique permanent **[DOI: 10.5281/zenodo.20743411]([https://doi.org](https://zenodo.org/badge/DOI/10.5281/zenodo.20743411.svg)](https://doi.org/10.5281/zenodo.20743411))**.
 
 ---
 
