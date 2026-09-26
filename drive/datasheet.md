@@ -32,14 +32,16 @@ Engineered to mitigate malicious frame injections, spoofing attacks, and hardwar
 
 ## 🔌 3. Signal Specifications & Hardware I/O Mapping
 
+*Strict 13-Pin Physical Interface Map validated by Vivado post-synthesis routing (CSG324 Package).*
+
 | Signal Name | Direction | Width | Type | Description / Physical Role |
 | :--- | :--- | :--- | :--- | :--- |
-| `sys_clk` | Input | 1 bit | STD_LOGIC | Main system clock (100 MHz target) |
-| `reset` | Input | 1 bit | STD_LOGIC | Synchronous system hardware reset (Active-High) |
-| `can_rx_raw` | Input | 1 bit | STD_LOGIC | Raw bitstream input from the physical CAN Transceiver |
-| `can_rx_filtered`| Output | 1 bit | STD_LOGIC | Secured and filtered bitstream routed to the host CAN Controller |
-| `lockstep_error` | Output | 1 bit | STD_LOGIC | Asymmetric mirror mismatch flag ('1' = Dual-core divergence) |
-| `fail_safe_mode` | Output | 1 bit | STD_LOGIC | Critical isolation line ('1' = Nominal bus link, '0' = Relay isolated) |
+| **clk** | Input | 1 bit | STD_LOGIC | Main system clock (100 MHz target, Pin R10) |
+| **reset** | Input | 1 bit | STD_LOGIC | Synchronous system hardware reset (Active-High, Pin T10) |
+| **flux_data_in[7:0]** | Input | 8 bits | STD_LOGIC_VECTOR | Parallel intercepted high-speed data bus (Pins H14 to A16) |
+| **flux_valid_in** | Input | 1 bit | STD_LOGIC | Data valid qualifier strobe signal (Pin V11) |
+| **statut_securite** | Output | 1 bit | STD_LOGIC | Dual-Core Lockstep status flag ('1' = Nominal, Pin U12) |
+| **declencher_secours** | Output | 1 bit | STD_LOGIC | Critical circuit-breaker isolation trigger (Pin V12) |
 
 ---
 
