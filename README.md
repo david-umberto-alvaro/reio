@@ -12,7 +12,7 @@ Le framework **REIO** (**Réalisme Expérimental Instrumenté Optimisé**) coupl
 
 Les mécanismes d'atténuation s'appuient sur la **logique multi-valeurs** et des architectures FSM durcies pour garantir un confinement contextuel déterministe malgré les fautes physiques (*bit-flips*).
 
-* **Spécification de Référence :** Notice d'architecture et résumé technique sur **Zenodo** : [https://zenodo.org/records/20743411](https://zenodo.org/records/20743411)
+* **REIO-CORE :** Spécification théorique initiale et cadre logique mathématique. Document de recherche officiel enregistré sous l'identifiant permanent **[DOI: 10.5281/zenodo.20743411]([![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20743411.svg)](https://doi.org/10.5281/zenodo.20743411))**.
 
 ---
 
