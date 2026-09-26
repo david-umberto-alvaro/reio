@@ -43,19 +43,7 @@ Engineered to mitigate malicious frame injections, spoofing attacks, and hardwar
 
 ---
 
-## ⚙ 4. Register Map & MMIO Control Plane Interface
-*Direct volatile access via the Rust bare-metal (`#![no_std]`) control driver. Strict 32-bit word alignment.*
-
-| Offset Address | Register Name | Access | Description / Functional Bitfield |
-| :--- | :--- | :--- | :--- |
-| `0x00` | `DRV_REG_CTRL` | R/W | [Bit 0]: Force manual Fail-Safe isolation \| [Bit 1]: Hardware error counters reset |
-| `0x04` | `DRV_REG_STAT` | R | [Bit 0]: Dual-Core Lockstep status \| [Bit 1]: Physical bus isolation state |
-| `0x08` | `DRV_REG_CAN_ERR`| R | 32-bit synchronous counter for detected CAN protocol violations |
-| `0x0C` | `DRV_REG_LIN_ERR`| R | 32-bit synchronous counter for detected LIN frame anomalies |
-
----
-
-## 📊 5. Behavioral Timing Chronogram & Fault Injection
+## 📊 4. Behavioral Timing Chronogram & Fault Injection
 
 ```text
 ◀--- Nominal Execution ---▶◀---- Lockstep Mismatch & Fail-Safe Isolation ----
@@ -78,7 +66,7 @@ _________________________________________________________________
 
 ---
 
-## ⚖ 6. Commercial Integration & Engineering Services
+## ⚖ 5. Commercial Integration & Engineering Services
 
 The REIO-Drive (SPU_105) architecture is part of a high-value engineering portfolio demonstrating professional proficiency in Functional Safety, hardware fault isolation, and RTL synthesis.
 
