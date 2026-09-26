@@ -2,7 +2,7 @@
 
 ## Cadre d'Orchestration Matérielle & Logicielle
 
-Ce document formalise la méthodologie d'ingénierie système pour concevoir et durcir le framework.
+Ce document formalise la méthodologie d'ingénierie système pour concevoir et durcir le framework:<br>
 **REIO (Réalisme Expérimental Instrumenté Optimisé)**,
 
 ## 1. Cycle d'Itération & Convergence Technologique 
