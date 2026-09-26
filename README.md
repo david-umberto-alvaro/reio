@@ -20,7 +20,7 @@ Les mécanismes d'atténuation s'appuient sur la **logique multi-valeurs** et de
 
 Deux Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** ont été synthétisés sur cible **AMD/Xilinx Artix-7**.
 
- ⛓️ **[REIO-Chain (SPU_103)](./chain)**
+- ⛓️ **[REIO-Chain (SPU_103)](./chain)**
   - **Fonction :** Disjoncteur matériel sur bus 64 bits.
   - **Validation :** Cible à 400 MHz (WNS : +1,596 ns, WHS : +0,142 ns).
   - **Ressources :** 12 LUTs / 111 Registres, consommation ~1 mW.
