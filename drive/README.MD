@@ -1,8 +1,11 @@
-# REIO-Drive (SPU_105)
+# 🚗 REIO-Drive (SPU_105) — Filtre Synchrone d'Interception Automobile
 
-## Filtre Synchrone d'Interception Réseau & Disjoncteur Matériel (Couplage Direct Stream 100 MHz)
+REIO-Drive est un IP Core matériel ultra-compact conçu pour l'interception linéaire de flux de données et la coupure déterministe en un seul cycle machine (10 ns) à 100 MHz.
 
-REIO-Drive (SPU_105) est un bloc de propriété intellectuelle (IP Core) matériel/logiciel conçu pour l'interception linéaire, le filtrage de messages au niveau matériel et la coupure déterministe ultra-rapide sur les réseaux multiplexés automobiles. Son architecture matérielle est calquée sur les patterns de sûreté de fonctionnement ASIL-D (ISO 26262) via un plan de filtrage physique synchrone tolérant aux pannes (Dual-Core Lockstep) et un plan de contrôle bare-metal supervisé en Rust.
+### 🔬 Architecture de Sûreté & Conception Logique
+- **Philosophie :** Conception simplifiée axée sur la réactivité brute. Pour minimiser l'empreinte logique sur silicium, l'évaluation lourde des données est déléguée au plan de contrôle logiciel.
+- **Ressources Physiques :** Implémentation minimaliste à 6 LUTs et 4 Registres, faisant office de machine d'états d'isolement directe (FSM à états réduits).
+- **Interface :** Couplage d'interception direct lu de manière asynchrone par les lignes d'état (GPIO / MMIO).
 
 ### 🔬 Performances Matérielles Certifiées (AMD/Xilinx Vivado v2026.1)
 
