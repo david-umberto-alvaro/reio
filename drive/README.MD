@@ -1,11 +1,12 @@
-# 🚗 REIO-Drive (SPU_105) — Filtre Synchrone d'Interception Automobile
+# 🚗 REIO-Drive (SPU_105) — Filtre Combinatoire d'Interception Automobile
 
-REIO-Drive est un IP Core matériel ultra-compact conçu pour l'interception linéaire de flux de données et la coupure déterministe en un seul cycle machine (10 ns) à 100 MHz.
+REIO-Drive (SPU_105) est un module d'interception réseau ultra-compact. Son architecture traite les signaux d'entrée via une matrice combinatoire pure (6 LUTs) et sécurise les sorties à l'aide d'un compteur de stabilisation temporel de 2 bits empêchant les déclenchements intempestifs sur micro-coupures.
 
-### 🔬 Architecture de Sûreté & Conception Logique
-- **Philosophie :** Conception simplifiée axée sur la réactivité brute. Pour minimiser l'empreinte logique sur silicium, l'évaluation lourde des données est déléguée au plan de contrôle logiciel.
-- **Ressources Physiques :** Implémentation minimaliste à 6 LUTs et 4 Registres, faisant office de machine d'états d'isolement directe (FSM à états réduits).
-- **Interface :** Couplage d'interception direct lu de manière asynchrone par les lignes d'état (GPIO / MMIO).
+### 🔬 Architecture Logique & Primitives Câblées
+L'extraction de la Netlist Vivado certifie la structure suivante :
+- **Logique Combinatoire :** 6 LUTs assurant le décodage asynchrone des lignes.
+- **Registre de Stabilisation :** Compteur matériel de 2 bits (`compteur_stabilite_reg`) validant la persistance du flag d'isolation.
+- **Verrouillage des Sorties :** 2 bascules synchrones dédiées au maintien des lignes d'état (`statut_securite` et `declencher_secours`).
 
 ### 🔬 Performances Matérielles Certifiées (AMD/Xilinx Vivado v2026.1)
 
