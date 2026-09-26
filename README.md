@@ -75,6 +75,6 @@ Ce framework est distribué sous un modèle Open-Core strict. Pour consulter l'a
 ---
 
 💼 **Besoin d'intégrer REIO sur vos architectures FPGA ou calculateurs critiques ?**
-Pour toute demande d'évaluation du code source complet, d'adaptation d'architecture sur mesure ou de consultation industrielle, l'accès peut être accordé après signature d'un Accord de Confidentialité (NDA). Veuillez soumettre une demande officielle via mon **[Profil LinkedIn]([[https://www.linkedin.com/in/david-umberto-alvaro-715841399//)/))**.
+Pour toute demande d'évaluation du code source complet, d'adaptation d'architecture sur mesure ou de consultation industrielle, l'accès peut être accordé après signature d'un Accord de Confidentialité (NDA). Veuillez soumettre une demande officielle via mon **[Profil LinkedIn](https://linkedinin/david-umberto-alvaro-715841399.com)**.
 
 
