@@ -47,25 +47,25 @@ Deux Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** ont été synthétis�
                      [ REIO FRAMEWORK ]
                              |
                              v
-     +-----------------------------------------------+
+        +-----------------------------------------+
 
-     |                   REIO-CORE                   |
-     |      (Spécification Théorique Initiale)       |
-     |   -> Archivé sur Zenodo avec son DOI unique   |
-     +-----------------------------------------------+
+        |                REIO-CORE                |
+        |    (Spécification Théorique Initiale)   |
+        |   -> Archivé sur Zenodo avec son DOI    |
+        +-----------------------------------------+
                              |
-         +-------------------+-------------------+
+              +--------------+--------------+
 
-         |                                       |
-         v                                       v
-+------------------------+ +------------------------+
+              |                             |
+              v                             v
+  +-----------------------+     +-----------------------+
 
-|       REIO-CHAIN       | |       REIO-DRIVE       |
-|  (PoC Réseau - Impl.)  | |   (PoC Auto - Impl.)   |
-| -> Pipeline 64 bits    | | -> Interception Direct|
-| -> Cadencement 400 MHz | | -> Cadencement 100 MHz|
-+------------------------+ +------------------------+
-
+  |      REIO-CHAIN       |     |      REIO-DRIVE       |
+  |  (PoC Réseau - Impl.) |     |   (PoC Auto - Impl.)  |
+  | -> Pipeline 64 bits   |     | -> Interception Direct|
+  | -> Cadencement 400 MHz|     | -> Cadencement 100 MHz|
+  +-----------------------+     +-----------------------+
+```
 
 ```
 
