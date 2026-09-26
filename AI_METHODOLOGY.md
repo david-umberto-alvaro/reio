@@ -2,7 +2,8 @@
 
 ## Cadre d'Orchestration Matérielle & Logicielle
 
-Ce document formalise la méthodologie d'ingénierie système pour concevoir et durcir le framework REIO, où l'IA sert de moteur de transcription sous supervision industrielle.
+Ce document formalise la méthodologie d'ingénierie système pour concevoir et durcir le framework REIO (**Réalisme Expérimental Instrumenté Optimisé**), 
+où l'IA sert de moteur de transcription sous supervision industrielle.
 
 ## 1. Cycle d'Itération & Convergence Technologique
 
