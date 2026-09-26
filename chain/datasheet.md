@@ -37,6 +37,7 @@ REIO-Chain (SPU_103) is an ultra-high-speed synchronous hardware network filter 
 
 ## 4. Behavioral Timing Chronogram & Invariant Bounds
 
+...text
 ◀------- Nominal Line Processing -------▶◀---- Surgical Masking (1 Control Cycle Latency) ----
 0ns                 2.5ns               5.0ns              7.5ns              10.0ns
 
