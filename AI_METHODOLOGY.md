@@ -2,10 +2,10 @@
 
 ## Cadre d'Orchestration Matérielle & Logicielle
 
-Ce document formalise la méthodologie d'ingénierie système pour concevoir et durcir le framework REIO (**Réalisme Expérimental Instrumenté Optimisé**), 
-où l'IA sert de moteur de transcription sous supervision industrielle.
+Ce document formalise la méthodologie d'ingénierie système pour concevoir et durcir le framework 
+REIO (**Réalisme Expérimental Instrumenté Optimisé**), 
 
-## 1. Cycle d'Itération & Convergence Technologique
+## 1. Cycle d'Itération & Convergence Technologique 
 
 Le flux de convergence en boucle fermée associe l'ingénieur et les rapports de CAO :
 1. Spécifications architecturales et code HDL.
@@ -14,7 +14,7 @@ Le flux de convergence en boucle fermée associe l'ingénieur et les rapports de
 4. Optimisation ciblée via l'IA à partir des logs.
 5. Injection du code corrigé pour validation.
 
-## 2. Résolution des Contraintes Physiques et Gestion des Horloges
+## 2. Résolution des Contraintes Physiques et Gestion des Horloges 
 
 L'IA intervient pour stabiliser le comportement temporel et les barrières du silicium :
 - **Pipelining et Structures Logiques :** Segmentation stratégique des étapes de mémorisation pour éviter la saturation du chemin critique, avec des registres calibrés selon la complexité des flux.
