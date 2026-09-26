@@ -6,7 +6,7 @@ REIO-Drive (SPU_105) is an ultra-low-latency hardware-based protection shield de
 Engineered to mitigate malicious frame injections, spoofing attacks, and hardware failures (such as *babbling idiot* conditions), the IP core sits inline between the physical layer transceiver and the protocol controller to surgically isolate faulty or compromised nodes.
 
 ### Functional Safety Compliance (ISO 26262):
-* **Design Philosophy:** Designed under compact hardware safety architecture principles, delegating heavy application analysis to the software control plane to guarantee strict determinism within a single clock cycle.
+- **Design Philosophy:** Designed as an ultra-minimalist, high-reactivity combinational interceptor. Hardware footprint is restricted to a 2-bit stabilization counter and synchronous output latches, delegating advanced frame decoding and processing validation to the software control plane.
 
 ---
 
