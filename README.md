@@ -2,7 +2,11 @@
 
 ## 🔬 1. Positionnement Scientifique & Sûreté de Fonctionnement
 
-Le framework **REIO** (*Reliable Embedded Interception Operations*) couple modélisation formelle et contraintes physiques de routage (FPGA).
+Le framework **REIO** (**Réalisme Expérimental Instrumenté Optimisé**) couple modélisation formelle et contraintes physiques de routage (FPGA). 
+
+* **Réalisme Expérimental :** Validation des concepts logiques face aux contraintes strictes du silicium.
+* **Instrumenté :** Certification des métriques réelles (Slacks, primitives, puissance) via les rapports de CAO Vivado.
+* **Optimisé :** Densification extrême du circuit et réduction de l'empreinte logique par co-conception assistée.
 
 ### Fondations Théoriques & Résilience Matérielle
 
