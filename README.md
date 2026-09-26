@@ -12,6 +12,17 @@ Le framework **REIO** (**Réalisme Expérimental Instrumenté Optimisé**) coupl
 
 * **REIO-CORE :** Cadre logique formel s'appuyant sur une approche paraconsistante et des machines d'états (FSM) durcies pour garantir un confinement contextuel déterministe malgré les fautes physiques (*bit-flips*). Document de recherche officiel enregistré sous l'identifiant académique permanent : [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20743411.svg)](https://doi.org/10.5281/zenodo.20743411)
 
+### 📐 Cartographie de Co-Design : De la Logique Pure au Silicium
+
+L'infrastructure matérielle implémentée sous Vivado est la traduction physique directe des règles de sûreté formalisées dans notre notice d'architecture :
+
+| Pilier de Sûreté Théorique | Traduction Matérielle (Vivado) | Impact sur la Sûreté Réelle |
+| :--- | :--- | :--- |
+| **Gestion des Seuils & Confinement** | `REIO-Drive` (Ports `statut_securite` / `declencher_secours`) | Isolation physique instantanée du bus automobile en 1 cycle d'horloge (10 ns) lors d'une injection de fault (`0x7F`). |
+| **Méta-consistance Paraconsistante** | `REIO-Drive` (6 Slice LUTs / Logique de transition pure) | Confinement strict des données corrompues. L'IP Core empêche la propagation de l'erreur sans saturer le processeur hôte. |
+| **Médiation Exclusive & Ancrage** | `REIO-Chain` (Bus synchrone 64 bits cadencé à 400 MHz) | Filtrage matériel pur des paquets réseau. Rejet immédiat de toute donnée non ancrée aux primitives physiques. |
+| **Filtrage du Bruit Temporel** | `REIO-Chain` (Gestion CDC / Marge WNS +1,596 ns) | Élimination mathématique des risques de métastabilité lors du passage entre les domaines d'horloges asynchrones. |
+
 ---
 
 ## 🛠 2. Implémentation Physique & Métriques Vivado (PoC)
