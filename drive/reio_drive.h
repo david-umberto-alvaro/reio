@@ -11,7 +11,7 @@ typedef struct __attribute__((aligned(32))) {
     uint8_t  security_status;
 } reio_telemetry_t;
 
-// Point d'entrée de l'interceptor synchrone aligné sur le bus 100 MHz du XDC
+// Point d'entrée de l'interceptor synchrone aligné sur le bus 66.67 MHz du XDC
 uint32_t verifier_flux_reio(const uint8_t * buffer_ptr, size_t taille);
 
 #endif /* REIO_DRIVE_H */
