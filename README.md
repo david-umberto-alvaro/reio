@@ -67,8 +67,6 @@ Deux Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** ont été synthétis�
   +-----------------------+     +-----------------------+
 ```
 
-```
-
 ## 📦 3. Structure du Dépôt & Politique d'Accès
 
 Ce dépôt sert de portfolio technique pour démontrer mes compétences en co-design et en intégration matérielle.
