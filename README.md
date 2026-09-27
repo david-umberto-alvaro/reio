@@ -63,13 +63,13 @@ Deux Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** ont été synthétis�
 
               |                             |
               v                             v
-  +-----------------------+     +-----------------------+
+  +-----------------------+     +--------------------------+
 
-  |      REIO-CHAIN       |     |      REIO-DRIVE       |
-  |  (PoC Réseau - Impl.) |     |   (PoC Auto - Impl.)  |
-  | -> Pipeline 64 bits   |     | -> Interception Direct|
-  | -> Cadencement 400 MHz|     | -> Cadencement 100 MHz|
-  +-----------------------+     +-----------------------+
+  |      REIO-CHAIN       |     |      REIO-DRIVE          |
+  |  (PoC Réseau - Impl.) |     |   (PoC Auto - Impl.)     |
+  | -> Pipeline 64 bits   |     | -> Interception Direct   |
+  | -> Cadencement 400 MHz|     | -> Cadencement 66.67MHz  |
+  +-----------------------+     +--------------------------+
 ```
 
 ## 📦 3. Structure du Dépôt & Politique d'Accès
