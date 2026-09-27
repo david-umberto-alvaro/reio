@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
-| Date         : Sat Sep 26 00:14:58 2026
+| Date         : Sun Sep 27 16:23:50 2026
 | Host         : PC1-2D running 64-bit major release  (build 9200)
 | Command      : report_utilization -file reio_drive_hardware_utilization_synth.rpt -pb reio_drive_hardware_utilization_synth.pb
 | Design       : reio_drive_hardware
@@ -176,5 +176,3 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +----------+------+
 | Ref Name | Used |
 +----------+------+
-
-
