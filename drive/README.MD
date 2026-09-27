@@ -12,10 +12,11 @@ L'extraction de la Netlist Vivado certifie la structure suivante :
 
 Les rapports d'implémentation post-placement-routage sur la matrice AMD/Xilinx Artix-7 certifient les métriques physiques et de sûreté suivantes :
 
-- **Fréquence Horloge Système (Rust) :** Chemin de timing fermé avec succès à **100.00 MHz** (Période : **10.00 ns**).
-- **Worst Negative Slack (WNS) :** Entièrement stabilisé dans le vert à **+7.606 ns** (Zéro violation de chemin).
+- **Fréquence Horloge Système (Rust) :** Chemin de timing fermé avec succès à **66.67 MHz** (Période : **15.00 ns**).
+- **Worst Negative Slack (WNS) :** Entièrement stabilisé dans le vert à **+1.039 ns** (Zéro violation de chemin, contrainte de sûreté combinatoire fixée à 12.00 ns).
 - **Worst Hold Slack (WHS) :** Délais de routage intra-site parfaitement optimisés à **+0.279 ns**.
-- **Livrable Temporel :** Coupure réseau déterministe en **1 seul cycle machine** (latence d'un cycle d'horloge).
+- **Livrable Temporel :** Coupure réseau déterministe et filtrée anti-glitch validée en simulation à **60.00 ns** (3 cycles de stabilisation d'horloge).
+
 
 ```text
 +--------------------------------------------------------+
