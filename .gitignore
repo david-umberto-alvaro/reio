@@ -24,16 +24,25 @@ Cargo.lock
 Thumbs.db
 .DS_Store
 
-# Bloquer les fichiers sources matériels et logiciels secrets
-*.vhd
-*.v
-*.sv
-*.rs
+# Bloquer les fichiers sources matériels et logiciels secrets de manière récursive
+**/ *.vhd
+**/ *.v
+**/ *.sv
+**/ *.rs
 
 # Block Vivado interface local files
-*.xpr
-reio_chain_l3.srcs/
-reio_chain_l3.sim/
-reio_chain_l3.hw/
-reio_chain_l3.cache/
-reio_chain_l3.runs/
+**/ *.xpr
+
+# Bloquer les rapports de synthèse et d'implémentation dans tous les sous-dossiers
+**/_power_routed.rpt
+**/_timing_summary_routed.rpt
+**/_utilization_synth.rpt
+**/_utilization_placed.rpt
+
+# Ignorer tous les répertoires de simulation locaux ou caches de projets d'interfaçage
+**/ *.srcs/
+**/ *.sim/
+**/ *.hw/
+**/ *.cache/
+**/ *.runs/
+
