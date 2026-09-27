@@ -16,7 +16,7 @@ xsim.ini
 *.bak
 
 # Rust Cargo Compilation & Dependency Artifacts
-/target/
+target/
 Cargo.lock
 **/*.rs.bk
 
@@ -25,13 +25,13 @@ Thumbs.db
 .DS_Store
 
 # Bloquer les fichiers sources matériels et logiciels secrets de manière récursive
-**/ *.vhd
-**/ *.v
-**/ *.sv
-**/ *.rs
+**/*.vhd
+**/*.v
+**/*.sv
+**/*.rs
 
 # Block Vivado interface local files
-**/ *.xpr
+**/*.xpr
 
 # Bloquer les rapports de synthèse et d'implémentation dans tous les sous-dossiers
 **/_power_routed.rpt
@@ -40,9 +40,8 @@ Thumbs.db
 **/_utilization_placed.rpt
 
 # Ignorer tous les répertoires de simulation locaux ou caches de projets d'interfaçage
-**/ *.srcs/
-**/ *.sim/
-**/ *.hw/
-**/ *.cache/
-**/ *.runs/
-
+**/*.srcs/
+**/*.sim/
+**/*.hw/
+**/*.cache/
+**/*.runs/
