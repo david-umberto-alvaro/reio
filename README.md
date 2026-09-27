@@ -39,7 +39,7 @@ Deux Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** ont été synthétis�
   - **Validation :** Cible à 400 MHz (WNS : +1,596 ns, WHS : +0,142 ns).
   - **Ressources :** 12 LUTs / 111 Registres, consommation ~1 mW.
 
-* 🚗 **REIO-Drive (SPU_105)**
+* 🚗 **REIO-Drive (SPU_105)**(./drive)
     * **Fonction :** Bouclier pour bus d'interception (Couplage Direct Stream).
     * **Architecture de Sûreté :** Conception inspirée des principes de résilience ISO 26262 / ASIL-D (Pattern d'interception combinatoire durcie avec compteur de stabilisation et mode Fail-Safe matériel).
     * **Validation :** Validé à **66.67 MHz** (Période : **15.00 ns** \| WNS : **+1.039 ns** \| WHS : **+0.279 ns**). Interception et isolation physique du bus automobile exécutées de manière déterministe en **3 cycles d'horloge (45.00 ns)**.
