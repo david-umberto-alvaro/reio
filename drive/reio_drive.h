@@ -10,4 +10,5 @@ uint32_t verifier_flux_reio(const uint8_t * buffer_ptr, size_t taille, uint32_t 
                             uint32_t mois_actuel, 
                             uint32_t jour_actuel);
 
-#endif /
+#endif /* REIO_DRIVE_H */
+
