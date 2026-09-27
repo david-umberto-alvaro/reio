@@ -18,7 +18,7 @@ Le flux de convergence en boucle fermée associe l'ingénieur et les rapports de
 
 L'IA intervient pour stabiliser le comportement temporel et les barrières du silicium :
 - **Pipelining et Structures Logiques :** Segmentation stratégique des étapes de mémorisation pour éviter la saturation du chemin critique, avec des registres calibrés selon la complexité des flux.
-- **Domaines d'Horloges Multiples (CDC) :** Raffinement des contraintes et application des faux chemins pour isoler les barrières de transition asynchrones face aux risques de métastabilité.
+- **Domaines d'Horloges Multiples (CDC) :** Raffinement des contraintes temporelles (Asynchronous Clock Groups / Max Delay) et encapsulation de structures de synchronisation matérielles dédiées pour isoler les barrières de transition asynchrones face aux risques de métastabilité.
 
 ## 3. Optimisation de l'Empreinte Logique
 
