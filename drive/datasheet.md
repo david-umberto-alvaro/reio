@@ -38,7 +38,7 @@ Engineered to mitigate malicious frame injections, spoofing attacks, and hardwar
 | **reset** | Input | 1 bit | STD_LOGIC | Synchronous system hardware reset (Active-High, Pin T10) |
 | **flux_data_in[7:0]** | Input | 8 bits | STD_LOGIC_VECTOR | Parallel intercepted high-speed data bus (Pins H14 to A16) |
 | **flux_valid_in** | Input | 1 bit | STD_LOGIC | Data valid qualifier strobe signal (Pin V11) |
-| **statut_securite** | Output | 1 bit | STD_LOGIC | Dual-Core Lockstep status flag ('1' = Nominal, Pin U12) |
+| **statut_securite** | Output | 1 bit | STD_LOGIC | Hardware Circuit-Breaker status flag ('1' = Nominal, Pin U12) |
 | **declencher_secours** | Output | 1 bit | STD_LOGIC | Critical circuit-breaker isolation trigger (Pin V12) |
 
 ---
