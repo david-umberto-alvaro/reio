@@ -21,7 +21,7 @@ def load_reio_library():
     # Remonte d'un niveau supplémentaire pour atteindre la racine du projet DRIVE
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         # Racine du projet DRIVE (Remonte d'un niveau au-dessus du dossier RUST)
-    target_dir = r"H:\REIO\PROJETS\DRIVE\RUST\target\release"
+    target_dir = r"H:\REIO\DRIVE\RUST\target\release"
 
     if sys.platform.startswith("linux"):
         lib_name = "libcode.so"
