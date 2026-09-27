@@ -33,13 +33,12 @@ def load_reio_library():
         lib_name = "libreio_drive.dylib"
 
     lib_path = os.path.join(target_dir, lib_name)
-    
-    # Fallback local si le script est exécuté directement dans le sous-dossier drive
+
+    # Vérification de l'existence du binaire avec indentation correcte
     if not os.path.exists(lib_path):
         print(f"❌ Erreur : Impossible de localiser la DLL REIO à l'adresse : {lib_path}")
         sys.exit(1)
 
-        
     print(f"✅ Binaire REIO chargé avec succès : {lib_path}")
     return ctypes.CDLL(lib_path)
 
