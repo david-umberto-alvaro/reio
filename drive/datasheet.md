@@ -43,6 +43,21 @@ Engineered to mitigate malicious frame injections, spoofing attacks, and hardwar
 
 ---
 
+## 🔌 3. Signal Specifications & Hardware I/O Mapping
+
+*Strict 13-Pin Physical Interface Map validated by Vivado post-synthesis routing (CSG324 Package).*
+
+| Signal Name | Direction | Width | Type | Description / Physical Role |
+| :--- | :--- | :--- | :--- | :--- |
+| **clk** | Input | 1 bit | STD_LOGIC | Main system clock (100 MHz target, Pin R10) |
+| **reset** | Input | 1 bit | STD_LOGIC | Synchronous system hardware reset (Active-High, Pin T10) |
+| **flux_data_in[7:0]** | Input | 8 bits | STD_LOGIC_VECTOR | Parallel intercepted high-speed data bus (Pins H14 to A16) |
+| **flux_valid_in** | Input | 1 bit | STD_LOGIC | Data valid qualifier strobe signal (Pin V11) |
+| **safety_status** | Output | 1 bit | STD_LOGIC | Hardware Circuit-Breaker status flag ('1' = Nominal, Pin U12) |
+| **emergency_trigger** | Output | 1 bit | STD_LOGIC | Critical circuit-breaker isolation trigger (Pin V12) |
+
+---
+
 ## 📊 4. Behavioral Timing Chronogram & Fault Injection
 
 ```text
@@ -51,18 +66,18 @@ Engineered to mitigate malicious frame injections, spoofing attacks, and hardwar
 
 |                  |                  |                  |                  |
    ______             ______             ______             ______             ______
-__/      \___________/      \___________/      \___________/      \___________/      \_ SYS_CLK (100 MHz)
+__/      \___________/      \___________/      \___________/      \___________/      \_ clk (100 MHz)
 
 
 XXXXXXXXXX_Nominal_FFF_XXXXXXXXXXXXXXXXXXXXXXXXXXX_Faulty_7FF_XXXXXXXXXXXXXXXXXXXXXXXXXX flux_data_in[7:0]
                                               ▲ (Fault injected during cycle)
 
 _________________________________________________________________
-                                                                 \______________________ statut_securite (1->0)
+                                                                 \______________________ safety_status (1->0)
                                                                  ▼ (Isolated at next rising edge)
 
 _________________________________________________________________
-                                                                 /---------------------- declencher_secours (0->1)
+                                                                 /---------------------- emergency_trigger (0->1)
 ```
 
 ---
