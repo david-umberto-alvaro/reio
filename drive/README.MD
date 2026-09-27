@@ -67,4 +67,9 @@ Les rapports d'implémentation post-placement-routage sur la matrice AMD/Xilinx 
 2. **Control Plane (Rust 2024) :** Pilote autonome s'exécutant sous des contraintes strictes `#[no_std]`, effectuant des lectures directes et volatiles par mappage mémoire MMIO, sécurisant la période d'évaluation via un verrou temporel cryptographique immuable.
 3. **Host Interface (C-FFI) :** Pont de liaisons C directes exportant des points d'intégration explicites compatibles avec les systèmes d'exploitation automobiles standards et les couches d'exécution temps réel.
 
+> 🔐 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core)**
+> Pour des raisons de sûreté de fonctionnement automobile et pour empêcher toute tentative de rétro-ingénierie malveillante sur l'intercepteur combinatoire critique, les fichiers sources internes (`.vhd`, `.rs`) ainsi que les binaires compilés de production ne sont pas distribués en libre accès sur ce dépôt public.
+> 
+> **Pour exécuter et reproduire la suite de tests logicielles :** Les entreprises partenaires, constructeurs, auditeurs de certification (ISO 26262) ou recruteurs qualifiés peuvent demander l'accès au binaire d'évaluation (`reio_drive.dll` / `libreio_drive.so`) en me contactant directement sous contrat de prestation ou de Proof of Concept (via **SMART Belgium**).
+
 *⚖️ Conformément aux clauses de propriété intellectuelle et de confidentialité, les fichiers de code source (.vhd, .rs) restent strictement confidentiels. Les rapports physiques d'utilisation CAO (.rpt), les résumés des contraintes de timing et les chronogrammes de simulation comportementale sont accessibles en Open-Core.*
