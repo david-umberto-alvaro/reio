@@ -33,6 +33,7 @@ Engineered to mitigate malicious frame injections, spoofing attacks, and hardwar
 
 ## 📊 4. Behavioral Timing Chronogram & Fault Injection
 
+```text
 ◀---------------- Nominal Execution ----------------▶◀---- Hardware Anomaly Detection & Fail-Safe Isolation ----▶
 0ns            15ns           30ns           45ns           60ns           75ns           90ns
 
@@ -46,6 +47,8 @@ ________________________________________________________________________________
                                                                ▼ (Coupure synchrone après 3 cycles à 60ns)
 ________________________________________________________________________________________________________
                                                               /----------------------------------------- declencher_secours (0->1)
+```
+                                                      /----------------------------------------- declencher_secours (0->1)
 
 ## ⚖ 5. Commercial Integration & Engineering Services
 
