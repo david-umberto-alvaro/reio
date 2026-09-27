@@ -4,35 +4,15 @@
 #include <stdint.h>
 #include <stddef.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-
- */
 typedef struct __attribute__((aligned(32))) {
-    uint32_t clean_packets;           
-    uint32_t anomaly_hits;            
-    uint32_t soft_blocks;           
-    
-    
-    uint32_t _reserved1;
-    uint32_t _reserved2;
-    uint32_t _reserved3;
-    uint32_t _reserved4;
-} ReioForensicReport;
+    uint32_t packets_clean;     // Correspond à REG_CNT_CLEAN (Offset 0x0C)
+    uint32_t packets_anomaly;   // Correspond à REG_CNT_ANOM  (Offset 0x10)
+    uint8_t  security_status;   // Avec un "i" !
+    // Le compilateur ajoute automatiquement le padding pour atteindre 32 octets
+} reio_chain_telemetry_t;
 
+// Point d'entrée du pilote de contrôle Rust (C-FFI Bridge)
+uint32_t initialiser_filtre_chain(uint32_t base_address);
+void lire_telemetrie_chain(reio_chain_telemetry_t *out_telemetry);
 
-void reio_l3_set_runtime_threat_mask(uint32_t mask);
-
-
-void reio_l3_set_paradox_trigger_mask(uint32_t mask);
-
-
-void reio_l3_get_diagnostic_report(ReioForensicReport* out_report);
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif 
+#endif /* REIO_CHAIN_H */
