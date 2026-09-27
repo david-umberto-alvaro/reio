@@ -34,10 +34,10 @@ Thumbs.db
 **/*.xpr
 
 # Bloquer les rapports de synthèse et d'implémentation dans tous les sous-dossiers
-**/_power_routed.rpt
-**/_timing_summary_routed.rpt
-**/_utilization_synth.rpt
-**/_utilization_placed.rpt
+**/*_power_routed.rpt
+**/*_timing_summary_routed.rpt
+**/*_utilization_synth.rpt
+**/*_utilization_placed.rpt
 
 # Ignorer tous les répertoires de simulation locaux ou caches de projets d'interfaçage
 **/*.srcs/
