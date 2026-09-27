@@ -11,84 +11,45 @@ Engineered to mitigate malicious frame injections, spoofing attacks, and hardwar
 ---
 
 ## 2. Electrical, Timing & Thermal Metrics (Artix-7)
-*Certified post-placement-routing metrics under AMD/Xilinx Vivado v2026.1 targeting the xc7a35tcsg324-1 component (Commercial Temperature Grade).*
 
-| Timing Parameter | Symbol | Target Specification | Validated Slack | Unit |
-| :--- | :--- | :--- | :--- | :--- |
-| **Core Clock Frequency** | \(f_{CLK}\) | 100.00 | — | MHz |
-| **Core Clock Period** | \(T_{CLK}\) | 10.00 | — | ns |
-| **Worst Negative Slack (Setup)**| WNS | — | **+7.606** | ns |
-| **Worst Hold Slack (Hold)** | WHS | — | **+0.279** | ns |
-| **Lockstep Detection Latency**| \(T_{LOCK}\) | **10.00 (Single cycle)**| Compliant | ns |
+*Certified metrics under AMD/Xilinx Vivado targeting xc7a35tcsg324-1 (66.67 MHz core clock, WNS +1.039 ns, WHS +0.279 ns).*
 
 ### Power & Thermal Dissipation Profile:
-- **Device Static Power (Vccint, Vccaux):** 72 mW (Hardware static floor).
-- **Core Active Dynamic Power (REIO-Core):** < 1 mW.
-- **Max Admissible Ambient Temperature ($T_{AMB\_MAX}$):** Validated at **84.6 °C** under standard thermal constraints (ThetaJA = 4.8 C/W, 250 LFM airflow).
-
----
+- **Device Static & Dynamic Power:** 72 mW / 2 mW.
+- **Max Ambient Temperature ($T_{AMB\_MAX}$):** 84.6 °C.
 
 ## 🔌 3. Signal Specifications & Hardware I/O Mapping
 
-*Strict 13-Pin Physical Interface Map validated by Vivado post-synthesis routing (CSG324 Package).*
+*Interface physique 13 broches validée par routage post-synthèse Vivado (Boîtier CSG324).*
 
-| Signal Name | Direction | Width | Type | Description / Physical Role |
-| :--- | :--- | :--- | :--- | :--- |
-| **clk** | Input | 1 bit | STD_LOGIC | Main system clock (100 MHz target, Pin R10) |
-| **reset** | Input | 1 bit | STD_LOGIC | Synchronous system hardware reset (Active-High, Pin T10) |
-| **flux_data_in[7:0]** | Input | 8 bits | STD_LOGIC_VECTOR | Parallel intercepted high-speed data bus (Pins H14 to A16) |
-| **flux_valid_in** | Input | 1 bit | STD_LOGIC | Data valid qualifier strobe signal (Pin V11) |
-| **statut_securite** | Output | 1 bit | STD_LOGIC | Hardware Circuit-Breaker status flag ('1' = Nominal, Pin U12) |
-| **declencher_secours** | Output | 1 bit | STD_LOGIC | Critical circuit-breaker isolation trigger (Pin V12) |
-
----
-
-## 🔌 3. Signal Specifications & Hardware I/O Mapping
-
-*Strict 13-Pin Physical Interface Map validated by Vivado post-synthesis routing (CSG324 Package).*
-
-| Signal Name | Direction | Width | Type | Description / Physical Role |
-| :--- | :--- | :--- | :--- | :--- |
-| **clk** | Input | 1 bit | STD_LOGIC | Main system clock (100 MHz target, Pin R10) |
-| **reset** | Input | 1 bit | STD_LOGIC | Synchronous system hardware reset (Active-High, Pin T10) |
-| **flux_data_in[7:0]** | Input | 8 bits | STD_LOGIC_VECTOR | Parallel intercepted high-speed data bus (Pins H14 to A16) |
-| **flux_valid_in** | Input | 1 bit | STD_LOGIC | Data valid qualifier strobe signal (Pin V11) |
-| **safety_status** | Output | 1 bit | STD_LOGIC | Hardware Circuit-Breaker status flag ('1' = Nominal, Pin U12) |
-| **emergency_trigger** | Output | 1 bit | STD_LOGIC | Critical circuit-breaker isolation trigger (Pin V12) |
-
----
+| Nom du Signal | Direction | Largeur | Type | Description / Rôle Physique |
+| :--- | :---: | :---: | :---: | :--- |
+| **clk** | Entrée | 1 bit | STD_LOGIC | Horloge système principale (Cible 66.67 MHz, Pin R10) |
+| **reset** | Entrée | 1 bit | STD_LOGIC | Reset matériel synchrone (Actif-Haut, Pin T10) |
+| **flux_data_in[7:0]** | Entrée | 8 bits | STD_LOGIC_VECTOR | Bus de données haute vitesse intercepté en parallèle (Pins H14 à A16) |
+| **flux_valid_in** | Entrée | 1 bit | STD_LOGIC | Signal stroboscopique de validation des données (Pin V11) |
+| **statut_securite** | Sortie | 1 bit | STD_LOGIC | Indicateur d'état du disjoncteur matériel ('1' = Nominal, Pin U12) |
+| **declencher_secours** | Sortie | 1 bit | STD_LOGIC | Déclencheur critique d'isolement du disjoncteur (Pin V12) |
 
 ## 📊 4. Behavioral Timing Chronogram & Fault Injection
 
-```text
-◀--- Nominal Execution ---▶◀---- Hardware Anomaly Detection & Fail-Safe Isolation ----
-0ns                10ns               20ns               30ns               40ns
+◀---------------- Nominal Execution ----------------▶◀---- Hardware Anomaly Detection & Fail-Safe Isolation ----▶
+0ns            15ns           30ns           45ns           60ns           75ns           90ns
 
-|                  |                  |                  |                  |
-   ______             ______             ______             ______             ______
-__/      \___________/      \___________/      \___________/      \___________/      \_ clk (100 MHz)
-
-
-XXXXXXXXXX_Nominal_FFF_XXXXXXXXXXXXXXXXXXXXXXXXXXX_Faulty_7FF_XXXXXXXXXXXXXXXXXXXXXXXXXX flux_data_in[7:0]
-                                              ▲ (Fault injected during cycle)
-
-_________________________________________________________________
-                                                                 \______________________ safety_status (1->0)
-                                                                 ▼ (Isolated at next rising edge)
-
-_________________________________________________________________
-                                                                 /---------------------- emergency_trigger (0->1)
-```
-
----
+ |              |              |              |              |              |              |
+    ______         ______         ______         ______         ______         ______         ______
+___/      \_______/      \_______/      \_______/      \_______/      \_______/      \_______/      \___ clk (66.67 MHz)
+  XXXXXXXXX_Nominal_0xAA_XXXXXXXXXXXXXXXXXXXXXXX_Sabotage_0x7F_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX flux_data_in[7:0]
+                                              ▲ (Injection à 30ns)
+________________________________________________________________________________________________________
+                                                              \_________________________________________ statut_securite (1->0)
+                                                               ▼ (Coupure synchrone après 3 cycles à 60ns)
+________________________________________________________________________________________________________
+                                                              /----------------------------------------- declencher_secours (0->1)
 
 ## ⚖ 5. Commercial Integration & Engineering Services
 
-The REIO-Drive (SPU_105) architecture is part of a high-value engineering portfolio demonstrating professional proficiency in Functional Safety, hardware fault isolation, and RTL synthesis.
+L'architecture REIO-Drive (SPU_105) fait partie d'un portefeuille d'ingénierie de haute valeur, démontrant une expertise pointue en Sûreté de Fonctionnement (ISO 26262 ASIL-D), isolation de fautes matérielles et synthèse RTL (Vivado).
 
-*   **Consulting Scope:** Core integration into custom automotive message matrices, Clock Domain Crossing (CDC) hazard mitigation for network boundaries, and documentation support for automotive certification safety cases.
-*   **Engagement Model:** Engineering missions are available under contract via freelance platforms or payroll umbrella structures (**SMART Belgium** / direct enterprise contracts).
-
-Use Control + Shift + m to toggle the tab key moving focus. Alternatively, use esc then tab to move to the next interactive element on the page.
-Aucun fichier choisi
-Attach files by dragging & dropping, selecting or pasting them.
+- **Périmètre d'Intervention :** Intégration de cœurs IP dans des matrices de messages automobiles personnalisées, mitigation des risques de Clock Domain Crossing (CDC) aux frontières de réseaux, et support documentaire pour l'homologation de dossiers de sécurité (*Safety Cases*).
+- **Modèle de Coopération :** Les missions d'ingénierie et de conseil sont disponibles sous contrat de prestation via des plateformes de freelancing ou en portage salarial (**SMART Belgium** / contrats d'entreprise directs).
