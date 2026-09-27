@@ -18,27 +18,26 @@ def load_reio_library():
     Prend en charge les extensions Linux (.so), Windows (.dll) et macOS (.dylib).
     """
     
-    # Remonte d'un niveau proprement pour atteindre la racine du projet DRIVE
+    # Remonte d'un niveau supplémentaire pour atteindre la racine du projet DRIVE
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    
-    # Construction dynamique et universelle du chemin vers le binaire Rust
-    target_dir = os.path.join(base_dir, "RUST", "target", "release")
+        # Racine du projet DRIVE (Remonte d'un niveau au-dessus du dossier RUST)
+    target_dir = r"H:\REIO\DRIVE\RUST\target\release"
 
-    # Sélection automatique de l'extension et du nom réel compilé par Cargo
     if sys.platform.startswith("linux"):
-        lib_name = "libreio_drive.so"
+        lib_name = "libcode.so"
     elif sys.platform.startswith("win32"):
         lib_name = "reio_drive.dll"
     elif sys.platform.startswith("darwin"):
-        lib_name = "libreio_drive.dylib"
+        lib_name = "libcode.dylib"
 
     lib_path = os.path.join(target_dir, lib_name)
-
-    # Vérification de l'existence du binaire avec indentation correcte
+    
+    # Fallback local si le script est exécuté directement dans le sous-dossier drive
     if not os.path.exists(lib_path):
         print(f"❌ Erreur : Impossible de localiser la DLL REIO à l'adresse : {lib_path}")
         sys.exit(1)
 
+        
     print(f"✅ Binaire REIO chargé avec succès : {lib_path}")
     return ctypes.CDLL(lib_path)
 
