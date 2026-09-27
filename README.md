@@ -17,14 +17,15 @@ Le framework **REIO** (**Réalisme Expérimental Instrumenté Optimisé**) coupl
 L'infrastructure matérielle implémentée sous Vivado est la traduction physique directe des règles de sûreté formalisées dans ma notice d'architecture :
 
 
+
 | Axiome | Pilier de Sûreté Théorique | Traduction Matérielle (Vivado) | Impact sur la Sûreté Réelle |
 | :--- | :--- | :--- | :--- |
-| **REIO-A1** | Ancrage Matériel Pur | **REIO-Drive** (6 Slice LUTs / Logique de transition pure) | Confinement strict des données corrompues. L'IP Core empêche la propagation de l'erreur sans saturer le processeur hôte par exclusion d'états intermédiaires. |
-| **REIO-A2** | Isolation des Perceptions | **REIO-Drive** (Génération des prémisses par capteurs indexés) | Exclusion totale de l'intervention humaine directe pour prémunir les registres de toute altération malveillante ou asymétrique. |
-| **REIO-A3** | Convergence Orthogonale | **REIO-Chain** (Bus réseau synchrone cadencé à 125 MHz / 400 MHz) | Filtrage matériel des paquets réseau. Rejet immédiat de toute donnée non ancrée aux primitives physiques (Résolution des incertitudes de Gettier). |
-| **REIO-A4** | Confinement Paracohérent & Seuils | **REIO-Drive** (Ports `statut_securite` / `declencher_secours`) | Isolation physique instantanée du bus automobile en 3 cycles d'horloge (45 ns à 66.67 MHz) en neutralisant le principe d'explosion face à une injection de faute (`0x7F`). |
-| **REIO-A5** | Axiomatisation Récursive Dynamique | **REIO-Chain** (Gestion CDC / Marge WNS +1.596 ns) | Élimination mathématique des risques de métastabilité et scellement intègre des cycles d'horloges asynchrones pour la persistance temporelle. |
-| **REIO-A6** | Attestation Pragmatique Cryptographique | **REIO-Chain** (Preuve à divulgation nulle de connaissance / Zero-Knowledge) | Scellement irréversible de chaque cycle d'évolution du protocole pour préserver l'invariance des structures au sein des environnements cyber-physiques. |
+| **REIO&#8209;A1** | Ancrage Matériel Pur | **REIO-Drive** (6 Slice LUTs / Logique de transition pure) | Confinement strict des données corrompues. L'IP Core empêche la propagation de l'erreur sans saturer le processeur hôte par exclusion d'états intermédiaires. |
+| **REIO&#8209;A2** | Isolation des Perceptions | **REIO-Drive** (Génération des prémisses par capteurs indexés) | Exclusion totale de l'intervention humaine directe pour prémunir les registres de toute altération malveillante ou asymétrique. |
+| **REIO&#8209;A3** | Convergence Orthogonale | **REIO-Chain** (Bus réseau synchrone cadencé à 125 MHz / 400 MHz) | Filtrage matériel des paquets réseau. Rejet immédiat de toute donnée non ancrée aux primitives physiques (Résolution des incertitudes de Gettier). |
+| **REIO&#8209;A4** | Confinement Paracohérent & Seuils | **REIO-Drive** (Ports `statut_securite` / `declencher_secours`) | Isolation physique instantanée du bus automobile en 3 cycles d'horloge (45 ns à 66.67 MHz) en neutralisant le principe d'explosion face à une injection de faute (`0x7F`). |
+| **REIO&#8209;A5** | Axiomatisation Récursive Dynamique | **REIO-Chain** (Gestion CDC / Marge WNS +1.596 ns) | Élimination mathématique des risques de métastabilité et scellement intègre des cycles d'horloges asynchrones pour la persistance temporelle. |
+| **REIO&#8209;A6** | Attestation Pragmatique Cryptographique | **REIO-Chain** (Preuve à divulgation nulle de connaissance / Zero-Knowledge) | Scellement irréversible de chaque cycle d'évolution du protocole pour préserver l'invariance des structures au sein des environnements cyber-physiques. |
 
 
 ---
