@@ -70,6 +70,6 @@ Les rapports d'implémentation post-placement-routage sur la matrice AMD/Xilinx 
 > 🔐 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core)**
 > Pour des raisons de sûreté de fonctionnement automobile et pour empêcher toute tentative de rétro-ingénierie malveillante sur l'intercepteur combinatoire critique, les fichiers sources internes (`.vhd`, `.rs`) ainsi que les binaires compilés de production ne sont pas distribués en libre accès sur ce dépôt public.
 > 
-> **Pour exécuter et reproduire la suite de tests logicielles :** Les entreprises partenaires, constructeurs, auditeurs de certification (ISO 26262) ou recruteurs qualifiés peuvent demander l'accès au binaire d'évaluation (`reio_drive.dll` / `libreio_drive.so`) en me contactant directement sous contrat de prestation ou de Proof of Concept (via **SMART Belgium**).
+> **Pour exécuter et reproduire la suite de tests logicielles :** Les entreprises partenaires, constructeurs, auditeurs de certification (ISO 26262) ou recruteurs qualifiés peuvent demander l'accès au binaire d'évaluation (`reio_drive.dll` / `libreio_drive.so`) en me contactant directement sous contrat de prestation ou de Proof of Concept.
 
 *⚖️ Conformément aux clauses de propriété intellectuelle et de confidentialité, les fichiers de code source (.vhd, .rs) restent strictement confidentiels. Les rapports physiques d'utilisation CAO (.rpt), les résumés des contraintes de timing et les chronogrammes de simulation comportementale sont accessibles en Open-Core.*
