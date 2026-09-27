@@ -18,7 +18,7 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 | Pilier de Sûreté Théorique | Traduction Matérielle (Vivado) | Impact sur la Sûreté Réelle |
 | :--- | :--- | :--- |
-| **Confinement Paracohérent & Seuils**<br>*(REIO-A4)* | `REIO-Drive` (Ports `statut_securite` / `declencher_secours`) | Isolation physique instantanée du bus automobile en 1 cycle d'horloge (10 ns) lors d'une injection de fault (`0x7F`) en neutralisant le principe d'explosion. |
+| **Confinement Paracohérent & Seuils**<br>*(REIO-A4)* | `REIO-Drive` (Ports `safety_status / emergency_trigger`) | Isolation physique instantanée du bus automobile en 1 cycle d'horloge (10 ns) lors d'une injection de fault (`0x7F`) en neutralisant le principe d'explosion. |
 | **Ancrage Matériel Pur**<br>*(REIO-A1 & REIO-A2)* | `REIO-Drive` (6 Slice LUTs / Logique de transition pure) | Confinement strict des données corrompues. L'IP Core empêche la propagation de l'erreur sans saturer le processeur hôte par exclusion d'états intermédiaires. |
 | **Convergence Orthogonale**<br>*(REIO-A3)* | `REIO-Chain` (Bus synchrone 64 bits cadencé à 400 MHz) | Filtrage matériel pur des paquets réseau. Rejet immédiat de toute donnée non ancrée aux primitives physiques (Résolution des incertitudes de Gettier). |
 | **Axiomatisation Récursive**<br>*(REIO-A5 & REIO-A6)* | `REIO-Chain` (Gestion CDC / Marge WNS +1,596 ns) | Élimination mathématique des risques de métastabilité et scellement intègre des cycles d'horloges asynchrones pour la persistance temporelle. |
@@ -84,5 +84,3 @@ Ce framework est distribué sous un modèle Open-Core strict. Pour consulter l'a
 
 💼 **Besoin d'intégrer REIO sur vos architectures FPGA ou calculateurs critiques ?**
 Pour toute demande d'évaluation du code source complet, d'adaptation d'architecture sur mesure ou de consultation industrielle, l'accès peut être accordé après signature d'un Accord de Confidentialité (NDA). Veuillez soumettre une demande officielle via mon **[Profil LinkedIn](https://www.linkedin.com/in/david-umberto-alvaro-715841399/)**.
-
-
