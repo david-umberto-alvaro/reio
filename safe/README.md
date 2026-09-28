@@ -1,13 +1,48 @@
 # 🛡️ REIO-Safe (SPU-102) — Disjoncteur Matériel Anti-Ransomware
 
-## 1. Présentation Générale
+### Présentation Générale
 REIO-Safe est un module de sécurité critique co-conçu en **VHDL synchrone** et **Rust bare-metal (`#![no_std]`)**. Il agit comme un disjoncteur physique actif au cœur de l'architecture de stockage, conçu pour intercepter les attaques par ransomware (boucles de chiffrement massives ou altérations géométriques de bas niveau) avant qu'elles ne corrompent les puces Flash/SSD.
 
-## 2. Spécifications du Matériel (FPGA)
+### Spécifications du Matériel (FPGA)
 L'architecture a été implémentée et validée sur une cible de classe automobile durcie à tolérance thermique étendue pour une intégration confinée :
 *   **Composant Cible :** AMD/Xilinx Artix-7 `xa7a35tcsg324-1Q` (Conformité ISO 26262 ASIL-D / Grade Q).
 *   **Interface de Bus :** Esclave AMBA APB 32 bits synchrone (Signaux `PCLK`, `PSEL`, `PENABLE`, `PWRITE`, `PADDR`, `PWDATA`, `PRDATA`).
 *   **Fréquence du Plan de Contrôle :** 100.00 MHz (Période stricte de 10.000 ns).
+
+### 📊 Synthèse d'Audit et Fermeture Temporelle (Vivado Static Timing)
+L'interface a été entièrement réenregistrée de manière synchrone pour éliminer les violations de méthodologie combinatoire (`TIMING-16`) et isoler les bus parallèles des calculs de dérive :
+*   **Worst Negative Slack (WNS) :** `+5.222 ns` (Marge de Setup validée, Zéro Failing Endpoints).
+*   **Worst Hold Slack (WHS) :** `+0.222 ns` (Marge de Hold validée, Zéro Violations).
+*   **Broche d'Horloge Dédiée :** Entrée physique sur pin `F4` (Multi-Region Clock Capable - MRCC) annulant le retard de l'arbre de distribution d'horloge.
+*   **Broche de Disjonction Physique :** Sortie numérique propre sur pin `T11` pilotant la ligne `SIG_FLASH_WRITE_ENABLE`.
+
+### 📊 Synthèse d'Audit et Fermeture Temporelle (Vivado Static Timing)
+L'interface a été entièrement réenregistrée de manière synchrone pour éliminer les violations de méthodologie combinatoire (`TIMING-16`) et isoler les bus parallèles des calculs de dérive :
+*   **Worst Negative Slack (WNS) :** `+5.222 ns` (Marge de Setup validée, Zéro Failing Endpoints).
+*   **Worst Hold Slack (WHS) :** `+0.222 ns` (Marge de Hold validée, Zéro Violations).
+*   **Broche d'Horloge Dédiée :** Entrée physique sur pin `F4` (Multi-Region Clock Capable - MRCC) annulant le retard de l'arbre de distribution d'horloge.
+*   **Broche de Disjonction Physique :** Sortie numérique propre sur pin `T11` pilotant la ligne `SIG_FLASH_WRITE_ENABLE`.
+
+### 📉 Métriques de l'Empreinte Silicium (Vivado Utilization)
+*   **Slice LUTs :** 28 (0,13 % d'utilisation de la matrice).
+*   **Slice Registers :** 20 (0,05 % d'utilisation, répartis en 19 primitives `FDCE` et 1 primitive `FDPE`).
+*   **Bonded IOB (Ports d'E/S) :** 68 ports mappés de manière virtuelle en interne pour optimiser l'espace du boîtier.
+*   **Clock Buffers :** 1 primitive globale `BUFG` pour l'équilibrage de l'arbre d'horloge.
+
+### 🔌 Caractéristiques Électriques et Thermiques (Vivado Power)
+*   **Puissance Totale Spécifiée (On-Chip Power) :** 0,092 W (92 mW).
+*   **Puissance Statique du Composant :** 0,072 W (72 mW).
+*   **Puissance Dynamique Métrique :** 0,020 W (20 mW).
+*   **Température de Jonction (Silicium) :** 25,4 °C.
+*   **Température Ambiante Maximale Supportée :** 124,6 °C (Grade Automobile Q étendu de -40°C à +125°C).
+
+### Mécanisme de Confinement Passif/Actif (SPU-102)
+Le filtre combinatoire surveille en continu le trafic d'écriture via deux canaux de détection parallèles :
+1.  **Canal Géométrique (Registre Alpha) :** Un invariant d'usine de 32 bits (`X"A5A5A5A5"`) est gravé dans le silicium. Toute transaction d'écriture produisant un produit logique nul (`PWDATA AND REG_ALPHA = X"00000000"`) déclenche une disjonction immédiate.
+2.  **Canal Entropique (Compteur d'Épuisement) :** Une boucle d'écriture consécutive en dehors des adresses nominales d'usine (`PADDR(11 downto 0) = X"000"`) incrémente un compteur d'entropie asymétrique filtré contre le bruit. Atteindre le seuil critique de `16` déclenche le verrouillage de quarantaine.
+
+*   **À 40.000 ns (Détection de l'Attaque) :** Le bus AMBA APB présente une transaction d'écriture suspecte (`PWDATA = 5a5a5a5a`) à l'adresse `00001000`. Comme le produit logique avec l'invariant d'usine est nul, le filtre SPU-102 réagit instantanément.
+*   **À 45.000 ns (Coupure de Sécurité) :** Dès le cycle suivant, le signal critique **`SIG_FLASH_WRITE_ENABLE` s'effondre proprement à '0'** (Coupure nette de l'alimentation d'écriture). Simultanément, le bus de données `PRDATA` se verrouille sur le tag de quarantaine **`deadbeef`** et l'alerte d'erreur esclave s'active.
 
 ### 🌐 Architecture Fonctionnelle du Pipeline SPU_102
 
@@ -43,30 +78,7 @@ L'architecture a été implémentée et validée sur une cible de classe automob
                            | [ BUS AMBA APB 32-bits ]
 ```
 
-### 📊 Synthèse d'Audit et Fermeture Temporelle (Vivado Static Timing)
-L'interface a été entièrement réenregistrée de manière synchrone pour éliminer les violations de méthodologie combinatoire (`TIMING-16`) et isoler les bus parallèles des calculs de dérive :
-*   **Worst Negative Slack (WNS) :** `+5.222 ns` (Marge de Setup validée, Zéro Failing Endpoints).
-*   **Worst Hold Slack (WHS) :** `+0.222 ns` (Marge de Hold validée, Zéro Violations).
-*   **Broche d'Horloge Dédiée :** Entrée physique sur pin `F4` (Multi-Region Clock Capable - MRCC) annulant le retard de l'arbre de distribution d'horloge.
-*   **Broche de Disjonction Physique :** Sortie numérique propre sur pin `T11` pilotant la ligne `SIG_FLASH_WRITE_ENABLE`.
-
-### 📉 Métriques de l'Empreinte Silicium (Vivado Utilization)
-*   **Slice LUTs :** 28 (0,13 % d'utilisation de la matrice).
-*   **Slice Registers :** 20 (0,05 % d'utilisation, répartis en 19 primitives `FDCE` et 1 primitive `FDPE`).
-*   **Bonded IOB (Ports d'E/S) :** 68 ports mappés de manière virtuelle en interne pour optimiser l'espace du boîtier.
-*   **Clock Buffers :** 1 primitive globale `BUFG` pour l'équilibrage de l'arbre d'horloge.
-
-### 🔌 Caractéristiques Électriques et Thermiques (Vivado Power)
-*   **Puissance Totale Spécifiée (On-Chip Power) :** 0,092 W (92 mW).
-*   **Puissance Statique du Composant :** 0,072 W (72 mW).
-*   **Puissance Dynamique Métrique :** 0,020 W (20 mW).
-*   **Température de Jonction (Silicium) :** 25,4 °C.
-*   **Température Ambiante Maximale Supportée :** 124,6 °C (Grade Automobile Q étendu de -40°C à +125°C).
-
-*   **À 40.000 ns (Détection de l'Attaque) :** Le bus AMBA APB présente une transaction d'écriture suspecte (`PWDATA = 5a5a5a5a`) à l'adresse `00001000`. Comme le produit logique avec l'invariant d'usine est nul, le filtre SPU-102 réagit instantanément.
-*   **À 45.000 ns (Coupure de Sécurité) :** Dès le cycle suivant, le signal critique **`SIG_FLASH_WRITE_ENABLE` s'effondre proprement à '0'** (Coupure nette de l'alimentation d'écriture). Simultanément, le bus de données `PRDATA` se verrouille sur le tag de quarantaine **`deadbeef`** et l'alerte d'erreur esclave s'active.
-
-*   ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
+### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
 
 L'analyse comportementale du banc de test confirme la réactivité immédiate du disjoncteur SPU-102 face à une injection malveillante :
 
@@ -83,7 +95,7 @@ Dès l'activation du verrou :
 *   Le bus de données de lecture `PRDATA` injecte de manière volatile le tag d'alerte **`0xDEADBEEF`** vers l'hôte.
 *   Le signal d'erreur d'esclave protocolaire **`PSLVERR` est levé à '1'** pour notifier le contrôleur ARM central.
 
-## 4. Architecture Logicielle (Driver Rust Embaqué)
+### Architecture Logicielle (Driver Rust Embaqué)
 Le pilote bas niveau exploite la puissance et la sûreté de type de Rust sans runtime ni système d'exploitation :
 *   **Mappage MMIO :** Structure de registres à alignement strict C (`#[repr(C)]`) superposée sur les offsets matériels du SPU-102.
 *   **Lectures Volatiles :** Utilisation exclusive de `core::ptr::read_volatile` pour interdire toute optimisation de cache du CPU hôte et forcer l'évaluation du silicium à chaque instruction.
