@@ -23,7 +23,7 @@ Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (x
 - **Puissance Électrique Totale :** 58 mW (Puissance dynamique active du cœur : 1 mW)
 - **I/O Physiques :** Configuration d'entrées/sorties routées sous contrainte de délai LVCMOS33
 
-### 🌐 Architecture Fonctionnelle du Pipeline SPU_103
+### 🌐 Architecture Fonctionnelle du Pipeline
 
 ```text
 +-------------------------------------------------------+
