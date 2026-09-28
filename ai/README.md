@@ -1,6 +1,6 @@
 # 🧠 REIO-AI — Superviseur Paracohérent pour Calcul Neuromorphique
 
-REIO-AI (SPU_107) est un module de supervision logique matériel (IP Core) conçu pour intercepter les hallucinations cognitives, les dérives de registres et les attaques adverses sur les architectures NPU/TPU embarquées.
+REIO-AI est un module de supervision logique matériel (IP Core) conçu pour intercepter les hallucinations cognitives, les dérives de registres et les attaques adverses sur les architectures NPU/TPU embarquées.
 
 ### 🔬 Architecture Spécifique & Invariant V6-Alpha
 
