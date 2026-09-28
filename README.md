@@ -64,32 +64,47 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
 ### 🌐 Architecture Globale du Framework
 
 ```text
-               [ REIO FRAMEWORK ]
-                       |
-                       v
-     +-----------------------------------+
+                     [ REIO FRAMEWORK ]
+                             |
+                             v
+           +-----------------------------------+
 
-     |                                   |
-     |             REIO-CORE             |
-     |  (Spécification Théorique Init.)  |
-     |  -> Archivé sur Zenodo avec DOI   |
-     |                                   |
-     +-----------------------------------+
-                       |
-         +-------------+-------------+
+           |                                   |
+           |             REIO-CORE             |
+           |  (Spécification Théorique Init.)  |
+           |  -> Archivé sur Zenodo avec DOI   |
+           |                                   |
+           +-----------------------------------+
+                             |
+         +-------------+-----+-------------+
 
-         |             |             |
-         v             v             v
-  +-------------+ +-------------+ +-------------+
+         |             |                   |
+         v             v                   v
+  +-------------+ +-------------+     +-------------+
 
-  |             | |             | |             |
-  |  REIO-CHAIN | |  REIO-DRIVE | |  REIO-SAFE  |
-  | (PoC Réseau)| |  (PoC Auto) | | (PoC Stock.)|
-  | -> Pipeline | | -> Intercept| | -> SPU-102  |
-  |   64 bits   | |   Direct    | |  Synchrone  |
-  | -> 400 MHz  | | -> 66.67MHz | | -> 100 MHz  |
-  |             | |             | |             |
-  +-------------+ +-------------+ +-------------+
+  |             | |             |     |             |
+  |  REIO-CHAIN | |  REIO-DRIVE |     |  REIO-SAFE  |
+  | (PoC Réseau)| |  (PoC Auto) |     | (PoC Stock.)|
+  | -> Pipeline | | -> Intercept|     | -> SPU-102  |
+  |   64 bits   | |   Direct    |     |  Synchrone  |
+  | -> 400 MHz  | | -> 66.67MHz |     | -> 100 MHz  |
+  |             | |             |     |             |
+  +-------------+ +-------------+     +-------------+
+
+         |                                   |
+         +-----------------+-----------------+
+                           |
+                           v
+                    +-------------+
+
+                    |             |
+                    |  REIO-CRYPT |
+                    | (PoC Crypto)|
+                    | -> SPU-106  |
+                    |  Pipelined  |
+                    | -> 100 MHz  |
+                    |             |
+                    +-------------+
 ```
 
 
