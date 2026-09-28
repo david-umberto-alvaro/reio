@@ -1,4 +1,4 @@
-# 🛡️ REIO-Safe (SPU-102) — Disjoncteur Matériel Anti-Ransomware
+# 🛡️ REIO-Safe — Disjoncteur Matériel Anti-Ransomware
 
 ###  📌  Présentation Générale
 REIO-Safe est un module de sécurité critique co-conçu en **VHDL synchrone** et **Rust bare-metal (`#![no_std]`)**. Il agit comme un disjoncteur physique actif au cœur de l'architecture de stockage, conçu pour intercepter les attaques par ransomware (boucles de chiffrement massives ou altérations géométriques de bas niveau) avant qu'elles ne corrompent les puces Flash/SSD.
