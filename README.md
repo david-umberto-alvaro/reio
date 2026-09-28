@@ -31,24 +31,24 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **AMD/Xilinx Artix-7**.
 
-- ⛓️ **[REIO-Chain (SPU_103)](./chain)**
+- ⛓️ **[REIO-Chain](./chain)**
   - **Fonction :** Disjoncteur matériel sur bus 64 bits.
   - **Validation :** Cible à **400 MHz** (WNS : **+1,596 ns**, WHS : **+0,142 ns**).
   - **Ressources :** **12 LUTs / 111 Registres**, consommation **~1 mW**.
 
-- 🔑 **[REIO-Crypt (SPU_106)](./crypt)**
+- 🔑 **[REIO-Crypt](./crypt)**
   - **Fonction :** Accélérateur cryptographique découplé matériel pour preuve Zero-Knowledge (ZKP).
   - **Architecture de Sûreté :** Modèle Hétérogène Découplé (AHD) avec pipeline synchrone à deux étages (brise le chemin critique d'arithmétique non-linéaire) et capteur de détection de glitch de tension.
   - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **+0.345 ns** \| WHS : **+0.106 ns**). Preuve calculée en 16 cycles d'horloge et disjonction par mise à la masse immédiate en cas d'attaque par injection.
   - **Ressources :** **169 LUTs / 139 Registres / 3 Blocs DSP48E1**, consommation globale ultra-faible de **75 mW** (Dynamique : 3 mW, Statique : 72 mW).
 
-- 🚗 **[REIO-Drive (SPU_105)](./drive)**
+- 🚗 **[REIO-Drive](./drive)**
   - **Fonction :** Bouclier pour bus d'interception (Couplage Direct Stream).
   - **Architecture de Sûreté :** Conception inspirée des principes de résilience ISO 26262 / ASIL-D (Pattern d'interception combinatoire durcie avec compteur de stabilisation et mode Fail-Safe matériel).
   - **Validation :** Validé à **66.67 MHz** (Période : **15.00 ns** \| WNS : **+1.039 ns** \| WHS : **+0.279 ns**). Interception et isolation physique du bus automobile exécutées de manière déterministe en **3 cycles d'horloge (45.00 ns)**.
   - **Ressources :** **6 LUTs / 4 Registres**, consommation active inférieure à **1 mW** (Statique : 72 mW).
 
-- 🛡️ **[REIO-Safe (SPU_102)](./safe)**
+- 🛡️ **[REIO-Safe](./safe)**
   - **Fonction :** Filtre combinatoire d'interception matériel anti-ransomware de stockage.
   - **Architecture de Sûreté :** Double canal parallèle (Analyse géométrique via Registre Alpha et suivi entropique asymétrique filtré contre le bruit avec seuil critique). 
   - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **+5.222 ns** \| WHS : **+0.222 ns**). Coupure électrique nette de l'alimentation d'écriture à **0 Volt** et injection du tag de quarantaine exécutées en **1 seul cycle d'horloge (10.00 ns)**.
