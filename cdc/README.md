@@ -68,3 +68,5 @@ L'exécution de la suite de tests unitaires sur le plan de contrôle en Rust bar
 *   **[Test 1] Statut de Repos (Bus à 0) :** Validation du bus de statut au niveau bas nominal stable (`PASS` | Valeur lue : `0x0`).
 *   **[Test 2] Capture Inter-Domaines (Signal 1) :** Absorption complète de la gigue asynchrone et lecture stabilisée du bit à l'état haut (`PASS` | Valeur lue : `0x1`).
 *   **[Test 3] Erreur Pointeur (Adresse NULL) :** Robustesse logicielle validée avec succès par interception immédiate et bloquante de la couche FFI (`PASS` | Valeur lue : `0xffffffff`).
+
+![Rapport de validation du script Python REIO-Safe](reio_cdc_test.png)
