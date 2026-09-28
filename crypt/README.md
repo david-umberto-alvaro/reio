@@ -25,7 +25,9 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 
 * ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
 
-![Chronogramme des formes d'ondes REIO-Chain](reio_crypt_simulation.png)
+### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
+
+![Chronogramme des formes d'ondes REIO-Crypt](reio_crypt_simulation.png)
 
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
 
