@@ -40,6 +40,7 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
   - **Fonction :** Bouclier pour bus d'interception (Couplage Direct Stream).
   - **Architecture de Sûreté :** Conception inspirée des principes de résilience ISO 26262 / ASIL-D (Pattern d'interception combinatoire durcie avec compteur de stabilisation et mode Fail-Safe matériel).
   - **Validation :** Validé à **66.67 MHz** (Période : **15.00 ns** \| WNS : **+1.039 ns** \| WHS : **+0.279 ns**). Interception et isolation physique du bus automobile exécutées de manière déterministe en **3 cycles d'horloge (45.00 ns)**.
+  - **Ressources :** **6 LUTs / 4 Registres**, consommation active inférieure à **1 mW** (Statique : 72 mW).
 
 - 🛡️ **[REIO-Safe (SPU_102)](./safe)**
   - **Fonction :** Filtre combinatoire d'interception matériel anti-ransomware de stockage.
