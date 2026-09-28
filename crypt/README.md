@@ -1,6 +1,6 @@
 # 🔑 REIO-Crypt — Accélérateur Cryptographique Hétérogène Découplé
 
-REIO-Crypt (SPU_106) est un coprocesseur arithmétique matériel dédié à la génération de preuves à divulgation nulle de connaissance (Zero-Knowledge Proofs - ZKP) et au durcissement de clés sur courbes elliptiques (ECC).
+REIO-Crypt est un coprocesseur arithmétique matériel dédié à la génération de preuves à divulgation nulle de connaissance (Zero-Knowledge Proofs - ZKP) et au durcissement de clés sur courbes elliptiques (ECC).
 
 ### 🔬 Architecture Logique & Primitives Câblées
 
