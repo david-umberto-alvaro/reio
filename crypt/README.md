@@ -17,15 +17,49 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 * **Worst Hold Slack (WHS) :** Optimisé à **+0.106 ns** (0 Violations de Hold).
 * **Temps de Cycle Polymorphe :** Signature cryptographique calculée et stabilisée en exactement 16 cycles d'horloge.
 
+### 🌐 Architecture Fonctionnelle du Pipeline SPU_106
+
+```text
++--------------------------------------------------------+
+
+|                    APPLICATION HÔTE                    |
+|             (Interface d'Évaluation Python)            |
++--------------------------------------------------------+
+                           |
+                           | Liaison Directe (C-FFI Bridge)
+                           v
++--------------------------------------------------------+
+
+|               PILOTE DE CONTRÔLE RUST                  |
+|  Configuration MMIO & Registres Alignés (#![no_std])   |
++--------------------------------------------------------+
+                           |
+                           | Lecture Volatile du Jeton ZK (Bus AMBA APB)
+                           v
++========================================================+
+
+|                        SILICIUM                        |
+| ------------------------------------------------------ |
+|               COPROCESSEUR MATÉRIEL VHDL               |
+|      Modèle Hétérogène Découplé & Pipeline 2 Étages    |
+|                                                        |
+|   [169 Optimized Slice LUTs]   [139 Registers]         |
+|   [3 Blocs DSP48E1 Câblés]     [16-Cycle Processing]   |
++========================================================+
+                           ^
+                           | Interception Ultra-Rapide (9.5 ns)
+                           | [ LIGNE VOLTAGE_GLITCH_DETECT ]
+```
+
+### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
+
+![Chronogramme des formes d'ondes REIO-Crypt](reio_crypt_simulation.png)
+
 ### 📊 Empreinte Géométrique & Signature Thermique
 
 * **Ressources Silicium :** 169 Slice LUTs (0.81%), 139 Slice Registers (0.33%), et 3 blocs DSP48E1 (3.33%).
 * **Puissance Électrique Totale :** Enveloppe thermique mesurée à **75 mW** (Statique : 72 mW, Cœur Dynamique : 3 mW).
 * **I/O Physiques :** Configuration de **105 broches physiques** (70 ports d'entrée `IBUF`, 35 ports de sortie `OBUF`).
-
-### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
-
-![Chronogramme des formes d'ondes REIO-Crypt](reio_crypt_simulation.png)
 
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
 
