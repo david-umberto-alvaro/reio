@@ -74,8 +74,6 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
            |                                   |
            |             REIO-CORE             |
            |  (Spécification Théorique Init.)  |
-           |  -> Archivé sur Zenodo avec DOI   |
-           |                                   |
            +-----------------------------------+
                              |
          +-------------+-----+-------------+
@@ -87,13 +85,20 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
   |             | |             |     |             |
   |  REIO-CHAIN | |  REIO-DRIVE |     |  REIO-SAFE  |
   | (PoC Réseau)| |  (PoC Auto) |     | (PoC Stock.)|
-  | -> Pipeline | | -> Intercept|     |  Synchrone  |
-  |   64 bits   | |   Direct    |     | -> 100 MHz  |
-  | -> 400 MHz  | | -> 66.67MHz |     |             |
+  | -> 400 MHz  | | -> 66.67MHz |     | -> 100 MHz  |
   +-------------+ +-------------+     +-------------+
 
          |                                   |
          +-----------------+-----------------+
+                           |
+                           v
+                    +-------------+
+
+                    |  REIO-CDC   |
+                    | (Pont Clock)|     ◄--- [ Barrière Anti-Gigue ]
+                    |  3 Registers|          (Absorption Métastabilité)
+                    | -> 3 Cycles |
+                    +-------------+
                            |
                  +---------+---------+
 
@@ -104,14 +109,10 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
           |             |     |             |
           |  REIO-CRYPT |     |   REIO-AI   |
           | (PoC Crypto)|     |   (PoC IA)  |
-          |  Pipelined  |     |  Supervisor |
           | -> 100 MHz  |     | -> 100 MHz  |
-          |             |     |             |
           +-------------+     +-------------+
 
 ```
-
-
 
 ## 📦 3. Structure du Dépôt & Politique d'Accès
 
