@@ -40,8 +40,8 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
   - **Fonction :** Disjoncteur matériel sur bus 64 bits.
   - **Validation :** Cible à **400 MHz** (WNS : **+1,596 ns**, WHS : **+0,142 ns**).
   - **Ressources :** **12 LUTs / 111 Registres**, consommation **~1 mW**.
- 
-  - - 🔑 **[REIO-Crypt (SPU_106)](./crypt)**
+
+- 🔑 **[REIO-Crypt (SPU_106)](./crypt)**
   - **Fonction :** Accélérateur cryptographique découplé matériel pour preuve Zero-Knowledge (ZKP).
   - **Architecture de Sûreté :** Modèle Hétérogène Découplé (AHD) avec pipeline synchrone à deux étages (brise le chemin critique d'arithmétique non-linéaire) et capteur de détection de glitch de tension.
   - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **+0.345 ns** \| WHS : **+0.106 ns**). Preuve calculée en 16 cycles d'horloge et disjonction par mise à la masse immédiate en cas d'attaque par injection.
