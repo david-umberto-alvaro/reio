@@ -81,31 +81,33 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
 
          |             |                   |
          v             v                   v
-  +-------------+ +-------------+ +-------------+
+  +-------------+ +-------------+     +-------------+
 
-  |             | |             | |             |
-  |  REIO-CHAIN | |  REIO-DRIVE | |  REIO-SAFE  |
-  | (PoC Réseau)| |  (PoC Auto) | | (PoC Stock.)|
-  | -> Pipeline | | -> Intercept| | -> SPU-102  |
-  |   64 bits   | |   Direct    | |  Synchrone  |
-  | -> 400 MHz  | | -> 66.67MHz | | -> 100 MHz  |
-  |             | |             | |             |
-  +-------------+ +-------------+ +-------------+
+  |             | |             |     |             |
+  |  REIO-CHAIN | |  REIO-DRIVE |     |  REIO-SAFE  |
+  | (PoC Réseau)| |  (PoC Auto) |     | (PoC Stock.)|
+  | -> Pipeline | | -> Intercept|     |  Synchrone  |
+  |   64 bits   | |   Direct    |     | -> 100 MHz  |
+  | -> 400 MHz  | | -> 66.67MHz |     |             |
+  +-------------+ +-------------+     +-------------+
 
          |                                   |
          +-----------------+-----------------+
                            |
-                           v
-                    +-------------+
+                 +---------+---------+
 
-                    |             |
-                    |  REIO-CRYPT |
-                    | (PoC Crypto)|
-                    | -> SPU-106  |
-                    |  Pipelined  |
-                    | -> 100 MHz  |
-                    |             |
-                    +-------------+
+                 |                   |
+                 v                   v
+          +-------------+     +-------------+
+
+          |             |     |             |
+          |  REIO-CRYPT |     |   REIO-AI   |
+          | (PoC Crypto)|     |   (PoC IA)  |
+          |  Pipelined  |     |  Supervisor |
+          | -> 100 MHz  |     | -> 100 MHz  |
+          |             |     |             |
+          +-------------+     +-------------+
+
 ```
 
 
