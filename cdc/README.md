@@ -21,6 +21,45 @@ REIO-CDC est un bloc de propriété intellectuelle (IP Core) matériel de bas ni
 * **Puissance Électrique Totale :** Enveloppe globale mesurée à **336 mW** (Logique interne active : 7 mW, Fuites statiques passives : 71 mW, Commutation des I/O buffers : 245 mW).
 * **Température de Jonction :** Stabilisée à **26.6 °C** pour une température ambiante maximale supportée de **123.4 °C** (Spécifications Q-Grade Automobile).
 
+### 🌐 Architecture Fonctionnelle du Pipeline REIO-CDC
+
+```text
+       +-------------------------------------------------------+
+
+       |                  DOMAINE ASYNCHRONE                   |
+       |         (Flux Haute Fréquence ou Auto : 400M / 66M)   |
+       +-------------------------------------------------------+
+                                   |
+                                   | ASYNC_IN (Signal de Rupture brute)
+                                   v
+       +=======================================================+
+
+       |                       SILICIUM                        |
+       | ----------------------------------------------------- |
+       |          CHAINE DE CAPTURE ANTI-MÉTASTABILITÉ         |
+       |          (3 Slice Registers / ASYNC_REG = TRUE)       |
+       |                                                       |
+       |   +------------+     +------------+     +------------+ |
+       |   | sync_reg0  | --> | sync_reg1  | --> | sync_reg2  | |
+       |   | (Capture)  |     | (Stabline) |     | (Sortie)   | |
+       |   +------------+     +------------+     +------------+ |
+       |         ^                 ^                 ^         |
+       +=========|=================|=================|=========+
+
+                 |                 |                 |
+                 +-----------------+-----------------+--- CLK_DEST (100 MHz)
+
+                                                     |
+                                                     v
+                                          +--------------------+
+
+                                          |   DOMAINE CIBLE    |
+                                          | SYNC_OUT (Stable)  |
+                                          | -> Bus 100 MHz     |
+                                          +--------------------+
+```
+
+
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
 L'exécution de la suite de tests unitaires sur le plan de contrôle en Rust bare-metal (`#![no_std]`) certifie la parfaite étanchéité de l'interface MMIO :
 *   **[Test 1] Statut de Repos (Bus à 0) :** Validation du bus de statut au niveau bas nominal stable (`PASS` | Valeur lue : `0x0`).
