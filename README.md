@@ -80,16 +80,16 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
 
          |             |                   |
          v             v                   v
-  +-------------+ +-------------+     +-------------+
+  +-------------+ +-------------+ +-------------+
 
-  |             | |             |     |             |
-  |  REIO-CHAIN | |  REIO-DRIVE |     |  REIO-SAFE  |
-  | (PoC Réseau)| |  (PoC Auto) |     | (PoC Stock.)|
-  | -> Pipeline | | -> Intercept|     | -> SPU-102  |
-  |   64 bits   | |   Direct    |     |  Synchrone  |
-  | -> 400 MHz  | | -> 66.67MHz |     | -> 100 MHz  |
-  |             | |             |     |             |
-  +-------------+ +-------------+     +-------------+
+  |             | |             | |             |
+  |  REIO-CHAIN | |  REIO-DRIVE | |  REIO-SAFE  |
+  | (PoC Réseau)| |  (PoC Auto) | | (PoC Stock.)|
+  | -> Pipeline | | -> Intercept| | -> SPU-102  |
+  |   64 bits   | |   Direct    | |  Synchrone  |
+  | -> 400 MHz  | | -> 66.67MHz | | -> 100 MHz  |
+  |             | |             | |             |
+  +-------------+ +-------------+ +-------------+
 
          |                                   |
          +-----------------+-----------------+
@@ -106,6 +106,7 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
                     |             |
                     +-------------+
 ```
+
 
 
 ## 📦 3. Structure du Dépôt & Politique d'Accès
