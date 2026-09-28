@@ -17,6 +17,12 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 * **Worst Hold Slack (WHS) :** Optimisé à **+0.106 ns** (0 Violations de Hold).
 * **Temps de Cycle Polymorphe :** Signature cryptographique calculée et stabilisée en exactement 16 cycles d'horloge.
 
+### 📊 Empreinte Géométrique & Signature Thermique
+
+* **Ressources Silicium :** 169 Slice LUTs (0.81%), 139 Slice Registers (0.33%), et 3 blocs DSP48E1 (3.33%).
+* **Puissance Électrique Totale :** Enveloppe thermique mesurée à **75 mW** (Statique : 72 mW, Cœur Dynamique : 3 mW).
+* **I/O Physiques :** Configuration de **105 broches physiques** (70 ports d'entrée `IBUF`, 35 ports de sortie `OBUF`).
+
 ### 🌐 Architecture Fonctionnelle du Pipeline SPU_106
 
 ```text
@@ -55,11 +61,11 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 
 ![Chronogramme des formes d'ondes REIO-Crypt](reio_crypt_simulation.png)
 
-### 📊 Empreinte Géométrique & Signature Thermique
+### 🛠️ Architecture du Framework Unifié
 
-* **Ressources Silicium :** 169 Slice LUTs (0.81%), 139 Slice Registers (0.33%), et 3 blocs DSP48E1 (3.33%).
-* **Puissance Électrique Totale :** Enveloppe thermique mesurée à **75 mW** (Statique : 72 mW, Cœur Dynamique : 3 mW).
-* **I/O Physiques :** Configuration de **105 broches physiques** (70 ports d'entrée `IBUF`, 35 ports de sortie `OBUF`).
+1. **RTL Core (VHDL) :** Double fichier unifiant le wrapper de bus esclave AMBA APB 32 bits et le cœur arithmétique polynomial pipeliné.
+2. **Control Plane (Rust 2024) :** Pilote de bas niveau en `#![no_std]` avec structures MMIO alignées et gestionnaire de panique autonome bloquant.
+3. **Host Interface (C-FFI) :** Pont FFI universel exportant la primitive `verifier_jeton_zk` vers l'application hôte.
 
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
 
@@ -71,11 +77,6 @@ L'exécution de la suite de tests unitaires certifie la parfaite résilience du 
 *   **Test 2 (Injection Glitch) :** Simulation d'une injection de panne matérielle contrée par une isolation active avec mise à la masse immédiate du bus à 0V.
 *   **Test 3 (Erreur Pointeur) :** Robustesse du code face au passage d'une adresse NULL interceptée de manière bloquante pour empêcher toute fuite mémoire.
 
-### 🛠️ Architecture du Framework Unifié
-
-1. **RTL Core (VHDL) :** Double fichier unifiant le wrapper de bus esclave AMBA APB 32 bits et le cœur arithmétique polynomial pipeliné.
-2. **Control Plane (Rust 2024) :** Pilote de bas niveau en `#![no_std]` avec structures MMIO alignées et gestionnaire de panique autonome bloquant.
-3. **Host Interface (C-FFI) :** Pont FFI universel exportant la primitive `verifier_jeton_zk` vers l'application hôte.
 
 🔐 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core)** : Les fichiers sources complets (.vhd, .rs) sont confidentiels et protégés contre l'ingénierie inverse. Les rapports de CAO Vivado (.rpt), les chronogrammes comportementaux et le pilote partagé d'évaluation sont accessibles publiquement.
 
