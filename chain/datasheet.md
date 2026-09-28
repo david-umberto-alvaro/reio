@@ -65,7 +65,3 @@ The IP Core exposes a standard C-FFI boundary through `reio_chain.h`. The bare-m
 ## 6. Commercial Integration & Portfolio Framework
 The REIO-Chain architecture is part of a professional co-design portfolio demonstrating hardware security filtering and advanced RTL constraints resolution.
 
-*   **Consulting & Custom IP Adaptation:** Tailoring to custom networking fabrics, bus boundaries mitigation (CDC), and driver interfacing.
-*   **Engagement Model:** Engineering missions are available under freelance contracts or payroll umbrella structures (**SMART Belgium** / direct enterprise contracts).
-
-💡 **Engineering Note:** The open-core hardware implementation reports are targeted and verified on the xc7a12tlcpg238-2L matrix for physical footprint validation.
