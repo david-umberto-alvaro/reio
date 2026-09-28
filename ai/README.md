@@ -68,6 +68,10 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 
 ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
 
+### 🛠️ Architecture du Framework Unifié
+
+L'architecture intègre un cœur RTL en VHDL, un plan de contrôle en Rust 2024 pour l'alignement MMIO, et une application hôte en Python pour évaluer le confinement de sûreté. Les détails complets et rapports restent confidentiels (Open-Core).
+
 ![Chronogramme des formes d'ondes REIO-Drive](reio_ai_simulation.png)
 
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
@@ -81,8 +85,7 @@ L'exécution de la suite de tests unitaires sur le plan de contrôle en Rust bar
 
 ![Rapport de validation du script Python REIO-Safe](reio_ai_test.png)
 
-### 🛠️ Architecture du Framework Unifié
+🔒 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core)**
 
-L'architecture intègre un cœur RTL en VHDL, un plan de contrôle en Rust 2024 pour l'alignement MMIO, et une application hôte en Python pour évaluer le confinement de sûreté. Les détails complets et rapports restent confidentiels (Open-Core).
+* **Conformément aux classes de propriété intellectuelle et de confidentialité**, les fichiers de code source internes (`.vhd`, `.rs`) restent strictement confidentiels pour empêcher toute tentative de rétro-ingénierie malveillante. Les rapports physiques d'utilisation CAO (`.rpt`), les résumés de contraintes de timing et les chronogrammes de simulation comportementale sont accessibles en Open-Core sur ce dépôt public.
 
-🔐 **Note de Sûreté et Propriété Intellectuelle** : Les architectures internes de ce bloc de protection neuromorphique sont confidentielles et soumises aux accords de licence Open-Core. Les rapports physiques de CAO Vivado (.rpt) et les chronogrammes restent publiquement accessibles aux auditeurs.
