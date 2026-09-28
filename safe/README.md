@@ -95,7 +95,7 @@ L'exécution du script de test autonome confirme la parfaite conformité du pont
 
 ![Rapport de validation du script Python REIO-Safe](reio_safe_test.png)
 
-* **Pour exécuter et reproduire la suite de tests logicielles**, les entreprises partenaires, constructeurs, auditeurs de certification ou recruteurs qualifiés peuvent demander l'accès aux binaires d'évaluation compilés. Les prestations d'intégration sur mesure et de co-design hardware/software sont exclusivement gérées via notre canal de portage d'ingénierie (**SMART Belgium** / contrats d'entreprise dédiés).
+* **Pour exécuter et reproduire la suite de tests logicielles**, les entreprises partenaires, constructeurs, auditeurs de certification ou recruteurs qualifiés peuvent demander l'accès aux binaires d'évaluation compilés. Les prestations d'intégration sur mesure et de co-design hardware/software sont exclusivement gérées via mon canal de portage d'ingénierie (**SMART Belgium** / contrats d'entreprise dédiés).
 
 🔒 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core)**
 
