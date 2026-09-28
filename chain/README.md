@@ -15,6 +15,14 @@ Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (x
 - **Worst Pulse Width Slack (WPWS) :** +0,750 ns
 - **Livrable Temporel :** Coupure réseau déterministe en 1 seul cycle machine
 
+### 📊 Empreinte Géométrique & Signature Thermique
+
+- **Slice LUTs :** 12 (0,15% du composant)
+- **Slice Registers :** 111 (0,69% du composant)
+- **Primitives Hardware :** 111 FDCE flip-flops, 24 blocs CARRY4
+- **Puissance Électrique Totale :** 58 mW (Puissance dynamique active du cœur : 1 mW)
+- **I/O Physiques :** Configuration d'entrées/sorties routées sous contrainte de délai LVCMOS33
+
 ### 🌐 Architecture Fonctionnelle du Pipeline SPU_103
 
 ```text
@@ -52,14 +60,6 @@ Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (x
 ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
 
 ![Chronogramme des formes d'ondes REIO-Chain](reio_chain_simulation_waveform.png)
-
-### 📊 Empreinte Géométrique & Signature Thermique
-
-- **Slice LUTs :** 12 (0,15% du composant)
-- **Slice Registers :** 111 (0,69% du composant)
-- **Primitives Hardware :** 111 FDCE flip-flops, 24 blocs CARRY4
-- **Puissance Électrique Totale :** 58 mW (Puissance dynamique active du cœur : 1 mW)
-- **I/O Physiques :** Configuration d'entrées/sorties routées sous contrainte de délai LVCMOS33
 
 ### 🛠 Architecture du Framework Unifié
 
