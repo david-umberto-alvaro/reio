@@ -15,6 +15,8 @@ Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (x
 - **Worst Pulse Width Slack (WPWS) :** +0,750 ns
 - **Livrable Temporel :** Coupure réseau déterministe en 1 seul cycle machine
 
+### 🌐 Architecture Fonctionnelle du Pipeline ###
+
 ```text
 +-------------------------------------------------------+
 
