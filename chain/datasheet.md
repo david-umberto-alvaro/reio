@@ -60,8 +60,4 @@ ________________________________________________________
 ## 5. Software Control Plane Integration (Rust no_std)
 The IP Core exposes a standard C-FFI boundary through `reio_chain.h`. The bare-metal driver guarantees execution with memory safety and zero dynamic allocation.
 
----
-
-## 6. Commercial Integration & Portfolio Framework
-The REIO-Chain architecture is part of a professional co-design portfolio demonstrating hardware security filtering and advanced RTL constraints resolution.
 
