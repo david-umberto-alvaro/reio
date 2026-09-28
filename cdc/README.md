@@ -59,6 +59,9 @@ REIO-CDC est un bloc de propriété intellectuelle (IP Core) matériel de bas ni
                                           +--------------------+
 ```
 
+### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
+
+![Chronogramme des formes d'ondes REIO-Drive](reio_cdc_simulation.png)
 
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
 L'exécution de la suite de tests unitaires sur le plan de contrôle en Rust bare-metal (`#![no_std]`) certifie la parfaite étanchéité de l'interface MMIO :
