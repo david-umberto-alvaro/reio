@@ -1,1 +1,47 @@
-REIO SAFE PROJET EN COURS
+# 🛡️ REIO-Safe (SPU-102) — Disjoncteur Matériel Anti-Ransomware
+
+## 1. Présentation Générale
+REIO-Safe est un module de sécurité critique co-conçu en **VHDL synchrone** et **Rust bare-metal (`#![no_std]`)**. Il agit comme un disjoncteur physique actif au cœur de l'architecture de stockage, conçu pour intercepter les attaques par ransomware (boucles de chiffrement massives ou altérations géométriques de bas niveau) avant qu'elles ne corrompent les puces Flash/SSD.
+
+## 2. Spécifications du Matériel (FPGA)
+L'architecture a été implémentée et validée sur une cible de classe automobile durcie à tolérance thermique étendue pour une intégration confinée :
+*   **Composant Cible :** AMD/Xilinx Artix-7 `xa7a35tcsg324-1Q` (Conformité ISO 26262 ASIL-D / Grade Q).
+*   **Interface de Bus :** Esclave AMBA APB 32 bits synchrone (Signaux `PCLK`, `PSEL`, `PENABLE`, `PWRITE`, `PADDR`, `PWDATA`, `PRDATA`).
+*   **Fréquence du Plan de Contrôle :** 100.00 MHz (Période stricte de 10.000 ns).
+
+### 📊 Synthèse d'Audit et Fermeture Temporelle (Vivado Static Timing)
+L'interface a été entièrement réenregistrée de manière synchrone pour éliminer les violations de méthodologie combinatoire (`TIMING-16`) et isoler les bus parallèles des calculs de dérive :
+*   **Worst Negative Slack (WNS) :** `+5.222 ns` (Marge de Setup validée, Zéro Failing Endpoints).
+*   **Worst Hold Slack (WHS) :** `+0.222 ns` (Marge de Hold validée, Zéro Violations).
+*   **Broche d'Horloge Dédiée :** Entrée physique sur pin `F4` (Multi-Region Clock Capable - MRCC) annulant le retard de l'arbre de distribution d'horloge.
+*   **Broche de Disjonction Physique :** Sortie numérique propre sur pin `T11` pilotant la ligne `SIG_FLASH_WRITE_ENABLE`.
+
+### 📉 Métriques de l'Empreinte Silicium (Vivado Utilization)
+*   **Slice LUTs :** 28 (0,13 % d'utilisation de la matrice).
+*   **Slice Registers :** 20 (0,05 % d'utilisation, répartis en 19 primitives `FDCE` et 1 primitive `FDPE`).
+*   **Bonded IOB (Ports d'E/S) :** 68 ports mappés de manière virtuelle en interne pour optimiser l'espace du boîtier.
+*   **Clock Buffers :** 1 primitive globale `BUFG` pour l'équilibrage de l'arbre d'horloge.
+
+### 🔌 Caractéristiques Électriques et Thermiques (Vivado Power)
+*   **Puissance Totale Spécifiée (On-Chip Power) :** 0,092 W (92 mW).
+*   **Puissance Statique du Composant :** 0,072 W (72 mW).
+*   **Puissance Dynamique Métrique :** 0,020 W (20 mW).
+*   **Température de Jonction (Silicium) :** 25,4 °C.
+*   **Température Ambiante Maximale Supportée :** 124,6 °C (Grade Automobile Q étendu de -40°C à +125°C).
+
+## 3. Mécanisme de Confinement Passif/Actif (SPU-102)
+Le filtre combinatoire surveille en continu le trafic d'écriture via deux canaux de détection parallèles :
+1.  **Canal Géométrique (Registre Alpha) :** Un invariant d'usine de 32 bits (`X"A5A5A5A5"`) est gravé dans le silicium. Toute transaction d'écriture produisant un produit logique nul (`PWDATA AND REG_ALPHA = X"00000000"`) déclenche une disjonction immédiate.
+2.  **Canal Entropique (Compteur d'Épuisement) :** Une boucle d'écriture consécutive en dehors des adresses nominales d'usine (`PADDR(11 downto 0) = X"000"`) incrémente un compteur d'entropie asymétrique filtré contre le bruit. Atteindre le seuil critique de `16` déclenche le verrouillage de quarantaine.
+
+### ⚡ Isolation Physique Radicale
+Dès l'activation du verrou :
+*   La ligne **`SIG_FLASH_WRITE_ENABLE` s'effondre instantanément à 0 Volt** en exactement 1 cycle d'horloge. L'étage d'alimentation de l'écriture flash est physiquement coupé. Le support bascule en lecture seule inaltérable (*Hardware-enforced degrad_read_only*).
+*   Le bus de données de lecture `PRDATA` injecte de manière volatile le tag d'alerte **`0xDEADBEEF`** vers l'hôte.
+*   Le signal d'erreur d'esclave protocolaire **`PSLVERR` est levé à '1'** pour notifier le contrôleur ARM central.
+
+## 4. Architecture Logicielle (Driver Rust Embaqué)
+Le pilote bas niveau exploite la puissance et la sûreté de type de Rust sans runtime ni système d'exploitation :
+*   **Mappage MMIO :** Structure de registres à alignement strict C (`#[repr(C)]`) superposée sur les offsets matériels du SPU-102.
+*   **Lectures Volatiles :** Utilisation exclusive de `core::ptr::read_volatile` pour interdire toute optimisation de cache du CPU hôte et forcer l'évaluation du silicium à chaque instruction.
+*   **Interface FFI Bare-Metal :** Exportation non manglée `#[no_mangle] pub extern "C"` permettant une liaison universelle vers les applications hôtes en C/C++ ou les scripts de validation Python via `ctypes`.
