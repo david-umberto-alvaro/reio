@@ -20,6 +20,14 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 * **Worst Hold Slack (WHS) :** Optimisé à **+0.196 ns** (0 Violation de Hold).
 * **Temps de Réponse du Confinement :** Rupture et mise en quarantaine active exécutées en exactement **1 cycle d'horloge (10.00 ns)**.
 
+### 📊 Empreinte Géométrique & Signature Thermique
+
+* **Ressources Silicium (Vivado Utilization) :** Consomme précisément **52 Slice LUTs** (0.25% de la matrice) et **38 Slice Registers** synchrones durcis (37 bascules de type `FDCE` et 1 bascule de type `FDPE`).
+* **Macro-blocs Arithmétiques :** 0 bloc DSP utilisé, le traitement probabiliste étant résolu par réduction combinatoire directe.
+* **Puissance Électrique Totale (Vivado Power) :** Enveloppe thermique mesurée à **70 mW** (Leakage Statique : 68 mW, Cœur Dynamique Actif : 1 mW).
+* **I/O Physiques (CSG324 Package) :** Configuration de **102 broches physiques** (67 ports d'entrée `IBUF`, 35 ports de sortie `OBUF`).
+* **Résistance Thermique :** Température de jonction stabilisée à **25.3 °C** pour une température ambiante maximale supportée de **124.7 °C** (Grade Q Automobile).
+
 ### 🌐 Architecture Fonctionnelle du Superviseur
 
 ```text
