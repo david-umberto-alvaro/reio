@@ -1,4 +1,4 @@
-# 🚗 REIO-Drive (SPU_105) — Technical Datasheet & Automotive Safety Brief
+# 🚗 REIO-Drive — Technical Datasheet & Automotive Safety Brief
 
 ## 1. Product Overview & Functional Safety Objectives
 REIO-Drive (SPU_105) is an ultra-low-latency hardware-based protection shield designed for critical automotive embedded buses, specifically targeting **CAN** (Controller Area Network) and **LIN** (Local Interconnect Network) physical infrastructures.
