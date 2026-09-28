@@ -64,4 +64,4 @@ L'exécution de la suite de tests unitaires sur le plan de contrôle Rust (`#![n
 * **[Test 2] Injection Anomalie (Confinement) :** Interception instantanée, forçage à 0V et levée du flag d'isolement (`PASS` | Flag : `1`).
 * **[Test 3] Erreur Pointeur (Adresse NULL) :** Interception logicielle immédiate et bloquante de la couche FFI (`PASS` | Valeur : `0xffffffff`).
 
-🏆 CERTIFICATION DU PILOTE CORE REIO-NVM EFFECTUÉE AVEC SUCCÈS !
+![Rapport de validation du script Python REIO-Safe](reio_nvm_test.png)
