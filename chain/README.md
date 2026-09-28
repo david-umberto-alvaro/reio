@@ -1,4 +1,4 @@
-# ⛓️ REIO-Chain (SPU_103)
+# ⛓️ REIO-Chain
 
 ## Filtre Synchrone d'Interception Réseau & Disjoncteur Matériel (125 MHz / 400 MHz)
 
