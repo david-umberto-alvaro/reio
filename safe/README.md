@@ -62,9 +62,6 @@ L'exécution du script de test autonome confirme la parfaite conformité du pont
 
 ![Rapport de validation du script Python REIO-Safe](reio_safe_test.png)
 
-*   **Test 1 (Statut Nominal) :** Le pilote intercepte un environnement sain et renvoie la valeur protocolaire `0`, autorisant les flux de stockage standards.
-*   **Test 2 (Confinement Ransomware) :** Dès l'injection de l'adresse brute compromise, le binaire Rust bare-metal détecte le tag d'alerte matériel et renvoie la valeur `1`, confirmant le verrouillage immédiat de la Flash en lecture seule.
-
 > 🔐 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core)**
 > Pour des raisons de sûreté de fonctionnement automobile et pour empêcher toute tentative de rétro-ingénierie malveillante sur l'intercepteur combinatoire critique, les fichiers sources internes (`.vhd`, `.rs`) ainsi que les binaires compilés de production ne sont pas distribués en libre accès sur ce dépôt public.
 > 
