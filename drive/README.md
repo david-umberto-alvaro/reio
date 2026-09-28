@@ -1,4 +1,4 @@
-# 🚗 REIO-Drive (SPU_105) — Filtre Combinatoire d'Interception Automobile
+# 🚗 REIO-Drive — Filtre Combinatoire d'Interception Automobile
 
 REIO-Drive (SPU_105) est un module d'interception réseau ultra-compact. Son architecture traite les signaux d'entrée via une matrice combinatoire pure (6 LUTs) et sécurise les sorties à l'aide d'un compteur de stabilisation temporel de 2 bits empêchant les déclenchements intempestifs sur micro-coupures.
 
