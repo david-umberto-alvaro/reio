@@ -76,10 +76,3 @@ L'exécution du script de test autonome confirme la conformité du pont C-FFI (`
 * **[Test 3] Erreur Pointeur :** Robustesse face à une adresse de registre NULL.
 
 ![Rapport de validation du script Python REIO-Safe](reio_drive_test.png)
-
-* **Pour exécuter et reproduire la suite de tests logicielles**, les entreprises partenaires, constructeurs, auditeurs de certification ou recruteurs qualifiés peuvent demander l'accès aux binaires d'évaluation compilés. Les prestations d'intégration sur mesure et de co-design hardware/software sont exclusivement gérées via notre canal de portage d'ingénierie (**SMART Belgium** / contrats d'entreprise dédiés).
-
-🔒 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core)**
-
-* **Conformément aux classes de propriété intellectuelle et de confidentialité**, les fichiers de code source internes (`.vhd`, `.rs`) restent strictement confidentiels pour empêcher toute tentative de rétro-ingénierie malveillante. Les rapports physiques d'utilisation CAO (`.rpt`), les résumés de contraintes de timing et les chronogrammes de simulation comportementale sont accessibles en Open-Core sur ce dépôt public.
-
