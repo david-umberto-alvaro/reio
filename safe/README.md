@@ -1,20 +1,13 @@
 # 🛡️ REIO-Safe (SPU-102) — Disjoncteur Matériel Anti-Ransomware
 
-### Présentation Générale
+###  📌  Présentation Générale
 REIO-Safe est un module de sécurité critique co-conçu en **VHDL synchrone** et **Rust bare-metal (`#![no_std]`)**. Il agit comme un disjoncteur physique actif au cœur de l'architecture de stockage, conçu pour intercepter les attaques par ransomware (boucles de chiffrement massives ou altérations géométriques de bas niveau) avant qu'elles ne corrompent les puces Flash/SSD.
 
-### Spécifications du Matériel (FPGA)
+### 📊 Spécifications du Matériel (FPGA)
 L'architecture a été implémentée et validée sur une cible de classe automobile durcie à tolérance thermique étendue pour une intégration confinée :
 *   **Composant Cible :** AMD/Xilinx Artix-7 `xa7a35tcsg324-1Q` (Conformité ISO 26262 ASIL-D / Grade Q).
 *   **Interface de Bus :** Esclave AMBA APB 32 bits synchrone (Signaux `PCLK`, `PSEL`, `PENABLE`, `PWRITE`, `PADDR`, `PWDATA`, `PRDATA`).
 *   **Fréquence du Plan de Contrôle :** 100.00 MHz (Période stricte de 10.000 ns).
-
-### 📊 Synthèse d'Audit et Fermeture Temporelle (Vivado Static Timing)
-L'interface a été entièrement réenregistrée de manière synchrone pour éliminer les violations de méthodologie combinatoire (`TIMING-16`) et isoler les bus parallèles des calculs de dérive :
-*   **Worst Negative Slack (WNS) :** `+5.222 ns` (Marge de Setup validée, Zéro Failing Endpoints).
-*   **Worst Hold Slack (WHS) :** `+0.222 ns` (Marge de Hold validée, Zéro Violations).
-*   **Broche d'Horloge Dédiée :** Entrée physique sur pin `F4` (Multi-Region Clock Capable - MRCC) annulant le retard de l'arbre de distribution d'horloge.
-*   **Broche de Disjonction Physique :** Sortie numérique propre sur pin `T11` pilotant la ligne `SIG_FLASH_WRITE_ENABLE`.
 
 ### 📊 Synthèse d'Audit et Fermeture Temporelle (Vivado Static Timing)
 L'interface a été entièrement réenregistrée de manière synchrone pour éliminer les violations de méthodologie combinatoire (`TIMING-16`) et isoler les bus parallèles des calculs de dérive :
