@@ -5,7 +5,7 @@ REIO-AI est un module de supervision logique matériel (IP Core) conçu pour int
 
 L'infrastructure s'appuie sur le modèle de co-design **VHDL synchrone** et **Rust bare-metal (`#![no_std]`)** pour analyser en continu la congruence logique des prémisses neuronales. Si deux neurones antagonistes sont activés simultanément (contradiction logique absolue), le circuit engage le confinement pour prémunir le système global contre toute décision aberrante.
 
-### 🔬 Architecture Spécifique & Invariant V6-Alpha
+### 🔬 Architecture Spécifique & Invariant
 
 Le superviseur s'interpose directement sur les flux de probabilités neuronales à la nanoseconde près :
 * **Filtre Anti-Hallucination :** Analyse en continu la congruence logique des prémisses neuronales. Si deux neurones antagonistes sont activés simultanément (contradiction logique absolue), le circuit engage la rupture.
