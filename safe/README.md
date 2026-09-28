@@ -56,6 +56,15 @@ Le pilote bas niveau exploite la puissance et la sûreté de type de Rust sans r
 *   **Lectures Volatiles :** Utilisation exclusive de `core::ptr::read_volatile` pour interdire toute optimisation de cache du CPU hôte et forcer l'évaluation du silicium à chaque instruction.
 *   **Interface FFI Bare-Metal :** Exportation non manglée `#[no_mangle] pub extern "C"` permettant une liaison universelle vers les applications hôtes en C/C++ ou les scripts de validation Python via `ctypes`.
 
+### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
+
+L'exécution du script de test autonome confirme la parfaite conformité du pont de liaison C-FFI sans aucune dépendance à la bibliothèque standard (`#![no_std]`) :
+
+![Rapport de validation du script Python REIO-Safe](reio_safe_software_test.png)
+
+*   **Test 1 (Statut Nominal) :** Le pilote intercepte un environnement sain et renvoie la valeur protocolaire `0`, autorisant les flux de stockage standards.
+*   **Test 2 (Confinement Ransomware) :** Dès l'injection de l'adresse brute compromise, le binaire Rust bare-metal détecte le tag d'alerte matériel et renvoie la valeur `1`, confirmant le verrouillage immédiat de la Flash en lecture seule.
+
 > 🔐 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core)**
 > Pour des raisons de sûreté de fonctionnement automobile et pour empêcher toute tentative de rétro-ingénierie malveillante sur l'intercepteur combinatoire critique, les fichiers sources internes (`.vhd`, `.rs`) ainsi que les binaires compilés de production ne sont pas distribués en libre accès sur ce dépôt public.
 > 
