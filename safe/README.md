@@ -29,6 +29,37 @@ L'interface a été entièrement réenregistrée de manière synchrone pour éli
 *   **Température de Jonction (Silicium) :** 25,4 °C.
 *   **Température Ambiante Maximale Supportée :** 124,6 °C (Grade Automobile Q étendu de -40°C à +125°C).
 
+*   +--------------------------------------------------------+
+
+|                    APPLICATION HÔTE                    |
+|          (Système d'Exploitation / Fichier OS)         |
++--------------------------------------------------------+
+                           |
+                           | Liaison Directe (C-FFI Bridge)
+                           v
++--------------------------------------------------------+
+
+|               PILOTE DE CONTRÔLE RUST                  |
+|  Configuration MMIO & Validation Volatitle (#![no_std])|
++--------------------------------------------------------+
+                           |
+                           | Lecture Volatile / Tag d'Alerte (MMIO / APB)
+                           v
++========================================================+
+
+|                        SILICIUM                        |
+| ------------------------------------------------------ |
+|               DISJONCTEUR MATÉRIEL VHDL                |
+|      Filtre SPU-102 & Compteur d'Entropie 8 bits       |
+|                                                        |
+|   [28 Optimized Slice LUTs]    [20 Registers]          |
+|   [1-Cycle Active Mitigation]  [Zero Violations]       |
++========================================================+
+                           ^
+                           | Interception Parallèle à Haute Vitesse
+                           | [ BUS AMBA APB 32-bits ]
+
+
 *   ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
 
 L'analyse comportementale du banc de test confirme la réactivité immédiate du disjoncteur SPU-102 face à une injection malveillante :
