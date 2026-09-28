@@ -36,7 +36,7 @@ L'interface a été entièrement réenregistrée de manière synchrone pour éli
 *   **Température de Jonction (Silicium) :** 25,4 °C.
 *   **Température Ambiante Maximale Supportée :** 124,6 °C (Grade Automobile Q étendu de -40°C à +125°C).
 
-### Mécanisme de Confinement Passif/Actif (SPU-102)
+###  🧠  Mécanisme de Confinement Passif/Actif (SPU-102)
 Le filtre combinatoire surveille en continu le trafic d'écriture via deux canaux de détection parallèles :
 1.  **Canal Géométrique (Registre Alpha) :** Un invariant d'usine de 32 bits (`X"A5A5A5A5"`) est gravé dans le silicium. Toute transaction d'écriture produisant un produit logique nul (`PWDATA AND REG_ALPHA = X"00000000"`) déclenche une disjonction immédiate.
 2.  **Canal Entropique (Compteur d'Épuisement) :** Une boucle d'écriture consécutive en dehors des adresses nominales d'usine (`PADDR(11 downto 0) = X"000"`) incrémente un compteur d'entropie asymétrique filtré contre le bruit. Atteindre le seuil critique de `16` déclenche le verrouillage de quarantaine.
@@ -83,11 +83,6 @@ Le filtre combinatoire surveille en continu le trafic d'écriture via deux canau
 L'analyse comportementale du banc de test confirme la réactivité immédiate du disjoncteur SPU-102 face à une injection malveillante :
 
 ![Chronogramme des formes d'ondes REIO-Safe](reio_safe_simulation.png)
-
-## 3. Mécanisme de Confinement Passif/Actif (SPU-102)
-Le filtre combinatoire surveille en continu le trafic d'écriture via deux canaux de détection parallèles :
-1.  **Canal Géométrique (Registre Alpha) :** Un invariant d'usine de 32 bits (`X"A5A5A5A5"`) est gravé dans le silicium. Toute transaction d'écriture produisant un produit logique nul (`PWDATA AND REG_ALPHA = X"00000000"`) déclenche une disjonction immédiate.
-2.  **Canal Entropique (Compteur d'Épuisement) :** Une boucle d'écriture consécutive en dehors des adresses nominales d'usine (`PADDR(11 downto 0) = X"000"`) incrémente un compteur d'entropie asymétrique filtré contre le bruit. Atteindre le seuil critique de `16` déclenche le verrouillage de quarantaine.
 
 ### ⚡ Isolation Physique Radicale
 Dès l'activation du verrou :
