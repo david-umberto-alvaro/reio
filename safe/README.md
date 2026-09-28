@@ -9,26 +9,6 @@ L'architecture a été implémentée et validée sur une cible de classe automob
 *   **Interface de Bus :** Esclave AMBA APB 32 bits synchrone (Signaux `PCLK`, `PSEL`, `PENABLE`, `PWRITE`, `PADDR`, `PWDATA`, `PRDATA`).
 *   **Fréquence du Plan de Contrôle :** 100.00 MHz (Période stricte de 10.000 ns).
 
-### 📊 Synthèse d'Audit et Fermeture Temporelle (Vivado Static Timing)
-L'interface a été entièrement réenregistrée de manière synchrone pour éliminer les violations de méthodologie combinatoire (`TIMING-16`) et isoler les bus parallèles des calculs de dérive :
-*   **Worst Negative Slack (WNS) :** `+5.222 ns` (Marge de Setup validée, Zéro Failing Endpoints).
-*   **Worst Hold Slack (WHS) :** `+0.222 ns` (Marge de Hold validée, Zéro Violations).
-*   **Broche d'Horloge Dédiée :** Entrée physique sur pin `F4` (Multi-Region Clock Capable - MRCC) annulant le retard de l'arbre de distribution d'horloge.
-*   **Broche de Disjonction Physique :** Sortie numérique propre sur pin `T11` pilotant la ligne `SIG_FLASH_WRITE_ENABLE`.
-
-### 📉 Métriques de l'Empreinte Silicium (Vivado Utilization)
-*   **Slice LUTs :** 28 (0,13 % d'utilisation de la matrice).
-*   **Slice Registers :** 20 (0,05 % d'utilisation, répartis en 19 primitives `FDCE` et 1 primitive `FDPE`).
-*   **Bonded IOB (Ports d'E/S) :** 68 ports mappés de manière virtuelle en interne pour optimiser l'espace du boîtier.
-*   **Clock Buffers :** 1 primitive globale `BUFG` pour l'équilibrage de l'arbre d'horloge.
-
-### 🔌 Caractéristiques Électriques et Thermiques (Vivado Power)
-*   **Puissance Totale Spécifiée (On-Chip Power) :** 0,092 W (92 mW).
-*   **Puissance Statique du Composant :** 0,072 W (72 mW).
-*   **Puissance Dynamique Métrique :** 0,020 W (20 mW).
-*   **Température de Jonction (Silicium) :** 25,4 °C.
-*   **Température Ambiante Maximale Supportée :** 124,6 °C (Grade Automobile Q étendu de -40°C à +125°C).
-
 ### 🌐 Architecture Fonctionnelle du Pipeline SPU_102
 
 ```text
@@ -63,16 +43,34 @@ L'interface a été entièrement réenregistrée de manière synchrone pour éli
                            | [ BUS AMBA APB 32-bits ]
 ```
 
+### 📊 Synthèse d'Audit et Fermeture Temporelle (Vivado Static Timing)
+L'interface a été entièrement réenregistrée de manière synchrone pour éliminer les violations de méthodologie combinatoire (`TIMING-16`) et isoler les bus parallèles des calculs de dérive :
+*   **Worst Negative Slack (WNS) :** `+5.222 ns` (Marge de Setup validée, Zéro Failing Endpoints).
+*   **Worst Hold Slack (WHS) :** `+0.222 ns` (Marge de Hold validée, Zéro Violations).
+*   **Broche d'Horloge Dédiée :** Entrée physique sur pin `F4` (Multi-Region Clock Capable - MRCC) annulant le retard de l'arbre de distribution d'horloge.
+*   **Broche de Disjonction Physique :** Sortie numérique propre sur pin `T11` pilotant la ligne `SIG_FLASH_WRITE_ENABLE`.
+
+### 📉 Métriques de l'Empreinte Silicium (Vivado Utilization)
+*   **Slice LUTs :** 28 (0,13 % d'utilisation de la matrice).
+*   **Slice Registers :** 20 (0,05 % d'utilisation, répartis en 19 primitives `FDCE` et 1 primitive `FDPE`).
+*   **Bonded IOB (Ports d'E/S) :** 68 ports mappés de manière virtuelle en interne pour optimiser l'espace du boîtier.
+*   **Clock Buffers :** 1 primitive globale `BUFG` pour l'équilibrage de l'arbre d'horloge.
+
+### 🔌 Caractéristiques Électriques et Thermiques (Vivado Power)
+*   **Puissance Totale Spécifiée (On-Chip Power) :** 0,092 W (92 mW).
+*   **Puissance Statique du Composant :** 0,072 W (72 mW).
+*   **Puissance Dynamique Métrique :** 0,020 W (20 mW).
+*   **Température de Jonction (Silicium) :** 25,4 °C.
+*   **Température Ambiante Maximale Supportée :** 124,6 °C (Grade Automobile Q étendu de -40°C à +125°C).
+
+*   **À 40.000 ns (Détection de l'Attaque) :** Le bus AMBA APB présente une transaction d'écriture suspecte (`PWDATA = 5a5a5a5a`) à l'adresse `00001000`. Comme le produit logique avec l'invariant d'usine est nul, le filtre SPU-102 réagit instantanément.
+*   **À 45.000 ns (Coupure de Sécurité) :** Dès le cycle suivant, le signal critique **`SIG_FLASH_WRITE_ENABLE` s'effondre proprement à '0'** (Coupure nette de l'alimentation d'écriture). Simultanément, le bus de données `PRDATA` se verrouille sur le tag de quarantaine **`deadbeef`** et l'alerte d'erreur esclave s'active.
 
 *   ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
 
 L'analyse comportementale du banc de test confirme la réactivité immédiate du disjoncteur SPU-102 face à une injection malveillante :
 
 ![Chronogramme des formes d'ondes REIO-Safe](reio_safe_simulation.png)
-
-*   **À 40.000 ns (Détection de l'Attaque) :** Le bus AMBA APB présente une transaction d'écriture suspecte (`PWDATA = 5a5a5a5a`) à l'adresse `00001000`. Comme le produit logique avec l'invariant d'usine est nul, le filtre SPU-102 réagit instantanément.
-*   **À 45.000 ns (Coupure de Sécurité) :** Dès le cycle suivant, le signal critique **`SIG_FLASH_WRITE_ENABLE` s'effondre proprement à '0'** (Coupure nette de l'alimentation d'écriture). Simultanément, le bus de données `PRDATA` se verrouille sur le tag de quarantaine **`deadbeef`** et l'alerte d'erreur esclave s'active.
-
 
 ## 3. Mécanisme de Confinement Passif/Actif (SPU-102)
 Le filtre combinatoire surveille en continu le trafic d'écriture via deux canaux de détection parallèles :
