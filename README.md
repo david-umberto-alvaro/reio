@@ -6,7 +6,7 @@ Le framework **REIO** (**Réalisme Expérimental Instrumenté Optimisé**) coupl
 
 * **Réalisme Expérimental :** Validation des concepts logiques face aux contraintes strictes du silicium.
 * **Instrumenté :** Certification des métriques réelles (Slacks, primitives, puissance) via les rapports de CAO Vivado.
-* **Optimisé :** Densification extrême du circuit et réduction de l'empreinte logique par co-conception assistée.
+* **Optimisé :** Maximisation de l'exécution informatique par une double formulation systématique (interprétation sémantique et formalisation en logique symbolique pure) éliminant les indéterminations logiques.
 
 ### 🔬 Fondations Théoriques & Spécifications (Zenodo DOI)
 
