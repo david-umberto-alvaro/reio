@@ -31,6 +31,12 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **AMD/Xilinx Artix-7**.
 
+- 🧠 **[REIO-AI](./ai)**
+  - **Fonction :** Superviseur logique paracohérent pour la sûreté des accélérateurs IA (NPU/TPU).
+  - **Architecture de Sûreté :** Filtre de congruence paraconcurrent bloquant les hallucinations logiques et les injections adverses avec disjonction matérielle et confinement à 0 Volt.
+  - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **+6.116 ns** \| WHS : **+0.196 ns**). Isolation et forçage du bus sur le tag de sécurité `0xDEADBEEF` exécutés en exactement **1 cycle d'horloge**.
+  - **Ressources :** **52 LUTs / 38 Registres / 0 bloc DSP**, consommation globale ultra-faible de **70 mW** (Dynamique : 1 mW, Statique : 68 mW).
+
 - ⛓️ **[REIO-Chain](./chain)**
   - **Fonction :** Disjoncteur matériel sur bus 64 bits.
   - **Validation :** Cible à **400 MHz** (WNS : **+1,596 ns**, WHS : **+0,142 ns**).
