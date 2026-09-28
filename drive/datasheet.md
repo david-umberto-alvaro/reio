@@ -50,9 +50,3 @@ ________________________________________________________________________________
 ```
                                                       /----------------------------------------- declencher_secours (0->1)
 
-## ⚖ 5. Commercial Integration & Engineering Services
-
-L'architecture REIO-Drive (SPU_105) fait partie d'un portefeuille d'ingénierie de haute valeur, démontrant une expertise pointue en Sûreté de Fonctionnement (ISO 26262 ASIL-D), isolation de fautes matérielles et synthèse RTL (Vivado).
-
-- **Scope of Intervention:** Seamless integration of secure IP cores into automotive Flash/NAND flash topologies, mitigation of asynchronous Clock Domain Crossing (CDC) anomalies, and preparation of documentation files for international safety cases.
-- **Cooperation Model:** Engineering consultancy and custom IP development services are available under corporate contract agreements, handled transparently through specialized freelancing and wage-portage channels 
