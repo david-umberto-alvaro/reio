@@ -15,5 +15,3 @@ L'exécution de la suite de tests unitaires sur le plan de contrôle Rust (`#![n
 * **[Test 1] Statut de Repos :** Validation du bus de statut au niveau bas nominal stable (`0x0`).
 * **[Test 2] Capture Inter-Domaines :** Stabilisation matérielle et lecture réussie du signal de transition à l'état haut (`0x1`).
 * **[Test 3] Erreur Pointeur :** Robustesse logicielle validée face à l'injection d'une adresse de registre NULL.
-
-🔐 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core) :** Les architectures logiques internes (codes sources `.vhd` et implémentations `.rs`) restent strictement confidentielles sous couvert d'un **Accord de Confidentialité (NDA)**. Les rapports de CAO Vivado (`.rpt`), les fichiers de contraintes `.xdc` et les traces de simulation行为 restent ouverts à l'audit public.
