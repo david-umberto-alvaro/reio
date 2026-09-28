@@ -1,4 +1,4 @@
-# 🛡️ REIO-Safe (SPU_102) — Technical Datasheet & Storage Hardening Brief
+# 🛡️ REIO-Safe — Technical Datasheet & Storage Hardening Brief
 
 ## 1. Product Overview & Functional Safety Objectives
 
