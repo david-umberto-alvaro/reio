@@ -17,6 +17,7 @@ Les rapports d'implémentation post-placement-routage sur la matrice AMD/Xilinx 
 - **Worst Hold Slack (WHS) :** Délais de routage intra-site parfaitement optimisés à **+0.279 ns**.
 - **Livrable Temporel :** Coupure réseau déterministe et filtrée anti-glitch validée en simulation à **60.00 ns** (3 cycles de stabilisation d'horloge).
 
+### 🌐 Architecture Fonctionnelle du Pipeline SPU_105
 
 ```text
 +--------------------------------------------------------+
