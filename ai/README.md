@@ -84,8 +84,3 @@ L'exécution de la suite de tests unitaires sur le plan de contrôle en Rust bar
 * **Test 3 (Erreur Pointeur) :** Robustesse logicielle validée avec succès face à l'injection d'une adresse NULL.
 
 ![Rapport de validation du script Python REIO-Safe](reio_ai_test.png)
-
-🔒 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core)**
-
-* **Conformément aux classes de propriété intellectuelle et de confidentialité**, les fichiers de code source internes (`.vhd`, `.rs`) restent strictement confidentiels pour empêcher toute tentative de rétro-ingénierie malveillante. Les rapports physiques d'utilisation CAO (`.rpt`), les résumés de contraintes de timing et les chronogrammes de simulation comportementale sont accessibles en Open-Core sur ce dépôt public.
-
