@@ -67,6 +67,12 @@ Les rapports d'implémentation post-placement-routage sur la matrice AMD/Xilinx 
 2. **Control Plane (Rust 2024) :** Pilote autonome s'exécutant sous des contraintes strictes `#[no_std]`, effectuant des lectures directes et volatiles par mappage mémoire MMIO, sécurisant la période d'évaluation via un verrou temporel cryptographique immuable.
 3. **Host Interface (C-FFI) :** Pont de liaisons C directes exportant des points d'intégration explicites compatibles avec les systèmes d'exploitation automobiles standards et les couches d'exécution temps réel.
 
+### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
+
+L'exécution du script de test autonome confirme la parfaite conformité du pont de liaison C-FFI sans aucune dépendance à la bibliothèque standard (`#![no_std]`) :
+
+![Rapport de validation du script Python REIO-Safe](reio_drive_test.png)
+
 > 🔐 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core)**
 > Pour des raisons de sûreté de fonctionnement automobile et pour empêcher toute tentative de rétro-ingénierie malveillante sur l'intercepteur combinatoire critique, les fichiers sources internes (`.vhd`, `.rs`) ainsi que les binaires compilés de production ne sont pas distribués en libre accès sur ce dépôt public.
 > 
