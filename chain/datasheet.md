@@ -1,7 +1,7 @@
-# ⚡ REIO-Chain (SPU_103) — Technical Datasheet & Network Firewall Brief
+# ⚡ REIO-Chain — Technical Datasheet & Network Firewall Brief
 
 ## 1. Product Overview & Architectural Target
-REIO-Chain (SPU_103) is an ultra-high-speed synchronous hardware network filter IP Core designed for inline packet monitoring, deterministic masking, and line-rate isolation of Layer 3 data streams, decoupling a 125 MHz line data plane from a 400 MHz control plane.
+REIO-Chain is an ultra-high-speed synchronous hardware network filter IP Core designed for inline packet monitoring, deterministic masking, and line-rate isolation of Layer 3 data streams, decoupling a 125 MHz line data plane from a 400 MHz control plane.
 
 ---
 
