@@ -27,6 +27,16 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 
 ![Chronogramme des formes d'ondes REIO-Chain](reio_crypt_simulation.png)
 
+### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
+
+L'exécution de la suite de tests unitaires certifie la parfaite résilience du plan de contrôle et l'interception instantanée des comportements asymétriques :
+
+![Rapport de validation du pilote REIO-Crypt](reio_crypt_test.png)
+
+*   **Test 1 (Flux Standard) :** Traitement nominal validé avec génération du Hash de confiance scellé par le pipeline (`0xa508bf53`).
+*   **Test 2 (Injection Glitch) :** Simulation d'une injection de panne matérielle contrée par une isolation active avec mise à la masse immédiate du bus à 0V.
+*   **Test 3 (Erreur Pointeur) :** Robustesse du code face au passage d'une adresse NULL interceptée de manière bloquante pour empêcher toute fuite mémoire.
+
 ### 🛠️ Architecture du Framework Unifié
 
 1. **RTL Core (VHDL) :** Double fichier unifiant le wrapper de bus esclave AMBA APB 32 bits et le cœur arithmétique polynomial pipeliné.
