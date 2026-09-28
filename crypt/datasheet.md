@@ -1,4 +1,4 @@
-# 🔑 REIO-Crypt (SPU_106) — Technical Datasheet & Crypto-Accelerator Brief
+# 🔑 REIO-Crypt — Technical Datasheet & Crypto-Accelerator Brief
 
 ## 1. Product Overview & Functional Safety Objectives
 
