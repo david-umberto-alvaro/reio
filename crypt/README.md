@@ -23,6 +23,10 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 * **Puissance Électrique Totale :** Enveloppe thermique mesurée à **75 mW** (Statique : 72 mW, Cœur Dynamique : 3 mW).
 * **I/O Physiques :** Configuration de **105 broches physiques** (70 ports d'entrée `IBUF`, 35 ports de sortie `OBUF`).
 
+* ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
+
+![Chronogramme des formes d'ondes REIO-Chain](reio_crypt_simulation_waveform.png)
+
 ### 🛠️ Architecture du Framework Unifié
 
 1. **RTL Core (VHDL) :** Double fichier unifiant le wrapper de bus esclave AMBA APB 32 bits et le cœur arithmétique polynomial pipeliné.
