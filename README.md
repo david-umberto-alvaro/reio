@@ -25,7 +25,6 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 | **REIO-A5** | Axiomatisation Récursive Dynamique | - **REIO-Chain** (Marge WNS +1.596 ns)<br>- **REIO-Safe** (Arbre synchrone pin F4 / Marge WNS +5.222 ns)<br>- **REIO-AI** (Marge WNS exceptionnelle de +6.116 ns)<br>- **REIO-CDC** (Bascules `ASYNC_REG` contiguës) | Élimination mathématique des risques de métastabilité inter-horloges et scellement intègre des cycles d'horloges asynchrones pour la persistance temporelle. |
 | **REIO-A6** | Attestation Pragmatique Cryptographique | - **REIO-Chain** (Preuve ZK Réseau)<br>- **REIO-Safe** (Tag volatil `0xDEADBEEF`) <br>- **REIO-Crypt** (Pipeline 16 cycles / Hash `0xA508BF53`) <br>- **REIO-CDC** (Stabilisation stricte en 3 cycles) | Isolation asynchrone étanche protégeant le transfert des primitives physiques et jetons de sûreté contre la gigue et les injections de pannes. |
 
-
 ---
 
 ## 🛠️ 2. Implémentation Physique & Métriques Vivado (PoC)
@@ -37,6 +36,12 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
   - **Architecture de Sûreté :** Filtre de congruence paraconcurrent bloquant les hallucinations logiques et les injections adverses avec disjonction matérielle et confinement à 0 Volt.
   - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **+6.116 ns** \| WHS : **+0.196 ns**). Isolation et forçage du bus sur le tag de sécurité `0xDEADBEEF` exécutés en exactement **1 cycle d'horloge**.
   - **Ressources :** **52 LUTs / 38 Registres / 0 bloc DSP**, consommation globale ultra-faible de **70 mW** (Dynamique : 1 mW, Statique : 68 mW).
+
+- ⛓️ **[REIO-CDC](./cdc)**
+  - **Fonction :** Synchroniseur multi-horloge d'étanchéité physique pour le croisement de domaines asynchrones (Clock Domain Crossing).
+  - **Architecture de Sûreté :** Chaîne de capture séquentielle à triple étage de bascules durcies pour l'absorption et la neutralisation de la métastabilité active induite par la gigue ou les injections de pannes.
+  - **Validation :** Validé au routage inter-domaines (**400 MHz ◄► 100 MHz**). Timing global validé sans aucune violation de setup/hold (`WNS: inf` \| `WHS: inf`). Stabilisation et transmission étanche du signal validées en exactement **3 cycles d'horloge**.
+  - **Ressources :** **0 Slice LUT (1 LUT combinatoire d'ajustement de buffer) / 3 Slice Registers**, consommation globale de **336 mW** (Logique interne active : 7 mW, Fuites passives et I/O buffers : 329 mW).
 
 - ⛓️ **[REIO-Chain](./chain)**
   - **Fonction :** Disjoncteur matériel sur bus 64 bits.
