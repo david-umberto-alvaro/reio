@@ -2,7 +2,7 @@
 
 ## 1. Product Overview & Functional Safety Objectives
 
-REIO-Crypt (SPU_106) is a hardware-accelerated coprocesseur engine designed for high-security embedded systems. It specializes in **Zero-Knowledge Proof (ZKP)** generation and **Elliptic Curve Cryptography (ECC)** token enforcement.
+REIO-Crypt is a hardware-accelerated coprocesseur engine designed for high-security embedded systems. It specializes in **Zero-Knowledge Proof (ZKP)** generation and **Elliptic Curve Cryptography (ECC)** token enforcement.
 
 Operating on the **Autonomous Heterogeneous Decoupled (AHD)** architectural pattern, the IP core implements inline mathematical pipelines directly connected to a 32-bit peripheral bus. It isolates hardware math execution from the host CPU clock domain to mitigate Side-Channel Attacks (SCA) and active voltage manipulation threats.
 
