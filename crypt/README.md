@@ -76,9 +76,3 @@ L'exécution de la suite de tests unitaires certifie la parfaite résilience du 
 *   **Test 1 (Flux Standard) :** Traitement nominal validé avec génération du Hash de confiance scellé par le pipeline (`0xa508bf53`).
 *   **Test 2 (Injection Glitch) :** Simulation d'une injection de panne matérielle contrée par une isolation active avec mise à la masse immédiate du bus à 0V.
 *   **Test 3 (Erreur Pointeur) :** Robustesse du code face au passage d'une adresse NULL interceptée de manière bloquante pour empêcher toute fuite mémoire.
-
-* **Pour exécuter et reproduire la suite de tests logicielles**, les entreprises partenaires, constructeurs, auditeurs de certification ou recruteurs qualifiés peuvent demander l'accès aux binaires d'évaluation compilés. Les prestations d'intégration sur mesure et de co-design hardware/software sont exclusivement gérées via mon canal de portage d'ingénierie (**SMART Belgium** / contrats d'entreprise dédiés).
-
-🔒 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core)**
-
-* **Conformément aux classes de propriété intellectuelle et de confidentialité**, les fichiers de code source internes (`.vhd`, `.rs`) restent strictement confidentiels pour empêcher toute tentative de rétro-ingénierie malveillante. Les rapports physiques d'utilisation CAO (`.rpt`), les résumés de contraintes de timing et les chronogrammes de simulation comportementale sont accessibles en Open-Core sur ce dépôt public.
