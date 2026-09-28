@@ -52,6 +52,12 @@ REIO-NVM est un bloc de propriété intellectuelle (IP Core) matériel conçu po
        +-----------------------+             +-----------------------+
 ```
 
+### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
+
+L'analyse comportementale du banc de test confirme la réactivité immédiate du disjoncteur SPU-102 face à une injection malveillante :
+
+![Chronogramme des formes d'ondes REIO-Safe](reio_nvm_simulation.png)
+
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
 L'exécution de la suite de tests unitaires sur le plan de contrôle Rust (`#![no_std]`) certifie la parfaite étanchéité de l'interface MMIO :
 * **[Test 1] Écriture Standard (Flux Sain) :** Transmission transparente de la donnée saine (`PASS` | Donnée : `0x12345678`).
