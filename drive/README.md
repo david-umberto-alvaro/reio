@@ -70,13 +70,16 @@ Les rapports d'implémentation post-placement-routage sur la matrice AMD/Xilinx 
 
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
 
-L'exécution du script de test autonome confirme la parfaite conformité du pont de liaison C-FFI sans aucune dépendance à la bibliothèque standard (`#![no_std]`) :
+L'exécution du script de test autonome confirme la conformité du pont C-FFI (`#![no_std]`) à travers trois scénarios clés :
+* **[Test 1] Flux standard :** Transmission stabilisée de la donnée (`0x2a`) avec bit de validité actif.
+* **[Test 2] Contradiction NPU :** Isolation et forçage du bus sur `0xdeadbeef` en un cycle.
+* **[Test 3] Erreur Pointeur :** Robustesse face à une adresse de registre NULL.
 
 ![Rapport de validation du script Python REIO-Safe](reio_drive_test.png)
 
-> 🔐 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core)**
-> Pour des raisons de sûreté de fonctionnement automobile et pour empêcher toute tentative de rétro-ingénierie malveillante sur l'intercepteur combinatoire critique, les fichiers sources internes (`.vhd`, `.rs`) ainsi que les binaires compilés de production ne sont pas distribués en libre accès sur ce dépôt public.
-> 
-> **Pour exécuter et reproduire la suite de tests logicielles :** Les entreprises partenaires, constructeurs, auditeurs de certification (ISO 26262) ou recruteurs qualifiés peuvent demander l'accès au binaire d'évaluation (`reio_drive.dll` / `libreio_drive.so`) en me contactant directement sous contrat de prestation ou de Proof of Concept.
+* **Pour exécuter et reproduire la suite de tests logicielles**, les entreprises partenaires, constructeurs, auditeurs de certification ou recruteurs qualifiés peuvent demander l'accès aux binaires d'évaluation compilés. Les prestations d'intégration sur mesure et de co-design hardware/software sont exclusivement gérées via notre canal de portage d'ingénierie (**SMART Belgium** / contrats d'entreprise dédiés).
 
-*⚖️ Conformément aux clauses de propriété intellectuelle et de confidentialité, les fichiers de code source (.vhd, .rs) restent strictement confidentiels. Les rapports physiques d'utilisation CAO (.rpt), les résumés des contraintes de timing et les chronogrammes de simulation comportementale sont accessibles en Open-Core.*
+🔒 **Note de Sûreté et Propriété Intellectuelle (Modèle Open-Core)**
+
+* **Conformément aux classes de propriété intellectuelle et de confidentialité**, les fichiers de code source internes (`.vhd`, `.rs`) restent strictement confidentiels pour empêcher toute tentative de rétro-ingénierie malveillante. Les rapports physiques d'utilisation CAO (`.rpt`), les résumés de contraintes de timing et les chronogrammes de simulation comportementale sont accessibles en Open-Core sur ce dépôt public.
+
