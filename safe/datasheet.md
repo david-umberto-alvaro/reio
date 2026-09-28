@@ -2,7 +2,7 @@
 
 ## 1. Product Overview & Functional Safety Objectives
 
-REIO-Safe (SPU_102) is an ultra-low-latency, hardware-based protection disconnector designed for safety-critical storage controller layers, specifically targeting **Flash and SSD NAND** physical infrastructures.
+REIO-Safe is an ultra-low-latency, hardware-based protection disconnector designed for safety-critical storage controller layers, specifically targeting **Flash and SSD NAND** physical infrastructures.
 
 Engineered to mitigate ransomware threats, malicious mass encryption routines, and unauthorized physical page tampering, the IP core sits inline directly on the interface control plane. It surgically intercepts data traffic to enforce hardwired memory isolation as soon as behavioral anomalies are identified.
 
