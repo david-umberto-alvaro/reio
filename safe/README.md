@@ -29,6 +29,16 @@ L'interface a été entièrement réenregistrée de manière synchrone pour éli
 *   **Température de Jonction (Silicium) :** 25,4 °C.
 *   **Température Ambiante Maximale Supportée :** 124,6 °C (Grade Automobile Q étendu de -40°C à +125°C).
 
+*   ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
+
+L'analyse comportementale du banc de test confirme la réactivité immédiate du disjoncteur SPU-102 face à une injection malveillante :
+
+![Chronogramme des formes d'ondes REIO-Safe](reio_safe_simulation.png)
+
+*   **À 40.000 ns (Détection de l'Attaque) :** Le bus AMBA APB présente une transaction d'écriture suspecte (`PWDATA = 5a5a5a5a`) à l'adresse `00001000`. Comme le produit logique avec l'invariant d'usine est nul, le filtre SPU-102 réagit instantanément.
+*   **À 45.000 ns (Coupure de Sécurité) :** Dès le cycle suivant, le signal critique **`SIG_FLASH_WRITE_ENABLE` s'effondre proprement à '0'** (Coupure nette de l'alimentation d'écriture). Simultanément, le bus de données `PRDATA` se verrouille sur le tag de quarantaine **`deadbeef`** et l'alerte d'erreur esclave s'active.
+
+
 ## 3. Mécanisme de Confinement Passif/Actif (SPU-102)
 Le filtre combinatoire surveille en continu le trafic d'écriture via deux canaux de détection parallèles :
 1.  **Canal Géométrique (Registre Alpha) :** Un invariant d'usine de 32 bits (`X"A5A5A5A5"`) est gravé dans le silicium. Toute transaction d'écriture produisant un produit logique nul (`PWDATA AND REG_ALPHA = X"00000000"`) déclenche une disjonction immédiate.
