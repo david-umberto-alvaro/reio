@@ -2,7 +2,7 @@
 
 ## Filtre Synchrone d'Interception Réseau & Disjoncteur Matériel (125 MHz / 400 MHz)
 
-REIO-Chain (SPU_103) est un bloc de propriété intellectuelle (IP Core) matériel/logiciel ultra-compact conçu pour l'interception linéaire et le masquage déterministe de flux de données Couche 3 (Layer 3). L'architecture est scindée en un plan de filtrage physique asynchrone cadencé à 125 MHz et un plan de contrôle bare-metal supervisé à 400 MHz.
+REIO-Chain est un bloc de propriété intellectuelle (IP Core) matériel/logiciel ultra-compact conçu pour l'interception linéaire et le masquage déterministe de flux de données Couche 3 (Layer 3). L'architecture est scindée en un plan de filtrage physique asynchrone cadencé à 125 MHz et un plan de contrôle bare-metal supervisé à 400 MHz.
 
 ### 🔬 Performances Matérielles Certifiées (AMD/Xilinx Vivado v2026.1)
 
