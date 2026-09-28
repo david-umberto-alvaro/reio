@@ -17,6 +17,13 @@ Les rapports d'implémentation post-placement-routage sur la matrice AMD/Xilinx 
 - **Worst Hold Slack (WHS) :** Délais de routage intra-site parfaitement optimisés à **+0.279 ns**.
 - **Livrable Temporel :** Coupure réseau déterministe et filtrée anti-glitch validée en simulation à **60.00 ns** (3 cycles de stabilisation d'horloge).
 
+### 📊 Empreinte Géométrique & Signature Thermique
+
+- **Utilisation des ressources logiques :** Empreinte matérielle ultra-compacte validée à **6 Slice LUTs** (0.03% de la matrice) et **4 Slice Registers** (<0.01%).
+- **Primitives Hardware :** Bascules synchrones (`FDRE`/`FDSE`) couplées à des macros logiques d'optimisation.
+- **Puissance Électrique Totale :** Consommation statique fixe mesurée à **72 mW** (`Device Static Power`), avec une dissipation active du cœur dynamique inférieure à **1 mW**.
+- **I/O Physiques :** Configuration de **13 broches physiques** (11 ports d'entrée `IBUF`, 2 ports de sortie `OBUF`) routées sous des contraintes électriques strictes.
+
 ### 🌐 Architecture Fonctionnelle du Pipeline SPU_105
 
 ```text
@@ -54,13 +61,6 @@ Les rapports d'implémentation post-placement-routage sur la matrice AMD/Xilinx 
 ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
 
 ![Chronogramme des formes d'ondes REIO-Drive](reio_drive_simulation.png)
-
-### 📊 Empreinte Géométrique & Signature Thermique
-
-- **Utilisation des ressources logiques :** Empreinte matérielle ultra-compacte validée à **6 Slice LUTs** (0.03% de la matrice) et **4 Slice Registers** (<0.01%).
-- **Primitives Hardware :** Bascules synchrones (`FDRE`/`FDSE`) couplées à des macros logiques d'optimisation.
-- **Puissance Électrique Totale :** Consommation statique fixe mesurée à **72 mW** (`Device Static Power`), avec une dissipation active du cœur dynamique inférieure à **1 mW**.
-- **I/O Physiques :** Configuration de **13 broches physiques** (11 ports d'entrée `IBUF`, 2 ports de sortie `OBUF`) routées sous des contraintes électriques strictes.
 
 ### 🛠 Architecture du Framework Unifié
 
