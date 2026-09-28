@@ -29,7 +29,10 @@ L'interface a été entièrement réenregistrée de manière synchrone pour éli
 *   **Température de Jonction (Silicium) :** 25,4 °C.
 *   **Température Ambiante Maximale Supportée :** 124,6 °C (Grade Automobile Q étendu de -40°C à +125°C).
 
-*   +--------------------------------------------------------+
+### 🌐 Architecture Fonctionnelle du Pipeline SPU_102
+
+```text
++--------------------------------------------------------+
 
 |                    APPLICATION HÔTE                    |
 |          (Système d'Exploitation / Fichier OS)         |
@@ -40,7 +43,7 @@ L'interface a été entièrement réenregistrée de manière synchrone pour éli
 +--------------------------------------------------------+
 
 |               PILOTE DE CONTRÔLE RUST                  |
-|  Configuration MMIO & Validation Volatitle (#![no_std])|
+|  Configuration MMIO & Validation Volatile (#![no_std]) |
 +--------------------------------------------------------+
                            |
                            | Lecture Volatile / Tag d'Alerte (MMIO / APB)
@@ -58,6 +61,7 @@ L'interface a été entièrement réenregistrée de manière synchrone pour éli
                            ^
                            | Interception Parallèle à Haute Vitesse
                            | [ BUS AMBA APB 32-bits ]
+```
 
 
 *   ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
