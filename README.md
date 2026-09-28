@@ -66,6 +66,12 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
   - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **+5.222 ns** \| WHS : **+0.222 ns**). Coupure électrique nette de l'alimentation d'écriture à **0 Volt** et injection du tag de quarantaine exécutées en **1 seul cycle d'horloge (10.00 ns)**.
   - **Ressources :** **28 LUTs / 20 Registres**, consommation globale **92 mW** (Statique : 72 mW, Dynamique : 20 mW).
 
+* 💾 **[REIO-NVM](./nvm)**
+  * **Fonction :** Filtre d'interception en ligne pour la sécurisation des mémoires non-volatiles (MRAM / RRAM).
+  * **Architecture de Sûreté :** Analyse combinatoire continue de la congruence des flux d'écriture pour bloquer instantanément les dérives de charge physique et les injections de fautes.
+  * **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **inf** \| WHS : **inf**). Interception de motif de sabotage, mise à la masse de sécurité à 0 Volt et levée du signal d'alerte physique exécutées en exactement **1 seul cycle d'horloge (10.00 ns)**.
+  * **Ressources :** **33 Slice LUTs / 33 Slice Registers**, consommation globale de **336 mW** (Logique interne active : 1 mW, Fuites statiques et I/O buffers : 335 mW).
+
 ---
 
 ### 🌐 Architecture Globale du Framework
@@ -81,42 +87,42 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
            |  (Spécification Théorique Init.)  |
            +-----------------------------------+
                              |
-         +-------------+-----+-------------+
+       +---------------+-----+---------------+-----------------+
 
-         |             |                   |
-         v             v                   v
-  +-------------+ +-------------+     +-------------+
+       |               |                     |                 |
+       v               v                     v                 v
++-------------+ +-------------+       +-------------+   +-------------+
 
-  |  REIO-CHAIN | |  REIO-DRIVE |     |  REIO-SAFE  |
-  | (PoC Réseau)| |  (PoC Auto) |     | (PoC Stock.)|
-  | -> 400 MHz  | | -> 66.67MHz |     | -> 100 MHz  |
-  +-------------+ +-------------+     +-------------+
+|  REIO-CHAIN | |  REIO-DRIVE |       |  REIO-SAFE  |   |  REIO-NVM   |
+| (PoC Réseau)| |  (PoC Auto) |       | (PoC Flash) |   | (PoC Mag/R) |
+| -> 400 MHz  | | -> 66.67MHz |       | -> 100 MHz  |   | -> 100 MHz  |
++-------------+ +-------------+       +-------------+   +-------------+
 
-         |               |                   |
-         | [Asynchrone]  | [Asynchrone]      | [Synchrone]
-         v               v                   |
-  +-----------------------------+            |
+       |               |                     |                 |
+       | [Asynchrone]  | [Asynchrone]        | [Synchrone]     | [Synchrone]
+       v               v                     |                 |
++-----------------------------+              |                 |
 
-  |          REIO-CDC           |            |
-  | --------------------------- |            |
-  |  [Canal 1] 400M -> 100M     |            |
-  |  [Canal 2] 66.6M -> 100M    |            |
-  +-----------------------------+            |
+|          REIO-CDC           |              |                 |
+| --------------------------- |              |                 |
+|  [Canal 1] 400M -> 100M     |              |                 |
+|  [Canal 2] 66.6M -> 100M    |              |                 |
++-----------------------------+              |                 |
 
-         |               |                   |
-         +-------+-------+-------------------+
-                 |
-                 v  [ BUS SYSTÈME UNIFIÉ : 100 MHz ]
-         +-------+-------+
+       |               |                     |                 |
+       +-------+-------+---------------------+-----------------+
+               |
+               v  [ BUS SYSTÈME UNIFIÉ ÉTANCHE : 100 MHz ]
+       +-------+-------+
 
-         |               |
-         v               v
-  +-------------+     +-------------+
+       |               |
+       v               v
++-------------+     +-------------+
 
-  |  REIO-CRYPT |     |   REIO-AI   |
-  | (PoC Crypto)|     |   (PoC IA)  |
-  | -> 100 MHz  |     | -> 100 MHz  |
-  +-------------+     +-------------+
+|  REIO-CRYPT |     |   REIO-AI   |
+| (PoC Crypto)|     |   (PoC IA)  |
+| -> 100 MHz  |     | -> 100 MHz  |
++-------------+     +-------------+
 
 ```
 
