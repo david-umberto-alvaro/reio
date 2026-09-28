@@ -1,7 +1,7 @@
 # 🚗 REIO-Drive — Technical Datasheet & Automotive Safety Brief
 
 ## 1. Product Overview & Functional Safety Objectives
-REIO-Drive (SPU_105) is an ultra-low-latency hardware-based protection shield designed for critical automotive embedded buses, specifically targeting **CAN** (Controller Area Network) and **LIN** (Local Interconnect Network) physical infrastructures.
+REIO-Drive is an ultra-low-latency hardware-based protection shield designed for critical automotive embedded buses, specifically targeting **CAN** (Controller Area Network) and **LIN** (Local Interconnect Network) physical infrastructures.
 
 Engineered to mitigate malicious frame injections, spoofing attacks, and hardware failures (such as *babbling idiot* conditions), the IP core sits inline between the physical layer transceiver and the protocol controller to surgically isolate faulty or compromised nodes.
 
