@@ -67,7 +67,8 @@ ________________________________________________________________________________
 
 ## ⚖ 5. Commercial Integration & Engineering Services
 
-The REIO-Crypt (SPU_106) coprocessor core is part of a premium cyber-physical safety portfolio, showcasing advanced expertise in hétérogène RTL design, deep timing closure optimization, and physical hardware hardening.
+The REIO-Safe (SPU_102) architecture is part of a high-value engineering portfolio, demonstrating specialized expertise in Functional Safety (ISO 26262 ASIL-D), hardware-enforced ransomware isolation, and robust RTL optimization.
 
-- **Scope of Engineering Support:** Secure integration of cryptographic IP cores into custom AMBA/AXI architectures, clock-domain crossing (CDC) verification, and development of zero-dependency bare-metal firmware layers.
-- **Cooperation Framework:** Engineering consultancy, custom layout synthesis, and IP deployment services are exclusively provided under enterprise B2B service-level agreements, managed transparently via specialized freelancing portage channels (**SMART Belgium** / direct corporate contract frameworks).
+- **Scope of Intervention:** Seamless integration of secure IP cores into automotive Flash/NAND flash topologies, mitigation of asynchronous Clock Domain Crossing (CDC) anomalies, and preparation of documentation files for international safety cases.
+- **Cooperation Model:** Engineering consultancy and custom IP development services are available under corporate contract agreements, handled transparently through specialized freelancing and wage-portage channels (**SMART Belgium** / direct enterprise agreements).
+
