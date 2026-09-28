@@ -79,6 +79,8 @@ L'exécution de la suite de tests unitaires sur le plan de contrôle en Rust bar
 * **Test 2 (Contradiction NPU) :** Isolation active et forçage immédiat du bus sur le tag protecteur `0xdeadbeef`.
 * **Test 3 (Erreur Pointeur) :** Robustesse logicielle validée avec succès face à l'injection d'une adresse NULL.
 
+![Rapport de validation du script Python REIO-Safe](reio_ai_test.png)
+
 ### 🛠️ Architecture du Framework Unifié
 
 L'architecture intègre un cœur RTL en VHDL, un plan de contrôle en Rust 2024 pour l'alignement MMIO, et une application hôte en Python pour évaluer le confinement de sûreté. Les détails complets et rapports restent confidentiels (Open-Core).
