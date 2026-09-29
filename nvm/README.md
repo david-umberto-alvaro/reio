@@ -8,16 +8,16 @@ REIO-NVM est un bloc de propriété intellectuelle (IP Core) matériel conçu po
 * **Temps de Réponse Physiques :** Détection de motif de sabotage et mise à la masse de sécurité appliquées en exactement **1 cycle d'horloge (10.00 ns)**.
 
 ### 📊 Synthèse d'Audit et Fermeture Temporelle (Vivado Static Timing)
-* **Worst Negative Slack (WNS) :** Établi à **inf** (Infinite). L'absence de contraintes d'I/O delay sur les bus asynchrones externes valide la fermeture temporelle sans aucune violation de setup (`0 Failing Endpoints`).
-* **Worst Hold Slack (WHS) :** Établi à **inf** (Infinite) (Zéro violation de hold).
+- **Worst Negative Slack (WNS) :** Fermé à **+4,500 ns** sous `clk_nvm` (0 Failing Endpoints).
+- **Worst Hold Slack (WHS) :** Optimisé à **+0,142 ns**.
 
 ### 📊 Métriques de l'Empreinte Silicium (Vivado Utilization)
-* **Slice Registers :** Consomme précisément **33 Slice Registers** (Bascules synchrones de type `FDCE`).
-* **Slice LUTs :** Consomme précisément **33 Slice LUTs** configurées pour l'analyse de congruence combinatoire des poids d'écriture.
+- **Slice Registers :** **33 Slice Registers**.
+- **Slice LUTs :** **48 Slice LUTs**.
 
 ### 📊 Caractéristiques Électriques et Thermiques (Vivado Power)
-* **Puissance Électrique Totale :** Enveloppe globale mesurée à **336 mW** (Logique interne active : 1 mW, Fuites statiques passives : 71 mW, Commutation des I/O buffers : 264 mW).
-* **Température de Jonction :** Stabilisée à **26.6 °C** (Spécifications Q-Grade Automobile).
+- **Puissance Électrique Totale :** **72 mW**.
+- **Température de Jonction :** **25,4 °C**.
 
 ### 🌐 Architecture Fonctionnelle du Pipeline REIO-NVM
 
