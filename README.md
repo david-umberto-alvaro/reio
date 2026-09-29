@@ -18,12 +18,12 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 | Axiome | Pilier Théorique | Traduction Matérielle (Vivado) | Impact sur la Sûreté Réelle |
 | :--- | :--- | :--- | :--- |
-| &nbsp;&nbsp;**REIO&#45;A1**&nbsp;&nbsp; | Ancrage Matériel Pur | `Chain` • `Drive` • `Safe` • `AI` • `NVM` • `BUS` • `PWR` • `Int` | Confinement strict par exclusion d'états intermédiaires. L'IP Core bloque l'erreur sans saturer le processeur hôte. |
-| &nbsp;&nbsp;**REIO&#45;A2**&nbsp;&nbsp; | Isolation des Perceptions | `Drive` | Exclusion totale de l'intervention humaine pour prémunir les registres de toute altération malveillante. |
-| &nbsp;&nbsp;**REIO&#45;A3**&nbsp;&nbsp; | Convergence Orthogonale | `Chain` | Filtrage matériel en ligne. Rejet immédiat de toute donnée non ancrée aux primitives physiques (Résolution de Gettier). |
-| &nbsp;&nbsp;**REIO&#45;A4**&nbsp;&nbsp; | Confinement & Seuils | `Drive` • `Safe` • `NVM` • `Crypt` • `AI` • `BUS` • `PWR` • `Int` | Disjonction physique instantanée dès le franchissement des seuils critiques pour découpler les bus corrompus. |
-| &nbsp;&nbsp;**REIO&#45;A5**&nbsp;&nbsp; | Axiomatisation Récursive | `Chain` • `Safe` • `AI` • `CDC` | Élimination mathématique de la métastabilité inter-horloges pour garantir la persistance temporelle. |
-| &nbsp;&nbsp;**REIO&#45;A6**&nbsp;&nbsp; | Attestation Pragmatique | `Chain` • `Safe` • `Crypt` • `CDC` • `NVM` • `BUS` • `PWR` • `Int` | Scellement irréversible de chaque cycle d'évolution pour immuniser le SoC contre la gigue et les injections de pannes. |
+| `REIO&nbsp;A1` | Ancrage Matériel Pur | `Chain` • `Drive` • `Safe` • `AI` • `NVM` • `BUS` • `PWR` • `Int` | Confinement strict par exclusion d'états intermédiaires. L'IP Core bloque l'erreur sans saturer le processeur hôte. |
+| `REIO&nbsp;A2` | Isolation des Perceptions | `Drive` | Exclusion totale de l'intervention humaine pour prémunir les registres de toute altération malveillante. |
+| `REIO&nbsp;A3` | Convergence Orthogonale | `Chain` | Filtrage matériel en ligne. Rejet immédiat de toute donnée non ancrée aux primitives physiques (Résolution de Gettier). |
+| `REIO&nbsp;A4` | Confinement & Seuils | `Drive` • `Safe` • `NVM` • `Crypt` • `AI` • `BUS` • `PWR` • `Int` | Disjonction physique instantanée dès le franchissement des seuils critiques pour découpler les bus corrompus. |
+| `REIO&nbsp;A5` | Axiomatisation Récursive | `Chain` • `Safe` • `AI` • `CDC` | Élimination mathématique de la métastabilité inter-horloges pour garantir la persistance temporelle. |
+| `REIO&nbsp;A6` | Attestation Pragmatique | `Chain` • `Safe` • `Crypt` • `CDC` • `NVM` • `BUS` • `PWR` • `Int` | Scellement irréversible de chaque cycle d'évolution pour immuniser le SoC contre la gigue et les injections de pannes. |
 
 ---
 
