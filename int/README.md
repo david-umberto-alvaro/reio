@@ -50,7 +50,7 @@ REIO-INT est un bloc de propriété intellectuelle (IP Core) matériel d'infrast
 
        |   IRQ_XXXX_SECURE     |             |   IRQ_XXXX_SECURE     |
        |   <= IRQ_XXXX_RAW     |             |   <= '0' (0 Volt)     |
-       |   INT_FAULT_FLAG <= '0'|             |   INT_FAULT_FLAG <= '1'|
+       |  INT_FAULT_FLAG <= '0'|             |  INT_FAULT_FLAG <= '1'|
        +-----------------------+             +-----------------------+
 ```
 
