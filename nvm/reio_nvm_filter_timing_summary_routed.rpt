@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
-| Date         : Tue Sep 29 01:28:29 2026
+| Date         : Wed Sep 30 01:26:39 2026
 | Host         : PC1-2D running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -routable_nets -report_unconstrained -file reio_nvm_filter_timing_summary_routed.rpt -pb reio_nvm_filter_timing_summary_routed.pb -rpx reio_nvm_filter_timing_summary_routed.rpx -warn_on_violation
 | Design       : reio_nvm_filter
@@ -41,9 +41,9 @@ Timing Summary Report
 | ------------------
 ------------------------------------------------------------------------------------------------
 
-Rule       Severity          Description                  Violations  
----------  ----------------  ---------------------------  ----------  
-TIMING-17  Critical Warning  Non-clocked sequential cell  33          
+Rule       Severity  Description                    Violations  
+---------  --------  -----------------------------  ----------  
+TIMING-18  Warning   Missing input or output delay  34          
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
 
@@ -53,10 +53,10 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (33)
+1. checking no_clock (0)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (99)
+4. checking unconstrained_internal_endpoints (0)
 5. checking no_input_delay (50)
 6. checking no_output_delay (33)
 7. checking multiple_clock (0)
@@ -66,9 +66,9 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (33)
--------------------------
- There are 33 register/latch pins with no clock driven by root clock pin: CLK (HIGH)
+1. checking no_clock (0)
+------------------------
+ There are 0 register/latch pins with no clock.
 
 
 2. checking constant_clock (0)
@@ -81,18 +81,18 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (99)
--------------------------------------------------
- There are 99 pins that are not constrained for maximum delay. (HIGH)
+4. checking unconstrained_internal_endpoints (0)
+------------------------------------------------
+ There are 0 pins that are not constrained for maximum delay.
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
 5. checking no_input_delay (50)
 -------------------------------
- There are 50 input ports with no input delay specified. (HIGH)
+ There is 1 input port with no input delay specified. (HIGH)
 
- There are 0 input ports with no input delay but user has a false path constraint.
+ There are 49 input ports with no input delay but user has a false path constraint. (MEDIUM)
 
 
 6. checking no_output_delay (33)
@@ -142,16 +142,20 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-        inf        0.000                      0                  132          inf        0.000                      0                  132           NA           NA                      NA                    NA  
+        inf        0.000                      0                  132          inf        0.000                      0                  132        4.500        0.000                       0                    34  
 
 
-There are no user specified timing constraints.
+All user specified timing constraints are met.
 
 
 ------------------------------------------------------------------------------------------------
 | Clock Summary
 | -------------
 ------------------------------------------------------------------------------------------------
+
+Clock    Waveform(ns)       Period(ns)      Frequency(MHz)
+-----    ------------       ----------      --------------
+clk_nvm  {0.000 5.000}      10.000          100.000         
 
 
 ------------------------------------------------------------------------------------------------
@@ -161,6 +165,7 @@ There are no user specified timing constraints.
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
+clk_nvm                                                                                                                                                         4.500        0.000                       0                    34  
 
 
 ------------------------------------------------------------------------------------------------
@@ -188,6 +193,7 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 
 Path Group    From Clock    To Clock    
 ----------    ----------    --------    
+(none)                      clk_nvm       
 
 
 ------------------------------------------------------------------------------------------------
@@ -197,7 +203,8 @@ Path Group    From Clock    To Clock
 
 Path Group    From Clock    To Clock    
 ----------    ----------    --------    
-(none)                                    
+(none)        clk_nvm                     
+(none)                      clk_nvm       
 
 
 ------------------------------------------------------------------------------------------------
@@ -206,13 +213,64 @@ Path Group    From Clock    To Clock
 ------------------------------------------------------------------------------------------------
 
 
+---------------------------------------------------------------------------------------------------
+From Clock:  clk_nvm
+  To Clock:  clk_nvm
+
+Setup :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+Hold  :           NA  Failing Endpoints,  Worst Slack           NA  ,  Total Violation           NA
+PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Violation        0.000ns
+---------------------------------------------------------------------------------------------------
+
+
+Pulse Width Checks
+--------------------------------------------------------------------------------------
+Clock Name:         clk_nvm
+Waveform(ns):       { 0.000 5.000 }
+Period(ns):         10.000
+Sources:            { CLK }
+
+Check Type        Corner  Lib Pin  Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location       Pin
+Min Period        n/a     BUFG/I   n/a            2.155         10.000      7.845      BUFGCTRL_X0Y0  CLK_IBUF_BUFG_inst/I
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X0Y11    r_fault_detected_reg/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X0Y47    r_wdata_latched_reg[0]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X1Y48    r_wdata_latched_reg[10]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X1Y45    r_wdata_latched_reg[11]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X0Y45    r_wdata_latched_reg[12]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X0Y46    r_wdata_latched_reg[13]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X0Y45    r_wdata_latched_reg[14]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X0Y45    r_wdata_latched_reg[15]/C
+Min Period        n/a     FDCE/C   n/a            1.000         10.000      9.000      SLICE_X1Y44    r_wdata_latched_reg[16]/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X0Y11    r_fault_detected_reg/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X0Y11    r_fault_detected_reg/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X0Y47    r_wdata_latched_reg[0]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X0Y47    r_wdata_latched_reg[0]/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X1Y48    r_wdata_latched_reg[10]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X1Y48    r_wdata_latched_reg[10]/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X1Y45    r_wdata_latched_reg[11]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X1Y45    r_wdata_latched_reg[11]/C
+Low Pulse Width   Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X0Y45    r_wdata_latched_reg[12]/C
+Low Pulse Width   Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X0Y45    r_wdata_latched_reg[12]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X0Y11    r_fault_detected_reg/C
+High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X0Y11    r_fault_detected_reg/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X0Y47    r_wdata_latched_reg[0]/C
+High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X0Y47    r_wdata_latched_reg[0]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X1Y48    r_wdata_latched_reg[10]/C
+High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X1Y48    r_wdata_latched_reg[10]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X1Y45    r_wdata_latched_reg[11]/C
+High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X1Y45    r_wdata_latched_reg[11]/C
+High Pulse Width  Slow    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X0Y45    r_wdata_latched_reg[12]/C
+High Pulse Width  Fast    FDCE/C   n/a            0.500         5.000       4.500      SLICE_X0Y45    r_wdata_latched_reg[12]/C
+
+
+
 --------------------------------------------------------------------------------------
 Path Group:  (none)
 From Clock:  
-  To Clock:  
+  To Clock:  clk_nvm
 
-Max Delay           132 Endpoints
-Min Delay           132 Endpoints
+Max Delay            66 Endpoints
+Min Delay            66 Endpoints
 --------------------------------------------------------------------------------------
 
 
@@ -222,10 +280,21 @@ Slack:                    inf
   Source:                 NVM_WDATA[24]
                             (input port)
   Destination:            r_fault_detected_reg/CE
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
+  Path Type:              Setup (Max at Slow Process Corner)
   Data Path Delay:        7.356ns  (logic 1.414ns (19.219%)  route 5.942ns (80.781%))
   Logic Levels:           4  (IBUF=1 LUT4=1 LUT5=1 LUT6=1)
+  Clock Path Skew:        4.304ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.304ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -242,14 +311,34 @@ Slack:                    inf
     SLICE_X0Y11          FDCE                                         r  r_fault_detected_reg/CE
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.516     4.304    CLK_IBUF_BUFG
+    SLICE_X0Y11          FDCE                                         r  r_fault_detected_reg/C
+
 Slack:                    inf
   Source:                 NVM_ADDR[7]
                             (input port)
   Destination:            r_wdata_latched_reg[27]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
+  Path Type:              Setup (Max at Slow Process Corner)
   Data Path Delay:        6.605ns  (logic 1.428ns (21.617%)  route 5.178ns (78.383%))
   Logic Levels:           4  (IBUF=1 LUT4=2 LUT6=1)
+  Clock Path Skew:        4.308ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.308ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -266,14 +355,34 @@ Slack:                    inf
     SLICE_X0Y48          FDCE                                         r  r_wdata_latched_reg[27]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.520     4.308    CLK_IBUF_BUFG
+    SLICE_X0Y48          FDCE                                         r  r_wdata_latched_reg[27]/C
+
 Slack:                    inf
   Source:                 NVM_ADDR[7]
                             (input port)
   Destination:            r_wdata_latched_reg[10]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
+  Path Type:              Setup (Max at Slow Process Corner)
   Data Path Delay:        6.603ns  (logic 1.428ns (21.626%)  route 5.175ns (78.374%))
   Logic Levels:           4  (IBUF=1 LUT4=2 LUT6=1)
+  Clock Path Skew:        4.308ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.308ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -290,14 +399,34 @@ Slack:                    inf
     SLICE_X1Y48          FDCE                                         r  r_wdata_latched_reg[10]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.520     4.308    CLK_IBUF_BUFG
+    SLICE_X1Y48          FDCE                                         r  r_wdata_latched_reg[10]/C
+
 Slack:                    inf
   Source:                 NVM_ADDR[7]
                             (input port)
   Destination:            r_wdata_latched_reg[25]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
+  Path Type:              Setup (Max at Slow Process Corner)
   Data Path Delay:        6.603ns  (logic 1.428ns (21.626%)  route 5.175ns (78.374%))
   Logic Levels:           4  (IBUF=1 LUT4=2 LUT6=1)
+  Clock Path Skew:        4.308ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.308ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -314,14 +443,34 @@ Slack:                    inf
     SLICE_X0Y48          FDCE                                         r  r_wdata_latched_reg[25]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.520     4.308    CLK_IBUF_BUFG
+    SLICE_X0Y48          FDCE                                         r  r_wdata_latched_reg[25]/C
+
 Slack:                    inf
   Source:                 NVM_ADDR[7]
                             (input port)
   Destination:            r_wdata_latched_reg[24]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
+  Path Type:              Setup (Max at Slow Process Corner)
   Data Path Delay:        6.602ns  (logic 1.428ns (21.629%)  route 5.174ns (78.371%))
   Logic Levels:           4  (IBUF=1 LUT4=2 LUT6=1)
+  Clock Path Skew:        4.308ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.308ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -338,14 +487,34 @@ Slack:                    inf
     SLICE_X1Y48          FDCE                                         r  r_wdata_latched_reg[24]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.520     4.308    CLK_IBUF_BUFG
+    SLICE_X1Y48          FDCE                                         r  r_wdata_latched_reg[24]/C
+
 Slack:                    inf
   Source:                 NVM_ADDR[7]
                             (input port)
   Destination:            r_wdata_latched_reg[30]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
+  Path Type:              Setup (Max at Slow Process Corner)
   Data Path Delay:        6.437ns  (logic 1.428ns (22.182%)  route 5.009ns (77.818%))
   Logic Levels:           4  (IBUF=1 LUT4=2 LUT6=1)
+  Clock Path Skew:        4.308ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.308ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -362,14 +531,34 @@ Slack:                    inf
     SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[30]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.520     4.308    CLK_IBUF_BUFG
+    SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[30]/C
+
 Slack:                    inf
   Source:                 NVM_ADDR[7]
                             (input port)
   Destination:            r_wdata_latched_reg[29]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
+  Path Type:              Setup (Max at Slow Process Corner)
   Data Path Delay:        6.435ns  (logic 1.428ns (22.191%)  route 5.007ns (77.809%))
   Logic Levels:           4  (IBUF=1 LUT4=2 LUT6=1)
+  Clock Path Skew:        4.308ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.308ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -386,14 +575,34 @@ Slack:                    inf
     SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[29]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.520     4.308    CLK_IBUF_BUFG
+    SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[29]/C
+
 Slack:                    inf
   Source:                 NVM_ADDR[7]
                             (input port)
   Destination:            r_wdata_latched_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
+  Path Type:              Setup (Max at Slow Process Corner)
   Data Path Delay:        6.411ns  (logic 1.428ns (22.274%)  route 4.983ns (77.726%))
   Logic Levels:           4  (IBUF=1 LUT4=2 LUT6=1)
+  Clock Path Skew:        4.308ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.308ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -410,14 +619,34 @@ Slack:                    inf
     SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.520     4.308    CLK_IBUF_BUFG
+    SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[0]/C
+
 Slack:                    inf
   Source:                 NVM_ADDR[7]
                             (input port)
   Destination:            r_wdata_latched_reg[26]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
+  Path Type:              Setup (Max at Slow Process Corner)
   Data Path Delay:        6.250ns  (logic 1.428ns (22.846%)  route 4.822ns (77.154%))
   Logic Levels:           4  (IBUF=1 LUT4=2 LUT6=1)
+  Clock Path Skew:        4.307ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.307ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -434,14 +663,34 @@ Slack:                    inf
     SLICE_X0Y46          FDCE                                         r  r_wdata_latched_reg[26]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.519     4.307    CLK_IBUF_BUFG
+    SLICE_X0Y46          FDCE                                         r  r_wdata_latched_reg[26]/C
+
 Slack:                    inf
   Source:                 NVM_ADDR[7]
                             (input port)
   Destination:            r_wdata_latched_reg[13]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
+  Path Type:              Setup (Max at Slow Process Corner)
   Data Path Delay:        6.248ns  (logic 1.428ns (22.855%)  route 4.820ns (77.145%))
   Logic Levels:           4  (IBUF=1 LUT4=2 LUT6=1)
+  Clock Path Skew:        4.307ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.307ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -458,6 +707,15 @@ Slack:                    inf
     SLICE_X0Y46          FDCE                                         r  r_wdata_latched_reg[13]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.519     4.307    CLK_IBUF_BUFG
+    SLICE_X0Y46          FDCE                                         r  r_wdata_latched_reg[13]/C
+
 
 
 
@@ -468,10 +726,16 @@ Slack:                    inf
   Source:                 NVM_ADDR[6]
                             (input port)
   Destination:            r_fault_detected_reg/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
+  Path Type:              Hold (Min at Fast Process Corner)
   Data Path Delay:        0.665ns  (logic 0.239ns (35.926%)  route 0.426ns (64.074%))
   Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        1.961ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.961ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -484,14 +748,29 @@ Slack:                    inf
     SLICE_X0Y11          FDCE                                         r  r_fault_detected_reg/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.864     1.961    CLK_IBUF_BUFG
+    SLICE_X0Y11          FDCE                                         r  r_fault_detected_reg/C
+
 Slack:                    inf
   Source:                 NVM_WDATA[0]
                             (input port)
   Destination:            r_wdata_latched_reg[0]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
+  Path Type:              Hold (Min at Fast Process Corner)
   Data Path Delay:        0.713ns  (logic 0.210ns (29.454%)  route 0.503ns (70.546%))
   Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -504,14 +783,29 @@ Slack:                    inf
     SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[0]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[0]/C
+
 Slack:                    inf
   Source:                 NVM_WDATA[2]
                             (input port)
   Destination:            r_wdata_latched_reg[2]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
+  Path Type:              Hold (Min at Fast Process Corner)
   Data Path Delay:        0.747ns  (logic 0.247ns (33.052%)  route 0.500ns (66.948%))
   Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        1.963ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.963ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -524,14 +818,29 @@ Slack:                    inf
     SLICE_X0Y46          FDCE                                         r  r_wdata_latched_reg[2]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.866     1.963    CLK_IBUF_BUFG
+    SLICE_X0Y46          FDCE                                         r  r_wdata_latched_reg[2]/C
+
 Slack:                    inf
   Source:                 NVM_WDATA[3]
                             (input port)
   Destination:            r_wdata_latched_reg[3]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
+  Path Type:              Hold (Min at Fast Process Corner)
   Data Path Delay:        0.752ns  (logic 0.259ns (34.440%)  route 0.493ns (65.560%))
   Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -544,14 +853,29 @@ Slack:                    inf
     SLICE_X1Y47          FDCE                                         r  r_wdata_latched_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X1Y47          FDCE                                         r  r_wdata_latched_reg[3]/C
+
 Slack:                    inf
   Source:                 NVM_WDATA[4]
                             (input port)
   Destination:            r_wdata_latched_reg[4]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
+  Path Type:              Hold (Min at Fast Process Corner)
   Data Path Delay:        0.780ns  (logic 0.250ns (32.097%)  route 0.530ns (67.903%))
   Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        1.963ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.963ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -564,14 +888,29 @@ Slack:                    inf
     SLICE_X1Y46          FDCE                                         r  r_wdata_latched_reg[4]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.866     1.963    CLK_IBUF_BUFG
+    SLICE_X1Y46          FDCE                                         r  r_wdata_latched_reg[4]/C
+
 Slack:                    inf
   Source:                 NVM_WDATA[10]
                             (input port)
   Destination:            r_wdata_latched_reg[10]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
+  Path Type:              Hold (Min at Fast Process Corner)
   Data Path Delay:        0.783ns  (logic 0.277ns (35.374%)  route 0.506ns (64.626%))
   Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -584,14 +923,29 @@ Slack:                    inf
     SLICE_X1Y48          FDCE                                         r  r_wdata_latched_reg[10]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X1Y48          FDCE                                         r  r_wdata_latched_reg[10]/C
+
 Slack:                    inf
   Source:                 NVM_WDATA[1]
                             (input port)
   Destination:            r_wdata_latched_reg[1]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
+  Path Type:              Hold (Min at Fast Process Corner)
   Data Path Delay:        0.812ns  (logic 0.250ns (30.753%)  route 0.562ns (69.247%))
   Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        1.963ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.963ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -604,14 +958,29 @@ Slack:                    inf
     SLICE_X0Y44          FDCE                                         r  r_wdata_latched_reg[1]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.866     1.963    CLK_IBUF_BUFG
+    SLICE_X0Y44          FDCE                                         r  r_wdata_latched_reg[1]/C
+
 Slack:                    inf
   Source:                 NVM_WDATA[6]
                             (input port)
   Destination:            r_wdata_latched_reg[6]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
+  Path Type:              Hold (Min at Fast Process Corner)
   Data Path Delay:        0.816ns  (logic 0.256ns (31.416%)  route 0.560ns (68.584%))
   Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        1.963ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.963ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -624,14 +993,29 @@ Slack:                    inf
     SLICE_X1Y46          FDCE                                         r  r_wdata_latched_reg[6]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.866     1.963    CLK_IBUF_BUFG
+    SLICE_X1Y46          FDCE                                         r  r_wdata_latched_reg[6]/C
+
 Slack:                    inf
   Source:                 NVM_WDATA[8]
                             (input port)
   Destination:            r_wdata_latched_reg[8]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
+  Path Type:              Hold (Min at Fast Process Corner)
   Data Path Delay:        0.844ns  (logic 0.268ns (31.717%)  route 0.576ns (68.283%))
   Logic Levels:           2  (IBUF=1 LUT6=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -644,14 +1028,29 @@ Slack:                    inf
     SLICE_X1Y47          FDCE                                         r  r_wdata_latched_reg[8]/D
   -------------------------------------------------------------------    -------------------
 
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X1Y47          FDCE                                         r  r_wdata_latched_reg[8]/C
+
 Slack:                    inf
   Source:                 NVM_WDATA[5]
                             (input port)
   Destination:            r_wdata_latched_reg[24]/D
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
+  Path Type:              Hold (Min at Fast Process Corner)
   Data Path Delay:        0.857ns  (logic 0.300ns (35.011%)  route 0.557ns (64.989%))
   Logic Levels:           3  (IBUF=1 LUT5=1 LUT6=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+  Timing Exception:       False Path
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -665,6 +1064,1449 @@ Slack:                    inf
                          net (fo=1, routed)           0.000     0.857    p_0_in[24]
     SLICE_X1Y48          FDCE                                         r  r_wdata_latched_reg[24]/D
   -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X1Y48          FDCE                                         r  r_wdata_latched_reg[24]/C
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  clk_nvm
+  To Clock:  
+
+Max Delay            33 Endpoints
+Min Delay            33 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[0]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[0]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.953ns  (logic 3.090ns (51.904%)  route 2.863ns (48.096%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         1.040     1.040 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.011    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.107 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.639     4.747    CLK_IBUF_BUFG
+    SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y47          FDCE (Prop_fdce_C_Q)         0.456     5.203 r  r_wdata_latched_reg[0]/Q
+                         net (fo=1, routed)           2.863     8.066    NVM_SECURE_WDATA_OBUF[0]
+    U17                  OBUF (Prop_obuf_I_O)         2.634    10.699 r  NVM_SECURE_WDATA_OBUF[0]_inst/O
+                         net (fo=0)                   0.000    10.699    NVM_SECURE_WDATA[0]
+    U17                                                               r  NVM_SECURE_WDATA[0]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[1]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[1]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.934ns  (logic 3.096ns (52.181%)  route 2.837ns (47.819%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         1.040     1.040 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.011    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.107 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.638     4.746    CLK_IBUF_BUFG
+    SLICE_X0Y44          FDCE                                         r  r_wdata_latched_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y44          FDCE (Prop_fdce_C_Q)         0.456     5.202 r  r_wdata_latched_reg[1]/Q
+                         net (fo=1, routed)           2.837     8.039    NVM_SECURE_WDATA_OBUF[1]
+    V16                  OBUF (Prop_obuf_I_O)         2.640    10.679 r  NVM_SECURE_WDATA_OBUF[1]_inst/O
+                         net (fo=0)                   0.000    10.679    NVM_SECURE_WDATA[1]
+    V16                                                               r  NVM_SECURE_WDATA[1]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_fault_detected_reg/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_FAULT_FLAG
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.882ns  (logic 3.093ns (52.583%)  route 2.789ns (47.417%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         1.040     1.040 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.011    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.107 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.635     4.743    CLK_IBUF_BUFG
+    SLICE_X0Y11          FDCE                                         r  r_fault_detected_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y11          FDCE (Prop_fdce_C_Q)         0.456     5.199 r  r_fault_detected_reg/Q
+                         net (fo=1, routed)           2.789     7.988    NVM_FAULT_FLAG_OBUF
+    R11                  OBUF (Prop_obuf_I_O)         2.637    10.625 r  NVM_FAULT_FLAG_OBUF_inst/O
+                         net (fo=0)                   0.000    10.625    NVM_FAULT_FLAG
+    R11                                                               r  NVM_FAULT_FLAG
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[3]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[3]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.798ns  (logic 3.083ns (53.175%)  route 2.715ns (46.825%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         1.040     1.040 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.011    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.107 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.639     4.747    CLK_IBUF_BUFG
+    SLICE_X1Y47          FDCE                                         r  r_wdata_latched_reg[3]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X1Y47          FDCE (Prop_fdce_C_Q)         0.456     5.203 r  r_wdata_latched_reg[3]/Q
+                         net (fo=1, routed)           2.715     7.918    NVM_SECURE_WDATA_OBUF[3]
+    T16                  OBUF (Prop_obuf_I_O)         2.627    10.545 r  NVM_SECURE_WDATA_OBUF[3]_inst/O
+                         net (fo=0)                   0.000    10.545    NVM_SECURE_WDATA[3]
+    T16                                                               r  NVM_SECURE_WDATA[3]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[2]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[2]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.666ns  (logic 3.097ns (54.662%)  route 2.569ns (45.338%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         1.040     1.040 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.011    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.107 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.638     4.746    CLK_IBUF_BUFG
+    SLICE_X0Y46          FDCE                                         r  r_wdata_latched_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y46          FDCE (Prop_fdce_C_Q)         0.456     5.202 r  r_wdata_latched_reg[2]/Q
+                         net (fo=1, routed)           2.569     7.771    NVM_SECURE_WDATA_OBUF[2]
+    V15                  OBUF (Prop_obuf_I_O)         2.641    10.412 r  NVM_SECURE_WDATA_OBUF[2]_inst/O
+                         net (fo=0)                   0.000    10.412    NVM_SECURE_WDATA[2]
+    V15                                                               r  NVM_SECURE_WDATA[2]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[5]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[5]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.623ns  (logic 3.086ns (54.886%)  route 2.537ns (45.114%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         1.040     1.040 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.011    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.107 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.638     4.746    CLK_IBUF_BUFG
+    SLICE_X1Y46          FDCE                                         r  r_wdata_latched_reg[5]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X1Y46          FDCE (Prop_fdce_C_Q)         0.456     5.202 r  r_wdata_latched_reg[5]/Q
+                         net (fo=1, routed)           2.537     7.739    NVM_SECURE_WDATA_OBUF[5]
+    T15                  OBUF (Prop_obuf_I_O)         2.630    10.369 r  NVM_SECURE_WDATA_OBUF[5]_inst/O
+                         net (fo=0)                   0.000    10.369    NVM_SECURE_WDATA[5]
+    T15                                                               r  NVM_SECURE_WDATA[5]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[6]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[6]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.603ns  (logic 3.087ns (55.102%)  route 2.515ns (44.898%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         1.040     1.040 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.011    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.107 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.638     4.746    CLK_IBUF_BUFG
+    SLICE_X1Y46          FDCE                                         r  r_wdata_latched_reg[6]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X1Y46          FDCE (Prop_fdce_C_Q)         0.456     5.202 r  r_wdata_latched_reg[6]/Q
+                         net (fo=1, routed)           2.515     7.717    NVM_SECURE_WDATA_OBUF[6]
+    T14                  OBUF (Prop_obuf_I_O)         2.631    10.348 r  NVM_SECURE_WDATA_OBUF[6]_inst/O
+                         net (fo=0)                   0.000    10.348    NVM_SECURE_WDATA[6]
+    T14                                                               r  NVM_SECURE_WDATA[6]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[4]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[4]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.602ns  (logic 3.081ns (54.994%)  route 2.521ns (45.006%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         1.040     1.040 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.011    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.107 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.638     4.746    CLK_IBUF_BUFG
+    SLICE_X1Y46          FDCE                                         r  r_wdata_latched_reg[4]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X1Y46          FDCE (Prop_fdce_C_Q)         0.456     5.202 r  r_wdata_latched_reg[4]/Q
+                         net (fo=1, routed)           2.521     7.723    NVM_SECURE_WDATA_OBUF[4]
+    R16                  OBUF (Prop_obuf_I_O)         2.625    10.348 r  NVM_SECURE_WDATA_OBUF[4]_inst/O
+                         net (fo=0)                   0.000    10.348    NVM_SECURE_WDATA[4]
+    R16                                                               r  NVM_SECURE_WDATA[4]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[10]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[10]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.564ns  (logic 3.083ns (55.411%)  route 2.481ns (44.589%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         1.040     1.040 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.011    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.107 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.639     4.747    CLK_IBUF_BUFG
+    SLICE_X1Y48          FDCE                                         r  r_wdata_latched_reg[10]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X1Y48          FDCE (Prop_fdce_C_Q)         0.456     5.203 r  r_wdata_latched_reg[10]/Q
+                         net (fo=1, routed)           2.481     7.684    NVM_SECURE_WDATA_OBUF[10]
+    P17                  OBUF (Prop_obuf_I_O)         2.627    10.311 r  NVM_SECURE_WDATA_OBUF[10]_inst/O
+                         net (fo=0)                   0.000    10.311    NVM_SECURE_WDATA[10]
+    P17                                                               r  NVM_SECURE_WDATA[10]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[8]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[8]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        5.424ns  (logic 3.068ns (56.564%)  route 2.356ns (43.436%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         1.040     1.040 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.972     3.011    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.096     3.107 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.639     4.747    CLK_IBUF_BUFG
+    SLICE_X1Y47          FDCE                                         r  r_wdata_latched_reg[8]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X1Y47          FDCE (Prop_fdce_C_Q)         0.456     5.203 r  r_wdata_latched_reg[8]/Q
+                         net (fo=1, routed)           2.356     7.559    NVM_SECURE_WDATA_OBUF[8]
+    P15                  OBUF (Prop_obuf_I_O)         2.612    10.170 r  NVM_SECURE_WDATA_OBUF[8]_inst/O
+                         net (fo=0)                   0.000    10.170    NVM_SECURE_WDATA[8]
+    P15                                                               r  NVM_SECURE_WDATA[8]
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[28]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[28]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        1.611ns  (logic 1.283ns (79.649%)  route 0.328ns (20.351%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.191     0.191 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.825    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.851 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.595     1.445    CLK_IBUF_BUFG
+    SLICE_X0Y46          FDCE                                         r  r_wdata_latched_reg[28]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y46          FDCE (Prop_fdce_C_Q)         0.141     1.586 r  r_wdata_latched_reg[28]/Q
+                         net (fo=1, routed)           0.328     1.914    NVM_SECURE_WDATA_OBUF[28]
+    M14                  OBUF (Prop_obuf_I_O)         1.142     3.056 r  NVM_SECURE_WDATA_OBUF[28]_inst/O
+                         net (fo=0)                   0.000     3.056    NVM_SECURE_WDATA[28]
+    M14                                                               r  NVM_SECURE_WDATA[28]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[31]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[31]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        1.636ns  (logic 1.288ns (78.774%)  route 0.347ns (21.226%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.191     0.191 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.825    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.851 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.596     1.446    CLK_IBUF_BUFG
+    SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[31]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y47          FDCE (Prop_fdce_C_Q)         0.141     1.587 r  r_wdata_latched_reg[31]/Q
+                         net (fo=1, routed)           0.347     1.935    NVM_SECURE_WDATA_OBUF[31]
+    K17                  OBUF (Prop_obuf_I_O)         1.147     3.082 r  NVM_SECURE_WDATA_OBUF[31]_inst/O
+                         net (fo=0)                   0.000     3.082    NVM_SECURE_WDATA[31]
+    K17                                                               r  NVM_SECURE_WDATA[31]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[23]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[23]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        1.647ns  (logic 1.291ns (78.380%)  route 0.356ns (21.620%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.191     0.191 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.825    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.851 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.595     1.445    CLK_IBUF_BUFG
+    SLICE_X0Y43          FDCE                                         r  r_wdata_latched_reg[23]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y43          FDCE (Prop_fdce_C_Q)         0.141     1.586 r  r_wdata_latched_reg[23]/Q
+                         net (fo=1, routed)           0.356     1.943    NVM_SECURE_WDATA_OBUF[23]
+    R12                  OBUF (Prop_obuf_I_O)         1.150     3.093 r  NVM_SECURE_WDATA_OBUF[23]_inst/O
+                         net (fo=0)                   0.000     3.093    NVM_SECURE_WDATA[23]
+    R12                                                               r  NVM_SECURE_WDATA[23]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[30]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[30]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        1.646ns  (logic 1.293ns (78.531%)  route 0.353ns (21.469%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.191     0.191 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.825    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.851 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.596     1.446    CLK_IBUF_BUFG
+    SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[30]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y47          FDCE (Prop_fdce_C_Q)         0.141     1.587 r  r_wdata_latched_reg[30]/Q
+                         net (fo=1, routed)           0.353     1.941    NVM_SECURE_WDATA_OBUF[30]
+    K18                  OBUF (Prop_obuf_I_O)         1.152     3.093 r  NVM_SECURE_WDATA_OBUF[30]_inst/O
+                         net (fo=0)                   0.000     3.093    NVM_SECURE_WDATA[30]
+    K18                                                               r  NVM_SECURE_WDATA[30]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[26]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[26]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        1.649ns  (logic 1.290ns (78.206%)  route 0.359ns (21.794%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.191     0.191 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.825    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.851 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.595     1.445    CLK_IBUF_BUFG
+    SLICE_X0Y46          FDCE                                         r  r_wdata_latched_reg[26]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y46          FDCE (Prop_fdce_C_Q)         0.141     1.586 r  r_wdata_latched_reg[26]/Q
+                         net (fo=1, routed)           0.359     1.946    NVM_SECURE_WDATA_OBUF[26]
+    L16                  OBUF (Prop_obuf_I_O)         1.149     3.095 r  NVM_SECURE_WDATA_OBUF[26]_inst/O
+                         net (fo=0)                   0.000     3.095    NVM_SECURE_WDATA[26]
+    L16                                                               r  NVM_SECURE_WDATA[26]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[25]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[25]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        1.661ns  (logic 1.289ns (77.616%)  route 0.372ns (22.384%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.191     0.191 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.825    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.851 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.596     1.446    CLK_IBUF_BUFG
+    SLICE_X0Y48          FDCE                                         r  r_wdata_latched_reg[25]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y48          FDCE (Prop_fdce_C_Q)         0.141     1.587 r  r_wdata_latched_reg[25]/Q
+                         net (fo=1, routed)           0.372     1.959    NVM_SECURE_WDATA_OBUF[25]
+    L18                  OBUF (Prop_obuf_I_O)         1.148     3.107 r  NVM_SECURE_WDATA_OBUF[25]_inst/O
+                         net (fo=0)                   0.000     3.107    NVM_SECURE_WDATA[25]
+    L18                                                               r  NVM_SECURE_WDATA[25]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[29]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[29]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        1.677ns  (logic 1.290ns (76.916%)  route 0.387ns (23.084%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.191     0.191 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.825    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.851 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.596     1.446    CLK_IBUF_BUFG
+    SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[29]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y47          FDCE (Prop_fdce_C_Q)         0.141     1.587 r  r_wdata_latched_reg[29]/Q
+                         net (fo=1, routed)           0.387     1.975    NVM_SECURE_WDATA_OBUF[29]
+    L14                  OBUF (Prop_obuf_I_O)         1.149     3.124 r  NVM_SECURE_WDATA_OBUF[29]_inst/O
+                         net (fo=0)                   0.000     3.124    NVM_SECURE_WDATA[29]
+    L14                                                               r  NVM_SECURE_WDATA[29]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[21]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[21]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        1.698ns  (logic 1.276ns (75.160%)  route 0.422ns (24.840%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.191     0.191 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.825    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.851 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.595     1.445    CLK_IBUF_BUFG
+    SLICE_X0Y44          FDCE                                         r  r_wdata_latched_reg[21]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y44          FDCE (Prop_fdce_C_Q)         0.141     1.586 r  r_wdata_latched_reg[21]/Q
+                         net (fo=1, routed)           0.422     2.008    NVM_SECURE_WDATA_OBUF[21]
+    L13                  OBUF (Prop_obuf_I_O)         1.135     3.144 r  NVM_SECURE_WDATA_OBUF[21]_inst/O
+                         net (fo=0)                   0.000     3.144    NVM_SECURE_WDATA[21]
+    L13                                                               r  NVM_SECURE_WDATA[21]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[20]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[20]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        1.706ns  (logic 1.276ns (74.783%)  route 0.430ns (25.217%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.191     0.191 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.825    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.851 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.595     1.445    CLK_IBUF_BUFG
+    SLICE_X0Y44          FDCE                                         r  r_wdata_latched_reg[20]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y44          FDCE (Prop_fdce_C_Q)         0.141     1.586 r  r_wdata_latched_reg[20]/Q
+                         net (fo=1, routed)           0.430     2.017    NVM_SECURE_WDATA_OBUF[20]
+    M13                  OBUF (Prop_obuf_I_O)         1.135     3.151 r  NVM_SECURE_WDATA_OBUF[20]_inst/O
+                         net (fo=0)                   0.000     3.151    NVM_SECURE_WDATA[20]
+    M13                                                               r  NVM_SECURE_WDATA[20]
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 r_wdata_latched_reg[27]/C
+                            (rising edge-triggered cell FDCE clocked by clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            NVM_SECURE_WDATA[27]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        1.706ns  (logic 1.296ns (75.952%)  route 0.410ns (24.048%))
+  Logic Levels:           1  (OBUF=1)
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.191     0.191 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.634     0.825    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.026     0.851 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.596     1.446    CLK_IBUF_BUFG
+    SLICE_X0Y48          FDCE                                         r  r_wdata_latched_reg[27]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y48          FDCE (Prop_fdce_C_Q)         0.141     1.587 r  r_wdata_latched_reg[27]/Q
+                         net (fo=1, routed)           0.410     1.998    NVM_SECURE_WDATA_OBUF[27]
+    L15                  OBUF (Prop_obuf_I_O)         1.155     3.153 r  NVM_SECURE_WDATA_OBUF[27]_inst/O
+                         net (fo=0)                   0.000     3.153    NVM_SECURE_WDATA[27]
+    L15                                                               r  NVM_SECURE_WDATA[27]
+  -------------------------------------------------------------------    -------------------
+
+
+
+
+
+--------------------------------------------------------------------------------------
+Path Group:  (none)
+From Clock:  
+  To Clock:  clk_nvm
+
+Max Delay            33 Endpoints
+Min Delay            33 Endpoints
+--------------------------------------------------------------------------------------
+
+
+Max Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_fault_detected_reg/CLR
+                            (recovery check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Data Path Delay:        5.731ns  (logic 1.214ns (21.185%)  route 4.517ns (78.815%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        4.304ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.304ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         1.090     1.090 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           2.641     3.731    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.124     3.855 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          1.876     5.731    r_wdata_latched[31]_i_2_n_0
+    SLICE_X0Y11          FDCE                                         f  r_fault_detected_reg/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.516     4.304    CLK_IBUF_BUFG
+    SLICE_X0Y11          FDCE                                         r  r_fault_detected_reg/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[23]/CLR
+                            (recovery check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Data Path Delay:        4.730ns  (logic 1.214ns (25.666%)  route 3.516ns (74.334%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        4.307ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.307ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         1.090     1.090 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           2.641     3.731    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.124     3.855 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.876     4.730    r_wdata_latched[31]_i_2_n_0
+    SLICE_X0Y43          FDCE                                         f  r_wdata_latched_reg[23]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.519     4.307    CLK_IBUF_BUFG
+    SLICE_X0Y43          FDCE                                         r  r_wdata_latched_reg[23]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[7]/CLR
+                            (recovery check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Data Path Delay:        4.730ns  (logic 1.214ns (25.666%)  route 3.516ns (74.334%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        4.307ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.307ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         1.090     1.090 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           2.641     3.731    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.124     3.855 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.876     4.730    r_wdata_latched[31]_i_2_n_0
+    SLICE_X0Y43          FDCE                                         f  r_wdata_latched_reg[7]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.519     4.307    CLK_IBUF_BUFG
+    SLICE_X0Y43          FDCE                                         r  r_wdata_latched_reg[7]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[1]/CLR
+                            (recovery check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Data Path Delay:        4.689ns  (logic 1.214ns (25.894%)  route 3.475ns (74.106%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        4.307ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.307ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         1.090     1.090 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           2.641     3.731    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.124     3.855 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.834     4.689    r_wdata_latched[31]_i_2_n_0
+    SLICE_X0Y44          FDCE                                         f  r_wdata_latched_reg[1]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.519     4.307    CLK_IBUF_BUFG
+    SLICE_X0Y44          FDCE                                         r  r_wdata_latched_reg[1]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[20]/CLR
+                            (recovery check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Data Path Delay:        4.689ns  (logic 1.214ns (25.894%)  route 3.475ns (74.106%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        4.307ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.307ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         1.090     1.090 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           2.641     3.731    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.124     3.855 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.834     4.689    r_wdata_latched[31]_i_2_n_0
+    SLICE_X0Y44          FDCE                                         f  r_wdata_latched_reg[20]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.519     4.307    CLK_IBUF_BUFG
+    SLICE_X0Y44          FDCE                                         r  r_wdata_latched_reg[20]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[21]/CLR
+                            (recovery check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Data Path Delay:        4.689ns  (logic 1.214ns (25.894%)  route 3.475ns (74.106%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        4.307ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.307ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         1.090     1.090 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           2.641     3.731    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.124     3.855 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.834     4.689    r_wdata_latched[31]_i_2_n_0
+    SLICE_X0Y44          FDCE                                         f  r_wdata_latched_reg[21]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.519     4.307    CLK_IBUF_BUFG
+    SLICE_X0Y44          FDCE                                         r  r_wdata_latched_reg[21]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[22]/CLR
+                            (recovery check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Data Path Delay:        4.689ns  (logic 1.214ns (25.894%)  route 3.475ns (74.106%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        4.307ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.307ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         1.090     1.090 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           2.641     3.731    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.124     3.855 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.834     4.689    r_wdata_latched[31]_i_2_n_0
+    SLICE_X0Y44          FDCE                                         f  r_wdata_latched_reg[22]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.519     4.307    CLK_IBUF_BUFG
+    SLICE_X0Y44          FDCE                                         r  r_wdata_latched_reg[22]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[16]/CLR
+                            (recovery check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Data Path Delay:        4.684ns  (logic 1.214ns (25.918%)  route 3.470ns (74.082%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        4.307ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.307ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         1.090     1.090 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           2.641     3.731    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.124     3.855 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.830     4.684    r_wdata_latched[31]_i_2_n_0
+    SLICE_X1Y44          FDCE                                         f  r_wdata_latched_reg[16]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.519     4.307    CLK_IBUF_BUFG
+    SLICE_X1Y44          FDCE                                         r  r_wdata_latched_reg[16]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[17]/CLR
+                            (recovery check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Data Path Delay:        4.684ns  (logic 1.214ns (25.918%)  route 3.470ns (74.082%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        4.307ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.307ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         1.090     1.090 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           2.641     3.731    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.124     3.855 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.830     4.684    r_wdata_latched[31]_i_2_n_0
+    SLICE_X1Y44          FDCE                                         f  r_wdata_latched_reg[17]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.519     4.307    CLK_IBUF_BUFG
+    SLICE_X1Y44          FDCE                                         r  r_wdata_latched_reg[17]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[18]/CLR
+                            (recovery check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Recovery (Max at Slow Process Corner)
+  Data Path Delay:        4.684ns  (logic 1.214ns (25.918%)  route 3.470ns (74.082%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        4.307ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.307ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.025ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.050ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         1.090     1.090 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           2.641     3.731    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.124     3.855 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.830     4.684    r_wdata_latched[31]_i_2_n_0
+    SLICE_X1Y44          FDCE                                         f  r_wdata_latched_reg[18]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.828     0.828 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           1.868     2.696    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     2.787 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          1.519     4.307    CLK_IBUF_BUFG
+    SLICE_X1Y44          FDCE                                         r  r_wdata_latched_reg[18]/C
+
+
+
+
+
+Min Delay Paths
+--------------------------------------------------------------------------------------
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[10]/CLR
+                            (removal check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Removal (Min at Fast Process Corner)
+  Data Path Delay:        1.548ns  (logic 0.285ns (18.447%)  route 1.262ns (81.553%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         0.240     0.240 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           1.061     1.301    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.045     1.346 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.201     1.548    r_wdata_latched[31]_i_2_n_0
+    SLICE_X1Y48          FDCE                                         f  r_wdata_latched_reg[10]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X1Y48          FDCE                                         r  r_wdata_latched_reg[10]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[24]/CLR
+                            (removal check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Removal (Min at Fast Process Corner)
+  Data Path Delay:        1.548ns  (logic 0.285ns (18.447%)  route 1.262ns (81.553%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         0.240     0.240 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           1.061     1.301    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.045     1.346 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.201     1.548    r_wdata_latched[31]_i_2_n_0
+    SLICE_X1Y48          FDCE                                         f  r_wdata_latched_reg[24]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X1Y48          FDCE                                         r  r_wdata_latched_reg[24]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[25]/CLR
+                            (removal check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Removal (Min at Fast Process Corner)
+  Data Path Delay:        1.552ns  (logic 0.285ns (18.395%)  route 1.266ns (81.605%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         0.240     0.240 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           1.061     1.301    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.045     1.346 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.206     1.552    r_wdata_latched[31]_i_2_n_0
+    SLICE_X0Y48          FDCE                                         f  r_wdata_latched_reg[25]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X0Y48          FDCE                                         r  r_wdata_latched_reg[25]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[27]/CLR
+                            (removal check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Removal (Min at Fast Process Corner)
+  Data Path Delay:        1.552ns  (logic 0.285ns (18.395%)  route 1.266ns (81.605%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         0.240     0.240 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           1.061     1.301    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.045     1.346 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.206     1.552    r_wdata_latched[31]_i_2_n_0
+    SLICE_X0Y48          FDCE                                         f  r_wdata_latched_reg[27]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X0Y48          FDCE                                         r  r_wdata_latched_reg[27]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[3]/CLR
+                            (removal check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Removal (Min at Fast Process Corner)
+  Data Path Delay:        1.555ns  (logic 0.285ns (18.363%)  route 1.269ns (81.637%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         0.240     0.240 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           1.061     1.301    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.045     1.346 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.208     1.555    r_wdata_latched[31]_i_2_n_0
+    SLICE_X1Y47          FDCE                                         f  r_wdata_latched_reg[3]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X1Y47          FDCE                                         r  r_wdata_latched_reg[3]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[8]/CLR
+                            (removal check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Removal (Min at Fast Process Corner)
+  Data Path Delay:        1.555ns  (logic 0.285ns (18.363%)  route 1.269ns (81.637%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         0.240     0.240 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           1.061     1.301    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.045     1.346 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.208     1.555    r_wdata_latched[31]_i_2_n_0
+    SLICE_X1Y47          FDCE                                         f  r_wdata_latched_reg[8]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X1Y47          FDCE                                         r  r_wdata_latched_reg[8]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[9]/CLR
+                            (removal check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Removal (Min at Fast Process Corner)
+  Data Path Delay:        1.555ns  (logic 0.285ns (18.363%)  route 1.269ns (81.637%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         0.240     0.240 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           1.061     1.301    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.045     1.346 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.208     1.555    r_wdata_latched[31]_i_2_n_0
+    SLICE_X1Y47          FDCE                                         f  r_wdata_latched_reg[9]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X1Y47          FDCE                                         r  r_wdata_latched_reg[9]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[0]/CLR
+                            (removal check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Removal (Min at Fast Process Corner)
+  Data Path Delay:        1.559ns  (logic 0.285ns (18.312%)  route 1.273ns (81.688%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         0.240     0.240 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           1.061     1.301    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.045     1.346 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.213     1.559    r_wdata_latched[31]_i_2_n_0
+    SLICE_X0Y47          FDCE                                         f  r_wdata_latched_reg[0]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[0]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[29]/CLR
+                            (removal check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Removal (Min at Fast Process Corner)
+  Data Path Delay:        1.559ns  (logic 0.285ns (18.312%)  route 1.273ns (81.688%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         0.240     0.240 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           1.061     1.301    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.045     1.346 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.213     1.559    r_wdata_latched[31]_i_2_n_0
+    SLICE_X0Y47          FDCE                                         f  r_wdata_latched_reg[29]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[29]/C
+
+Slack:                    inf
+  Source:                 RESETn
+                            (input port)
+  Destination:            r_wdata_latched_reg[30]/CLR
+                            (removal check against rising-edge clock clk_nvm  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             (none)
+  Path Type:              Removal (Min at Fast Process Corner)
+  Data Path Delay:        1.559ns  (logic 0.285ns (18.312%)  route 1.273ns (81.688%))
+  Logic Levels:           2  (IBUF=1 LUT1=1)
+  Clock Path Skew:        1.964ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.964ns
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    -0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    A16                                               0.000     0.000 r  RESETn
+                         net (fo=0)                   0.000     0.000    RESETn
+    A16                  IBUF (Prop_ibuf_I_O)         0.240     0.240 r  RESETn_IBUF_inst/O
+                         net (fo=1, routed)           1.061     1.301    RESETn_IBUF
+    SLICE_X0Y49          LUT1 (Prop_lut1_I0_O)        0.045     1.346 f  r_wdata_latched[31]_i_2/O
+                         net (fo=33, routed)          0.213     1.559    r_wdata_latched[31]_i_2_n_0
+    SLICE_X0Y47          FDCE                                         f  r_wdata_latched_reg[30]/CLR
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_nvm rise edge)    0.000     0.000 r  <hidden>
+    N15                                               0.000     0.000 r  CLK
+                         net (fo=0)                   0.000     0.000    CLK
+    N15                  IBUF (Prop_ibuf_I_O)         0.380     0.380 r  CLK_IBUF_inst/O
+                         net (fo=1, routed)           0.689     1.068    CLK_IBUF
+    BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.029     1.097 r  CLK_IBUF_BUFG_inst/O
+                         net (fo=33, routed)          0.867     1.964    CLK_IBUF_BUFG
+    SLICE_X0Y47          FDCE                                         r  r_wdata_latched_reg[30]/C
 
 
 
