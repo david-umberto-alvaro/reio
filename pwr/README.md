@@ -53,6 +53,10 @@ REIO-PWR est le gardien de l'état vital et de l'infrastructure énergétique du
        +-----------------------+             +-----------------------+
 ```
 
+### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
+
+![Chronogramme des formes d'ondes REIO-Drive](reio_pwr_simulation.png)
+
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
 L'exécution de la suite de tests unitaires sur le plan de contrôle en Rust bare-metal (`#![no_std]`) certifie la parfaite étanchéité de l'interface MMIO :
 * **[Test 1] Séquence de Réveil Graduée :** Validation du démarrage par paliers asymétriques et libération finale des coprocesseurs logiques (`PASS` | État stable : `ST_NOMINAL_READY`).
