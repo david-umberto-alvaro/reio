@@ -18,12 +18,12 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 | Axiome | Pilier Théorique | Traduction Matérielle (Vivado) | Impact sur la Sûreté Réelle |
 | :--- | :--- | :--- | :--- |
-| **REIO-A1** | Ancrage Matériel Pur | REIO-Chain<br>REIO-Drive<br>REIO-Safe<br>REIO-AI<br>REIO-NVM<br>REIO-BUS | Confinement strict par exclusion d'états intermédiaires. L'IP Core bloque l'erreur sans saturer le processeur hôte. |
+| **REIO-A1** | Ancrage Matériel Pur | REIO-Chain<br>REIO-Drive<br>REIO-Safe<br>REIO-AI<br>REIO-NVM<br>REIO-BUS<br>REIO-PWR | Confinement strict par exclusion d'états intermédiaires. L'IP Core bloque l'erreur sans saturer le processeur hôte. |
 | **REIO-A2** | Isolation des Perceptions | REIO-Drive | Exclusion totale de l'intervention humaine pour prémunir les registres de toute altération malveillante. |
 | **REIO-A3** | Convergence Orthogonale | REIO-Chain | Filtrage matériel en ligne. Rejet immédiat de toute donnée non ancrée aux primitives physiques (Résolution de Gettier). |
-| **REIO-A4** | Confinement & Seuils | REIO-Drive<br>REIO-Safe<br>REIO-NVM<br>REIO-Crypt<br>REIO-AI<br>REIO-BUS | Disjonction physique instantanée dès le franchissement des seuils critiques pour découpler les bus corrompus. |
+| **REIO-A4** | Confinement & Seuils | REIO-Drive<br>REIO-Safe<br>REIO-NVM<br>REIO-Crypt<br>REIO-AI<br>REIO-BUS<br>REIO-PWR | Disjonction physique instantanée dès le franchissement des seuils critiques pour découpler les bus corrompus. |
 | **REIO-A5** | Axiomatisation Récursive | REIO-Chain<br>REIO-Safe<br>REIO-AI<br>REIO-CDC | Élimination mathématique de la métastabilité inter-horloges pour garantir la persistance temporelle. |
-| **REIO-A6** | Attestation Pragmatique | REIO-Chain<br>REIO-Safe<br>REIO-Crypt<br>REIO-CDC<br>REIO-NVM<br>REIO-BUS | Scellement irréversible de chaque cycle d'évolution pour immuniser le SoC contre la gigue et les injections de pannes. |
+| **REIO-A6** | Attestation Pragmatique | REIO-Chain<br>REIO-Safe<br>REIO-Crypt<br>REIO-CDC<br>REIO-NVM<br>REIO-BUS<br>REIO-PWR | Scellement irréversible de chaque cycle d'évolution pour immuniser le SoC contre la gigue et les injections de pannes. |
 
 ---
 
@@ -77,6 +77,12 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
   * **Architecture de Sûreté :** Analyse combinatoire continue de la congruence des flux d'écriture pour bloquer instantanément les dérives de charge physique et les injections de fautes.
   * **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **inf** \| WHS : **inf**). Interception de motif de sabotage, mise à la masse de sécurité à 0 Volt et levée du signal d'alerte physique exécutées en exactement **1 seul cycle d'horloge (10.00 ns)**.
   * **Ressources :** **33 Slice LUTs / 33 Slice Registers**, consommation globale de **336 mW** (Logique interne active : 1 mW, Fuites statiques et I/O buffers : 335 mW).
+
+- 🔋 **[REIO-PWR](./pwr)**
+  - **Fonction :** Gestionnaire d'énergie et contrôleur de séquence de Reset ordonné pour l'infrastructure vitale du SoC.
+  - **Architecture de Sûreté :** Automate de Power-On-Reset asymétrique avec détection de glitch de tension et gel instantané de l'exécution globale du silicium pour empêcher la corruption d'état.
+  - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| **WNS : +7,259 ns** \| **WHS : +0,212 ns**). Interception de baisse d'alimentation, effondrement des lignes de réveil et levée de l'alarme exécutés en exactement **1 seul cycle d'horloge (10.00 ns)**.
+  - **Ressources :** **14 Slice LUTs / 10 Slice Registers**, consommation globale de **71 mW** (Logique interne active : 1 mW, Fuites statiques passives : 70 mW).
 
 ---
 
