@@ -68,6 +68,8 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 
 ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
 
+![Chronogramme des formes d'ondes REIO-Drive](reio_ai_simulation.png)
+
 ### 🛠️ Architecture du Framework Unifié
 
 L'architecture intègre un cœur RTL en VHDL, un plan de contrôle en Rust 2024 pour l'alignement MMIO, et une application hôte en Python pour évaluer le confinement de sûreté. Les détails complets et rapports restent confidentiels (Open-Core).
