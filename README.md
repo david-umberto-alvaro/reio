@@ -123,7 +123,7 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
 
 |                           REIO-BUS                           |
 |           [ BUS SYSTEME UNIFIE ETANCHE : 100 MHz ]           |
-|  - Matrice Crossbar Securisee (Authentification par Jeton)  |
+|  - Matrice Crossbar Securisee (Authentification par Jeton)   |
 |  - Routage Geographique & Commutation de Zone Peripherique   |
 +--------------------------------------------------------------+
                |
