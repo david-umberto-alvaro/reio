@@ -18,6 +18,8 @@ Engineered to mitigate ransomware threats, malicious mass encryption routines, a
 ### Power & Thermal Dissipation Profile:
 - **Device Static & Dynamic Power:** 72 mW / 20 mW (Total 92 mW).
 - **Max Ambient Temperature (\(T_{AMB\_MAX}\)):** 124.6 °C (Automotive Q-Grade compliant).
+- **Slice LUTs Utilization:** 28 LUTs (0.13% of the device)
+- **Slice Registers Count:** 37 Registers (36 rising edge-triggered FDCE and 1 FDPE flip-flops due to register replication for 0xDEADBEEF drive stabilization)
 
 ---
 
