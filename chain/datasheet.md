@@ -1,6 +1,7 @@
 # ⚡ REIO-Chain — Technical Datasheet & Network Firewall Brief
 
 ## 1. Product Overview & Architectural Target
+
 REIO-Chain is an ultra-high-speed synchronous hardware network filter IP Core designed for inline packet monitoring, deterministic masking, and line-rate isolation of Layer 3 data streams, decoupling a 125 MHz line data plane from a 400 MHz control plane.
 
 ---
@@ -11,53 +12,44 @@ REIO-Chain is an ultra-high-speed synchronous hardware network filter IP Core de
 
 - **Core Clock Frequency (Control):** 400.00 MHz (Period: 2.50 ns)
 - **Line Clock Frequency (Data):** 125.00 MHz (Period: 8.00 ns)
-- **Worst Negative Slack (WNS):** **+1.596 ns** (Zéro violation sur le plan de contrôle)
+- **Worst Negative Slack (WNS):** **+0.531 ns** (Zero timing violations on the control plane)
+- **Worst Hold Slack (WHS):** **+0.142 ns**
 - **Worst Pulse Width Slack (WPWS):** +0.750 ns
 
 ### Power & Silicon Footprint Profile:
-
-- **Slice LUTs Utilization:** 12 LUTs (0.15% du composant)
-- **Slice Registers Count:** 111 Registers (0.69% du composant)
-- **Device Static Power:** 58 mW
-- **Core Active Dynamic Power (REIO-Core):** 1 mW (Total design dynamic power verified at 2 mW)
+- **Slice LUTs Utilization:** **53 LUTs** (0.66% of the device)
+- **Slice Registers Count:** **153 Registers** (0.96% of the device)
+- **Device Static Power:** 56 mW
+- **Core Active Dynamic Power (REIO-Core):** 3 mW (Total design dynamic power verified at 3 mW)
+- **Total On-Chip Power Consumption:** **59 mW**
 
 ---
 
 ## 3. Register Map & MMIO Control Plane Interface
 
 | Offset Address | Register Name | Access | Width | Description / Functional Bitfield |
-| :--- | :--- | :--- | :--- | :--- |
-| `0x00` | `REG_CTRL` | R/W | 32 bits | [Bit 0]: Software Reset \| [Bit 1]: Force Manual Isolation |
-| `0x04` | `REG_STATUS` | R | 32 bits | [Bit 0]: Security Status ('1'=Nominal, '0'=Isolated) |
-| `0x08` | `REG_THREAT_SIG`| R/W | 8 bits | Target threat signature (Default: `0x7F`) |
-| `0x0C` | `REG_CNT_CLEAN` | R | 32 bits | Counter for clean packets |
-| `0x10` | `REG_CNT_ANOM`  | R | 32 bits | Counter for blocked anomalies |
+| :---: | :--- | :---: | :---: | :--- |
+| **0x00** | REG_CTRL | R/W | 32 bits | [Bit 0]: Software Reset \| [Bit 1]: Force Manual Isolation |
+| **0x04** | REG_STATUS | R | 32 bits | [Bit 0]: Security Status ('1'=Nominal, '0'=Isolated) |
+| **0x08** | REG_THREAT_SIG | R/W | 8 bits | Target threat signature (Default: 0x7F) |
+| **0x0C** | REG_CNT_CLEAN | R | 32 bits | Counter for clean packets |
+| **0x10** | REG_CNT_ANOM | R | 32 bits | Counter for blocked anomalies |
 
 ---
 
 ## 4. Behavioral Timing Chronogram & Invariant Bounds
 
 ```text
-◀------- Nominal Line Processing -------▶◀---- Surgical Masking (1 Control Cycle Latency) ----
-0ns                 2.5ns               5.0ns              7.5ns              10.0ns
+◀------- Nominal Line Processing -------▶◀---- Surgical Masking (1 Control Cycle Latency) ----▶
+0ns                      2.5ns                    5.0ns                    7.5ns                    10.0ns
 
-|                   |                   |                  |                  |
-   ______              ______              ______             ______             ______
-__/      \____________/      \____________/      \___________/      \___________/      \_  SYS_CLK (400 MHz)
-
-_________________________________________________________________________________________  RESET (Active-High)
-
-XXXXX  0xAA (Valid)  XXXXX                       0x7F (Threat)  XXXXXXXXXXXXXXXXXXXXXXX  AXIS_TDATA (8b/64b)
-                                                        ▲ (Signature Detected)
-
-________________________________________________________
-                                                        \______________________________  REG_STATUS [Bit 0] (1->0)
-                                                         ▼ (Line Masked on Next Edge)
+ |                        |                        |                        |                        |
+      ______                   ______                   ______                   ______                   ___
+_____/      \_______/      \_______/      \_______/      \_______/      \_______/      \_______/      \___  SYS_CLK (400 MHz)
+______________________________________________________________________________________________________________  RESET (Active-High)
+XXXXX 0xAA (Valid)  XXXXX 0x7F (Threat)  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  AXIS_TDATA (8b/64b)
+                           ▲ (Signature Detected)
+ _________________________________________________
+                                                  \___________________________________________________________  REG_STATUS [Bit 0] (1->0)
+                                                   ▼ (Line Masked on Next Edge)
 ```
-
----
-
-## 5. Software Control Plane Integration (Rust no_std)
-The IP Core exposes a standard C-FFI boundary through `reio_chain.h`. The bare-metal driver guarantees execution with memory safety and zero dynamic allocation.
-
-
