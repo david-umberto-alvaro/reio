@@ -11,9 +11,11 @@ REIO-NVM is a hardware-enforced inline protection filter (IP Core) designed to s
 
 ---
 
-## 2. Electrical, Timing & Thermal Metrics (Artix-7)
-
-*Certified hardware metrics extracted from AMD/Xilinx Vivado routed implementation reports targeting the xa7a35tcsg324-1Q device layout.*
+## 2. Electrical, Timing & Resource Metrics (Artix-7)
+- **Total On-Chip Power Consumption:** 0.072 W (72 mW).
+- **Junction Temperature (TJ):** 25.4 °C.
+- **Worst Negative Slack (WNS):** +4.500 ns.
+- **Worst Hold Slack (WHS):** +0.142 ns.
 
 ### Power & Thermal Dissipation Profile:
 - **Total On-Chip Power Consumption:** 0.336 W (336 mW total thermal envelope).
