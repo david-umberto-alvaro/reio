@@ -52,6 +52,10 @@ REIO-BUS est la colonne vertébrale matérielle (Interconnect IP Core) du SoC RE
        +-----------------------+             +-----------------------+
 ```
 
+### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
+
+![Chronogramme des formes d'ondes REIO-Drive](reio_bus_simulation.png)
+
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
 L'exécution du plan de contrôle en Rust bare-metal (`#![no_std]`) certifie la conformité de l'interface :
 * **[Test 1] Routage Esclave 1 :** Commutation réussie du flux vers la zone basse (Décodage bit 15 à 0).
