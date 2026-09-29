@@ -1,16 +1,27 @@
 # 🔌 REIO-UART — Contrôleur d'E/S de Diagnostic Isolé
 
 ### 📌 Présentation Générale
-REIO-UART est le bloc d'infrastructure matérielle (IP Core) du SoC REIO chargé d'assurer la transmission sécurisée de la télémétrie et des logs de diagnostic à 115200 bauds. Il intègre un tampon matériel rigide couplé à un automate de disjonction combinatoire pour contrer les attaques par débordement de tampon (*Buffer Overflow*).
+REIO-UART est le bloc IP matériel conçu pour la transmission sécurisée de la télémétrie et des logs de diagnostic à 115200 bauds, intégrant une protection anti-débordement (*Buffer Overflow*).
 
-### 📊 Spécifications du Matériel (FPGA) et Synthèse Vivado
-* **Fréquence / Vitesse :** Bus système à 100.00 MHz, transmission à 115200 Bauds.
-* **Temps de Réaction :** 1 cycle d'horloge (10.00 ns) en cas d'overflow.
-* **Timing & Utilisation :** WNS à +5,457 ns, WHS à +0,218 ns, pour une empreinte de 30 Slice Registers et 35 Slice LUTs.
-* **Puissance & Température :** 71 mW au total, température de jonction stabilisée à 25.3 °C.
+### 📊 Spécifications du Matériel (FPGA)
+* **Fréquence de l'Automate d'Échantillonnage :** 100.00 MHz (Période : 10.00 ns).
+* **Temps de Réaction Anti-Overflow :** Coupure matérielle instantanée de la ligne TX et alarme en **1 cycle d'horloge (10.00 ns)**.
+
+### 📊 Synthèse d'Audit et Fermeture Temporelle (Vivado Static Timing)
+* **WNS :** **+5,457 ns** (Zéro violation).
+* **WHS :** **+0,218 ns** (0 Failing Endpoints).
+* **WPWS :** **+4,500 ns**.
+
+### 📊 Métriques de l'Empreinte Silicium (Vivado Utilization)
+* **Slice Registers :** **30** bascules synchrones durcies.
+* **Slice LUTs :** **35** (31 de logique combinatoire, 4 d'ajustement structurel).
+
+### 📊 Caractéristiques Électriques et Thermiques (Vivado Power)
+* **Puissance Totale :** **71 mW** (1 mW actif, 70 mW fuites statiques).
+* **Température de Jonction :** **25.3 °C** (Max supporté : 124.7 °C, Q-Grade Automobile).
 
 ### 🌐 Architecture Fonctionnelle du Pipeline REIO-UART
-*(Schéma fonctionnel complet d'E/S intégrant l'interface MMIO, le disjoncteur de port de diagnostic et l'aiguillage entre l'état nominal de transmission et l'état de clamp d'isolement en cas d'attaque).*
+L'architecture gère l'interface bus système MMIO, le tampon matériel et l'aiguillage entre l'état nominal (`ST_IDLE`, `ST_TRANSMIT_START`, `ST_TRANSMIT_DATA`) et l'état de confinement en cas de débordement (`ST_ISOLATION_CLAMP`).
 
 ```text
        +-------------------------------------------------------+
@@ -48,10 +59,9 @@ REIO-UART est le bloc d'infrastructure matérielle (IP Core) du SoC REIO chargé
        +-----------------------+             +-----------------------+
 ```
 
-
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
-Validation complète de l'étanchéité de l'interface MMIO à travers les tests unitaires bare-metal (`PASS`) :
-* **[Test FFI 1]** Dépôt Nominal d'Octet.
-* **[Test FFI 2]** Interception de Débordement.
-* **[Test FFI 3]** Sécurité Pointeur NULL.
+Validation de l'interface MMIO via la suite de tests unitaires bare-metal (`#![no_std]`) :
+* **[Test FFI 1] Transmission Stable :** Transfert nominal validé (`PASS`).
+* **[Test FFI 2] Confinement sur Overflow :** Simulation d'attaque et activation de l'alarme (`PASS`).
+* **[Test FFI 3] Blocage sur Adresse NULL :** Robustesse mémoire validée (`PASS`).
 
