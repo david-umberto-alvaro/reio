@@ -59,6 +59,10 @@ L'architecture gère l'interface bus système MMIO, le tampon matériel et l'aig
        +-----------------------+             +-----------------------+
 ```
 
+### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
+
+![Chronogramme des formes d'ondes](reio_urat_simulation.png)
+
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
 Validation de l'interface MMIO via la suite de tests unitaires bare-metal (`#![no_std]`) :
 * **[Test FFI 1] Transmission Stable :** Transfert nominal validé (`PASS`).
