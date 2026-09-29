@@ -16,14 +16,55 @@ Le framework **REIO** (**Réalisme Expérimental Instrumenté Optimisé**) coupl
 
 L'infrastructure matérielle implémentée sous Vivado est la traduction physique directe des règles de sûreté formalisées dans la notice d'architecture :
 
-| Axiome | Pilier Théorique | Traduction Matérielle (Vivado) | Impact sur la Sûreté Réelle |
-| :--- | :--- | :--- | :--- |
-| `REIO&nbsp;A1` | Ancrage Matériel Pur | `Chain` • `Drive` • `Safe` • `AI` • `NVM` • `BUS` • `PWR` • `Int` | Confinement strict par exclusion d'états intermédiaires. L'IP Core bloque l'erreur sans saturer le processeur hôte. |
-| `REIO&nbsp;A2` | Isolation des Perceptions | `Drive` | Exclusion totale de l'intervention humaine pour prémunir les registres de toute altération malveillante. |
-| `REIO&nbsp;A3` | Convergence Orthogonale | `Chain` | Filtrage matériel en ligne. Rejet immédiat de toute donnée non ancrée aux primitives physiques (Résolution de Gettier). |
-| `REIO&nbsp;A4` | Confinement & Seuils | `Drive` • `Safe` • `NVM` • `Crypt` • `AI` • `BUS` • `PWR` • `Int` | Disjonction physique instantanée dès le franchissement des seuils critiques pour découpler les bus corrompus. |
-| `REIO&nbsp;A5` | Axiomatisation Récursive | `Chain` • `Safe` • `AI` • `CDC` | Élimination mathématique de la métastabilité inter-horloges pour garantir la persistance temporelle. |
-| `REIO&nbsp;A6` | Attestation Pragmatique | `Chain` • `Safe` • `Crypt` • `CDC` • `NVM` • `BUS` • `PWR` • `Int` | Scellement irréversible de chaque cycle d'évolution pour immuniser le SoC contre la gigue et les injections de pannes. |
+<table>
+  <thead>
+    <tr>
+      <th style="min-width: 110px; text-align: center;">Axiome</th>
+      <th style="text-align: left;">Pilier Théorique</th>
+      <th style="text-align: left;">Traduction Matérielle (Vivado)</th>
+      <th style="text-align: left;">Impact sur la Sûreté Réelle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center;"><b>REIO-A1</b></td>
+      <td>Ancrage Matériel Pur</td>
+      <td><code>Chain</code> • <code>Drive</code> • <code>Safe</code> • <code>AI</code> • <code>NVM</code> • <code>BUS</code> • <code>PWR</code> • <code>Int</code></td>
+      <td>Confinement strict par exclusion d'états intermédiaires. L'IP Core bloque l'erreur sans saturer le processeur hôte.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><b>REIO-A2</b></td>
+      <td>Isolation des Perceptions</td>
+      <td><code>Drive</code></td>
+      <td>Exclusion totale de l'intervention humaine pour prémunir les registres de toute altération malveillante.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><b>REIO-A3</b></td>
+      <td>Convergence Orthogonale</td>
+      <td><code>Chain</code></td>
+      <td>Filtrage matériel en ligne. Rejet immédiat de toute donnée non ancrée aux primitives physiques (Résolution de Gettier).</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><b>REIO-A4</b></td>
+      <td>Confinement & Seuils</td>
+      <td><code>Drive</code> • <code>Safe</code> • <code>NVM</code> • <code>Crypt</code> • <code>AI`</code> • <code>BUS</code> • <code>PWR</code> • <code>Int</code></td>
+      <td>Disjonction physique instantanée dès le franchissement des seuils critiques pour découpler les bus corrompus.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><b>REIO-A5</b></td>
+      <td>Axiomatisation Récursive</td>
+      <td><code>Chain</code> • <code>Safe</code> • <code>AI</code> • <code>CDC</code></td>
+      <td>Élimination mathématique de la métastabilité inter-horloges pour garantir la persistance temporelle.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;"><b>REIO-A6</b></td>
+      <td>Attestation Pragmatique</td>
+      <td><code>Chain</code> • <code>Safe</code> • <code>Crypt</code> • <code>CDC</code> • <code>NVM</code> • <code>BUS</code> • <code>PWR</code> • <code>Int</code></td>
+      <td>Scellement irréversible de chaque cycle d'évolution pour immuniser le SoC contre la gigue et les injections de pannes.</td>
+    </tr>
+  </tbody>
+</table>
+
 
 ---
 
