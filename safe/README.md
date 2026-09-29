@@ -17,8 +17,8 @@ L'interface a été entièrement réenregistrée de manière synchrone pour éli
 *   **Broche de Disjonction Physique :** Sortie numérique propre sur pin `T11` pilotant la ligne `SIG_FLASH_WRITE_ENABLE`.
 
 ### 📉 Métriques de l'Empreinte Silicium (Vivado Utilization)
-*   **Slice LUTs :** 28 (0,13 % d'utilisation de la matrice).
-*   **Slice Registers :** 20 (0,05 % d'utilisation, répartis en 19 primitives `FDCE` et 1 primitive `FDPE`).
+- **Slice LUTs :** 28 (0,13 % d'utilisation de la matrice).
+- **Slice Registers :** 37 (Post-routage réel, incluant les bascules de réplication de bus de quarantaine : 36 primitives FDCE et 1 primitive FDPE).
 *   **Bonded IOB (Ports d'E/S) :** 68 ports mappés de manière virtuelle en interne pour optimiser l'espace du boîtier.
 *   **Clock Buffers :** 1 primitive globale `BUFG` pour l'équilibrage de l'arbre d'horloge.
 
