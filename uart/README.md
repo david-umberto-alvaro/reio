@@ -69,3 +69,4 @@ Validation de l'interface MMIO via la suite de tests unitaires bare-metal (`#![n
 * **[Test FFI 2] Confinement sur Overflow :** Simulation d'attaque et activation de l'alarme (`PASS`).
 * **[Test FFI 3] Blocage sur Adresse NULL :** Robustesse mémoire validée (`PASS`).
 
+![Rapport de validation du script Python](reio_uart_test.png)
