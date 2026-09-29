@@ -62,4 +62,4 @@ L'exécution du plan de contrôle en Rust bare-metal (`#![no_std]`) certifie la 
 * **[Test 2] Routage Esclave 2 :** Commutation réussie du flux vers la zone haute (Décodage bit 15 à 1).
 * **[Test 3] Interception Intrusion :** Tag invalide détecté, isolement actif à 0V et levée immédiate de la ligne d'alerte (`BUS_FAULT_FLAG` <= '1').
 
-![Rapport de validation du script Python](reio_bus_test2.png)
+![Rapport de validation du script Python](reio_bus_test.png)
