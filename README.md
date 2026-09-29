@@ -66,6 +66,12 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
   - **Validation :** Validé à **66.67 MHz** (Période : **15.00 ns** \| WNS : **+1.039 ns** \| WHS : **+0.279 ns**). Interception et isolation physique du bus automobile exécutées de manière déterministe en **3 cycles d'horloge (45.00 ns)**.
   - **Ressources :** **6 LUTs / 4 Registres**, consommation active inférieure à **1 mW** (Statique : 72 mW).
 
+- 🎛️ **[REIO-INT](./int)**
+  - **Fonction :** Contrôleur d'interruptions matérielles sécurisé et filtré (Rate Limiter double canal).
+  - **Architecture de Sûreté :** Bouclier anti-saturation combinatoire surveillant le débit des lignes d'IRQ entrantes avec disjonction physique immédiate et masquage à 0 Volt en cas d'attaque par mitraillage (*Interrupt Flooding*).
+  - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **+6,543 ns** \| WHS : **+0,236 ns**). Interception de saturation, coupure nette de la ligne compromise et levée de l'alarme d'infrastructure exécutées en exactement **1 seul cycle d'horloge (10.00 ns)**.
+  - **Ressources :** **27 Slice LUTs / 19 Slice Registers / 4 Blocs CARRY4**, consommation globale ultra-faible de **72 mW** (Logique interne active : 1 mW, Statique : 70 mW, I/O buffers : 1 mW).
+
 - 🛡️ **[REIO-Safe](./safe)**
   - **Fonction :** Filtre combinatoire d'interception matériel anti-ransomware de stockage.
   - **Architecture de Sûreté :** Double canal parallèle (Analyse géométrique via Registre Alpha et suivi entropique asymétrique filtré contre le bruit avec seuil critique). 
@@ -89,71 +95,83 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
 ### 🌐 Architecture Fonctionnelle du Pipeline
 
 ```text
-                     [ REIO FRAMEWORK ]
-                             |
-                             v
-           +-----------------------------------+
+                       [ REIO FRAMEWORK ]
+                               |
+                               v
+             +-----------------------------------+
 
-           |                                   |
-           |             REIO-CORE             |
-           |  (Spécification Théorique Init.)  |
-           +-----------------------------------+
-                             |
-                             v
-           +-----------------------------------+
+             |                                   |
+             |             REIO-CORE             |
+             |  (Spécification Théorique Init.)  |
+             +-----------------------------------+
+                               |
+                               v
+             +-----------------------------------+
 
-           |             REIO-PWR              |
-           |   [ GESTIONNAIRE D'ÉNERGIE ]      | <--- [ Capteurs VCCINT / VCCAUX ]
-           |  Séquenceur de Reset Asymétrique  |      (Gel global à 0V en 1 cycle)
-           +-----------------------------------+
-                             |
-         +-------------------+-------------------+
+             |             REIO-PWR              |
+             |   [ GESTIONNAIRE D'ÉNERGIE ]      | <--- [ Capteurs VCCINT / VCCAUX ]
+             |  Séquenceur de Reset Asymétrique  |      (Gel global à 0V en 1 cycle)
+             +-----------------------------------+
+                               |
+           +-------------------+-------------------+
 
-         | [Palier 1]        | [Palier 2]        | [Palier 3]
-         | RSTn_INTERCONN    | RSTn_PERIPH       | RSTn_COPROC
-         v                   v                   v
-+-----------------+ +-----------------+ +-----------------+ +-----------------+
+           | [Palier 1]        | [Palier 2]        | [Palier 3]
+           | RSTn_INTERCONN    | RSTn_PERIPH       | RSTn_COPROC
+           v                   v                   v
+  +-----------------+ +-----------------+ +-----------------+ +-----------------+
 
-|   REIO-CHAIN    | |   REIO-DRIVE    | |    REIO-SAFE    | |    REIO-NVM     |
-|  (PoC Réseau)   | |   (PoC Auto)    | |   (PoC Flash)   | |   (PoC Mag/R)   |
-|   -> 400 MHz    | |  -> 66.67 MHz   | |   -> 100 MHz    | |   -> 100 MHz    |
-+-----------------+ +-----------------+ +-----------------+ +-----------------+
+  |   REIO-CHAIN    | |   REIO-DRIVE    | |    REIO-SAFE    | |    REIO-NVM     |
+  |  (PoC Réseau)   | |   (PoC Auto)    | |   (PoC Flash)   | |   (PoC Mag/R)   |
+  |   -> 400 MHz    | |  -> 66.67 MHz   | |   -> 100 MHz    | |   -> 100 MHz    |
+  +-----------------+ +-----------------+ +-----------------+ +-----------------+
 
-         |                   |                   |                   |
-         | [Asynchrone]      | [Asynchrone]      | [Synchrone]       | [Synchrone]
-         v                   v                   |                   |
-+-------------------------------------+          |                   |
+           |                   |                   |                   |
+           | [Asynchrone]      | [Asynchrone]      | [Synchrone]       | [Synchrone]
+           +---------+---------+                   |                   |
 
-|              REIO-CDC               |          |                   |
-| ----------------------------------- |          |                   |
-|  - [Canal 1] 400 MHz -> 100 MHz     |          |                   |
-|  - [Canal 2] 66.67 MHz -> 100 MHz   |          |                   |
-+-------------------------------------+          |                   |
+                     |                             |                   |
+                     v [Lignes IRQ Brutes]         |                   |
+  +-------------------------------------+          |                   |
 
-         |                   |                   |                   |
-         +---------+---------+-------------------+-------------------+
-                   |
-                   v
-+---------------------------------------------------------------------------+
+  |              REIO-INT               |          |                   |
+  |  [ BOUCLIER INTERRUPTION : 100M ]   |          |                   |
+  |  - Rate-Limiter Double Canal (8b)   |          |                   |
+  |  - Disjonction Combinatoire en 10ns |          |                   |
+  +-------------------------------------+          |                   |
 
-|                                 REIO-BUS                                  |
-|                 [ BUS SYSTEME UNIFIE ETANCHE : 100 MHz ]                  |
-|  - Matrice Crossbar Sécurisée (Authentification par Jeton Matériel)       |
-|  - Routage Géographique & Commutation de Zone Périphérique                |
-+---------------------------------------------------------------------------+
-                   |
-                   +-------------------------+
+                     |                             |                   |
+                     v [Lignes IRQ Sécurisées]     |                   |
+                     +-----------------------------+-------------------+
+                     |
+                     v
+  +-------------------------------------+
 
-                   |                         |
-                   v                         v
-        +---------------------+   +---------------------+
+  |              REIO-CDC               |
+  | ----------------------------------- |
+  |  - [Canal 1] 400 MHz -> 100 MHz     |
+  |  - [Canal 2] 66.67 MHz -> 100 MHz   |
+  +-------------------------------------+
+                     |
+                     v
+  +---------------------------------------------------------------------------+
 
-        |     REIO-CRYPT      |   |       REIO-AI       |
-        |    (PoC Crypto)     |   |      (PoC IA)       |
-        |     -> 100 MHz      |   |     -> 100 MHz      |
-        +---------------------+   +---------------------+
+  |                                 REIO-BUS                                  |
+  |                 [ BUS SYSTEME UNIFIE ETANCHE : 100 MHz ]                  |
+  |  - Matrice Crossbar Sécurisée (Authentification par Jeton Matériel)       |
+  |  - Routage Géographique & Commutation de Zone Périphérique                |
+  +---------------------------------------------------------------------------+
+                     |
+                     +-------------------------+
+
+                     |                         |
+                     v                         v
+          +---------------------+   +---------------------+
+
+          |     REIO-CRYPT      |   |       REIO-AI       |
+          |    (PoC Crypto)     |   |      (PoC IA)       |
+          |     -> 100 MHz      |   |     -> 100 MHz      |
+          +---------------------+   +---------------------+
 ```
-
 
 ## 📦 3. Structure du Dépôt & Politique d'Accès
 
