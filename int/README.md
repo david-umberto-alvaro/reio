@@ -60,5 +60,5 @@ L'exécution de la suite de tests unitaires connectée directement au code machi
 * **[Test FFI 2] Confinement sur Glitch :** Simulation de mitraillage, isolation combinatoire d'urgence de la ligne compromise et levée du flag d'intrusion matérielle (`PASS` | Valeur lue : `0x1`).
 * **[Test FFI 3] Blocage sur Adresse NULL :** Robustesse mémoire validée par interception logicielle immédiate d'un pointeur invalide (`PASS` | Valeur lue : `0xffffffff`).
 
-
+![Rapport de validation du script Python](reio_int_test.png)
 
