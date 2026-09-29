@@ -21,7 +21,7 @@ Les rapports d'implémentation post-placement-routage sur la matrice AMD/Xilinx 
 
 - **Utilisation des ressources logiques :** Empreinte matérielle ultra-compacte validée à **6 Slice LUTs** (0.03% de la matrice) et **4 Slice Registers** (<0.01%).
 - **Primitives Hardware :** Bascules synchrones (`FDRE`/`FDSE`) couplées à des macros logiques d'optimisation.
-- **Puissance Électrique Totale :** Consommation statique fixe mesurée à **72 mW** (`Device Static Power`), avec une dissipation active du cœur dynamique inférieure à **1 mW**.
+- **Puissance Électrique Totale :** Consommation statique fixe mesurée à **72 mW** (Device Static Power), avec une dissipation active du cœur dynamique réelle de **2 mW** (0,002 W certifiés post-routage).
 - **I/O Physiques :** Configuration de **13 broches physiques** (11 ports d'entrée `IBUF`, 2 ports de sortie `OBUF`) routées sous des contraintes électriques strictes.
 
 ### 🌐 Architecture Fonctionnelle du Pipeline SPU_105
