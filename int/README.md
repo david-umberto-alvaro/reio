@@ -21,6 +21,10 @@ REIO-INT est un bloc de propriété intellectuelle (IP Core) matériel d'infrast
 * **Puissance Électrique Totale :** Enveloppe globale minimale mesurée à **72 mW** (Logique interne active : 1 mW, Fuites statiques passives du silicium : 70 mW, Commutation des I/O buffers : 1 mW).
 * **Température de Jonction :** Stabilisée à **25.3 °C** pour une température ambiante maximale supportée de **124.7 °C** (Spécifications Q-Grade Automobile).
 
+### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
+
+![Chronogramme des formes d'ondes REIO-Drive](reio_int_simulation.png)
+
 ### 🌐 Architecture Fonctionnelle du Pipeline REIO-INT
 
 ```text
