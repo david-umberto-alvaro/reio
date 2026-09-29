@@ -18,12 +18,12 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 | Axiome | Pilier Théorique | Traduction Matérielle (Vivado) | Impact sur la Sûreté Réelle |
 | :--- | :--- | :--- | :--- |
-| **REIO-A1** | Ancrage Matériel Pur | - **REIO-Chain** : 53 LUTs (Filtre AXI)<br>- **REIO-Drive** : 6 LUTs (Transition pure)<br>- **REIO-Safe** : 28 LUTs (Isolation Flash)<br>- **REIO-AI** : 52 LUTs (Filtre NPU)<br>- **REIO-NVM** : 33 LUTs (Analyse MRAM/RRAM)<br>- **REIO-BUS** : 38 LUTs (Matrice Crossbar) | Confinement strict par exclusion d'états intermédiaires. L'IP Core bloque l'erreur sans saturer le processeur hôte. |
-| **REIO-A2** | Isolation des Perceptions | - **REIO-Drive** : Génération des prémisses par capteurs indexés | Exclusion totale de l'intervention humaine pour prémunir les registres de toute altération malveillante. |
-| **REIO-A3** | Convergence Orthogonale | - **REIO-Chain** : Bus réseau synchrone cadencé à 125 MHz / 400 MHz | Filtrage matériel en ligne. Rejet immédiat de toute donnée non ancrée aux primitives physiques (Résolution de Gettier). |
-| **REIO-A4** | Confinement & Seuils | - **REIO-Drive** : Isolation en 3 cycles (45.00 ns)<br>- **REIO-Safe** : Coupure Flash à 0V en 1 cycle (10.00 ns)<br>- **REIO-NVM** : Mise à la masse MRAM en 1 cycle (10.00 ns)<br>- **REIO-Crypt** : Mise à la masse sous 9.50 ns<br>- **REIO-AI** : Disjonction NPU en 1 cycle (10.00 ns)<br>- **REIO-BUS** : Destruction et alerte en 1 cycle (10.00 ns) | Disjonction physique instantanée dès le franchissement des seuils critiques pour découpler les bus corrompus. |
-| **REIO-A5** | Axiomatisation Récursive | - **REIO-Chain** : Marge WNS +0.531 ns / WHS +0.142 ns<br>- **REIO-Safe** : Marge WNS +5.222 ns (Pin F4)<br>- **REIO-AI** : Marge WNS +6.116 ns<br>- **REIO-CDC** : Bascules `ASYNC_REG` contiguës | Élimination mathématique de la métastabilité inter-horloges pour garantir la persistance temporelle. |
-| **REIO-A6** | Attestation Pragmatique | - **REIO-Chain** : Preuve ZK Réseau<br>- **REIO-Safe** : Tag volatil `0xDEADBEEF`<br>- **REIO-Crypt** : Signature Hash `0xA508BF53`<br>- **REIO-CDC** : Stabilisation en 3 cycles<br>- **REIO-NVM** : Verrouillage sur `0x00000000`<br>- **REIO-BUS** : Verrou matériel par clé `0x1010` | Scellement irréversible de chaque cycle d'évolution pour immuniser le SoC contre la gigue et les injections de pannes. |
+| **REIO-A1** | Ancrage Matériel Pur | - REIO-Chain<br>- REIO-Drive<br>- REIO-Safe<br>- REIO-AI<br>- REIO-NVM<br>- REIO-BUS | Confinement strict par exclusion d'états intermédiaires. L'IP Core bloque l'erreur sans saturer le processeur hôte. |
+| **REIO-A2** | Isolation des Perceptions | - REIO-Drive | Exclusion totale de l'intervention humaine pour prémunir les registres de toute altération malveillante. |
+| **REIO-A3** | Convergence Orthogonale | - REIO-Chain | Filtrage matériel en ligne. Rejet immédiat de toute donnée non ancrée aux primitives physiques (Résolution de Gettier). |
+| **REIO-A4** | Confinement & Seuils | - REIO-Drive<br>- REIO-Safe<br>- REIO-NVM<br>- REIO-Crypt<br>- REIO-AI<br>- REIO-BUS | Disjonction physique instantanée dès le franchissement des seuils critiques pour découpler les bus corrompus. |
+| **REIO-A5** | Axiomatisation Récursive | - REIO-Chain<br>- REIO-Safe<br>- REIO-AI<br>- REIO-CDC | Élimination mathématique de la métastabilité inter-horloges pour garantir la persistance temporelle. |
+| **REIO-A6** | Attestation Pragmatique | - REIO-Chain<br>- REIO-Safe<br>- REIO-Crypt<br>- REIO-CDC<br>- REIO-NVM<br>- REIO-BUS | Scellement irréversible de chaque cycle d'évolution pour immuniser le SoC contre la gigue et les injections de pannes. |
 
 ---
 
