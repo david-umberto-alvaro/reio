@@ -83,4 +83,4 @@ L'exécution de la suite de tests unitaires sur le plan de contrôle en Rust bar
 * **Test 2 (Contradiction NPU) :** Isolation active et forçage immédiat du bus sur le tag protecteur `0xdeadbeef`.
 * **Test 3 (Erreur Pointeur) :** Robustesse logicielle validée avec succès face à l'injection d'une adresse NULL.
 
-![Rapport de validation du script Python REIO-Safe](reio_ai_test.png)
+![Rapport de validation du script Python](reio_ai_test.png)
