@@ -63,3 +63,4 @@ L'exécution de la suite de tests unitaires sur le plan de contrôle en Rust bar
 * **[Test 2] Injection de Faute Tension :** Simulation de sous-alimentation transitoire, effondrement instantané des lignes de reset et levée du flag d'isolement (`PASS` | Flag : `1`).
 * **[Test 3] Erreur Pointeur (Adresse NULL) :** Robustesse logicielle validée avec succès par interception immédiate et bloquante de la couche FFI (`PASS` | Valeur lue : `0xffffffff`).
 
+![Rapport de validation du script Python REIO-Safe](reio_pwr_real_ffi.png)
