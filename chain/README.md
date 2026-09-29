@@ -55,7 +55,7 @@ Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (x
                            ^
                            | Flux Réseau Linéaire AXI-Stream
                      [ LIGNE ETHERNET ]
-
+                    
 ```
 
 ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
