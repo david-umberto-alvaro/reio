@@ -17,7 +17,7 @@ REIO-Chain is an ultra-high-speed synchronous hardware network filter IP Core de
 - **Worst Pulse Width Slack (WPWS):** +0.750 ns
 
 ### Power & Silicon Footprint Profile:
-- **Slice LUTs Utilization:** **53 LUTs** (0.66% of the device)
+- **Slice LUTs Utilization:** **52 LUTs** (Post-routing physical optimization, 0.65% of the device)
 - **Slice Registers Count:** **153 Registers** (0.96% of the device)
 - **Device Static Power:** 56 mW
 - **Core Active Dynamic Power (REIO-Core):** 3 mW (Total design dynamic power verified at 3 mW)
