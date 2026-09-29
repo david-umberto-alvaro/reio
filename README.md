@@ -44,9 +44,9 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
   - **Ressources :** **0 Slice LUT (1 LUT combinatoire d'ajustement de buffer) / 3 Slice Registers**, consommation globale de **336 mW** (Logique interne active : 7 mW, Fuites passives et I/O buffers : 329 mW).
 
 - ⛓️ **[REIO-Chain](./chain)**
-  - **Fonction :** Disjoncteur matériel sur bus 64 bits.
-  - **Validation :** Cible à **400 MHz** (WNS : **+1,596 ns**, WHS : **+0,142 ns**).
-  - **Ressources :** **12 LUTs / 111 Registres**, consommation **~1 mW**.
+  - **Fonction :** Disjoncteur réseau Layer 3 synchrone sur bus 64 bits s'interfaçant avec un bus physique Ethernet.
+  - **Validation :** Validé à **400.00 MHz** (Période : **2.50 ns** \| **WNS : +0,531 ns** \| **WHS : +0,142 ns**). Coupure réseau déterministe et masquage de transaction exécutés en exactement **1 seul cycle machine**.
+  - **Ressources :** **53 Slice LUTs / 153 Slice Registers**, consommation globale de **59 mW** (Logique interne active : 3 mW, Fuites statiques passives : 56 mW).
 
 - 🔑 **[REIO-Crypt](./crypt)**
   - **Fonction :** Accélérateur cryptographique découplé matériel pour preuve Zero-Knowledge (ZKP).
