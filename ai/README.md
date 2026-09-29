@@ -68,7 +68,7 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 
 ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
 
-![Chronogramme des formes d'ondes REIO-Drive](reio_ai_simulation.png)
+![Chronogramme des formes d'ondes](reio_ai_simulation.png)
 
 ### 🛠️ Architecture du Framework Unifié
 
