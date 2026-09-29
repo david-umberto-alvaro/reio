@@ -54,7 +54,7 @@ REIO-NVM est un bloc de propriété intellectuelle (IP Core) matériel conçu po
 
 ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
 
-L'analyse comportementale du banc de test confirme la réactivité immédiate du disjoncteur SPU-102 face à une injection malveillante :
+L'analyse comportementale du banc de test confirme la réactivité immédiate du disjoncteur face à une injection malveillante :
 
 ![Chronogramme des formes d'ondes REIO-Safe](reio_nvm_simulation.png)
 
