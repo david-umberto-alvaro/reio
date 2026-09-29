@@ -75,4 +75,4 @@ L'exécution du script de test autonome confirme la conformité du pont C-FFI (`
 * **[Test 2] Contradiction NPU :** Isolation et forçage du bus sur `0xdeadbeef` en un cycle.
 * **[Test 3] Erreur Pointeur :** Robustesse face à une adresse de registre NULL.
 
-![Rapport de validation du script Python REIO-Safe](reio_drive_test.png)
+![Rapport de validation du script Python](reio_drive_test.png)
