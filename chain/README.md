@@ -24,8 +24,7 @@ Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (x
 - **I/O Physiques :** Configuration d'entrées/sorties routées sous contrainte de délai LVCMOS33
 
 
-### 🌐 Architecture Fonctionnelle du Pipeline
-
+```text
 +-------------------------------------------------------+
 
 |                   APPLICATION HÔTE                    |
@@ -55,7 +54,6 @@ Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (x
                            ^
                            | Flux Réseau Linéaire AXI-Stream
                      [ LIGNE ETHERNET ]
-                    
 ```
 
 ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
