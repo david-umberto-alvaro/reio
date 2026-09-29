@@ -6,22 +6,23 @@ REIO-Chain est un bloc de propriété intellectuelle (IP Core) matériel/logicie
 
 ### 🔬 Performances Matérielles Certifiées (AMD/Xilinx Vivado v2026.1)
 
-Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (xc7a12tlcpg238-2L) certifient les métriques physiques suivantes :
+Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (xc7a12tlcpg238-2L) certifient les métriques physiques réelles suivantes :
 
 - **Fréquence Horloge Système (Rust) :** 400 MHz (Période stricte de 2,5 ns)
 - **Fréquence Horloge Ligne (Ethernet) :** 125 MHz (Période stricte de 8,0 ns)
-- **Worst Negative Slack (WNS) :** +1,596 ns (Setup métrique parfait, zéro violation)
+- **Worst Negative Slack (WNS) :** **+0,531 ns** (Setup métrique parfait, zéro violation)
 - **Total Negative Slack (TNS) :** 0,000 ns
 - **Worst Pulse Width Slack (WPWS) :** +0,750 ns
 - **Livrable Temporel :** Coupure réseau déterministe en 1 seul cycle machine
 
 ### 📊 Empreinte Géométrique & Signature Thermique
 
-- **Slice LUTs :** 12 (0,15% du composant)
-- **Slice Registers :** 111 (0,69% du composant)
-- **Primitives Hardware :** 111 FDCE flip-flops, 24 blocs CARRY4
-- **Puissance Électrique Totale :** 58 mW (Puissance dynamique active du cœur : 1 mW)
+- **Slice LUTs :** **53** (0,66% du composant)
+- **Slice Registers :** **153** (0,96% du composant)
+- **Primitives Hardware :** 151 FDRE flip-flops, 2 FDSE flip-flops, 24 blocs CARRY4
+- **Puissance Électrique Totale :** **59 mW** (Puissance dynamique active du cœur : 3 mW, Fuites statiques : 56 mW)
 - **I/O Physiques :** Configuration d'entrées/sorties routées sous contrainte de délai LVCMOS33
+
 
 ### 🌐 Architecture Fonctionnelle du Pipeline
 
