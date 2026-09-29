@@ -18,12 +18,12 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 | Axiome | Pilier Théorique | Traduction Matérielle (Vivado) | Impact sur la Sûreté Réelle |
 | :--- | :--- | :--- | :--- |
-| **REIO-A1** | Ancrage Matériel Pur | - **REIO-Drive** : 6 LUTs (Transition pure)<br>- **REIO-Safe** : 28 LUTs (Isolation Flash)<br>- **REIO-AI** : 52 LUTs (Filtre NPU)<br>- **REIO-NVM** : 33 LUTs (Analyse MRAM/RRAM) | Confinement strict par exclusion d'états intermédiaires. L'IP Core bloque l'erreur sans saturer le processeur hôte. |
+| **REIO-A1** | Ancrage Matériel Pur | - **REIO-Chain** : 53 LUTs (Filtre AXI)<br>- **REIO-Drive** : 6 LUTs (Transition pure)<br>- **REIO-Safe** : 28 LUTs (Isolation Flash)<br>- **REIO-AI** : 52 LUTs (Filtre NPU)<br>- **REIO-NVM** : 33 LUTs (Analyse MRAM/RRAM)<br>- **REIO-BUS** : 38 LUTs (Matrice Crossbar) | Confinement strict par exclusion d'états intermédiaires. L'IP Core bloque l'erreur sans saturer le processeur hôte. |
 | **REIO-A2** | Isolation des Perceptions | - **REIO-Drive** : Génération des prémisses par capteurs indexés | Exclusion totale de l'intervention humaine pour prémunir les registres de toute altération malveillante. |
 | **REIO-A3** | Convergence Orthogonale | - **REIO-Chain** : Bus réseau synchrone cadencé à 125 MHz / 400 MHz | Filtrage matériel en ligne. Rejet immédiat de toute donnée non ancrée aux primitives physiques (Résolution de Gettier). |
-| **REIO-A4** | Confinement & Seuils | - **REIO-Drive** : Isolation en 3 cycles (45.00 ns)<br>- **REIO-Safe** : Coupure Flash à 0V en 1 cycle (10.00 ns)<br>- **REIO-NVM** : Mise à la masse MRAM en 1 cycle (10.00 ns)<br>- **REIO-Crypt** : Mise à la masse sous 9.50 ns<br>- **REIO-AI** : Disjonction NPU en 1 cycle (10.00 ns) | Disjonction physique instantanée dès le franchissement des seuils critiques pour découpler les bus corrompus. |
-| **REIO-A5** | Axiomatisation Récursive | - **REIO-Chain** : Marge WNS +1.596 ns<br>- **REIO-Safe** : Marge WNS +5.222 ns (Pin F4)<br>- **REIO-AI** : Marge WNS +6.116 ns<br>- **REIO-CDC** : Bascules `ASYNC_REG` contiguës | Élimination mathématique de la métastabilité inter-horloges pour garantir la persistance temporelle. |
-| **REIO-A6** | Attestation Pragmatique | - **REIO-Chain** : Preuve ZK Réseau<br>- **REIO-Safe** : Tag volatil `0xDEADBEEF`<br>- **REIO-Crypt** : Signature Hash `0xA508BF53`<br>- **REIO-CDC** : Stabilisation en 3 cycles<br>- **REIO-NVM** : Verrouillage sur `0x00000000` | Scellement irréversible de chaque cycle d'évolution pour immuniser le SoC contre la gigue et les injections de pannes. |
+| **REIO-A4** | Confinement & Seuils | - **REIO-Drive** : Isolation en 3 cycles (45.00 ns)<br>- **REIO-Safe** : Coupure Flash à 0V en 1 cycle (10.00 ns)<br>- **REIO-NVM** : Mise à la masse MRAM en 1 cycle (10.00 ns)<br>- **REIO-Crypt** : Mise à la masse sous 9.50 ns<br>- **REIO-AI** : Disjonction NPU en 1 cycle (10.00 ns)<br>- **REIO-BUS** : Destruction et alerte en 1 cycle (10.00 ns) | Disjonction physique instantanée dès le franchissement des seuils critiques pour découpler les bus corrompus. |
+| **REIO-A5** | Axiomatisation Récursive | - **REIO-Chain** : Marge WNS +0.531 ns / WHS +0.142 ns<br>- **REIO-Safe** : Marge WNS +5.222 ns (Pin F4)<br>- **REIO-AI** : Marge WNS +6.116 ns<br>- **REIO-CDC** : Bascules `ASYNC_REG` contiguës | Élimination mathématique de la métastabilité inter-horloges pour garantir la persistance temporelle. |
+| **REIO-A6** | Attestation Pragmatique | - **REIO-Chain** : Preuve ZK Réseau<br>- **REIO-Safe** : Tag volatil `0xDEADBEEF`<br>- **REIO-Crypt** : Signature Hash `0xA508BF53`<br>- **REIO-CDC** : Stabilisation en 3 cycles<br>- **REIO-NVM** : Verrouillage sur `0x00000000`<br>- **REIO-BUS** : Verrou matériel par clé `0x1010` | Scellement irréversible de chaque cycle d'évolution pour immuniser le SoC contre la gigue et les injections de pannes. |
 
 ---
 
@@ -36,6 +36,12 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
   - **Architecture de Sûreté :** Filtre de congruence paraconcurrent bloquant les hallucinations logiques et les injections adverses avec disjonction matérielle et confinement à 0 Volt.
   - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **+6.116 ns** \| WHS : **+0.196 ns**). Isolation et forçage du bus sur le tag de sécurité `0xDEADBEEF` exécutés en exactement **1 cycle d'horloge**.
   - **Ressources :** **52 LUTs / 38 Registres / 0 bloc DSP**, consommation globale ultra-faible de **70 mW** (Dynamique : 1 mW, Statique : 68 mW).
+
+- 🎛️ **[REIO-BUS](./bus)**
+  - **Fonction :** Matrice d'interconnexion Crossbar sécurisée et décodeur d'adresse pour l'infrastructure interne du SoC.
+  - **Architecture de Sûreté :** Routage géométrique étanche par partitionnement de bus et disjoncteur matériel à effondrement éclair en cas de jeton d'authentification invalide.
+  - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| **WNS : inf** \| **WHS : inf**). Interception de violation, effondrement complet à 0 Volt et levée de l'alarme d'intrusion exécutés en exactement **1 cycle d'horloge (10.00 ns)**.
+  - **Ressources :** **38 Slice LUTs / 67 Slice Registers**, consommation globale de **77 mW** (Logique interne active : 6 mW, Fuites statiques et I/O buffers : 71 mW).
 
 - ⛓️ **[REIO-CDC](./cdc)**
   - **Fonction :** Synchroniseur multi-horloge d'étanchéité physique pour le croisement de domaines asynchrones (Clock Domain Crossing).
@@ -74,9 +80,6 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
 
 ---
 
-### 🌐 Architecture Globale du Framework
-
-```text
                      [ REIO FRAMEWORK ]
                              |
                              v
@@ -112,17 +115,25 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
        |               |                     |                 |
        +-------+-------+---------------------+-----------------+
                |
-               v  [ BUS SYSTÈME UNIFIÉ ÉTANCHE : 100 MHz ]
-       +-------+-------+
+               v
++--------------------------------------------------------------+
 
-       |               |
-       v               v
-+-------------+     +-------------+
+|                           REIO-BUS                           |
+|           [ BUS SYSTEME UNIFIE ETANCHE : 100 MHz ]           |
+|  - Matrice Crossbar Securisee (Authentification par Jeton)  |
+|  - Routage Geographique & Commutation de Zone Peripherique   |
++--------------------------------------------------------------+
+               |
+               +-----------------------+
 
-|  REIO-CRYPT |     |   REIO-AI   |
-| (PoC Crypto)|     |   (PoC IA)  |
-| -> 100 MHz  |     | -> 100 MHz  |
-+-------------+     +-------------+
+               |                       |
+               v                       v
+        +-------------+         +-------------+
+
+        |  REIO-CRYPT |         |   REIO-AI   |
+        | (PoC Crypto)|         |   (PoC IA)  |
+        | -> 100 MHz  |         | -> 100 MHz  |
+        +-------------+         +-------------+
 
 ```
 
