@@ -74,8 +74,6 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 
 L'architecture intègre un cœur RTL en VHDL, un plan de contrôle en Rust 2024 pour l'alignement MMIO, et une application hôte en Python pour évaluer le confinement de sûreté. Les détails complets et rapports restent confidentiels (Open-Core).
 
-![Chronogramme des formes d'ondes REIO-Drive](reio_ai_simulation.png)
-
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
 
 L'exécution des tests sur le plan de contrôle Rust (`#![no_std]`) garantit la conformité de l'infrastructure et l'interception des hallucinations à travers différents scénarios de test (flux standard, contradiction NPU et erreur pointeur).
