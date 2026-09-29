@@ -80,6 +80,9 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
 
 ---
 
+### 🌐 Architecture Fonctionnelle du Pipeline
+
+```text
                      [ REIO FRAMEWORK ]
                              |
                              v
@@ -134,7 +137,6 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
         | (PoC Crypto)|         |   (PoC IA)  |
         | -> 100 MHz  |         | -> 100 MHz  |
         +-------------+         +-------------+
-
 ```
 
 ## 📦 3. Structure du Dépôt & Politique d'Accès
