@@ -26,7 +26,6 @@ Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (x
 
 ### 🌐 Architecture Fonctionnelle du Pipeline
 
-```text
 +-------------------------------------------------------+
 
 |                   APPLICATION HÔTE                    |
@@ -37,7 +36,7 @@ Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (x
                            v
 +-------------------------------------------------------+
 
-|                PILOTE DE CONTRÔLE RUST                |
+|               PILOTE DE CONTRÔLE RUST                 |
 |     Configuration MMIO & Télémétrie (#![no_std])      |
 +-------------------------------------------------------+
                            |
@@ -46,16 +45,17 @@ Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (x
 +=======================================================+
 
 |                       SILICIUM                        |
-| ---------------------------------------------------   |
+| ----------------------------------------------------- |
 |               DISJONCTEUR MATÉRIEL VHDL               |
 |        Confinement & Masquage Réseau (Artix-7)        |
 |                                                       |
-|   [12 Slice LUTs]                 [111 Registers]     |
-|   [Horloge : 400 MHz]             [WNS : +1,596 ns]   |
+|   [53 Slice LUTs]                  [153 Registers]    |
+|   [Horloge : 400 MHz]              [WNS : +0,531 ns]  |
 +=======================================================+
                            ^
                            | Flux Réseau Linéaire AXI-Stream
-                    [ LIGNE ETHERNET ]
+                     [ LIGNE ETHERNET ]
+
 ```
 
 ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
