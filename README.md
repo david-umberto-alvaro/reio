@@ -99,51 +99,61 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
            |  (Spécification Théorique Init.)  |
            +-----------------------------------+
                              |
-       +---------------+-----+---------------+-----------------+
+                             v
+           +-----------------------------------+
 
-       |               |                     |                 |
-       v               v                     v                 v
-+-------------+ +-------------+       +-------------+   +-------------+
+           |             REIO-PWR              |
+           |   [ GESTIONNAIRE D'ÉNERGIE ]      | <--- [ Capteurs VCCINT / VCCAUX ]
+           |  Séquenceur de Reset Asymétrique  |      (Gel global à 0V en 1 cycle)
+           +-----------------------------------+
+                             |
+         +-------------------+-------------------+
 
-|  REIO-CHAIN | |  REIO-DRIVE |       |  REIO-SAFE  |   |  REIO-NVM   |
-| (PoC Réseau)| |  (PoC Auto) |       | (PoC Flash) |   | (PoC Mag/R) |
-| -> 400 MHz  | | -> 66.67MHz |       | -> 100 MHz  |   | -> 100 MHz  |
-+-------------+ +-------------+       +-------------+   +-------------+
+         | [Palier 1]        | [Palier 2]        | [Palier 3]
+         | RSTn_INTERCONN    | RSTn_PERIPH       | RSTn_COPROC
+         v                   v                   v
++-----------------+ +-----------------+ +-----------------+ +-----------------+
 
-       |               |                     |                 |
-       | [Asynchrone]  | [Asynchrone]        | [Synchrone]     | [Synchrone]
-       v               v                     |                 |
-+-----------------------------+              |                 |
+|   REIO-CHAIN    | |   REIO-DRIVE    | |    REIO-SAFE    | |    REIO-NVM     |
+|  (PoC Réseau)   | |   (PoC Auto)    | |   (PoC Flash)   | |   (PoC Mag/R)   |
+|   -> 400 MHz    | |  -> 66.67 MHz   | |   -> 100 MHz    | |   -> 100 MHz    |
++-----------------+ +-----------------+ +-----------------+ +-----------------+
 
-|          REIO-CDC           |              |                 |
-| --------------------------- |              |                 |
-|  [Canal 1] 400M -> 100M     |              |                 |
-|  [Canal 2] 66.6M -> 100M    |              |                 |
-+-----------------------------+              |                 |
+         |                   |                   |                   |
+         | [Asynchrone]      | [Asynchrone]      | [Synchrone]       | [Synchrone]
+         v                   v                   |                   |
++-------------------------------------+          |                   |
 
-       |               |                     |                 |
-       +-------+-------+---------------------+-----------------+
-               |
-               v
-+--------------------------------------------------------------+
+|              REIO-CDC               |          |                   |
+| ----------------------------------- |          |                   |
+|  - [Canal 1] 400 MHz -> 100 MHz     |          |                   |
+|  - [Canal 2] 66.67 MHz -> 100 MHz   |          |                   |
++-------------------------------------+          |                   |
 
-|                           REIO-BUS                           |
-|           [ BUS SYSTEME UNIFIE ETANCHE : 100 MHz ]           |
-|  - Matrice Crossbar Securisee (Authentification par Jeton)   |
-|  - Routage Geographique & Commutation de Zone Peripherique   |
-+--------------------------------------------------------------+
-               |
-               +-----------------------+
+         |                   |                   |                   |
+         +---------+---------+-------------------+-------------------+
+                   |
+                   v
++---------------------------------------------------------------------------+
 
-               |                       |
-               v                       v
-        +-------------+         +-------------+
+|                                 REIO-BUS                                  |
+|                 [ BUS SYSTEME UNIFIE ETANCHE : 100 MHz ]                  |
+|  - Matrice Crossbar Sécurisée (Authentification par Jeton Matériel)       |
+|  - Routage Géographique & Commutation de Zone Périphérique                |
++---------------------------------------------------------------------------+
+                   |
+                   +-------------------------+
 
-        |  REIO-CRYPT |         |   REIO-AI   |
-        | (PoC Crypto)|         |   (PoC IA)  |
-        | -> 100 MHz  |         | -> 100 MHz  |
-        +-------------+         +-------------+
+                   |                         |
+                   v                         v
+        +---------------------+   +---------------------+
+
+        |     REIO-CRYPT      |   |       REIO-AI       |
+        |    (PoC Crypto)     |   |      (PoC IA)       |
+        |     -> 100 MHz      |   |     -> 100 MHz      |
+        +---------------------+   +---------------------+
 ```
+
 
 ## 📦 3. Structure du Dépôt & Politique d'Accès
 
