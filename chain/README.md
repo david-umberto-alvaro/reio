@@ -17,7 +17,7 @@ Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (x
 
 ### 📊 Empreinte Géométrique & Signature Thermique
 
-- **Slice LUTs :** **53** (0,66% du composant)
+- **Slice LUTs :** **52** (Post-routage réel d'usine, 0,65% du composant)
 - **Slice Registers :** **153** (0,96% du composant)
 - **Primitives Hardware :** 151 FDRE flip-flops, 2 FDSE flip-flops, 24 blocs CARRY4
 - **Puissance Électrique Totale :** **59 mW** (Puissance dynamique active du cœur : 3 mW, Fuites statiques : 56 mW)
