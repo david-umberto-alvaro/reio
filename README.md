@@ -166,17 +166,20 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
   |  - Matrice Crossbar Sécurisée (Authentification par Jeton Matériel)       |
   |  - Routage Géographique & Commutation de Zone Périphérique                |
   +---------------------------------------------------------------------------+
-                     |
-                     +-------------------------+
 
-                     |                         |
-                     v                         v
-          +---------------------+   +---------------------+
+                     |                                     |
+         +-----------+-----------+                         |
 
-          |     REIO-CRYPT      |   |       REIO-AI       |
-          |    (PoC Crypto)     |   |      (PoC IA)       |
-          |     -> 100 MHz      |   |     -> 100 MHz      |
-          +---------------------+   +---------------------+
+         |                       |                         |
+         v                       v                         v
++-----------------+     +-----------------+     +-----------------+
+
+|   REIO-CRYPT    |     |     REIO-AI     |     |    REIO-UART    |
+|  (PoC Crypto)   |     |    (PoC IA)     |     |  (PoC Diag UART) |
+|   -> 100 MHz    |     |   -> 100 MHz    |     |   -> 100 MHz    |
++-----------------+     +-----------------+     +-----------------+
+```
+
 ```
 
 ## 📦 3. Structure du Dépôt & Politique d'Accès
