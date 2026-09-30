@@ -11,17 +11,17 @@ L'architecture s'appuie sur le Modèle Hétérogène Découplé (AHD) pour isole
 
 ### 🔬 Performances Matérielles Certifiées (AMD/Xilinx Vivado v2026.1)
 
-Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient les métriques physiques suivantes :
-* **Fréquence Horloge Système (Rust FFI) :** Fermé avec succès à **100.00 MHz** (Période stricte : **10.00 ns**).
-* **Worst Negative Slack (WNS) :** Stabilisé et fermé au vert à **+2,514 ns** (0 Failing Endpoints) grâce au fractionnement du chemin critique.
-* **Worst Hold Slack (WHS) :** Optimisé à **+0.211 ns** (0 Violations de Hold).
-* **Temps de Cycle Polymorphe :** Signature cryptographique calculée, stabilisée et délivrée sur le bus en exactement 16 cycles d'horloge.
+Les rapports d'implémentation post-routage sur cible Artix-7 certifient les métriques physiques réelles issues de vos nouveaux rapports :
+
+- **Fréquence Horloge Système :** Validée à **100.00 MHz** (Période de **10.00 ns**) [https://github.com/david-umberto-alvaro/reio/blob/main/crypt/reio_crypt_timing_summary_routed.rpt].
+- **Worst Negative Slack (WNS) :** Fermé à **+1,158 ns** (0 Failing Endpoints) [https://github.com/david-umberto-alvaro/reio/blob/main/crypt/reio_crypt_timing_summary_routed.rpt].
+- **Worst Hold Slack (WHS) :** Optimisé à **+0.196 ns** [https://github.com/david-umberto-alvaro/reio/blob/main/crypt/reio_crypt_timing_summary_routed.rpt].
 
 ### 📊 Empreinte Géométrique & Signature Thermique
 
-* **Ressources Silicium :** **100 Slice LUTs** (0.48%), **135 Slice Registers** (0.32%), et **5 blocs DSP48E1** (5.56%).
-* **Puissance Électrique Totale :** Enveloppe thermique mesurée post-routage à **11,753 W** sous Vivado Out-of-Context (Puissance statique : 159 mW, Puissance dynamique active réelle hors fuites d'E/S non contraintes : 26 mW).
-* **I/O Physiques :** Configuration de **69 broches physiques** (36 ports d'entrée `IBUF`, 33 ports de sortie `OBUF`).
+- **Ressources Silicium :** **100 Slice LUTs** (0.48%), **135 Slice Registers** (0.32%), et **5 blocs DSP48E1** (5.56%) [https://github.com/david-umberto-alvaro/reio/blob/main/crypt/reio_crypt_utilization_synth.rpt].
+- **Puissance Électrique Totale :** Enveloppe thermique mesurée post-routage à **81 mW** (Statique : 70 mW, Dynamique : 11 mW) [https://github.com/david-umberto-alvaro/reio/blob/main/crypt/reio_crypt_power_routed.rpt].
+- **I/O Physiques :** Configuration de **69 broches physiques** (36 `IBUF`, 33 `OBUF`) [https://github.com/david-umberto-alvaro/reio/blob/main/crypt/reio_crypt_utilization_synth.rpt].
 
 ### 🌐 Architecture Fonctionnelle du Pipeline
 
@@ -36,8 +36,8 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
                            v
 +--------------------------------------------------------+
 
-|               PILOTE DE CONTRÔLE RUST                  |
-|  Configuration MMIO & Registres Alignés (#![no_std])   |
+|                 PILOTE DE CONTRÔLE RUST                |
+|   Configuration MMIO & Registres Alignés (#![no_std])  |
 +--------------------------------------------------------+
                            |
                            | Lecture Volatile du Jeton ZK (Bus AMBA APB)
@@ -47,13 +47,13 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 |                        SILICIUM                        |
 | ------------------------------------------------------ |
 |               COPROCESSEUR MATÉRIEL VHDL               |
-|      Modèle Hétérogène Découplé & Pipeline 2 Étages    |
+|     Modèle Hétérogène Découplé & Pipeline 3 Étages     |
 |                                                        |
-|   [169 Optimized Slice LUTs]   [139 Registers]         |
-|   [3 Blocs DSP48E1 Câblés]     [16-Cycle Processing]   |
+|      [100 Optimized Slice LUTs]  [135 Registers]       |
+|      [5 Blocs DSP48E1 Câblés]    [16-Cycle Processing] |
 +========================================================+
                            ^
-                           | Interception Ultra-Rapide (9.5 ns)
+                           | Interception Ultra-Rapide (Sub-nanoseconde)
                            | [ LIGNE VOLTAGE_GLITCH_DETECT ]
 ```
 
