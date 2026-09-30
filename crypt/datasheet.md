@@ -15,32 +15,32 @@ Operating on the **Autonomous Heterogeneous Decoupled (AHD)** architectural patt
 
 *Certified hardware metrics extracted from AMD/Xilinx Vivado routed implementation reports targeting the xa7a35tcsg324-1Q device layout.*
 
-### Power & Thermal Dissipation Profile:
-- **Total On-Chip Power Consumption:** **11.753 W** (Vivado Out-of-Context default switching activity layout).
-- **Core Dynamic & Static Current Splitting:** **11.593 W** dynamic toggling / **0.159 W (159 mW)** static leakage floor.
-- **Junction Temperature (\(T_J\)):** **81.2 °C** (Thermal profile calculated under continuous peak math stress).
-- **Maximum Safe Ambient Temperature (\(T_{AMB\_MAX}\)):** **68.8 °C** under maximum I/O stress constraints.
+### Power, Timing & Thermal Dissipation Profile:
+- **Total On-Chip Power Consumption:** **81 mW** (0.081 W) validated via post-routing constraint injection.
+- **Core Dynamic & Static Current Splitting:** **10 mW** dynamic toggling / **70 mW** static leakage floor.
+- **Worst Negative Slack (WNS):** **+1.158 ns** (0 Failing Endpoints at 100.00 MHz target clock).
+- **Worst Hold Slack (WHS):** **+0.196 ns** (Zero hold violations under thermal stress).
+- **Junction Temperature (\(T_J\)):** **25.4 °C** (Extremely stable thermal layout).
+- **Maximum Safe Ambient Temperature (\(T_{AMB\_MAX}\)):** **124.6 °C** (Fully compliant with Automotive Q-Grade requirements).
 
 ---
 
-## 🔌 3. Signal Specifications & Hardware I/O Mapping
-
-*69-pin parallel interface validated via Vivado post-routing placement (Bonded IOB - 36 inputs / 33 outputs).*
+*69-pin parallel interface validated via Vivado post-routing placement (Bonded IOB).*
 
 | Signal Name | Direction | Width | Type | Physical Pin / Description |
 | :--- | :---: | :---: | :---: | :--- |
-| **PCLK** | Input | 1 bit | STD_LOGIC | Main peripheral system clock (Target 100.00 MHz, Dedicated Pin F4) |
-| **PRESETn** | Input | 1 bit | STD_LOGIC | Synchronous active-low system reset line (Pin T10) |
-| **PADDR[31:0]** | Input | 32 bits | STD_LOGIC_VECTOR | Parallel APB address bus mapping the internal ZK token space |
-| **PSEL** | Input | 1 bit | STD_LOGIC | APB peripheral select line initiating transaction validation (Pin V11) |
-| **PENABLE** | Input | 1 bit | STD_LOGIC | APB strobe signal validating the current data phase (Pin U11) |
-| **PWRITE** | Input | 1 bit | STD_LOGIC | Read/Write control wire ('1' = Write transaction, Pin V10) |
+| **PCLK** | Input | 1 bit | STD_LOGIC | Peripheral clock (Target 100.00 MHz, Pin F4) |
+| **PRESETn** | Input | 1 bit | STD_LOGIC | Synchronous active-low reset line (Pin T10) |
+| **PADDR[31:0]** | Input | 32 bits | STD_LOGIC_VECTOR | APB address bus mapping internal ZK token space |
+| **PSEL** | Input | 1 bit | STD_LOGIC | APB peripheral select line (Pin V11) |
+| **PENABLE** | Input | 1 bit | STD_LOGIC | APB strobe signal validating data phase (Pin U11) |
+| **PWRITE** | Input | 1 bit | STD_LOGIC | Read/Write control wire ('1' = Write, Pin V10) |
 | **PWDATA[31:0]** | Input | 32 bits | STD_LOGIC_VECTOR | Host payload write data bus carrying secret tokens |
-| **PRDATA[31:0]** | Output | 32 bits | STD_LOGIC_VECTOR | Host read data bus returning the scellé ZK signature output |
-| **PREADY** | Output | 1 bit | STD_LOGIC | Slave ready indicator driving bus wait-state contraction (Pin U12) |
-| **PSLVERR** | Output | 1 bit | STD_LOGIC | Slave error exception asserted upon protocol violation or glitch (Pin V12) |
-| **VOLTAGE_GLITCH_DETECT** | Input | 1 bit | STD_LOGIC | Physical security sensor tap interface line (Hardwired Pin H14) |
-| **SIG_CRYPT_HARD_RESET** | Output | 1 bit | STD_LOGIC | Active hardware disconnector signal forcing system zeroization (Pin T11) |
+| **PRDATA[31:0]** | Output | 32 bits | STD_LOGIC_VECTOR | Host read data bus returning scellé ZK signature |
+| **PREADY** | Output | 1 bit | STD_LOGIC | Slave ready indicator (Pin U12) |
+| **PSLVERR** | Output | 1 bit | STD_LOGIC | Slave error exception asserted upon protocol violation |
+| **VOLTAGE_GLITCH_DETECT** | Input | 1 bit | STD_LOGIC | Physical security sensor tap interface line (Pin H14) |
+| **SIG_CRYPT_HARD_RESET** | Output | 1 bit | STD_LOGIC | Active hardware disconnector signal (Pin T11) |
 
 ---
 
@@ -63,6 +63,4 @@ _______________________________________________________________________________/
                                                                                \______  
 _______________________________________________________________________________/XXXXXX  PRDATA / ZKP_HASH_OUT[31:0]
 ```
-
-
 
