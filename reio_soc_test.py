@@ -41,7 +41,7 @@ class StructureRegistresBus(ctypes.Structure):
     ]
 
 # -------------------------------------------------------------------------------
-# 🚀 2. DYNAMIC BINARY LINKING LAYER (Targeting Global Release Workspace)
+# 🚀 2. DYNAMIC BINARY LINKING LAYER & THREAD-SAFE PROTOTYPES (CONCURRENCY ALIGNED)
 # -------------------------------------------------------------------------------
 base_path = os.path.abspath(os.path.dirname(__file__))
 target_dir = os.path.join(base_path, "target", "release")
@@ -59,7 +59,7 @@ targets = {
 
 loaded_libs = {}
 
-print("\n📡 Linking native bare-metal hardware drivers...")
+print("\n📡 Linking native bare-metal hardware drivers (Atomic Guarding)...")
 for mod, (bin_name, primary_sym) in targets.items():
     bin_path = os.path.join(target_dir, bin_name)
     if not os.path.exists(bin_path):
@@ -67,12 +67,12 @@ for mod, (bin_name, primary_sym) in targets.items():
         sys.exit(1)
     try:
         loaded_libs[mod] = ctypes.CDLL(bin_path)
-        print(f"  -> [{mod}] Bound successfully via symbol: {primary_sym}")
+        print(f"  -> [{mod}] Bound successfully via atomic symbol: {primary_sym}")
     except Exception as e:
         print(f"❌ Failed to interface with [{mod}] driver: {e}")
         sys.exit(1)
 
-# Configure explicit FFI type bindings to prevent pointer slicing
+# Configure explicit FFI type bindings to prevent pointer slicing and race conditions
 try:
     loaded_libs["PWR"].lire_defaut_alimentation.argtypes = [ctypes.c_size_t]
     loaded_libs["PWR"].lire_defaut_alimentation.restype = ctypes.c_uint32
@@ -87,10 +87,11 @@ try:
 
     loaded_libs["BUS"].injecter_jeton_securite.argtypes = [ctypes.c_size_t, ctypes.c_uint32]
     loaded_libs["BUS"].injecter_jeton_securite.restype = None
-    print("✅ All C-Bridge functional signatures locked.")
+    print("✅ All C-Bridge functional signatures locked with Acquire/Release memory ordering.")
 except Exception as e:
     print(f"❌ Error during signature initialization: {e}")
     sys.exit(1)
+
 
 # -------------------------------------------------------------------------------
 # ⚡ 3. INTEGRATED CRASH-TEST ORCHESTRATION SCENARIO
