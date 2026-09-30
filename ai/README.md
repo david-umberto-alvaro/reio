@@ -19,7 +19,7 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 - **Temps de Réponse du Confinement :** Rupture et mise en quarantaine active exécutées en exactement **1 cycle d'horloge (10.00 ns)**.
 
 ### 🎛️ Empreinte Géométrique & Signature Thermique
-- **Ressources silicium (Vivado Utilization) :** Consomme précisément **55 Slice LUTs** et **37 Slice Registers** synchrones durcis (bascules d'états physiques triplées par Redondance Modulaire Triple - TMR).
+- **Ressources silicium (Vivado Utilization) :** Consomme précisément **56 Slice LUTs** et **37 Slice Registers** synchrones durcis (bascules d'états physiques triplées par Redondance Modulaire Triple - TMR).
 - **Macro-blocs Arithmétiques :** 0 bloc DSP utilisé, le traitement probabiliste étant résolu par réduction combinatoire directe.
 - **Puissance Électrique Totale (Vivado Power) :** Enveloppe thermique mesurée à **98 mW** (Leakage Statique : 72 mW, Cœur Dynamique Actif : 26 mW).
 - **I/O Physiques (CSG324 Package) :** Configuration de **102 broches physiques** (67 ports d'entrée `IBUF`, 35 ports de sortie `OBUF`).
@@ -42,7 +42,7 @@ Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient 
 |                       SILICIUM                        |
 | ----------------------------------------------------- |
 |         FILTRE MATÉRIEL PARACONCURRENT DURCI         |
-|         [55 Slice LUTs]             [37 Registers]    |
+|         [56 Slice LUTs]             [37 Registers]    |
 |                                                       |
 |    [Analyse de Congruence TMR] ---> [Vote Majoritaire]|
 +=======================================================+
