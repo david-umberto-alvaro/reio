@@ -180,6 +180,8 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
 +-----------------+     +-----------------+     +-----------------+
 
 ```
+### 🛠️ Plateforme de Crash-Test & Injection de Fautes Globale
+- 🧪 **[reio_soc_test.py](./reio_soc_test.py)** : Script d'intégration logicielle hybride (*Hardware-in-the-Loop* émulé). Il orchestre une injection d'attaques en cascade directement sur vos binaires machine Rust bare-metal (`reio_pwr.dll`, `reio_safe.dll`, `reio_uart.dll`, `reio_bus.dll`) pour certifier la disjonction et le confinement matériel immédiat à 0 Volt en cas d'intrusion.
 
 ## 📦 3. Structure du Dépôt & Politique d'Accès
 
