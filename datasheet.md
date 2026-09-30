@@ -27,8 +27,9 @@ Le System-on-Chip (SoC) REIO est une architecture de co-design matériel/logicie
 | **REIO-CDC** (Synchroniseur) | 100/400 MHz| 1 LUT | 3 Registres | 71 mW | 🟢 Conforme (WNS: +8,828 ns) |
 | **REIO-BUS** (Matrice Crossbar) | 100.00 MHz | 38 LUTs | 67 Registres | 77 mW | 🟢 Conforme (Timing interne Inf) |
 | **REIO-INT** (Contrôleur IRQ) | 100.00 MHz | 27 LUTs | 19 Registres | 72 mW | 🟢 Conforme (WNS: +6,543 ns) |
+| **REIO-NVM** (Mémoire Flash Guard) | 100.00 MHz | 48 LUTs | 33 Registres | 79 mW | 🟢 Conforme (WNS: +4,500 ns PW) |
 
-**Bilan de Synthèse Cumulé :** 414 Slice LUTs et 303 Slice Registers actifs. Enveloppe thermique globale maîtrisée à un niveau de sobriété micro-architecturale exceptionnel.
+**Bilan de Synthèse Cumulé :** **432 Slice LUTs** et **426 Slice Registers** actifs. Enveloppe thermique globale maîtrisée.
 
 ---
 
