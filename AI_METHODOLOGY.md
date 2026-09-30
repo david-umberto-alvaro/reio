@@ -27,7 +27,7 @@ Pour garantir une latence minimale et une compacité matérielle maximale, le fr
 ### ⚖️ 4. Corrélation entre Formalisme Théorique et Implémentation Silicium (Hardware Efficiency)
 
 Le framework REIO assume pleinement une approche asymétrique entre sa couche de modélisation mathématique et son exécution matérielle :
-* **Le Modèle Formel (Logique Paraconsistante Trivalente) :** Sert de cadre d'attestation supérieur pour prouver la résilience et l'étanchéité des règles de confinement face aux paradoxes logiques et aux injections de fautes.
+* **Le Modèle Formel (Logique Paraconsistante) :** Sert de cadre d'attestation supérieur pour prouver la résilience et l'étanchéité des règles de confinement face aux paradoxes logiques et aux injections de fautes.
 * **L'Implémentation Silicium (VHDL Compact) :** Refuse délibérément l'intégration de solveurs formels lourds ou de processeurs de calcul dynamiques, incompatibles avec les contraintes de temps réel strictes. La logique paraconsistante se traduit ainsi par des structures d'aiguillage booléennes pures, des masques rigides et des compteurs de stabilisation cycliques.
 
 Cette compacité micro-architecturale (651 LUTs au total) garantit un confinement instantané en exactement **1 seul cycle d'horloge (10 ns)** avec une consommation ultra-sobre (121 mW), matérialisant ainsi l'idéal du co-design : une théorie de haut niveau portée par une exécution matérielle minimale et indestructible.
