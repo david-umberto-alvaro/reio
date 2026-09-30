@@ -16,10 +16,10 @@ Engineered to mitigate ransomware threats, malicious mass encryption routines, a
 *Certified metrics under AMD/Xilinx Vivado targeting xa7a35tcsg324-1Q (100.00 MHz core clock, WNS +5.222 ns, WHS +0.222 ns).*
 
 ### Power & Thermal Dissipation Profile:
-- **Device Static & Dynamic Power:** 72 mW / 20 mW (Total 92 mW).
-- **Max Ambient Temperature (\(T_{AMB\_MAX}\)):** 124.6 °C (Automotive Q-Grade compliant).
-- **Slice LUTs Utilization:** 28 LUTs (0.13% of the device)
-- **Slice Registers Count:** 37 Registers (36 rising edge-triggered FDCE and 1 FDPE flip-flops due to register replication for 0xDEADBEEF drive stabilization)
+- **Device Static & Dynamic Power:** **72 mW / 20 mW** (Total 92 mW).
+- **Max Ambient Temperature (\(T_{AMB\_MAX}\)):** **124.6 °C** (Automotive Q-Grade compliant).
+- **Slice LUTs Utilization:** **28 LUTs** (0.13% of the device)
+- **Slice Registers Count:** **20 Registers** (19 rising edge-triggered FDCE and 1 FDPE flip-flops certified after synthesis logic minimisation)
 
 ---
 
@@ -40,23 +40,21 @@ Engineered to mitigate ransomware threats, malicious mass encryption routines, a
 
 ---
 
-## 📊 4. Behavioral Timing Chronogram & Fault Injection
+### 4. Behavioral Timing Chronogram & Fault Injection
 
 ```text
-◀------------------ Nominal Execution ------------------▶◀--- Ransomware Entropy Detection & 0V Cutoff ---▶
-0ns                      10ns                     20ns                     30ns                     40ns
+    <------------------ Nominal Execution ------------------> <-- Ransomware Entropy Detection & 0V Cutoff -->
+0ns                10ns               20ns               30ns               40ns
 
- |                        |                        |                        |                        |
-      ______                   ______                   ______                   ______                   ___
-_____/      \_______/      \_______/      \_______/      \_______/      \_______/      \_______/      \___  PCLK (100 MHz)
-XXXXXXXXXXXXXXXXXXXX_Nominal_Write_XXXXXXXXXXXXXXXXXXXXX_Ransomware_Payload_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  PWDATA[31:0]
-                                                            ▲ (Malicious write detected at 20ns)
-____________________________________________________________
-                                                            \________________________________________________  SIG_FLASH_WRITE_ENABLE (1->0V)
-                                                            ▼ (Radical hardware cutoff in exactly 1 cycle)
-_____________________________________________________________________________________________________________
-                                                            /------------------------------------------------  PSLVERR & PRDATA (0xDEADBEEF)
+|                  |                  |                  |                  |
+   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _
+__/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_  PCLK (100 MHz)
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX_Nominal_Write_XXXXX\___Ransomware_Payload_XXXXXXX  PWDATA[31:0]
+                                                         ▲ (Malicious write detected at 25ns)
+_________________________________________________________/
+                                                         \____________________________  SIG_FLASH_WRITE_ENABLE (1->0V)
+                                                                                        ▼ (Radical hardware cutoff in 0 cycle)
+_________________________________________________________/----------------------------  PSLVERR & PRDATA (0xDEADBEEF)
 ```
 
----
 
