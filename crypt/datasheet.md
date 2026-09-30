@@ -16,16 +16,16 @@ Operating on the **Autonomous Heterogeneous Decoupled (AHD)** architectural patt
 *Certified hardware metrics extracted from AMD/Xilinx Vivado routed implementation reports targeting the xa7a35tcsg324-1Q device layout.*
 
 ### Power & Thermal Dissipation Profile:
-- **Total On-Chip Power Consumption:** 0.075 W (75 mW total envelope).
-- **Core Dynamic & Static Current Splitting:** 3 mW dynamic toggling / 72 mW static leakage floor.
-- **Junction Temperature (\(T_J\)):** 25.4 °C.
-- **Maximum Safe Ambient Temperature (\(T_{AMB\_MAX}\)):** 124.6 °C (Automotive Q-Grade Extended Boundary).
+- **Total On-Chip Power Consumption:** **11.753 W** (Vivado Out-of-Context default switching activity layout).
+- **Core Dynamic & Static Current Splitting:** **11.593 W** dynamic toggling / **0.159 W (159 mW)** static leakage floor.
+- **Junction Temperature (\(T_J\)):** **81.2 °C** (Thermal profile calculated under continuous peak math stress).
+- **Maximum Safe Ambient Temperature (\(T_{AMB\_MAX}\)):** **68.8 °C** under maximum I/O stress constraints.
 
 ---
 
 ## 🔌 3. Signal Specifications & Hardware I/O Mapping
 
-*105-pin parallel interface validated via Vivado post-routing placement (CSG324 Package).*
+*69-pin parallel interface validated via Vivado post-routing placement (Bonded IOB - 36 inputs / 33 outputs).*
 
 | Signal Name | Direction | Width | Type | Physical Pin / Description |
 | :--- | :---: | :---: | :---: | :--- |
