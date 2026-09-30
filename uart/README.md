@@ -13,8 +13,9 @@ REIO-UART est le bloc IP matériel conçu pour la transmission sécurisée de la
 * **WPWS :** **+4,500 ns**.
 
 ### 📊 Métriques de l'Empreinte Silicium (Vivado Utilization)
-* **Slice Registers :** **30** bascules synchrones durcies.
-* **Slice LUTs :** **35** (31 de logique combinatoire, 4 d'ajustement structurel).
+* **Slice Registers :** **30** (28 FDCE / 2 FDPE).
+* **Slice LUTs as Logic :** **44 LUTs** (Divergence post-routage résolue, incluant l'optimisation physique).
+* **Broches d'I/O Physiques (IOB) :** **45 Bonded IOB** (Utilisation : 21,43%. Comptabilise l'interconnexion interne du bus MMIO vers la matrice Crossbar).
 
 ### 📊 Caractéristiques Électriques et Thermiques (Vivado Power)
 * **Puissance Totale :** **71 mW** (1 mW actif, 70 mW fuites statiques).
