@@ -10,13 +10,9 @@ Engineered to mitigate malicious frame injections, spoofing attacks, and hardwar
 
 ---
 
-## 2. Electrical, Timing & Thermal Metrics (Artix-7)
-
-*Certified metrics under AMD/Xilinx Vivado targeting xc7a35tcsg324-1 (66.67 MHz core clock, WNS +1.039 ns, WHS +0.279 ns).*
-
-### Power & Thermal Dissipation Profile:
-- **Device Static & Dynamic Power:** 72 mW / 2 mW.
-- **Max Ambient Temperature ($T_{AMB\_MAX}$):** 84.6 °C.
+## 2. Electrical, Timing & Resource Metrics (Artix-7)
+- **Total On-Chip Power Consumption:** 0.081 W (81 mW Vivado Power Profile).
+- **Core Dynamic & Static Current Splitting:** 11 mW dynamic switching / 70 mW static core leakage.
 
 ## 🔌 3. Signal Specifications & Hardware I/O Mapping
 
