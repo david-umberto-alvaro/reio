@@ -92,9 +92,9 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
 
 - 🔌 **[REIO-UART](./uart)**
   - **Fonction :** Contrôleur d'E/S de diagnostic isolé (Hardware Hardened UART IP Core).
-  - **Architecture de Sûreté :** Protection anti-débordement par tampon circulaire matériel rigide couplé à un automate de disjonction combinatoire. Coupure instantanée de la ligne TX (masquage à 0 Volt) et levée d'alarme d'infrastructure si la taille maximale de la trame de télémétrie est franchie sans autorisation.
-  - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **+5,457 ns** \| WHS : **+0,218 ns**). Interception de saturation et confinement matériel du port de diagnostic exécutés en exactement **1 seul cycle d'horloge (10.00 ns)**.
-  - **Ressources :** **35 Slice LUTs / 30 Slice Registers**, consommation globale ultra-faible de **71 mW** (Logique interne active : 1 mW, Fuites statiques passives : 70 mW).
+  - **Architecture de Sûreté :** Protection anti-débordement par tampon circulaire matériel rigide couplé à un automate de disjonction combinatoire (Clamp de la ligne TX à 0V en cas de débordement).
+  - **Validation :** Validé à **100.00 MHz** (WNS : **+5,457 ns** \| WHS : **+0,218 ns**). Temps de réaction critique mesuré à **4,559 ns** (chemin critique `baud_counter_reg[3]`), assurant le confinement en exactement **1 seul cycle d'horloge (10.00 ns)**.
+  - **Ressources :** **44 Slice LUTs / 30 Slice Registers / 45 Broches d'I/O (Bonded IOB)**, consommation globale de **71 mW** (Logique interne active : 1 mW, Fuites statiques : 70 mW).
 
 ---
 
