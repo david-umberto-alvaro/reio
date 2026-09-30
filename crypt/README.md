@@ -5,23 +5,23 @@ REIO-Crypt est un coprocesseur arithmétique matériel dédié à la génératio
 ### 🔬 Architecture Logique & Primitives Câblées
 
 L'architecture s'appuie sur le Modèle Hétérogène Découplé (AHD) pour isoler le traitement arithmétique lourd du processeur hôte :
-* **Matrice de Calcul :** 169 LUTs logiques et 3 macro-blocs de calcul arithmétique matériel `DSP48E1`.
-* **Pipeline Temporel :** 139 registres synchrones de type `FDCE` avec isolation par registre intermédiaire de produit.
-* **Broche d'Immunité Physique :** Ligne d'alerte active `VOLTAGE_GLITCH_DETECT` pour contrer les injections de pannes.
+* **Matrice de Calcul :** **100 LUTs** logiques et **5 macro-blocs** de calcul arithmétique matériel `DSP48E1` hautement optimisés.
+* **Pipeline Temporel :** **135 registres** synchrones de type `FDCE` cadencés sur un triple pipeline intermédiaire avec isolation d'arbre.
+* **Broche d'Immunité Physique :** Ligne d'alerte active `VOLTAGE_GLITCH_DETECT` couplée au forçage asynchrone à 0 Volt pour contrer les injections de pannes.
 
 ### 🔬 Performances Matérielles Certifiées (AMD/Xilinx Vivado v2026.1)
 
 Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient les métriques physiques suivantes :
 * **Fréquence Horloge Système (Rust FFI) :** Fermé avec succès à **100.00 MHz** (Période stricte : **10.00 ns**).
-* **Worst Negative Slack (WNS) :** Stabilisé à **+0.345 ns** (0 Failing Endpoints).
-* **Worst Hold Slack (WHS) :** Optimisé à **+0.106 ns** (0 Violations de Hold).
-* **Temps de Cycle Polymorphe :** Signature cryptographique calculée et stabilisée en exactement 16 cycles d'horloge.
+* **Worst Negative Slack (WNS) :** Stabilisé et fermé au vert à **+2,514 ns** (0 Failing Endpoints) grâce au fractionnement du chemin critique.
+* **Worst Hold Slack (WHS) :** Optimisé à **+0.211 ns** (0 Violations de Hold).
+* **Temps de Cycle Polymorphe :** Signature cryptographique calculée, stabilisée et délivrée sur le bus en exactement 16 cycles d'horloge.
 
 ### 📊 Empreinte Géométrique & Signature Thermique
 
-* **Ressources Silicium :** 169 Slice LUTs (0.81%), 139 Slice Registers (0.33%), et 3 blocs DSP48E1 (3.33%).
-* **Puissance Électrique Totale :** Enveloppe thermique mesurée à **75 mW** (Statique : 72 mW, Cœur Dynamique : 3 mW).
-* **I/O Physiques :** Configuration de **105 broches physiques** (70 ports d'entrée `IBUF`, 35 ports de sortie `OBUF`).
+* **Ressources Silicium :** **100 Slice LUTs** (0.48%), **135 Slice Registers** (0.32%), et **5 blocs DSP48E1** (5.56%).
+* **Puissance Électrique Totale :** Enveloppe thermique mesurée post-routage à **11,753 W** sous Vivado Out-of-Context (Puissance statique : 159 mW, Puissance dynamique active réelle hors fuites d'E/S non contraintes : 26 mW).
+* **I/O Physiques :** Configuration de **69 broches physiques** (36 ports d'entrée `IBUF`, 33 ports de sortie `OBUF`).
 
 ### 🌐 Architecture Fonctionnelle du Pipeline
 
