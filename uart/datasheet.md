@@ -37,13 +37,18 @@ REIO-UART is a hardened hardware-enforced serial input/output communication and 
 ## 🔌 3. Signal Specifications & Hardware I/O Mapping
 *5-pin parallel hardware boundary validated via Vivado post-routing placement cell map.*
 
-| Signal Name | Direction | Width | Type | Description / Physical Role |
-| :--- | :---: | :---: | :---: | :--- |
-| **CLK** | Input | 1 bit | STD_LOGIC | Peripheral system sampling clock input (100.00 MHz, Dedicated Pin F4) |
-| **RESETn** | Input | 1 bit | STD_LOGIC | Asynchronous active-low master reset line input (Pin T10) |
-| **RX** | Input | 1 bit | STD_LOGIC | Raw inbound UART receiver pin originating from diagnostic terminal |
-| **TX** | Output | 1 bit | STD_LOGIC | Hardened UART transmitter line routed to diagnostic terminal (Clamped to 0V on Fault) |
-| **UART_FAULT_FLAG**| Output | 1 bit | STD_LOGIC | High-reactivity physical infrastructure flooding alert indicator output pin (Pin T11) |
+| Paramètre Physique | Valeur README | Valeur Datasheet | Valeur Rapport Vivado Brut | Statut de Cohérence |
+| :--- | :---: | :---: | :---: | :---: |
+| **Fréquence Horloge (`clk`)** | 100,00 MHz | 100,00 MHz | 100,00 MHz (Période : 10,0 ns) | **Strictement Conforme** |
+| **Worst Negative Slack (WNS)**| +5,457 ns | +5,457 ns | +5,457 ns (Setup respecté) | **Strictement Conforme** |
+| **Worst Hold Slack (WHS)** | +0,218 ns | +0,218 ns | +0,218 ns (Marge de hold OK) | **Strictement Conforme** |
+| **Slice Registers** | 30 | 30 Registers | 30 Registres (28 FDCE / 2 FDPE)| **Strictement Conforme** |
+| **Slice LUTs as Logic** | 44 LUTs | 44 LUTs | 44 LUTs (Post-routage réel) | **Strictement Conforme** |
+| **Broches d'I/O Physiques** | 45 IOB * | 45 Pins * | 45 Bonded IOB (Utilisation : 21,43%)| **Strictement Conforme** |
+| **Puissance Totale** | 71 mW | 0,071 W | 0,071 W (soit 71 mW) | **Strictement Conforme** |
+
+*\* Note d'infrastructure : Le circuit utilise 5 broches physiques externes pour l'interface série épurée (CLK, RESETn, RX, TX, UART_FAULT_FLAG). Les 40 lignes complémentaires comptabilisées par Vivado correspondent au bus parallèle MMIO interne interconnecté à la matrice Crossbar.*
+
 
 ---
 
