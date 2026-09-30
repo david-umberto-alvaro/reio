@@ -89,15 +89,16 @@ All function signatures are explicitly compiled using `extern "C"` to bypass the
 
 ---
 
-## 🏆 5. Architectural Security Certification Summary
+### 🏆 5. Architectural Security Certification Summary
 
 | Attack Vector Vector | Target Domain | Hardware Mitigation Invariant | Reaction Time Latency |
-| :--- | :--- | :--- | :---: |
-| **Network Anomaly Injection** | Ethernet Line | Inline Signature Matcher & Wire Clamping | **2.50 ns** |
+| :--- | :---: | :--- | :---: |
+| **Network Anomaly Injection** | Ethernet Line | Inline Signature Matcher & Double Wire Clamping | **8.00 ns** (2 Cycles @ 250 MHz) |
 | **Automotive Babbling Idiot** | CAN / LIN Bus | 2-bit Filter Saturation Verification Loop | **60.00 ns** |
-| **Mass Encryption / Ransomware** | NAND Storage | Logical Product Null verification (Alpha Key) | **10.00 ns** |
-| **Clock Glitching / Shifting** | Inter-Clock Line | Triple Flip-Flop Metastability Absorption Barrier | **30.00 ns** |
-| **Interrupt Flooding (DoS)** | Core CPU Plane | 8-bit Asynchronous Rate Limiter Cutoff | **10.00 ns** |
-| **Diagnostic Memory Buffer Overflow**| Serial Log Line| Registered 4-byte Throttler Array Isolation | **10.00 ns** |
+| **Mass Encryption / Ransomware** | NAND Storage | Logical Product Null verification (Alpha Key) | **10.00 ns** (1 Cycle @ 100 MHz) |
+| **Clock Glitching / Shifting** | Inter-Clock Line | Triple Flip-Flop Metastability Absorption Barrier | **30.00 ns** (3 Cycles @ 100 MHz) |
+| **Interrupt Flooding (DoS)** | Core CPU Plane | 8-bit Asynchronous Rate Limiter Cutoff | **10.00 ns** (1 Cycle @ 100 MHz) |
+| **Diagnostic Memory Buffer Overflow** | Serial Log Line | Registered 4-byte Throttler Array Isolation | **10.00 ns** (1 Cycle @ 100 MHz) |
+
 
 ---
