@@ -20,15 +20,13 @@ Within the unifed architecture, the module implements two isolated cross-domain 
 *Certified hardware metrics extracted from AMD/Xilinx Vivado routed implementation reports targeting the xa7a35tcsg324-1Q device layout.*
 
 ### Power & Thermal Dissipation Profile:
-- **Total On-Chip Power Consumption:** 0.336 W (336 mW total thermal envelope).
-- **Core Dynamic & Static Current Splitting:** 7 mW dynamic switching logic / 71 mW static core leakage / 258 mW I/O buffer termination load.
-- **Junction Temperature (\(T_J\)):** 26.6 °C.
-- **Maximum Safe Ambient Temperature (\(T_{AMB\_MAX}\)):** 123.4 °C (Automotive Q-Grade Extended Boundary).
+- **Total On-Chip Power Consumption:** 0.071 W (71 mW total thermal envelope).
+- **Core Dynamic & Static Current Splitting:** 1 mW dynamic / 70 mW static / 0 mW I/O.
+- **Junction Temperature (T_J):** 25.3 °C (Max ambient: 124.7 °C).
 
-### Static Timing Analysis (Inter-Clock Asynchronous Domain Summary):
-- **Worst Negative Slack (WNS):** Infinite (`inf`). Hardware `set_false_path` constraint bypasses unresolvable multi-frequency setup equations.
-- **Worst Hold Slack (WHS):** Infinite (`inf`) (Zero multi-domain hold violations).
-- **Total Hardware Latency Profile:** Hardened signal lock achieved in exactly **3 destination clock cycles (30.00 ns)**.
+### Static Timing Analysis (clk_dest_domain @ 100.00 MHz):
+- **WNS / WHS / WPWS:** +8.926 ns / +0.131 ns / +4.500 ns (Zero timing violations).
+- **Total Hardware Latency Profile:** 3 destination clock cycles (30.00 ns).
 
 ---
 
