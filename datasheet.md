@@ -43,13 +43,6 @@ Every logical transaction passing through the system is monitored, verified, or 
 - **Total Combined On-Chip Power Consumption:** **121 mW** (Global Nominal Budget).
 - **SoC Junction Temperature (TJ):** **25.4 °C** (Validated under constraint limits).
 
-### ⚡ Power Supply & Thermal Dissipation Profile
-- **Total Silicon Static Leakage Power (Device Static):** 72 mW (Worst-case boundary for thermal execution).
-- **SoC Aggregated Dynamic Logic Switching Power:** 38 mW (Average execution profile at peak FFI transaction rate).
-- **Total Combined On-Chip Power Consumption:** **110 mW** (Nominal operating environment).
-- **SoC Junction Temperature (\(T_J\)):** **25.4 °C** (Verified under static thermal constraints).
-- **Maximum Qualified Ambient Temperature Bound:** **124.6 °C** (Full Automotive Q-Grade Boundaries).
-
 ---
 
 ## ⏱️ 3. Unified Clock Domains & Static Timing Analysis
