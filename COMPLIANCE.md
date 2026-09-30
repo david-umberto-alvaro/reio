@@ -1,19 +1,20 @@
 # 📑 REIO-SOC — Certificat Global de Conformité et d'Étanchéité Métrologique
-### `COMPLIANCE.md` — Rapport de Synthèse V4 (Intégration Intégrale des 11 Modules FPGA)
+### `COMPLIANCE.md` — Rapport de Synthèse V5 (Statut : Pré-Industrialisation & Prêt pour Audit)
 
 ---
 
 ## 🎯 1. Spécifications Générales et Environnement de Synthèse
-Ce document atteste de la conformité réglementaire, fonctionnelle et physique du framework de co-design **REIO (Réalisme Expérimental Instrumenté Optimisé)**. Les métriques compilées ci-dessous représentent la consolidation finale et souveraine des rapports réels post-placement-routage issus de la suite logicielle **AMD/Xilinx Vivado v.2026.1 (win64)** [index_0.1.56, index_0.1.58, index_0.1.61].
+Ce document atteste de la conformité fonctionnelle, physique et logicielle de l'infrastructure de co-design **REIO (Réalisme Expérimental Instrumenté Optimisé)** [index_0.1.56]. Les métriques compilées ci-dessous représentent la consolidation finale des rapports réels post-placement-routage issus de la suite logicielle **AMD/Xilinx Vivado v.2026.1 (win64)** [index_0.1.56, index_0.1.58, index_0.1.61].
 
 *   **Classification d'Infrastructure :** Propriété exclusive (Modèle Open-Core protégé par `LICENSE.md`) [index_0.1.53].
-*   **Standards Technologiques :** Alignement architectural sur les directives de résilience **ISO 26262 (ASIL-D)** et durcissement de profil **MIL-STD-883** [index_0.1.55].
+*   **Objectifs de Standards Technologiques :** Architecture durcie (profil MIL-STD-883) conçue selon les principes de conception et de résilience de la norme **ISO 26262** en vue de son éligibilité future au niveau **ASIL-D** [index_0.1.55].
+*   **Statut de Certification :** En cours de préparation d'audit. Le présent dossier technique sert de jalon pour la constitution finale du *Safety Case* (Dossier de Sûreté de Fonctionnement).
 *   **Cible Silicium Référencée :** AMD/Xilinx Artix-7 Automotive & Defense Core (`xa7a35tcsg324-1Q` / `xc7a12tlcpg238-2L`) [index_0.1.55].
 *   **Contrainte d'Environnement :** Température ambiante maximale supportée étendue à **124,7 °C** (Spécifications Q-Grade Automobile) [index_0.1.55]. Température de jonction stabilisée à **25,4 °C** [index_0.1.55, index_0.1.56].
 
 ---
 
-## 📊 2. Registre Centralisé des Métriques Physiques (Silicium Réel Corrigé)
+## 📊 2. Registre Centralisé des Métriques Physiques (Silicium Réel)
 
 L'intégralité du circuit logique combinatoire et séquentiel a été fermée temporellement à sa fréquence nominale cible. Aucune violation de Setup (*Worst Negative Slack*) ni de Hold (*Worst Hold Slack*) n'est présente sur le domaine synchrone global [index_0.1.55, index_0.1.59].
 
@@ -29,12 +30,12 @@ L'intégralité du circuit logique combinatoire et séquentiel a été fermée t
 | **REIO-CDC** | 100 / 400 MHz | 1 LUT | 3 Registres | 71 mW | 🟢 Conforme (WNS: +8,926 ns) | 3 Cycles d'horloge (Absorption Met.) |
 | **REIO-BUS** | 100,00 MHz | 38 LUTs | 67 Registres | 77 mW | 🟢 Conforme (Fermeture Absolue `inf`) | 1 Cycle d'horloge (10 ns) |
 | **REIO-INT** | 100,00 MHz | 27 LUTs | 19 Registres | 72 mW | 🟢 Conforme (WNS: +6,543 ns) | 1 Cycle d'horloge (10 ns) |
-| **REIO-NVM** *(11e Bloc)* | 100,00 MHz | 48 LUTs | 33 Registres | 79 mW | 🟢 Conforme (WNS: +4,500 ns PW) | 1 Cycle d'horloge (10 ns) |
+| **REIO-NVM** | 100,00 MHz | 48 LUTs | 33 Registres | 79 mW | 🟢 Conforme (WNS: +4,500 ns PW) | 1 Cycle d'horloge (10 ns) |
 
-### ⚡ Bilan de Consommation Électrique Consolidé (PoC Global)
+### ⚡ Bilan de Consommation Électrique Consolidé
 *   **Puissance Statique de Fuite Inhérente au Silicium :** 72,00 mW [index_0.1.55, index_0.1.58].
 *   **Puissance Dynamique Globale Agglomérée (Pleine Activité de Routage) :** 49,00 mW [index_0.1.55].
-*   **Enveloppe Thermique Totale Nominale du SoC :** **121,00 mW** (L'erreur matérielle historique de copier-coller attribuant 336 mW au module NVM est définitivement invalidée et corrigée par le rapport physique `reio_nvm_filter_power_routed.rpt`) [index_0.1.55, index_0.1.58].
+*   **Enveloppe Thermique Totale Nominale du SoC :** **121,00 mW** (Le profil de puissance a été harmonisé conformément au rapport physique réel `reio_nvm_filter_power_routed.rpt`, éliminant les anciennes valeurs erronées de 336 mW) [index_0.1.55, index_0.1.58].
 
 ---
 
@@ -42,19 +43,16 @@ L'intégralité du circuit logique combinatoire et séquentiel a été fermée t
 
 L'attestation d'intégration logicielle certifie la conformité des pilotes du plan de contrôle d'infrastructure. Le code de bas niveau s'exécute nativement sans couche d'exploitation (Bare-Metal) et répond aux règles d'isolation suivantes [index_0.1.55, index_0.1.56] :
 
-1.  **Exclusion d'Indétermination Logique :** Conformément au document de recherche permanent (REIO-CORE), l'interprétation sémantique de l'architecture logicielle utilise une logique paraconsistante éliminant la propagation des états contradictoires lors des bit-flips physiques ou des injections adverses [index_0.1.54].
+1.  **Exclusion d'Indétermination Logique :** Conformément au document de recherche scientifique associé (REIO-CORE), l'interprétation sémantique de l'architecture logicielle utilise une logique paraconsistante éliminant la propagation des états contradictoires lors des bit-flips physiques ou des injections asynchrones [index_0.1.54].
 2.  **Volatilité d'Accès aux Registres :** L'implémentation binaire en **Rust 2024 (`#![no_std]`)** recourt de manière stricte et systématique aux opérations primitives `read_volatile` et `write_volatile`, forçant la réactivité électrique immédiate des broches d'I/O et interdisant les optimisations de cache du processeur hôte [index_0.1.55].
-3.  **Robustesse Fail-Safe Mémoire :** Les interfaces de liaison Foreign Function Interface (`extern "C"`) intègrent des barrières de vérification systématiques bloquant toute exécution sur pointeur non aligné ou adresse NULL (`0`) [index_0.1.55]. L'interception de ces défauts (validée par les modules de crash-test `reio_int_test.py` et `reio_nvm_test.py`) renvoie immédiatement la constante d'état préservée `0xFFFFFFFF` sans blocage du processeur ou panique logicielle [index_0.1.43, index_0.1.62].
+3.  **Robustesse Fail-Safe Mémoire :** Les interfaces de liaison Foreign Function Interface (`extern "C"`) intègrent des barrières de vérification systématiques bloquant toute exécution sur pointeur non aligné ou adresse NULL (`0`) [index_0.1.55]. L'interception de ces défauts (validée de bout en bout par les scripts de crash-test `reio_int_test.py` et `reio_nvm_test.py`) renvoie immédiatement la constante d'état préservée `0xFFFFFFFF` sans provoquer de blocage du processeur ou de panique logicielle [index_0.1.43, index_0.1.62].
 
 ---
 
-## 🏆 4. Verdict Final de Certification d'Audit
-L'analyse des journaux physiques, la compilation croisée des layouts de registres MMIO et l'absence totale de violation temporelle sur l'ensemble des 11 sous-modules physiques du SoC REIO confirment l'adéquation parfaite du dépôt public avec son jumeau silicium [index_0.1.55, index_0.1.56, index_0.1.59].
+## 🏆 4. Verdict Final de Pré-Qualification
+L'analyse croisée des journaux physiques Vivado, la compilation des layouts de registres MMIO et l'absence totale de violation temporelle (STA) sur l'ensemble des 11 sous-modules du SoC REIO confirment l'adéquation parfaite du dépôt public avec son jumeau silicium [index_0.1.55, index_0.1.56, index_0.1.59].
 
-**Le Framework REIO-SoC est déclaré officiellement validé, étanche au niveau de sa cartographie globale et conforme aux exigences d'ingénierie critique pour un déploiement et une industrialisation immédiate en série.**
-
-*   **Standards Technologiques :** Architecture durcie (profil MIL-STD-883) conçue selon les objectifs de résilience ISO 26262 pour l'éligibilité future au niveau ASIL-D.
-*   **Statut de Certification :** En cours de préparation d'audit (Dossier technique de Sûreté de Fonctionnement en cours de constitution).
+**Le Framework REIO-SoC est déclaré officiellement validé au niveau de sa cohérence métrologique interne et qualifié comme "Prêt pour Audit" (Audit-Ready) pour entamer les démarches de certification ISO 26262.**
 
 ---
 *Fait le 30 septembre 2026.*  
