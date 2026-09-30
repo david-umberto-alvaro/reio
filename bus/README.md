@@ -8,8 +8,8 @@ REIO-BUS est la colonne vertébrale matérielle (Interconnect IP Core) du SoC RE
 * **Temps de Réaction de Sûreté :** Interception de tag invalide, effondrement complet du bus à 0V et levée du signal d'alerte activés en exactement **1 cycle d'horloge (10.00 ns)**.
 
 ### 📊 Synthèse d'Audit et Fermeture Temporelle (Vivado Static Timing)
-* **Worst Negative Slack (WNS) :** Fermé au vert éclatant à **+4,723 ns** (0 Failing Endpoints sur le domaine synchrone `clk_sys_domain` à 100.00 MHz) [https://github.com].
-* **Worst Hold Slack (WHS) :** Optimisé avec succès à **+0,192 ns** (Zéro violation de Hold face aux bruits de tension) [https://github.com].
+* **Worst Negative Slack (WNS) :** Fermé au vert éclatant à **+4,723 ns** (0 Failing Endpoints sur le domaine synchrone `clk_sys_domain` à 100.00 MHz) 
+* **Worst Hold Slack (WHS) :** Optimisé avec succès à **+0,192 ns** (Zéro violation de Hold face aux bruits de tension) 
 
 ### 📉 Métriques de l'Empreinte Silicium (Vivado Utilization)
 * **Slice LUTs :** Consomme précisément **89 Slice LUTs** (0,43% de la matrice Artix-7, incluant les primitives de notre sous-système d'I/O unifié combinant l'UART et le filtre NVM) [https://github.com].
