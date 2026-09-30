@@ -22,20 +22,16 @@ Every logical transaction passing through the system is monitored, verified, or 
 
 ### 🛠️ Hardware Utilization Summary (Artix-7 Fabric - Consolidated Summary)
 
-| Module Layer | Slice LUTs | Slice Registers | Critical Primitives / Hardware Macros | Status |
-| :--- | :---: | :---: | :--- | :---: |
-| **REIO-Chain** | 52 | 153 | 151 FDRE, 2 FDSE, 24 CARRY4 Blocks | 🟢 Certified |
-| **REIO-Drive** | 114 | 89 | Actuator Control APB Engine (Post-Route) | 🟢 Certified |
-| **REIO-Safe** | 28 | 37 | 36 FDCE, 1 FDPE (Including Bus Line Replicas) | 🟢 Certified |
-| **REIO-Crypt** | 169 | 139 | Hardware Zero-Knowledge Pipeline Engine | 🟢 Certified |
-| **REIO-AI** | 64 | 48 | Paraconcurrent Hardware Supervisor Array | 🟢 Certified |
-| **REIO-CDC** | 1 | 3 | 3 FDCE (`ASYNC_REG == TRUE`), 1 Logic Guard | 🟢 Certified |
-| **REIO-NVM** | 48 | 33 | 84 Bonded IOB Parallel Clamping Guard | 🟢 Certified |
-| **REIO-Bus** | 87 | 64 | Geographic Crossbar Router, Token Auth | 🟢 Certified |
-| **REIO-PWR** | 18 | 16 | Voltage Rail State-Machine Séquenceur | 🟢 Certified |
-| **REIO-Int** | 27 | 19 | 19 FDCE, 4 CARRY4, Dual Rate-Limiter Channels | 🟢 Certified |
-| **REIO-Uart** | 44 | 30 | 30 FDCE/FDPE, 45 Bonded IOB Routed Sync | 🟢 Certified |
-| **TOTAL SoC** | **651** | **635** | **Hardened Monolithic Sovereign Fabric** | **🏆 SEALED** |
+
+| Module Hardware | Horloge Cible | Slice LUTs | Slice Registers | Puissance Active | Statut de Fermeture (STA) |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **REIO-PWR** (Séquenceur) | 100,00 MHz | 6 LUTs | 5 Registres | 72 mW | 🟢 Conforme (WNS: +6,120 ns) |
+| **REIO-Drive** (Automotive) | 66,667 MHz | 6 LUTs | 4 Registres | 81 mW | 🟢 Conforme (WNS: +8,912 ns) |
+| **REIO-Safe** (Disjoncteur) | 100,00 MHz | 28 LUTs | 37 Registres | 92 mW | 🟢 Conforme (WNS: +5,222 ns) |
+| **REIO-UART** (Diagnostic) | 100,00 MHz | 44 LUTs | 30 Registres | 71 mW | 🟢 Conforme (WNS: +4,896 ns) |
+| **REIO-Crypt** (Accélérateur) | 100,00 MHz | 169 LUTs | 139 Registres | 84 mW | 🟢 Conforme (WNS: +0,345 ns) |
+| **REIO-Chain** (Réseau L3) | 250,00 MHz | 2 LUTs | 64 Registres | 13 mW | 🟢 Conforme (WNS: +0,860 ns) |
+| **REIO-AI** (Filtre Neuronal) | 100,00 MHz | 28 LUTs | 37 Registres | 92 mW | 🟢 Conforme (WNS: +5,222 ns) |
 
 
 ### ⚡ Power Supply & Thermal Dissipation Profile (V4 Core)
