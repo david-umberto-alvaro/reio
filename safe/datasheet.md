@@ -24,14 +24,19 @@ Engineered to mitigate ransomware threats, malicious mass encryption routines, a
 ---
 
 ## 🔌 3. Signal Specifications & Hardware I/O Mapping
-
 *68-pin parallel interface validated via Vivado post-routing placement (CSG324 Package).*
 
-| Métrique Système | Spécification Documentaire (MD) | Validation Vivado Post-Routage (RPT) | Statut d'Audit |
-| :--- | :---: | :---: | :---: |
-| **Horloge REIO-Drive** | 66,667 MHz (Automotive Bus) | 66,667 MHz (Contrainte clk) | 🟢 Conforme |
-| **Logique REIO-Drive** | 6. Slice LUTs / 4 Registers | 6 LUTs / 4 Registres (3 FDRE, 1 FDSE) | 🟢 Conforme |
-| **Puissance REIO-Drive** | 81 mW (81 mW global Bufferisé) | 74 mW (On-Chip) / +7 mW I/O passif | 🟢 Conforme |
+| Signal Name | Direction | Width | Type | Description / Hardware Protocol Role |
+| :--- | :---: | :---: | :---: | :--- |
+| **PCLK** | Input | 1 bit | STD_LOGIC | Dedicated system master clock input (100.00 MHz, Hardware Pin F4) |
+| **PSEL** | Input | 1 bit | STD_LOGIC | Peripheral select line originating from the central AMBA Interconnect bridge |
+| **PENABLE** | Input | 1 bit | STD_LOGIC | APB strobe line indicating the second cycle of an active transfer phase |
+| **PWRITE** | Input | 1 bit | STD_LOGIC | Access direction control indicator (High = Write Access, Low = Read Access) |
+| **PADDR** | Input | 12 bits | STD_LOGIC_VECTOR| Memory-mapped register address bus offset boundary targeting the filtering arrays |
+| **PWDATA** | Input | 32 bits | STD_LOGIC_VECTOR| Inbound data payload bus monitored by the active hardware entropy supervisor |
+| **PRDATA** | Output | 32 bits | STD_LOGIC_VECTOR| Hardened data read bus (Forced to 0xDEADBEEF during active isolation lockout) |
+| **PSLVERR** | Output | 1 bit | STD_LOGIC | Active-high peripheral protocol slave error asserted upon ransomware detection |
+| **SIG_FLASH_WRITE_ENABLE**| Output | 1 bit | STD_LOGIC | Physical flash memory gate control line (Surgically dropped to 0V in exactly 1 cycle) |
 
 ---
 
