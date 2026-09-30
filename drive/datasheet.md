@@ -18,14 +18,16 @@ Engineered to mitigate malicious frame injections, spoofing attacks, and hardwar
 
 *Interface physique 13 broches validée par routage post-synthèse Vivado (Boîtier CSG324).*
 
+
 | Nom du Signal | Direction | Largeur | Type | Description / Rôle Physique |
 | :--- | :---: | :---: | :---: | :--- |
-| **clk** | Entrée | 1 bit | STD_LOGIC | Horloge système principale (Cible 66.67 MHz, Pin R10) |
-| **reset** | Entrée | 1 bit | STD_LOGIC | Reset matériel synchrone (Actif-Haut, Pin T10) |
-| **flux_data_in[7:0]** | Entrée | 8 bits | STD_LOGIC_VECTOR | Bus de données haute vitesse intercepté en parallèle (Pins H14 à A16) |
-| **flux_valid_in** | Entrée | 1 bit | STD_LOGIC | Signal stroboscopique de validation des données (Pin V11) |
-| **statut_securite** | Sortie | 1 bit | STD_LOGIC | Indicateur d'état du disjoncteur matériel ('1' = Nominal, Pin U12) |
-| **declencher_secours** | Sortie | 1 bit | STD_LOGIC | Déclencheur critique d'isolement du disjoncteur (Pin V12) |
+| **CLK** | Entrée | 1 bit | STD_LOGIC | Horloge système principale (Cadencée à 100.00 MHz, Pin F4) |
+| **RESETn** | Entrée | 1 bit | STD_LOGIC | Réinitialisation maître asymétrique active à l'état bas (Pin T10) |
+| **drive_ctrl_reg** | Entrée | 32 bits | MMIO_REG | Registre de commande prioritaire (Offset 0x00, Bit d'activation) |
+| **drive_speed_reg** | Entrée | 32 bits | MMIO_REG | Registre de mesure de vitesse des actionneurs (Offset 0x04) |
+| **fault_flag_reg** | Sortie | 32 bits | MMIO_REG | Registre de statut d'alarme de blocage ou dérive (Offset 0x08) |
+| **DRIVE_FAULT_FLAG**| Sortie | 1 bit | STD_LOGIC | Ligne matérielle d'alerte critique d'isolement du disjoncteur (Pin T11) |
+
 
 ## 📊 4. Behavioral Timing Chronogram & Fault Injection
 
