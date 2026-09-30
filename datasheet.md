@@ -22,7 +22,6 @@ Every logical transaction passing through the system is monitored, verified, or 
 
 ### 🛠️ Hardware Utilization Summary (Artix-7 Fabric - Consolidated Summary)
 
-
 | Module Hardware | Horloge Cible | Slice LUTs | Slice Registers | Puissance Active | Statut de Fermeture (STA) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | **REIO-PWR** (Séquenceur) | 100,00 MHz | 6 LUTs | 5 Registres | 72 mW | 🟢 Conforme (WNS: +6,120 ns) |
@@ -31,8 +30,7 @@ Every logical transaction passing through the system is monitored, verified, or 
 | **REIO-UART** (Diagnostic) | 100,00 MHz | 44 LUTs | 30 Registres | 71 mW | 🟢 Conforme (WNS: +4,896 ns) |
 | **REIO-Crypt** (Accélérateur) | 100,00 MHz | 169 LUTs | 139 Registres | 84 mW | 🟢 Conforme (WNS: +0,345 ns) |
 | **REIO-Chain** (Réseau L3) | 250,00 MHz | 2 LUTs | 64 Registres | 13 mW | 🟢 Conforme (WNS: +0,860 ns) |
-| **REIO-AI** (Filtre Neuronal) | 100,00 MHz | 28 LUTs | 37 Registres | 92 mW | 🟢 Conforme (WNS: +5,222 ns) |
-
+| **REIO-AI** (Filtre Neuronal TMR)| 100,00 MHz | 55 LUTs | 37 Registres | 26 mW | 🟢 Conforme (WNS: +7,272 ns) |
 
 ### ⚡ Power Supply & Thermal Dissipation Profile (V4 Core)
 - **Total Silicon Static Leakage Power:** 72 mW.
