@@ -17,7 +17,6 @@ Le System-on-Chip (SoC) REIO est une architecture de co-design matériel/logicie
 
 | Module Matériel (IP Core) | Fréquence Horloge | Primitives LUTs | Primitives Registers | Puissance Électrique | Statut de Fermeture STA (Vivado) |
 | :--- | :---: | :---: | :---: | :---: | :--- |
-|
 | **REIO-PWR** (Séquenceur) | 100.00 MHz | 14 LUTs | 10 Registres | 71 mW | 🟢 Conforme (WNS: +7,259 ns) |
 | **REIO-Drive** (Automotive) | 66.667 MHz | 6 LUTs | 4 Registres | 72 mW | 🟢 Conforme (WNS: +1,039 ns) |
 | **REIO-Safe** (Storage Guard) | 100.00 MHz | 28 LUTs | 20 Registres | 92 mW | 🟢 Conforme (WNS: +5,222 ns) |
@@ -29,6 +28,9 @@ Le System-on-Chip (SoC) REIO est une architecture de co-design matériel/logicie
 | **REIO-BUS** (Matrice Crossbar) | 100.00 MHz | 38 LUTs | 67 Registres | 77 mW | 🟢 Conforme (Timing interne Inf) |
 | **REIO-INT** (Contrôleur IRQ) | 100.00 MHz | 27 LUTs | 19 Registres | 72 mW | 🟢 Conforme (WNS: +6,543 ns) |
 | **REIO-NVM** (Mémoire Flash Guard) | 100.00 MHz | 48 LUTs | 33 Registres | 79 mW | 🟢 Conforme (WNS: +4,500 ns PW) |
+
+**Bilan de Synthèse Cumulé :** **413 Slice LUTs** et **422 Slice Registers** actifs. Enveloppe thermique globale maîtrisée.
+
 
 **Bilan de Synthèse Cumulé :** **413 Slice LUTs** et **422 Slice Registers** actifs. Enveloppe thermique globale maîtrisée.
 
