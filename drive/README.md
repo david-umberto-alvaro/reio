@@ -9,13 +9,9 @@ L'extraction de la Netlist Vivado certifie la structure suivante :
 - **Verrouillage des Sorties :** 2 bascules synchrones dédiées au maintien des lignes d'état (`statut_securite` et `declencher_secours`).
 
 ### 🔬 Performances Matérielles Certifiées (AMD/Xilinx Vivado v2026.1)
-
-Les rapports d'implémentation post-placement-routage sur la matrice AMD/Xilinx Artix-7 certifient les métriques physiques et de sûreté suivantes :
-
-- **Fréquence Horloge Système (Rust) :** Chemin de timing fermé avec succès à **66.67 MHz** (Période : **15.00 ns**).
-- **Worst Negative Slack (WNS) :** Entièrement stabilisé dans le vert à **+1.039 ns** (Zéro violation de chemin, contrainte de sûreté combinatoire fixée à 12.00 ns).
-- **Worst Hold Slack (WHS) :** Délais de routage intra-site parfaitement optimisés à **+0.279 ns**.
-- **Livrable Temporel :** Coupure réseau déterministe et filtrée anti-glitch validée en simulation à **60.00 ns** (3 cycles de stabilisation d'horloge).
+### 📊 Caractéristiques Électriques et Thermiques (Vivado Power)
+- **Puissance Électrique Totale :** **81 mW** réels mesurés post-routage (11 mW d'activité dynamique des bascules et 70 mW statiques).
+- **Note d'I/O Buffer :** L'écart de 6 mW s'explique par l'ajout des résistances de tirage physiques sur les lignes de contrôle des actionneurs mécaniques.
 
 ### 📊 Empreinte Géométrique & Signature Thermique
 
