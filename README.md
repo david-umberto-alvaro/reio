@@ -37,11 +37,11 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
     - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** | **WNS : +7,272 ns** | **WHS : +0,260 ns**). Isolation et forçage du bus sur le tag de sécurité `0xDEADBEEF` exécutés en exactement **1 cycle d'horloge**.
     - **Ressources :** **55 LUTs / 37 Registres / 0 bloc DSP**, consommation globale ultra-faible de **98 mW** (Dynamique active : 26 mW, Statique passive : 72 mW).
 
-- 🎛️ **[REIO-BUS](./bus)**
-  - **Fonction :** Matrice d'interconnexion Crossbar sécurisée et décodeur d'adresse pour l'infrastructure interne du SoC.
-  - **Architecture de Sûreté :** Routage géométrique étanche par partitionnement de bus et disjoncteur matériel à effondrement éclair en cas de jeton d'authentification invalide.
-  - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| **WNS : inf** \| **WHS : inf**). Interception de violation, effondrement complet à 0 Volt et levée de l'alarme d'intrusion exécutés en exactement **1 cycle d'horloge (10.00 ns)**.
-  - **Ressources :** **38 Slice LUTs / 67 Slice Registers**, consommation globale de **77 mW** (Logique interne active : 6 mW, Fuites statiques et I/O buffers : 71 mW).
+- 🚌 **[REIO-BUS](./bus)**
+    - **Fonction :** Matrice d'interconnexion Crossbar sécurisée et décodeur d'adresse pour l'infrastructure interne du SoC.
+    - **Architecture de Sûreté :** Routage géométrique étanche par partitionnement de bus avec sous-système d'I/O unifié combinant l'intercepteur Flash NVM et l'automate UART face aux alertes de structure (LUT Combining).
+    - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| **WNS : +4,723 ns** \| **WHS : +0,192 ns**). Interception de violation, isolement immédiat de l'UART et effondrement complet à 0 Volt exécutés en exactement **1 cycle d'horloge (10.00 ns)**.
+    - **Ressources :** **89 Slice LUTs / 65 Slice Registers**, consommation globale nominale sous contraintes de **77 mW** (Logique interne active : 6 mW, Fuites statiques et I/O buffers : 71 mW).
 
 - ⛓ **[REIO-CDC](./cdc)**
   - **Fonction :** Synchroniseur multi-horloge d'étanchéité physique pour le croisement de domaines asynchrones (Clock Domain Crossing) [index_0.1.8].
@@ -101,85 +101,52 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
 ### 🌐 Architecture Fonctionnelle du Pipeline
 
 ```text
+```text
                        [ REIO FRAMEWORK ]
                                |
                                v
-             +-----------------------------------+
-
-             |                                   |
-             |             REIO-CORE             |
-             |  (Spécification Théorique Init.)  |
-             +-----------------------------------+
+                       [   REIO-CORE   ]
+                 (Micro-Noyau Rust #![no_std])
                                |
                                v
-             +-----------------------------------+
-
-             |             REIO-PWR              |
-             |   [ GESTIONNAIRE D'ÉNERGIE ]      | <--- [ Capteurs VCCINT / VCCAUX ]
-             |  Séquenceur de Reset Asymétrique  |      (Gel global à 0V en 1 cycle)
-             +-----------------------------------+
+                       [   REIO-PWR    ] <-------- [ CAPTEURS PHYSIQUES ]
+                 (Séquenceur de Reset Synchrone)   (Gel global à 0V en 1 cycle)
                                |
-           +-------------------+-------------------+
+            +------------------+------------------+
 
-           | [Palier 1]        | [Palier 2]        | [Palier 3]
-           | RSTn_INTERCONN    | RSTn_PERIPH       | RSTn_COPROC
-           v                   v                   v
-  +-----------------+ +-----------------+ +-----------------+ +-----------------+
+            |                  |                  |
+            v                  v                  v
+     [  REIO-CHAIN  ]   [  REIO-DRIVE  ]   [  REIO-SAFE  ]
+      (Filtre Réseau)   (Automotive IO)    (Storage Guard)
+       -> 250 MHz         -> 66.67 MHz       -> 100 MHz
 
-  |   REIO-CHAIN    | |   REIO-DRIVE    | |    REIO-SAFE    | |    REIO-NVM     |
-  |  (PoC Réseau)   | |   (PoC Auto)    | |   (PoC Flash)   | |   (PoC Mag/R)   |
-  |   -> 400 MHz    | |  -> 66.67 MHz   | |   -> 100 MHz    | |   -> 100 MHz    |
-  +-----------------+ +-----------------+ +-----------------+ +-----------------+
+            |                  |                  |
+            +------------------+------------------+
+                               |
+                               v [ Lignes IRQ Brutes ]
+                       [   REIO-INT    ]
+                 (Écrêteur d'IRQ Double Canal)
+                               |
+                               v [ Lignes IRQ Sécurisées ]
+                       [   REIO-CDC    ]
+                 (Barrière anti-métastabilité)
+                               |
+                               v
+                       [   REIO-BUS    ] <-------- [   REIO-CRYPT  ]
+                  (Matrice Crossbar Sec)     (Accélérateur ZKP DSP)
+                               |                  -> 100 MHz
+                               v
+               [      REIO_IO_SUBSYSTEM     ]
+               (Sous-Système d'I/O Fusionné)
+               ---> Empreinte : 89 LUTs / 65 Reg
+               +---------------------------+
 
-           |                   |                   |                   |
-           | [Asynchrone]      | [Asynchrone]      | [Synchrone]       | [Synchrone]
-           +---------+---------+                   |                   |
-
-                     |                             |                   |
-                     v [Lignes IRQ Brutes]         |                   |
-  +-------------------------------------+          |                   |
-
-  |              REIO-INT               |          |                   |
-  |  [ BOUCLIER INTERRUPTION : 100M ]   |          |                   |
-  |  - Rate-Limiter Double Canal (8b)   |          |                   |
-  |  - Disjonction Combinatoire en 10ns |          |                   |
-  +-------------------------------------+          |                   |
-
-                     |                             |                   |
-                     v [Lignes IRQ Sécurisées]     |                   |
-                     +-----------------------------+-------------------+
-                     |
-                     v
-  +-------------------------------------+
-
-  |              REIO-CDC               |
-  | ----------------------------------- |
-  |  - [Canal 1] 400 MHz -> 100 MHz     |
-  |  - [Canal 2] 66.67 MHz -> 100 MHz   |
-  +-------------------------------------+
-                     |
-                     v
-  +---------------------------------------------------------------------------+
-
-  |                                 REIO-BUS                                  |
-  |                 [ BUS SYSTEME UNIFIE ETANCHE : 100 MHz ]                  |
-  |  - Matrice Crossbar Sécurisée (Authentification par Jeton Matériel)       |
-  |  - Routage Géographique & Commutation de Zone Périphérique                |
-  +---------------------------------------------------------------------------+
-
-                     |                                     |
-         +-----------+-----------+                         |
-
-         |                       |                         |
-         v                       v                         v
-+-----------------+     +-----------------+     +-----------------+
-
-|   REIO-CRYPT    |     |     REIO-AI     |     |    REIO-UART    |
-|  (PoC Crypto)   |     |    (PoC IA)     |     |  (PoC Diag UART) |
-|   -> 100 MHz    |     |   -> 100 MHz    |     |   -> 100 MHz    |
-+-----------------+     +-----------------+     +-----------------+
-
+               |  [ CANAL A ]   [ CANAL B ]|
+               |   REIO-NVM      REIO-UART |
+               |  (Flash Guard) (Diag Logs)|
+               +---------------------------+
 ```
+
 ### 🛠️ Plateforme de Crash-Test & Injection de Fautes Globale
 - 🧪 **[reio_soc_test.py](./reio_soc_test.py)** : Script d'intégration logicielle hybride (*Hardware-in-the-Loop* émulé). Il orchestre une injection d'attaques en cascade directement sur vos binaires machine Rust bare-metal (`reio_pwr.dll`, `reio_safe.dll`, `reio_uart.dll`, `reio_bus.dll`) pour certifier la disjonction et le confinement matériel immédiat à 0 Volt en cas d'intrusion [image_MgPE5w.png].
 
