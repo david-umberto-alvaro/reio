@@ -178,7 +178,6 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
 |  (PoC Crypto)   |     |    (PoC IA)     |     |  (PoC Diag UART) |
 |   -> 100 MHz    |     |   -> 100 MHz    |     |   -> 100 MHz    |
 +-----------------+     +-----------------+     +-----------------+
-```
 
 ```
 
