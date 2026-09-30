@@ -29,7 +29,8 @@ REIO-UART is a hardened hardware-enforced serial input/output communication and 
 ## 2. Electrical, Timing & Resource Metrics (Artix-7)
 - **Slice LUTs Utilization:** 44 LUTs (Post-routing physical optimization)
 - **Slice Registers Count:** 30 Registers (28 rising edge-triggered FDCE and 2 FDPE flip-flops)
-- **Bonded IOB Count:** 45 Pins (Including internal memory-mapped parallel bus structures routed to the Crossbar Matrix)
+- **Physical Interface Pins Count:** 5 External Hardened Pins (CLK, RESETn, RX, TX, UART_FAULT_FLAG).
+- **Vivado Interconnect Mapping:** 45 Bonded IOB detected during stand-alone synthesis due to unencapsulated parallel MMIO data paths.
 
 ---
 
