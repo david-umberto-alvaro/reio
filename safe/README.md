@@ -37,7 +37,7 @@ Le filtre combinatoire surveille en continu le trafic d'écriture via deux canau
 *   **À 40.000 ns (Détection de l'Attaque) :** Le bus AMBA APB présente une transaction d'écriture suspecte (`PWDATA = 5a5a5a5a`) à l'adresse `00001000`. Comme le produit logique avec l'invariant d'usine est nul, le filtre SPU-102 réagit instantanément.
 *   **À 45.000 ns (Coupure de Sécurité) :** Dès le cycle suivant, le signal critique **`SIG_FLASH_WRITE_ENABLE` s'effondre proprement à '0'** (Coupure nette de l'alimentation d'écriture). Simultanément, le bus de données `PRDATA` se verrouille sur le tag de quarantaine **`deadbeef`** et l'alerte d'erreur esclave s'active.
 
-### 🌐 Architecture Fonctionnelle du Pipeline SPU_102
+### 🌐 Architecture Fonctionnelle du Pipeline
 
 ```text
 +--------------------------------------------------------+
