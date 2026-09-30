@@ -12,12 +12,15 @@ REIO-NVM est un bloc de propriété intellectuelle (IP Core) matériel conçu po
 - **Worst Hold Slack (WHS) :** Optimisé à **+0,142 ns**.
 
 ### 📊 Métriques de l'Empreinte Silicium (Vivado Utilization)
-- **Slice Registers :** **33 Slice Registers**.
-- **Slice LUTs :** **48 Slice LUTs**.
+- **Slice Registers :** **33 Slice Registers** (Utilisation : 0,08%).
+- **Slice LUTs :** **48 Slice LUTs** (34 LUT6, 9 LUT4, 5 LUT5, 1 LUT1).
+- **Broches d'I/O Matérielles :** **84 Bonded IOB** (Utilisation : 40,00%).
 
 ### 📊 Caractéristiques Électriques et Thermiques (Vivado Power)
-- **Puissance Électrique Totale :** **72 mW**.
-- **Température de Jonction :** **25,4 °C**.
+- **Puissance Électrique Totale :** **79 mW** (0,079 W certifiés post-routage réel Vivado).
+- **Température de Jonction :** **25,4 °C** (Marge maximale ambiante supportée : 124,6 °C).
+
+...
 
 ### 🌐 Architecture Fonctionnelle du Pipeline REIO-NVM
 
