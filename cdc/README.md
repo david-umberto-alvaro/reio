@@ -1,25 +1,19 @@
-# ⛓️ REIO-CDC — Synchroniseur Multi-Horloge Anti-Métastabilité
+# ⛓ REIO-CDC — Synchroniseur Multi-Horloge Anti-Métastabilité
 
 ### 📌 Présentation Générale
-REIO-CDC est un bloc de propriété intellectuelle (IP Core) matériel de bas niveau conçu pour sécuriser le transfert de signaux critiques à travers des domaines d'horloges asynchrones (Clock Domain Crossing). Au sein de l'écosystème global, il assure le rôle de barrière d'étanchéité physique double :
-*   **Canal 1 (Haute Vitesse) :** Interception et stabilisation du flux de rupture réseau asynchrone issu de **REIO-Chain (400 MHz)** vers le bus système commun (100 MHz).
-*   **Canal 2 (Déterministe Automobile) :** Interception et alignement de phase du flux de contrôle de sûreté issu de **REIO-Drive (66.67 MHz)** vers le bus système commun (100 MHz).
+REIO-CDC est un IP Core matériel assurant le transfert sécurisé de signaux à travers des domaines d'horloges asynchrones (Canal 1 Haute Vitesse à 400 MHz vers 100 MHz et Canal 2 Automobile à 66.67 MHz vers 100 MHz) [index_0.1.15].
 
-### 📊 Spécifications du Matériel (FPGA)
-* **Fréquence du Plan de Contrôle (Destination) :** 100.00 MHz (Période nominale : 10.00 ns).
-* **Temps de Réponse Physiques :** Stabilisation séquentielle et absorption complète de la métastabilité active exécutées en exactement **3 cycles d'horloge cible (30.00 ns)**.
+### 📊 Spécifications et Performances (FPGA / Vivado)
+* **Plan de contrôle :** 100.00 MHz (temps de réponse de 3 cycles d'horloge / 30.00 ns) [index_0.1.15].
+* **Fermeture temporelle (Timing) :** WNS à +8,926 ns, WHS à +0,131 ns, WPWS à +4,500 ns [index_0.1.18].
+* **Empreinte silicium :** 3 Slice Registers et 1 Slice LUT [index_0.1.15, index_0.1.19].
+* **Consommation :** 71 mW total, température de jonction à 25.3 °C [index_0.1.17].
 
-### 📊 Synthèse d'Audit et Fermeture Temporelle (Vivado Static Timing)
-* **Worst Negative Slack (WNS) :** Établi à **inf** (Infinite). L'application de la contrainte temporelle `set_false_path` élimine tout calcul de violation de setup.
-* **Worst Hold Slack (WHS) :** Établi à **inf** (Infinite) (Zéro violation inter-domaines).
+### 🌐 Architecture Fonctionnelle
+Le schéma complet du pipeline de capture anti-métastabilité à 3 registres sous `CLK_DEST` (100 MHz) est disponible dans le document de référence [index_0.1.15, index_0.1.19].
 
-### 📊 Métriques de l'Empreinte Silicium (Vivado Utilization)
-* **Slice Registers :** Consomme précisément **3 Slice Registers** (Bascules synchrones de type `FDCE` régies par l'attribut matériel `ASYNC_REG == TRUE`).
-* **Slice LUTs :** Consomme précisément **0 Slice LUT** de logique combinatoire (1 primitive `LUT1` d'ajustement structurel mappée pour le buffer d'horloge).
-
-### 📊 Caractéristiques Électriques et Thermiques (Vivado Power)
-* **Puissance Électrique Totale :** Enveloppe globale mesurée à **336 mW** (Logique interne active : 7 mW, Fuites statiques passives : 71 mW, Commutation des I/O buffers : 245 mW).
-* **Température de Jonction :** Stabilisée à **26.6 °C** pour une température ambiante maximale supportée de **123.4 °C** (Spécifications Q-Grade Automobile).
+### 🚀 Validation Logicielle (Rust / Python FFI)
+La suite de tests unitaires valide l'étanchéité de l'interface MMIO (tests de repos, capture inter-domaines et gestion d'erreur pointeur NULL) [index_0.1.15].
 
 ### 🌐 Architecture Fonctionnelle du Pipeline REIO-CDC
 
