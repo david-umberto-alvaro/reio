@@ -27,19 +27,11 @@ Engineered to mitigate ransomware threats, malicious mass encryption routines, a
 
 *68-pin parallel interface validated via Vivado post-routing placement (CSG324 Package).*
 
-| Signal Name | Direction | Width | Type | Physical Pin / Description |
-| :--- | :---: | :---: | :---: | :--- |
-| **PCLK** | Input | 1 bit | STD_LOGIC | Main system clock (Target 100.00 MHz, Dedicated Pin F4) |
-| **PRESETn** | Input | 1 bit | STD_LOGIC | Synchronous active-low system reset (Pin T10) |
-| **PADDR[31:0]** | Input | 32 bits | STD_LOGIC_VECTOR | Parallel APB peripheral address bus (Virtualized routes) |
-| **PSEL** | Input | 1 bit | STD_LOGIC | APB peripheral select line triggering evaluation (Pin V11) |
-| **PENABLE** | Input | 1 bit | STD_LOGIC | APB strobe signal validating the transfer cycle (Pin U11) |
-| **PWRITE** | Input | 1 bit | STD_LOGIC | Direction control ('1' = Write transaction, Pin V10) |
-| **PWDATA[31:0]** | Input | 32 bits | STD_LOGIC_VECTOR | Parallel host write data bus payload (Virtualized routes) |
-| **PRDATA[31:0]** | Output | 32 bits | STD_LOGIC_VECTOR | Volatile telemetry data bus (`0xDEADBEEF` on isolation) |
-| **PREADY** | Output | 1 bit | STD_LOGIC | Slave ready indicator acknowledging host interface (Pin U12) |
-| **PSLVERR** | Output | 1 bit | STD_LOGIC | Critical protocol transaction error exception line (Pin V12) |
-| **SIG_FLASH_WRITE_ENABLE** | Output | 1 bit | STD_LOGIC | Dedicated hardwired write voltage cutoff output (Pin T11) |
+| Métrique Système | Spécification Documentaire (MD) | Validation Vivado Post-Routage (RPT) | Statut d'Audit |
+| :--- | :---: | :---: | :---: |
+| **Horloge REIO-Drive** | 66,667 MHz (Automotive Bus) | 66,667 MHz (Contrainte clk) | 🟢 Conforme |
+| **Logique REIO-Drive** | 6. Slice LUTs / 4 Registers | 6 LUTs / 4 Registres (3 FDRE, 1 FDSE) | 🟢 Conforme |
+| **Puissance REIO-Drive** | 81 mW (81 mW global Bufferisé) | 74 mW (On-Chip) / +7 mW I/O passif | 🟢 Conforme |
 
 ---
 
