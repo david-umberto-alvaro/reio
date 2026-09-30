@@ -12,8 +12,8 @@ REIO-BUS est la colonne vertébrale matérielle (Interconnect IP Core) du SoC RE
 * **Worst Hold Slack (WHS) :** Optimisé avec succès à **+0,192 ns** (Zéro violation de Hold face aux bruits de tension) 
 
 ### 📉 Métriques de l'Empreinte Silicium (Vivado Utilization)
-* **Slice LUTs :** Consomme précisément **89 Slice LUTs** (0,43% de la matrice Artix-7, incluant les primitives de notre sous-système d'I/O unifié combinant l'UART et le filtre NVM) [https://github.com].
-* **Slice Registers :** Consomme précisément **65 Slice Registers** (64 primitives de bascules synchrones de type `FDCE` et 1 primitive `FDPE`) [https://github.com].
+* **Slice LUTs :** Consomme précisément **89 Slice LUTs** (0,43% de la matrice Artix-7, incluant les primitives de notre sous-système d'I/O unifié combinant l'UART et le filtre NVM).
+* **Slice Registers :** Consomme précisément **65 Slice Registers** (64 primitives de bascules synchrones de type `FDCE` et 1 primitive `FDPE`).
 
 ### 🔋 Caractéristiques Électriques et Thermiques (Vivado Power)
 * **Puissance Électrique Totale :** Enveloppe globale post-routage mesurée à **77 mW** (Logique interne active : 6 mW, Fuites statiques du silicium : 70 mW, Commutation I/O : 1 mW).
