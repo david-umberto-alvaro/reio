@@ -53,6 +53,9 @@ L'analyse des journaux physiques, la compilation croisée des layouts de registr
 
 **Le Framework REIO-SoC est déclaré officiellement validé, étanche au niveau de sa cartographie globale et conforme aux exigences d'ingénierie critique pour un déploiement et une industrialisation immédiate en série.**
 
+*   **Standards Technologiques :** Architecture durcie (profil MIL-STD-883) conçue selon les objectifs de résilience ISO 26262 pour l'éligibilité future au niveau ASIL-D.
+*   **Statut de Certification :** En cours de préparation d'audit (Dossier technique de Sûreté de Fonctionnement en cours de constitution).
+
 ---
 *Fait le 30 septembre 2026.*  
 **Signé électroniquement :** David Umberto Alvaro (Auteur & Propriétaire Exclusif IP) [index_0.1.53].  
