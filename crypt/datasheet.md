@@ -44,23 +44,21 @@ Operating on the **Autonomous Heterogeneous Decoupled (AHD)** architectural patt
 
 ---
 
-## 📊 4. Behavioral Timing Chronogram & Pipelined Execution
+## 4. Behavioral Timing Chronogram & Pipelined Execution
 
 ```text
-    <--- Host Secret Token Injection ---> <-------- 16-Cycle Pipelined ZK Calculation -------->
-200ns               210ns               220ns                                   380ns
+       <-- Token Injection --> <-------- 16-Cycle ZK Calculation -------->
+200ns            210ns            220ns                            380ns
 
-|                   |                   |                                       |
-   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _
-__/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_  PCLK / CLK (100 MHz)
-____________________/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  PSEL & PENABLE & PWRITE
-XXXXXXXXXXXXXXXXXXXX_Secret_Token_Payload_(0x0000000A)_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  PWDATA / SECRET_INPUT[31:0]
-____________________/                                                                   
-                    \_________________________________________________________________  START_ZKP / start_zkp_internal (1->0)
-                                        \___________/XXXXX Stage N Product XXXXXXXXXXX  mult_pipe_reg & mult_reg[31:0]
-                                                                                ______  
-_______________________________________________________________________________/      \  ZKP_PROOF_READY / proof_ready
-                                                                               \______  
-_______________________________________________________________________________/XXXXXX  PRDATA / ZKP_HASH_OUT[31:0]
+|                |                |                                |
+  _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _ 
+_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_ CLK
+_________________/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX PSEL
+XXXXXXXXXXXXXXXXX_Secret_Token_Payload_(0x0000000A)_XXXXXXXXXXXXXXXXXXXXX PWDATA
+_________________/                                                       
+                 \_______________________________________________________ START_ZKP
+                                  \_______/XXXX Stage N Product XXXXXXXXX mult_reg
+________________________________________________________________________/ ZKP_READY
+________________________________________________________________________/ PRDATA
 ```
 
