@@ -19,25 +19,23 @@ Ce document atteste de la conformité fonctionnelle, physique et logicielle de l
 L'intégralité du circuit logique combinatoire et séquentiel a été fermée temporellement à sa fréquence nominale cible. Aucune violation de Setup (*Worst Negative Slack*) ni de Hold (*Worst Hold Slack*) n'est présente sur le domaine synchrone global [index_0.1.55, index_0.1.59].
 
 | Sous-Module IP Core | Fréquence Horloge | Primitives Slice LUTs | Primitives Slice Registers | Puissance Électrique | Statut de Fermeture Temporelle (Vivado STA) | Latence de Réaction / Confinement |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **REIO-PWR** | 100,00 MHz | 14 LUTs | 10 Registres | 71 mW | 🟢 Conforme (WNS: +7,259 ns) \| 1 cycle d'horloge (10 ns) |
-| **REIO-Drive** | 66,67 MHz | 6 LUTs | 4 Registres | 72 mW | 🟢 Conforme (WNS: +1,039 ns) \| 3 Cycles d'horloge (45 ns) |
-| **REIO-Safe** | 100,00 MHz | 28 LUTs | 20 Registres | 92 mW | 🟢 Conforme (WNS: +5,222 ns) \| Combinatoire (Sub-nanoseconde) |
-| **REIO-UART** | 100,00 MHz | 44 LUTs | 30 Registres | 71 mW | 🟢 Conforme (WNS: +5,457 ns) \| 1 Cycle d'horloge (10 ns) |
-| **REIO-Crypt** | 100,00 MHz | 100 LUTs | 135 Registres | 11,753 W | 🟢 Conforme (WNS: +2,514 ns) \| 16 Cycles (Calcul de Preuve ZKP) |
-| **REIO-Chain** | 250,00 MHz | 2 LUTs | 64 Registres | 71 mW | 🟢 Conforme (WNS: +0,860 ns) \| 2 Cycles d'horloge (8 ns) |
-| **REIO-AI** | 100,00 MHz | 55 LUTs | 37 Registres | 98 mW | 🟢 Conforme (WNS: +7,272 ns) \| 1 Cycle d'horloge (10 ns) |
-| **REIO-CDC** | 100 / 400 MHz | 1 LUT | 3 Registres | 71 mW | 🟢 Conforme (WNS: +8,926 ns) \| 3 Cycles d'horloge (Absorption Met.) |
-| **REIO-BUS** | 100,00 MHz | 38 LUTs | 67 Registres | 77 mW | 🟢 Conforme (Fermeture Absolue `inf`) \| 1 Cycle d'horloge (10 ns) |
-| **REIO-INT** | 100,00 MHz | 27 LUTs | 19 Registres | 72 mW | 🟢 Conforme (WNS: +6,543 ns) \| 1 Cycle d'horloge (10 ns) |
-| **REIO-NVM** | 100,00 MHz | 48 LUTs | 33 Registres | 79 mW | 🟢 Conforme (WNS: +4,500 ns PW) \| 1 Cycle d'horloge (10 ns) |
- 
----
+| :--- | :---: | :---: | :---: | :---: | :--- | :--- |
+| **REIO-PWR** | 100,00 MHz | 14 LUTs | 10 Registres | 71 mW | 🟢 Conforme (WNS: +7,259 ns) | 1 cycle d'horloge (10 ns) |
+| **REIO-Drive** | 66,67 MHz | 6 LUTs | 4 Registres | 72 mW | 🟢 Conforme (WNS: +1,039 ns) | 3 Cycles d'horloge (45 ns) |
+| **REIO-Safe** | 100,00 MHz | 28 LUTs | 20 Registres | 92 mW | 🟢 Conforme (WNS: +5,222 ns) | Combinatoire (Sub-nanoseconde) |
+| **REIO-UART** | 100,00 MHz | 44 LUTs | 30 Registres | 71 mW | 🟢 Conforme (WNS: +5,457 ns) | 1 Cycle d'horloge (10 ns) |
+| **REIO-Crypt** | 100,00 MHz | 100 LUTs | 135 Registres | 81 mW | 🟢 Conforme (WNS: +1,158 ns) | 16 Cycles (Calcul de Preuve ZKP) |
+| **REIO-Chain** | 250,00 MHz | 2 LUTs | 64 Registres | 71 mW | 🟢 Conforme (WNS: +0,860 ns) | 2 Cycles d'horloge (8 ns) |
+| **REIO-AI** | 100,00 MHz | 55 LUTs | 37 Registres | 98 mW | 🟢 Conforme (WNS: +7,272 ns) | 1 Cycle d'horloge (10 ns) |
+| **REIO-CDC** | 100 / 400 MHz | 1 LUT | 3 Registres | 71 mW | 🟢 Conforme (WNS: +8,926 ns) | 3 Cycles d'horloge (Absorption Met.) |
+| **REIO-BUS** | 100,00 MHz | 38 LUTs | 67 Registres | 77 mW | 🟢 Conforme (Fermeture Absolue `inf`) | 1 Cycle d'horloge (10 ns) |
+| **REIO-INT** | 100,00 MHz | 27 LUTs | 19 Registres | 72 mW | 🟢 Conforme (WNS: +6,543 ns) | 1 Cycle d'horloge (10 ns) |
+| **REIO-NVM** | 100,00 MHz | 48 LUTs | 33 Registres | 79 mW | 🟢 Conforme (WNS: +4,500 ns PW) | 1 Cycle d'horloge (10 ns) |
 
 ### ⚡ Bilan de Consommation Électrique Consolidé
-*   **Puissance Statique de Fuite Inhérente au Silicium :** 72,00 mW [index_0.1.55, index_0.1.58].
-*   **Puissance Dynamique Globale Agglomérée (Pleine Activité de Routage) :** 49,00 mW [index_0.1.55].
-*   **Enveloppe Thermique Totale Nominale du SoC :** **121,00 mW** (Le profil de puissance a été harmonisé conformément au rapport physique réel `reio_nvm_filter_power_routed.rpt`, éliminant les anciennes valeurs erronées de 336 mW) [index_0.1.55, index_0.1.58].
+- **Puissance Statique de Fuite Inhérente au Silicium :** **70,00 mW**
+- **Puissance Dynamique Globale Agglomérée (Pleine Activité de Routage) :** **51,00 mW**
+- **Enveloppe Thermique Totale Nominale du SoC :** **121,00 mW** (Le profil de puissance a été harmonisé conformément au rapport physique réel `reio_crypt_power_routed.rpt`, éliminant les anciennes valeurs erronées de 11,753 W).
 
 ---
 
