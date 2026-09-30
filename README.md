@@ -50,9 +50,9 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
   - **Ressources :** **1 Slice LUT / 3 Slice Registers** [index_0.1.12], consommation globale ultra-sobre de **71 mW** (Logique interne active : 1 mW, Fuites statiques d'usine : 70 mW, Puissance d'I/O : 0 mW) [index_0.1.10].
 
 - ⛓️ **[REIO-Chain](./chain)**
-  - **Fonction :** Disjoncteur réseau Layer 3 synchrone sur bus 64 bits s'interfaçant avec un bus physique Ethernet.
-  - **Validation :** Validé à **400.00 MHz** (Période : **2.50 ns** \| **WNS : +0,531 ns** \| **WHS : +0,142 ns**). Coupure réseau déterministe et masquage de transaction exécutés en exactement **1 seul cycle machine**.
-  - **Ressources :** **53 Slice LUTs / 153 Slice Registers**, consommation globale de **59 mW** (Logique interne active : 3 mW, Fuites statiques passives : 56 mW).
+    - **Fonction :** Disjoncteur réseau Layer 3 synchrone sur bus 64 bits s'interfaçant avec un bus physique Ethernet.
+    - **Validation :** Validé à **250.00 MHz** (Période : **4.00 ns** \| **WNS : +0,860 ns** \| **WHS : +0,347 ns**). Coupure réseau déterministe et masquage de transaction exécutés en exactement **2 cycles machine**.
+    - **Ressources :** **2 Slice LUTs / 64 Slice Registers**, consommation globale de **71 mW** (Logique interne active : 13 mW, Fuites statiques passives : 58 mW).
 
 - 🔑 **[REIO-Crypt](./crypt)**
   - **Fonction :** Accélérateur cryptographique découplé matériel pour preuve Zero-Knowledge (ZKP).
