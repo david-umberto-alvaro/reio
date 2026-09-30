@@ -73,10 +73,10 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
   - **Ressources :** **27 Slice LUTs / 19 Slice Registers / 4 Blocs CARRY4**, consommation globale ultra-faible de **72 mW** (Logique interne active : 1 mW, Statique : 70 mW, I/O buffers : 1 mW).
 
 - 🛡️ **[REIO-Safe](./safe)**
-  - **Fonction :** Filtre combinatoire d'interception matériel anti-ransomware de stockage.
-  - **Architecture de Sûreté :** Double canal parallèle (Analyse géométrique via Registre Alpha et suivi entropique asymétrique filtré contre le bruit avec seuil critique). 
-  - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **+5.222 ns** \| WHS : **+0.222 ns**). Coupure électrique nette de l'alimentation d'écriture à **0 Volt** et injection du tag de quarantaine exécutées en **1 seul cycle d'horloge (10.00 ns)**.
-  - **Ressources :** **28 LUTs / 20 Registres**, consommation globale **92 mW** (Statique : 72 mW, Dynamique : 20 mW).
+    - **Fonction :** Filtre combinatoire d'interception matériel anti-ransomware de stockage.
+    - **Architecture de Sûreté :** Double canal parallèle (Analyse géométrique via Registre Alpha et suivi entropique asymétrique filtré contre le bruit avec seuil critique).
+    - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| **WNS : +5.222 ns** \| **WHS : +0.222 ns**). Coupure électrique nette de l'alimentation d'écriture à **0 Volt** et injection du tag de quarantaine exécutées de manière combinatoire instantanée en **0 cycle de retard (latence sub-nanoseconde)**.
+    - **Ressources :** **28 LUTs / 20 Registres**, consommation globale **92 mW** (Statique : 72 mW, Dynamique : 20 mW).
 
 * 💾 **[REIO-NVM](./nvm)**
   * **Fonction :** Filtre d'interception en ligne pour la sécurisation des mémoires non-volatiles (MRAM / RRAM).
