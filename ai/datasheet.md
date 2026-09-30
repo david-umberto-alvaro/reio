@@ -18,14 +18,14 @@ Operating on a pure deterministic co-design methodology, the supervisor monitors
 *Certified hardware metrics extracted from AMD/Xilinx Vivado routed implementation reports targeting the xa7a35tcsg324-1Q device layout.*
 
 ### Power & Thermal Dissipation Profile:
-- **Total On-Chip Power Consumption:** 0.070 W (70 mW total thermal envelope).
-- **Core Dynamic & Static Current Splitting:** 1 mW dynamic switching activity / 68 mW static silicon leakage floor.
-- **Junction Temperature (\(T_J\)):** 25.3 °C.
-- **Maximum Safe Ambient Temperature (\(T_{AMB\_MAX}\)):** 124.7 °C (Automotive Q-Grade Extended Boundary).
+- **Total On-Chip Power Consumption:** **0.098 W** (98 mW total thermal envelope).
+- **Core Dynamic & Static Current Splitting:** **26 mW** dynamic switching activity / **72 mW** static silicon leakage floor.
+- **Junction Temperature (\(T_J\)):** **25.5 °C.**
+- **Maximum Safe Ambient Temperature (\(T_{AMB\_MAX}\)):** **124.5 °C** (Automotive Q-Grade Extended Boundary).
 
 ### Static Timing Analysis (100.00 MHz Target Clock):
-- **Worst Negative Slack (WNS):** +6.116 ns (0 Failing Endpoints). Data path propagation delay clocks at a mere **3.884 ns**.
-- **Worst Hold Slack (WHS):** +0.196 ns (0 Clock-skew violations).
+- **Worst Negative Slack (WNS):** **+7,272 ns** (0 Failing Endpoints). Data path propagation delay clocks at a mere **2.462 ns**.
+- **Worst Hold Slack (WHS):** **+0.260 ns** (0 Clock-skew violations).
 
 ---
 
@@ -47,24 +47,22 @@ Operating on a pure deterministic co-design methodology, the supervisor monitors
 
 ---
 
-## 📊 4. Behavioral Timing Chronogram & Fault Interception
+### 4. Behavioral Timing Chronogram & Fault Interception
 
 ```text
-◀--------------- Nominal Inference Stream ---------------▶◀-- Anomaly Detection & Confinement --▶
-0ns                      10ns                     20ns                     30ns                     40ns
+    <------------ Nominal Inference Stream ------------> <-- Anomaly Detection & Confinement -->
+0ns                10ns               20ns               30ns               40ns
 
- |                        |                        |                        |                        |
-      ______                   ______                   ______                   ______                   ___
-_____/      \_______/      \_______/      \_______/      \_______/      \_______/      \_______/      \___  CLK (100 MHz)
-_____________________/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX________  NPU_DATA_VALID
-_____________________/XXXX 0x0000002A XXXX\___________________________________________________________________  NPU_NEURON_A
-___________________________________________________________/XXXXXXXXXXX 0x000000FF XXXXXXXXXXX\_______________  NPU_NEURON_B
-                                                           __________________________________________
-__________________________________________________________/                                           \______  SIG_QUARANTINE_ENGAGED
-_____________________/XXXX 0x0000002A XXXX\___________________________________________________________________  PRDATA (Nominal)
-                                                           __________________________________________
-__________________________________________________________/XXXXXXX 0xDEADBEEF XXXXXXXXXXXXXXXX\_______  PRDATA (Quarantine)
+|                  |                  |                  |                  |
+   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _
+__/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_  CLK (100 MHz)
+______________________________________/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  NPU_DATA_VALID
+__________________/XXXX 0x00000000 XXXXX_________________/XXXX 0x00000001 XXXXXXXXXXXX  NPU_NEURON_A
+_________________________________________________________/XXXX 0x00000001 XXXXXXXXXXXX  NPU_NEURON_B
+
+_________________________________________________________/____________________________  SIG_QUARANTINE_ENGAGED
+__________________/XXXX 0x00000000 XXXXX______________________________________________  PRDATA (Nominal)
+                                                         \_______/XXXX 0xDEADBEEF XXXX  PRDATA (Quarantine)
 ```
 
----
 
