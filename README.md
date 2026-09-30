@@ -55,10 +55,10 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
     - **Ressources :** **2 Slice LUTs / 64 Slice Registers**, consommation globale de **71 mW** (Logique interne active : 13 mW, Fuites statiques passives : 58 mW).
 
 - 🔑 **[REIO-Crypt](./crypt)**
-  - **Fonction :** Accélérateur cryptographique découplé matériel pour preuve Zero-Knowledge (ZKP).
-  - **Architecture de Sûreté :** Modèle Hétérogène Découplé (AHD) avec pipeline synchrone à deux étages (brise le chemin critique d'arithmétique non-linéaire) et capteur de détection de glitch de tension.
-  - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **+0.345 ns** \| WHS : **+0.106 ns**). Preuve calculée en 16 cycles d'horloge et disjonction par mise à la masse immédiate en cas d'attaque par injection.
-  - **Ressources :** **169 LUTs / 139 Registres / 3 Blocs DSP48E1**, consommation globale ultra-faible de **75 mW** (Dynamique : 3 mW, Statique : 72 mW).
+    - **Fonction :** Accélérateur cryptographique découplé matériel pour preuve Zero-Knowledge (ZKP).
+    - **Architecture de Sûreté :** Modèle Hétérogène Découplé (AHD) avec triple pipeline synchrone (brise le chemin critique d'arithmétique non-linéaire) et capteur de détection de glitch de tension.
+    - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| **WNS : +2,514 ns** \| **WHS : +0,211 ns**). Preuve calculée en 16 cycles d'horloge et disjoncteur asynchrone par forçage immédiat à 0 Volt en cas d'attaque par injection.
+    - **Ressources :** **100 Slice LUTs / 135 Slice Registers / 5 Blocs DSP48E1**, consommation globale nominale sous Vivado Out-of-Context de **11,753 W** (Cœur dynamique actif hors fuites de broches : 26 mW).
 
 - 🚗 **[REIO-Drive](./drive)**
   - **Fonction :** Bouclier pour bus d'interception (Couplage Direct Stream).
