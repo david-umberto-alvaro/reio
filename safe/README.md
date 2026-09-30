@@ -18,7 +18,7 @@ L'interface a été entièrement réenregistrée de manière synchrone pour éli
 
 ### 📉 Métriques de l'Empreinte Silicium (Vivado Utilization)
 - **Slice LUTs :** 28 (0,13 % d'utilisation de la matrice).
-- **Slice Registers :** 37 (Post-routage réel, incluant les bascules de réplication de bus de quarantaine : 36 primitives FDCE et 1 primitive FDPE).
+- **Slice Registers :** 20 (Post-routage réel certifié d'usine : 19 primitives FDCE et 1 primitive FDPE, après élagage et minimisation des registres redondants par le compilateur).
 *   **Bonded IOB (Ports d'E/S) :** 68 ports mappés de manière virtuelle en interne pour optimiser l'espace du boîtier.
 *   **Clock Buffers :** 1 primitive globale `BUFG` pour l'équilibrage de l'arbre d'horloge.
 
