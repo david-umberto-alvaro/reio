@@ -56,7 +56,7 @@ REIO-NVM est un bloc de propriété intellectuelle (IP Core) matériel conçu po
 
 L'analyse comportementale du banc de test confirme la réactivité immédiate du disjoncteur face à une injection malveillante :
 
-![Chronogramme des formes d'ondes REIO-Safe](reio_nvm_simulation.png)
+![Chronogramme des formes d'ondes](reio_nvm_simulation.png)
 
 ### 🚀 Validation du Pilote Logiciel (Intégration Rust / Python FFI)
 L'exécution de la suite de tests unitaires sur le plan de contrôle Rust (`#![no_std]`) certifie la parfaite étanchéité de l'interface MMIO :
@@ -64,4 +64,4 @@ L'exécution de la suite de tests unitaires sur le plan de contrôle Rust (`#![n
 * **[Test 2] Injection Anomalie (Confinement) :** Interception instantanée, forçage à 0V et levée du flag d'isolement (`PASS` | Flag : `1`).
 * **[Test 3] Erreur Pointeur (Adresse NULL) :** Interception logicielle immédiate et bloquante de la couche FFI (`PASS` | Valeur : `0xffffffff`).
 
-![Rapport de validation du script Python REIO-Safe](reio_nvm_test.png)
+![Rapport de validation du script Python](reio_nvm_test.png)
