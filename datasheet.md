@@ -17,11 +17,12 @@ Le System-on-Chip (SoC) REIO est une architecture de co-design matériel/logicie
 
 | Module Matériel (IP Core) | Fréquence Horloge | Primitives LUTs | Primitives Registers | Puissance Électrique | Statut de Fermeture STA (Vivado) |
 | :--- | :---: | :---: | :---: | :---: | :--- |
+|
 | **REIO-PWR** (Séquenceur) | 100.00 MHz | 14 LUTs | 10 Registres | 71 mW | 🟢 Conforme (WNS: +7,259 ns) |
 | **REIO-Drive** (Automotive) | 66.667 MHz | 6 LUTs | 4 Registres | 72 mW | 🟢 Conforme (WNS: +1,039 ns) |
 | **REIO-Safe** (Storage Guard) | 100.00 MHz | 28 LUTs | 20 Registres | 92 mW | 🟢 Conforme (WNS: +5,222 ns) |
 | **REIO-UART** (Diagnostic) | 100.00 MHz | 44 LUTs | 30 Registres | 71 mW | 🟢 Conforme (WNS: +5,457 ns) |
-| **REIO-Crypt** (Accélérateur ZKP) | 100.00 MHz | 169 LUTs | 139 Registres | 75 mW | 🟢 Conforme (WNS: +0,345 ns) |
+| **REIO-Crypt** (Accélérateur ZKP) | 100.00 MHz | 100 LUTs | 135 Registres | 11,753 W | 🟢 Conforme (WNS: +2,514 ns) |
 | **REIO-Chain** (Réseau L3 Filtre) | 250.00 MHz | 2 LUTs | 64 Registres | 71 mW | 🟢 Conforme (WNS: +0,860 ns) |
 | **REIO-AI** (Filtre Neuronal TMR) | 100.00 MHz | 55 LUTs | 37 Registres | 98 mW | 🟢 Conforme (WNS: +7,272 ns) |
 | **REIO-CDC** (Synchroniseur) | 100/400 MHz| 1 LUT | 3 Registres | 71 mW | 🟢 Conforme (WNS: +8,828 ns) |
@@ -29,7 +30,7 @@ Le System-on-Chip (SoC) REIO est une architecture de co-design matériel/logicie
 | **REIO-INT** (Contrôleur IRQ) | 100.00 MHz | 27 LUTs | 19 Registres | 72 mW | 🟢 Conforme (WNS: +6,543 ns) |
 | **REIO-NVM** (Mémoire Flash Guard) | 100.00 MHz | 48 LUTs | 33 Registres | 79 mW | 🟢 Conforme (WNS: +4,500 ns PW) |
 
-**Bilan de Synthèse Cumulé :** **432 Slice LUTs** et **426 Slice Registers** actifs. Enveloppe thermique globale maîtrisée.
+**Bilan de Synthèse Cumulé :** **413 Slice LUTs** et **422 Slice Registers** actifs. Enveloppe thermique globale maîtrisée.
 
 ---
 
