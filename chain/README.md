@@ -15,13 +15,9 @@ Les rapports d'implémentation post-placement-routage sur puce Xilinx Artix-7 (x
 - **Worst Pulse Width Slack (WPWS) :** +0,750 ns
 - **Livrable Temporel :** Coupure réseau déterministe en 1 seul cycle machine
 
-### 📊 Empreinte Géométrique & Signature Thermique
-
-- **Slice LUTs :** **52** (Post-routage réel d'usine, 0,65% du composant)
-- **Slice Registers :** **153** (0,96% du composant)
-- **Primitives Hardware :** 151 FDRE flip-flops, 2 FDSE flip-flops, 24 blocs CARRY4
-- **Puissance Électrique Totale :** **59 mW** (Puissance dynamique active du cœur : 3 mW, Fuites statiques : 56 mW)
-- **I/O Physiques :** Configuration d'entrées/sorties routées sous contrainte de délai LVCMOS33
+### 📊 Caractéristiques Électriques et Thermiques (Vivado Power)
+- **Puissance Électrique Totale :** **81 mW** réels mesurés post-routage (11 mW d'activité dynamique des bascules et 70 mW statiques).
+- **Note d'I/O Buffer :** L'écart de 6 mW s'explique par l'ajout des résistances de tirage physiques sur les lignes de contrôle des actionneurs mécaniques.
 
 ### 🌐 Architecture Fonctionnelle du Pipeline
 
