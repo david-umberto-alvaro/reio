@@ -47,21 +47,22 @@ Operating on the **Autonomous Heterogeneous Decoupled (AHD)** architectural patt
 ## 📊 4. Behavioral Timing Chronogram & Pipelined Execution
 
 ```text
-◀------------------ Host Token Injection Phase ------------------▶◀---- 16-Cycle Pipelined ZK Calculation ----▶
-0ns                      10ns                     20ns                     30ns                     40ns
+    <--- Host Secret Token Injection ---> <-------- 16-Cycle Pipelined ZK Calculation -------->
+200ns               210ns               220ns                                   380ns
 
- |                        |                        |                        |                        |
-      ______                   ______                   ______                   ______                   ___
-_____/      \_______/      \_______/      \_______/      \_______/      \_______/      \_______/      \___  PCLK (100 MHz)
-_____________________/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\_____________________________________________  PSEL & PWRITE
-XXXXXXXXXXXXXXXXXXXXX_Secret_Token_Payload_(0xA5A5A5A5)_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  PWDATA[31:0]
-______________________________________________
-                                              \______________________________________________________________  start_zkp_internal (1->0)
-________________________________________________________________________
-                                                                        \____________________________________  mult_reg (Stage N Product)
-_____________________________________________________________________________________________________________
-                                                                                             /---------------  proof_ready & PRDATA (0x2990FF53)
+|                   |                   |                                       |
+   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _
+__/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_  PCLK / CLK (100 MHz)
+____________________/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  PSEL & PENABLE & PWRITE
+XXXXXXXXXXXXXXXXXXXX_Secret_Token_Payload_(0x0000000A)_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  PWDATA / SECRET_INPUT[31:0]
+____________________/                                                                   
+                    \_________________________________________________________________  START_ZKP / start_zkp_internal (1->0)
+                                        \___________/XXXXX Stage N Product XXXXXXXXXXX  mult_pipe_reg & mult_reg[31:0]
+                                                                                ______  
+_______________________________________________________________________________/      \  ZKP_PROOF_READY / proof_ready
+                                                                               \______  
+_______________________________________________________________________________/XXXXXX  PRDATA / ZKP_HASH_OUT[31:0]
 ```
 
----
+
 
