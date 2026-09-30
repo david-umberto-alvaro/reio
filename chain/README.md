@@ -1,17 +1,13 @@
-# ⛓️ REIO-Chain
+# ⚡ REIO-Chain — Technical Datasheet & Network Firewall Brief
 
-## Filtre Synchrone d'Interception Réseau & Disjoncteur Matériel (100 MHz / 250 MHz)
+REIO-Chain est un cœur IP de filtrage matériel synchrone haute vitesse pour l'isolation de flux de données de niveau 3, découplant un plan de données de 250,00 MHz et un plan de contrôle de 100,00 MHz.
 
-REIO-Chain est un IP Core matériel/logiciel pour l'interception et le masquage de flux Couche 3, combinant un plan de filtrage asynchrone à 250 MHz et un plan de contrôle à 100 MHz.
+## Métriques clés (Artix-7 - xc7a12tlcpg238-2L)
+- **Fréquences :** Contrôle à 100,00 MHz, Ligne à 250,00 MHz.
+- **Slacks :** WNS **+0,860 ns**, WHS **+0,347 ns** (aucun dépassement critique).
+- **Consommation et empreinte :** 2 LUTs, 64 registres, puissance totale de **71 mW** (58 mW statique, 13 mW dynamique).
 
-### 🔬 Performances Matérielles Certifiées (AMD/Xilinx Vivado v2026.1)
-
-Implémentation sur Xilinx Artix-7 (xc7a12tlcpg238-2L) :
-- **Fréquence Système (Rust) :** 100 MHz
-- **Fréquence Ligne (Ethernet) :** 250 MHz
-- **Worst Negative Slack (WNS) :** **+0,860 ns**
-- **Worst Hold Slack (WHS) :** **+0,347 ns**
-- **Puissance Totale :** **71 mW** (Dynamique : 13 mW, Statique : 58 mW)
+Pour les détails complets de la table des registres, du chronogramme comportemental et du contenu textuel intégral, veuillez vous référer aux documents du dépôt d'origine.
 
 ### 🌐 Architecture Fonctionnelle du Pipeline
 
