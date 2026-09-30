@@ -1,69 +1,66 @@
-# 🧠 REIO-AI — Superviseur Paracohérent pour Calcul Neuromorphique
+# 🧠 REIO-AI - Superviseur Paracohérent pour Calcul Neuromorphique
 
-### 📌 Présentation Générale
+### 📥 Présentation Générale
 REIO-AI est un module de supervision logique matériel (IP Core) conçu pour intercepter les hallucinations cognitives, les dérives de registres et les attaques adverses sur les architectures NPU/TPU embarquées.
 
 L'infrastructure s'appuie sur le modèle de co-design **VHDL synchrone** et **Rust bare-metal (`#![no_std]`)** pour analyser en continu la congruence logique des prémisses neuronales. Si deux neurones antagonistes sont activés simultanément (contradiction logique absolue), le circuit engage le confinement pour prémunir le système global contre toute décision aberrante.
 
-### 🔬 Architecture Spécifique & Invariant
-
+### 🛡️ Architecture Spécifique & Invariant
 Le superviseur s'interpose directement sur les flux de probabilités neuronales à la nanoseconde près :
-* **Filtre Anti-Hallucination :** Analyse en continu la congruence logique des prémisses neuronales. Si deux neurones antagonistes sont activés simultanément (contradiction logique absolue), le circuit engage la rupture.
-* **Confinement Éclair (1 Cycle) :** La détection d'une contradiction force le passage immédiat de la FSM dans l'état de sécurité `ST_HALT` en exactement 10 ns (1 cycle à 100 MHz).
-* **Isolation Active :** Le bus de données de sortie est écrasé instantanément pour renvoyer le tag de quarantaine immuable `0xDEADBEEF`, protégeant le système global contre toute décision aberrante.
+- **Filtre Anti-Hallucination :** Analyse en continu la congruence logique des prémisses neuronales. Si deux neurones antagonistes sont activés simultanément (contradiction logique absolue), le circuit engage la rupture.
+- **Confinement Éclair (1 Cycle) :** La détection d'une contradiction force le passage immédiat de la FSM dans l'état de sécurité `ST_HALT` en exactement 10 ns (1 cycle à 100 MHz).
+- **Isolation Active :** Le bus de données de sortie est écrasé instantanément pour renvoyer le tag de quarantaine immuable `0XDEADBEEF`, protégeant le système global contre toute décision aberrante.
 
 ### 🔬 Performances Matérielles Certifiées (AMD/Xilinx Vivado v2026.1)
-
 Les rapports d'implémentation post-routage sur cible Artix-7 durcie certifient les métriques physiques réelles suivantes :
-* **Fréquence Horloge Système (Domaine Principal) :** Validé avec succès à **100.00 MHz** (Période nominale stricte : **10.00 ns**).
-* **Worst Negative Slack (WNS) :** Établi à **+6.116 ns** (0 Failing Endpoints). Le chemin combinatoire ne prend que **3.884 ns** pour propager l'isolation.
-* **Worst Hold Slack (WHS) :** Optimisé à **+0.196 ns** (0 Violation de Hold).
-* **Temps de Réponse du Confinement :** Rupture et mise en quarantaine active exécutées en exactement **1 cycle d'horloge (10.00 ns)**.
+- **Fréquence Horloge Système (Domaine Principal) :** Validé avec succès à **100.00 MHz** (Période nominale stricte : **10.00 ns**).
+- **Worst Negative Slack (WNS) :** Établi à **+7,272 ns** (0 Failing Endpoints). Le chemin combinatoire ne prend que **2,462 ns** pour propager l'isolation.
+- **Worst Hold Slack (WHS) :** Optimisé à **+0,260 ns** (0 Violation de Hold).
+- **Temps de Réponse du Confinement :** Rupture et mise en quarantaine active exécutées en exactement **1 cycle d'horloge (10.00 ns)**.
 
-### 📊 Empreinte Géométrique & Signature Thermique
-
-* **Ressources Silicium (Vivado Utilization) :** Consomme précisément **52 Slice LUTs** (0.25% de la matrice) et **38 Slice Registers** synchrones durcis (37 bascules de type `FDCE` et 1 bascule de type `FDPE`).
-* **Macro-blocs Arithmétiques :** 0 bloc DSP utilisé, le traitement probabiliste étant résolu par réduction combinatoire directe.
-* **Puissance Électrique Totale (Vivado Power) :** Enveloppe thermique mesurée à **70 mW** (Leakage Statique : 68 mW, Cœur Dynamique Actif : 1 mW).
-* **I/O Physiques (CSG324 Package) :** Configuration de **102 broches physiques** (67 ports d'entrée `IBUF`, 35 ports de sortie `OBUF`).
-* **Résistance Thermique :** Température de jonction stabilisée à **25.3 °C** pour une température ambiante maximale supportée de **124.7 °C** (Grade Q Automobile).
+### 🎛️ Empreinte Géométrique & Signature Thermique
+- **Ressources silicium (Vivado Utilization) :** Consomme précisément **55 Slice LUTs** et **37 Slice Registers** synchrones durcis (bascules d'états physiques triplées par Redondance Modulaire Triple - TMR).
+- **Macro-blocs Arithmétiques :** 0 bloc DSP utilisé, le traitement probabiliste étant résolu par réduction combinatoire directe.
+- **Puissance Électrique Totale (Vivado Power) :** Enveloppe thermique mesurée à **98 mW** (Leakage Statique : 72 mW, Cœur Dynamique Actif : 26 mW).
+- **I/O Physiques (CSG324 Package) :** Configuration de **102 broches physiques** (67 ports d'entrée `IBUF`, 35 ports de sortie `OBUF`).
+- **Résistance Thermique :** Température de jonction stabilisée à **25.5 °C** pour une température ambiante maximale supportée de **124.5 °C** (Grade Q Automobile).
 
 ### 🌐 Architecture Fonctionnelle du Superviseur
 
 ```text
-       +-------------------------------------------------------+
++-------------------------------------------------------+
 
-       |                  ARCHITECTURE NPU                     |
-       |        (Flux de Probabilités Neuronales Parallèles)   |
-       +-------------------------------------------------------+
+|                   ARCHITECTURE NPU                    |
+|       (Flux de Probabilités Neuronales Parallèles)    |
++-------------------------------------------------------+
 
-                |                                      |
-                | NPU_NEURON_A (32 bits)               | NPU_NEURON_B (32 bits)
-                v                                      v
-       +=======================================================+
+              |                                   |
+              | NPU_NEURON_A (32 bits)            | NPU_NEURON_B (32 bits)
+              v                                   v
++=======================================================+
 
-       |                      SILICIUM                         |
-       | ----------------------------------------------------- |
-       |             FILTRE MATÉRIEL PARACONCURRENT            |
-       |          (52 Slice LUTs / 38 Slice Registers)         |
-       |                                                       |
-       |  [Analyse de Congruence] ---> [Détection Antagoniste] |
-       +=======================================================+
+|                       SILICIUM                        |
+| ----------------------------------------------------- |
+|         FILTRE MATÉRIEL PARACONCURRENT DURCI         |
+|         [55 Slice LUTs]             [37 Registers]    |
+|                                                       |
+|    [Analyse de Congruence TMR] ---> [Vote Majoritaire]|
++=======================================================+
 
-                |                                      |
-                | Mode Nominal                         | Contradiction Logique
-                | (Transmission Transparente)          | (Isolation en 1 Cycle)
-                v                                      v
-       +-------------------------------+      +-----------------------+
+              |                                   |
+              | Mode Nominal                      | Contradiction Logique
+              | (Transmission Transparente)       | (Isolation en 1 Cycle)
+              v                                   v
++-------------------------------+   +-------------------+
 
-       |         INTERFACE HÔTE        |      |  PILE DE QUARANTAINE  |
-       |  PRDATA <= NPU_NEURON_A       |      |  PRDATA <= 0xDEADBEEF |
-       |  PREADY <= '1'                |      |  PSLVERR <= '1'       |
-       +-------------------------------+      +-----------------------+
-                                                       |
-                                                       v
-                                              [SIG_QUARANTINE_ENGAGED]
-                                              (Coupure active du NPU)
+|        INTERFACE HÔTE         |   | PILE QUARANTAINE  |
+|  PRDATA <= NPU_NEURON_A       |   | PRDATA <=DEADBEEF |
+|  PREADY <= '1'                |   | PSLVERR <= '1'    |
++-------------------------------+   +-------------------+
+                                              |
+                                              v
+                                    [SIG_QUARANTINE_ENGAGED]
+                                    (Coupure active du NPU)
 ```
 
 ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
