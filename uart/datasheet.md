@@ -26,9 +26,10 @@ REIO-UART is a hardened hardware-enforced serial input/output communication and 
 - **Total Hardware Latency Profile:** Attack isolation and combinatorial output masking executed in exactly 1 clock cycle (10.00 ns).
 
 ### Silicon Footprint Allocation:
-- **Slice LUTs Utilization:** 35 LUTs (31 LUT as Logic, 4 LUT combining adjustment).
-- **Slice Registers Count:** 30 Registers (30 rising edge-triggered FDCE/FDPE flip-flops).
-- **Unique Control Sets:** 5 unique synchronous control sets.
+## 2. Electrical, Timing & Resource Metrics (Artix-7)
+- **Slice LUTs Utilization:** 44 LUTs (Post-routing physical optimization)
+- **Slice Registers Count:** 30 Registers (28 rising edge-triggered FDCE and 2 FDPE flip-flops)
+- **Bonded IOB Count:** 45 Pins (Including internal memory-mapped parallel bus structures routed to the Crossbar Matrix)
 
 ---
 
