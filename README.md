@@ -43,11 +43,11 @@ Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **
   - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| **WNS : inf** \| **WHS : inf**). Interception de violation, effondrement complet à 0 Volt et levée de l'alarme d'intrusion exécutés en exactement **1 cycle d'horloge (10.00 ns)**.
   - **Ressources :** **38 Slice LUTs / 67 Slice Registers**, consommation globale de **77 mW** (Logique interne active : 6 mW, Fuites statiques et I/O buffers : 71 mW).
 
-- ⛓️ **[REIO-CDC](./cdc)**
-  - **Fonction :** Synchroniseur multi-horloge d'étanchéité physique pour le croisement de domaines asynchrones (Clock Domain Crossing).
-  - **Architecture de Sûreté :** Chaîne de capture séquentielle à triple étage de bascules durcies pour l'absorption et la neutralisation de la métastabilité active induite par la gigue ou les injections de pannes.
-  - **Validation :** Validé au routage inter-domaines (**400 MHz ◄► 100 MHz**). Timing global validé sans aucune violation de setup/hold (`WNS: inf` \| `WHS: inf`). Stabilisation et transmission étanche du signal validées en exactement **3 cycles d'horloge**.
-  - **Ressources :** **0 Slice LUT (1 LUT combinatoire d'ajustement de buffer) / 3 Slice Registers**, consommation globale de **336 mW** (Logique interne active : 7 mW, Fuites passives et I/O buffers : 329 mW).
+- ⛓ **[REIO-CDC](./cdc)**
+  - **Fonction :** Synchroniseur multi-horloge d'étanchéité physique pour le croisement de domaines asynchrones (Clock Domain Crossing) [index_0.1.8].
+  - **Architecture de Sûreté :** Chaîne de capture séquentielle à triple étage de bascules durcies pour l'absorption et la neutralisation de la métastabilité active induite par la gigue ou les injections de pannes [index_0.1.8].
+  - **Validation :** Validé au routage inter-domaines (**400 MHz ──> 100 MHz** et **66.67 MHz ──> 100 MHz**) [index_0.1.8]. Timing global fermé sans aucune violation : **WNS à +8,926 ns**, **WHS à +0,131 ns** et **WPWS à +4,500 ns** [index_0.1.11]. Transmission étanche en exactement **3 cycles d'horloge** [index_0.1.8].
+  - **Ressources :** **1 Slice LUT / 3 Slice Registers** [index_0.1.12], consommation globale ultra-sobre de **71 mW** (Logique interne active : 1 mW, Fuites statiques d'usine : 70 mW, Puissance d'I/O : 0 mW) [index_0.1.10].
 
 - ⛓️ **[REIO-Chain](./chain)**
   - **Fonction :** Disjoncteur réseau Layer 3 synchrone sur bus 64 bits s'interfaçant avec un bus physique Ethernet.
