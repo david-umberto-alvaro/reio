@@ -20,7 +20,7 @@ Every logical transaction passing through the system is monitored, verified, or 
 
 *Aggregated hardware utilization and parametric power distribution metrics compiled directly from Vivado post-placement-routing factory production reports.*
 
-### 🛠️ Hardware Utilization Summary (Artix-7 Fabric)
+### 🛠️ Hardware Utilization Summary (Artix-7 Fabric - Consolidated Summary)
 
 | Module Layer | Slice LUTs | Slice Registers | Critical Primitives / Hardware Macros | Status |
 | :--- | :---: | :---: | :--- | :---: |
@@ -29,13 +29,14 @@ Every logical transaction passing through the system is monitored, verified, or 
 | **REIO-Safe** | 28 | 37 | 36 FDCE, 1 FDPE (Including Bus Line Replicas) | 🟢 Certified |
 | **REIO-Crypt** | 169 | 139 | Hardware Zero-Knowledge Pipeline Engine | 🟢 Certified |
 | **REIO-AI** | 64 | 48 | Paraconcurrent Hardware Supervisor Array | 🟢 Certified |
-| **REIO-CDC** | 0 | 3 | 3 FDCE (`ASYNC_REG == TRUE`), 1 Logic Guard | 🟢 Certified |
+| **REIO-CDC** | 1 | 3 | 3 FDCE (`ASYNC_REG == TRUE`), 1 Logic Guard | 🟢 Certified |
 | **REIO-NVM** | 48 | 33 | 84 Bonded IOB Parallel Clamping Guard | 🟢 Certified |
 | **REIO-Bus** | 87 | 64 | Geographic Crossbar Router, Token Auth | 🟢 Certified |
 | **REIO-PWR** | 18 | 16 | Voltage Rail State-Machine Séquenceur | 🟢 Certified |
 | **REIO-Int** | 27 | 19 | 19 FDCE, 4 CARRY4, Dual Rate-Limiter Channels | 🟢 Certified |
 | **REIO-Uart** | 44 | 30 | 30 FDCE/FDPE, 45 Bonded IOB Routed Sync | 🟢 Certified |
-| **TOTAL SoC** | **651** | **635** | **Hardened Monolithic Sovereign Fabric** | **🏆 V4 SEALED** |
+| **TOTAL SoC** | **651** | **635** | **Hardened Monolithic Sovereign Fabric** | **🏆 SEALED** |
+
 
 ### ⚡ Power Supply & Thermal Dissipation Profile (V4 Core)
 - **Total Silicon Static Leakage Power:** 72 mW.
