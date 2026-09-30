@@ -1,5 +1,4 @@
 # ⛓️ REIO-Chain
-# ⛓️ REIO-Chain
 
 ## Filtre Synchrone d'Interception Réseau & Disjoncteur Matériel (100 MHz / 250 MHz)
 
@@ -50,7 +49,7 @@ Implémentation sur Xilinx Artix-7 (xc7a12tlcpg238-2L) :
 
 ### 📊 Validation Fonctionnelle & Formes d'Ondes (Testbench RTL)
 
-![Chronogramme des formes d'ondes REIO-Chain](reio_chain_simulation_waveform.png)
+![Chronogramme des formes d'ondes REIO-Chain](reio_chain_simulation.png)
 
 ### 🛠 Architecture du Framework Unifié
 
