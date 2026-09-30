@@ -28,7 +28,7 @@ L'intégralité du circuit logique combinatoire et séquentiel a été fermée t
 | **REIO-Chain** | 250,00 MHz | 2 LUTs | 64 Registres | 71 mW | 🟢 Conforme (WNS: +0,860 ns) | 2 Cycles d'horloge (8 ns) |
 | **REIO-AI** | 100,00 MHz | 55 LUTs | 37 Registres | 98 mW | 🟢 Conforme (WNS: +7,272 ns) | 1 Cycle d'horloge (10 ns) |
 | **REIO-CDC** | 100 / 400 MHz | 1 LUT | 3 Registres | 71 mW | 🟢 Conforme (WNS: +8,926 ns) | 3 Cycles d'horloge (Absorption Met.) |
-| **REIO-BUS** | 100,00 MHz | 38 LUTs | 67 Registres | 77 mW | 🟢 Conforme (Fermeture Absolue `inf`) | 1 Cycle d'horloge (10 ns) |
+| **REIO-BUS** | 100,00 MHz | **89 LUTs** | **65 Registres** | 77 mW | 🟢 Conforme (WNS: +4,723 ns) | 1 Cycle d'horloge (10 ns) |
 | **REIO-INT** | 100,00 MHz | 27 LUTs | 19 Registres | 72 mW | 🟢 Conforme (WNS: +6,543 ns) | 1 Cycle d'horloge (10 ns) |
 | **REIO-NVM** | 100,00 MHz | 48 LUTs | 33 Registres | 79 mW | 🟢 Conforme (WNS: +4,500 ns PW) | 1 Cycle d'horloge (10 ns) |
 
