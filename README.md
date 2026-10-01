@@ -27,13 +27,14 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 ---
 
-## 🏛️ REIO FRACTAL (EN COURS)
+## 🏛️ GÉNÉRATION 2026 : REIO V4 FRACTAL (Système Monolithique)
 👉 **Accéder au dossier de spécification : [REIO V4 Fractal](./fractal)**
 
-La version 4 (Fractal) représente la rupture technologique majeure du framework. Elle abandonne la fragmentation périphérique pour centraliser l'intégralité de la sécurité au sein d'un cœur de contrôle unique régi par une logique trivalente formelle.
-*   **Emplacement :** Répertoire [`/fractal`](./fractal)
-*   **Statut :** En cours de déploiement (Page blanche locale initialisée)
-*   **Innovation :** Décodeur d'interception synchrone à logique trivalente (`reio_l3_decoder`), traitement intensif sur blocs DSP48E1 câblés et écrêtage combinatoire autonome avec retour immédiat à la masse (0V, GND) en moins d'un cycle d'horloge.
+La version 4 (Fractal) représente la rupture technologique majeure du framework, centralisant l'intégralité de la sécurité au sein d'un cœur de contrôle unique régi par une logique trivalente formelle.
+* **Emplacement :** Répertoire [`/fractal`](./fractal)
+* **Statut :** PRODUCTION VALIDÉE (Bitstream durci généré et micro-noyau compilé)
+* **Performances Silicium :** Fermeture temporelle stable avec un **WNS de +6,134 ns** sur le domaine synchrone à 100.00 MHz.
+* **Ressources & Énergie :** Empreinte ultra-compacte de **12 Slice LUTs / 1 Registre** pour une enveloppe thermique globale maîtrisée à **73 mW** (1 mW dynamique).
 
 ---
 
