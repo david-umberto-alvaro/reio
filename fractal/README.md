@@ -58,3 +58,6 @@ La version 4 (Fractal) supprime la fragmentation en consolidant l'infrastructure
 |                   v                                |
 +-------------------+--------------------------------+
 ```
+
+
+![Rapport de validation du script Python](reio_v4_crash_test.png)
