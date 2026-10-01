@@ -1,4 +1,4 @@
-# REIO V4 FRACTAL — ARCHITECTURE MONOLITHIQUE SECURE
+# REIO V4 — ARCHITECTURE MONOLITHIQUE SECURE
 
 ## 🏛️ Registre Spécification Technique et d'Attestation Métrologique
 
