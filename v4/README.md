@@ -11,7 +11,8 @@ La version 4 (Fractal) supprime la fragmentation en consolidant l'infrastructure
 *   **Tampon de Diagnostic Intégré :** Émetteur série synchrone (UART) directement couplé à la matrice pour attester de l'intégrité de l'amorçage.
 
 ### 📊 Indicateurs Métrologiques Validés (Vivado v2026.1)
-*   **Worst Negative Slack (WNS) :** **+6,134 ns** (0 Failing Endpoints) sur le domaine d'horloge de production à 100.00 MHz.
+
+*   **Worst Negative Slack (WNS) :** **+7,517 ns** (0 Failing Endpoints) sur le domaine d'horloge de production à 100.00 MHz (Vérifié empiriquement post-routage).
 *   **Worst Hold Slack (WHS) :** **+0,880 ns** (Marge de sécurité thermique certifiée Q-Grade).
 *   **Bilan Électrique Global :** Enveloppe thermique fixée à **73 mW** (72 mW statiques / 1 mW dynamique).
 
