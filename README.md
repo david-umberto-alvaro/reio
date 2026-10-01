@@ -81,7 +81,7 @@ La version 4 (Fractal) représente la rupture technologique majeure du framework
 
 ---
 
-## 💾 ARCHIVE : REIO V3 (Preuve de Concept Modulaire)
+## 💾 ARCHIVE : [REIO V3](./v3/README.md) (Preuve de Concept Modulaire)
 👉 **Architecture périphérique segmentée (11 sous-systèmes autonomes)**
 
 La version 3 constitue la base historique de validation distribuée du SoC. Chaque fonction critique est isolée dans un sous-module matériel indépendant interconnecté via une matrice Crossbar synchrone. Tous les modules ci-dessous sont fonctionnels, temporellement fermés (STA Vivado au vert) et compilent sous Rust en mode `release` :
