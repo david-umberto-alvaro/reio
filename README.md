@@ -37,7 +37,7 @@ Le projet retrace l'évolution technologique d'un framework d'intégrité embarq
 Cette quatrième génération concrétise la convergence matérielle et logicielle du framework, garantissant un confinement d'anomalie ultra-déterministe sans le moindre compromis sur les performances physiques de la puce.
 
 *   **Statut du Jalon :** **PRODUCTION VALIDÉE** 🚀 (Bitstream matériel câblé généré et micro-noyau OS compilé en Rust bare-metal).
-*   **Performances Silicium :** Fermeture temporelle d'élite avec un **WNS de +8,936 ns** sur le domaine synchrone d'usine à 100.00 MHz (Chemin critique de 1,064 ns).
+*   **Performances Silicium :** Fermeture temporelle avec un **WNS de +8,936 ns** sur le domaine synchrone d'usine à 100.00 MHz (Chemin critique de 1,064 ns).
 *   **Ressources & Énergie :** Empreinte ultra-compacte de seulement **7 Slice LUTs** et **6 Registres (FF)** pour une enveloppe thermique globale maîtrisée à **76 mW** (2 mW dynamique).
 
 
