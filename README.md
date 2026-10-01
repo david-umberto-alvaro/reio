@@ -26,7 +26,7 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 ---
 
-## 🏛️ [REIO V4 Fractal](./v4/README.md) (Système Monolithique)
+## 🏛️ [REIO V4](./v4/README.md) (Système Monolithique)
 
 La version 4 (Fractal) représente la rupture technologique majeure du framework, centralisant l'intégralité de la sécurité au sein d'un cœur de contrôle unique régi par une logique trivalente formelle.
 
