@@ -5,7 +5,7 @@ Niveau d'Assurance Visé : EAL7+ augmenté des composants ALC_FLR.3 (Remédiatio
 ## 📌 1. Identification et Description de la Cible (TOE)## 1.1 Identification de la TOE
 
 * Nom de l'IP Core : REIO V4 Monolithic Security Boundary.
-* Version du Silicium : v4.0.0 (Fractal Architecture, Build 6511674).
+* Version du Silicium : v4.0.0 (Monolithic Architecture , Build 6511674).
 * Développeur : David Umberto Alvaro.
 * Environnement de Synthèse : AMD/Xilinx Vivado Enterprise v2026.1 (win64).
 
