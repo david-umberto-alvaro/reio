@@ -47,49 +47,6 @@ La version 4 (Fractal) supprime la fragmentation en consolidant l'infrastructure
  (Alerte Système)    (Maintien à 0V)
 ```
 
-### 🧠 3. Schéma Cinématique du Micro-Noyau et du Planificateur
-
-```text
-                 +--------------------------------+
-
-                 |       POINT D'ENTRÉE RUST      |
-                 |          fn _start()           |
-                 +--------------------------------+
-                                 |
-                                 v
-                 +--------------------------------+
-
-                 |    Initialisation Statique     |
-                 | (Network, Drive, Storage = +1) |
-                 +--------------------------------+
-                                 |
-                                 v
-                     //--- BOUCLE PRINCIPALE ---//
-+---------> +------------------------------------------+
-
-|           |  PHASE 1 : Lecture Volatile BASE_BUS     |
-|           |          (0x4000_5000)                   |
-|           +------------------------------------------+
-
-|                                |
-|                                v
-|                 /----------------------------\
-|                /   Bit d'anomalie détecté     \
-|                \      par le silicium ?       /
-|                 \----------------------------/
-|                     /                    \
-|           [OUI]    /                      \ [NON]
-|                   v                        v
-|     +---------------------------+    +---------------------------+
-
-|     | PHASE 2 : CONFINEMENT     |    | PHASE 3 : PLANIFICATEUR   |
-|     | - Net/Drive state = 0     |    | - Exécution Net   (Si +1) |
-|     | - Écrasement BUS à 0 Volt |    | - Exécution Drive (Si +1) |
-|     +---------------------------+    | - Exécution Store (Si +1) |
-|                   |                  +---------------------------+
-|                   v                                |
-+-------------------+--------------------------------+
-```
 
 ### 📊 4. Rapport d'Audit et Banc d'Essai d'Injection de Fautes
 
