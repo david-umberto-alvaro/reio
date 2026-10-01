@@ -26,46 +26,34 @@ Le plan de contrôle logiciel Rust (`reio_core_v4`) pilote l'infrastructure via 
     *   **En Lecture :** Capture le registre d'état du décodeur trivalent. Le Bit 0 à `'1'` indique la détection d'une anomalie ou d'un glitch de tension sur le bus.
     *   **En Écriture :** Charge le tampon de transmission de l'I/O série de diagnostic (`O_UART_TXD`) pour l'envoi asynchrone des octets de télémétrie. Un cycle d'écriture forcé à `0x0000_0000` déclenche l'effondrement immédiat et le verrouillage de la puce.
 
-### 🧠 3. Schéma Cinématique du Micro-Noyau et du Planificateur
+### 🌐 3. Schéma Fonctionnel de la Frontière Matérielle
 
 ```text
-                 +--------------------------------+
+                  [ BUS AMBA APB MASTER HOST ]
+                               |
+       (I_PADDR[31:0], I_PWDATA[31:0], I_PSEL, I_PENABLE, I_PWRITE)
+                               |
+                               v
++===================================================================+
 
-                 |       POINT D'ENTRÉE RUST      |
-                 |          fn _start()           |
-                 +--------------------------------+
-                                 |
-                                 v
-                 +--------------------------------+
+| REIO_L3_DECODER (Cœur Monolithique V4)                            |
+|                                                                   |
+|  +-------------------------------------------------------------+  |
+|  | Équation Combinatoire d'Interception (0 Cycle)              |  |
+|  | s_glitch_detected <= '1' SI ADDR=0xFFFFFFFF ET PENABLE='0'  |  |
+|  +-------------------------------------------------------------+  |
+|               |                                  |                |
+|               v (Si Glitch = '1')                v (Si Sane)      |
+|  +---------------------------+     +---------------------------+  |
+|  | Registre de Faille (Sel)  |     | Tampon Diagnostic (UART)  |  |
+|  | r_fault_latch <= '1'       |     | r_tx_shift_reg[9:0]       |  |
+|  +---------------------------+     +---------------------------+  |
+|               |                                  |                |
++===============|==================================|================+
 
-                 |    Initialisation Statique     |
-                 | (Network, Drive, Storage = +1) |
-                 +--------------------------------+
-                                 |
-                                 v
-                     //--- BOUCLE PRINCIPALE ---//
-+---------> +------------------------------------------+
-
-|           |  PHASE 1 : Lecture Volatile BASE_BUS     |
-|           |          (0x4000_5000)                   |
-|           +------------------------------------------+
-
-|                                |
-|                                v
-|                 /----------------------------\
-|                /   Bit d'anomalie détecté     \
-|                \      par le silicium ?       /
-|                 \----------------------------/
-|                     /                    \
-|           [OUI]    /                      \ [NON]
-|                   v                        v
-|     +---------------------------+    +---------------------------+
-
-|     | PHASE 2 : CONFINEMENT     |    | PHASE 3 : PLANIFICATEUR   |
-|     | - Net/Drive state = 0     |    | - Exécution Net   (Si +1) |
-|     | - Écrasement BUS à 0 Volt |    | - Exécution Drive (Si +1) |
-|     +---------------------------+    | - Exécution Store (Si +1) |
-|                   |                  +---------------------------+
-|                   v                                |
-+-------------------+--------------------------------+
+                |                                  |
+        +-------+-------+                          v
+        v               v                    [ O_UART_TXD ]
+ [O_TRIVALENT_FAULT] [O_SECURE_LATCH]      (Signal Série Actif)
+ (Alerte Système)    (Maintien à 0V)
 ```
