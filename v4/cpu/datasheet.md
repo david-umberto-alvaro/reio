@@ -38,4 +38,27 @@ Le cœur de sécurité est structurellement isolé et communique exclusivement �
 *   **Confinement Spatial :** Prêt pour intégration conjointe avec le plan de routage géométrique durci (`reio_v4_floorplan.xdc`) isolant les pblocks `R_Soufre`, `R_Sel` et `R_Mercure`.
 
 ---
-*Droits d'Auteur © 2026 REIO Framework. Tous droits réservés. Les schémas de portes logiques et codes sources VHDL/Rust originaux sont protégés au titre du Secret Industriel et de la Propriété Intellectuelle Exclusive.*
+
+## 4. BEHAVIORAL TIMING CHRONOGRAM & CASCADED STABILIZATION
+
+```text
+       <--- Asynchronous Transition ---><-------- 3-Stage Synchronization Latency Loop --------->
+       0ns                              10ns                             20ns                             30ns
+
+        |                                |                                |                                |
+CLK     |                                |                                |                                |
+     _  |_   _   _   _   _   _   _   _   |_   _   _   _   _   _   _   _   |_   _   _   _   _   _   _   _   |_   _
+
+    | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | (100 MHz)
+____| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_| |_
+
+RESETn  |                                |                                |                                |
+________|_________________________________________________________________|________________________________
+                                                                          (Désactivation du Reset)
+I_VALID |                                |                                |                                |
+________|___________________________________________________________________________|______________________
+                                                                                    (Instruction Valide)
+O_FAULT |                                |                                |                                |
+________|____________________________________________________________________________________________|____
+                                                                                                     (Clear)
+```
