@@ -35,6 +35,50 @@ La version 4 (Fractal) représente la rupture technologique majeure du framework
 * **Performances Silicium :** Fermeture temporelle stable avec un **WNS de +6,134 ns** sur le domaine synchrone à 100.00 MHz.
 * **Ressources & Énergie :** Empreinte ultra-compacte de **12 Slice LUTs / 1 Registre** pour une enveloppe thermique globale maîtrisée à **73 mW** (1 mW dynamique).
 
+### 🧠 Aperçu de la Boucle d'Exécution Monolithique V4
+
+```text
+                 +--------------------------------+
+
+                 |       POINT D'ENTRÉE RUST      |
+                 |          fn _start()           |
+                 +--------------------------------+
+                                 |
+                                 v
+                 +--------------------------------+
+
+                 |    Initialisation Statique     |
+                 | (Network, Drive, Storage = +1) |
+                 +--------------------------------+
+                                 |
+                                 v
+                     //--- BOUCLE PRINCIPALE ---//
++---------> +------------------------------------------+
+
+|           |  PHASE 1 : Lecture Volatile BASE_BUS     |
+|           |          (0x4000_5000)                   |
+|           +------------------------------------------+
+
+|                                |
+|                                v
+|                 /----------------------------\
+|                /   Bit d'anomalie détecté     \
+|                \      par le silicium ?       /
+|                 \----------------------------/
+|                     /                    \
+|           [OUI]    /                      \ [NON]
+|                   v                        v
+|     +---------------------------+    +---------------------------+
+
+|     | PHASE 2 : CONFINEMENT     |    | PHASE 3 : PLANIFICATEUR   |
+|     | - Net/Drive state = 0     |    | - Exécution Net   (Si +1) |
+|     | - Écrasement BUS à 0 Volt |    | - Exécution Drive (Si +1) |
+|     +---------------------------+    | - Exécution Store (Si +1) |
+|                   |                  +---------------------------+
+|                   v                                |
++-------------------+--------------------------------+
+```
+
 ---
 
 ## 💾 ARCHIVE : REIO V3 (Preuve de Concept Modulaire)
