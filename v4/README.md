@@ -70,25 +70,5 @@ Le framework monolithique REIO V4 intègre désormais une architecture logiciell
 * **OS du Système Embarqué Global :** 1 928 octets (Cible durcie `x86_64-unknown-none`)
 
 ### 🛰️ Validation du Harnais d'Évaluation Systémique
-```text
-H:\REIO\V4\RUST>python reio_v4_sys_test.py
-------------------------------------------------------------------
-REIO V4: Executing System-Level HW/SW Unification and Test Bench
-------------------------------------------------------------------
-SUCCESS: Located unified system binary at: target/x86_64-unknown-none/release/build/reio_core_v4/aef22491103dd227/out/reio_core_v4
-System Binary size: Ok (Optimized)
 
----- SIMULATING PARACONCURRENT HOMEOSTASIS ACTIVE TEST ----
-[STATUS] System Matrix initialized in Confinement State [SEL] (0x0)
-[ATTACK] Injecting radioactive radiation glitch... Forcing Bus to [MERCURE] (0x2)
-[ACTIVE REGULATION] OS Intercepted state '2' in 0.28s profile!
-[ACTIVE REGULATION] Injecting counter-power balance command to 0x0000_0000
-[HOMEOSTASIS SUCCESS] Bus cleared back to [SEL] (0x0). System remains ONLINE.
-------------------------------------------------------------------
-[SUCCESS] REIO V4 System-Level Active Validation Harness Passed!
-------------------------------------------------------------------
-```
-
-
-
-![Rapport de validation du script Python](reio_v4_crash_test.png)
+![Rapport de validation du script Python](reio_v4_crash_test2.png)
