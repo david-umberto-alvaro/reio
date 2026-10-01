@@ -149,11 +149,6 @@ La version 3 constitue la base historique de validation distribuée du SoC. Chaq
                +---------------------------+
 ```
 
-### 🛠️ Plateforme de Crash-Test & Injection de Fautes Globale
-- 🧪 **[reio_soc_test.py](./v3/reio_soc_test.py)** : Script d'intégration logicielle hybride (*Hardware-in-the-Loop* émulé). Il orchestre une injection d'attaques en cascade directement sur vos binaires machine Rust bare-metal (`reio_pwr.dll`, `reio_safe.dll`, `reio_uart.dll`, `reio_bus.dll`) pour certifier la disjonction et le confinement matériel immédiat à 0 Volt en cas d'intrusion [image_MgPE5w.png].
-
-![Console de Crash-Test REIO-SoC](./v3/reio_soc_test.png)
-
 ## 📦 3. Structure du Dépôt & Politique d'Accès
 
 Ce dépôt sert de portfolio technique pour démontrer mes compétences en co-design et en intégration matérielle.
