@@ -24,7 +24,7 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 | **REIO-A6** | Attestation Pragmatique | `Chain` • `Safe` • `Crypt` • `CDC` • `NVM` • `BUS` • `PWR` • `Int` • `Uart` | Scellement irréversible de chaque cycle d'évolution pour immuniser le SoC contre la gigue et les injections de pannes. |
 
 ---
-## 🎯 Présentation du Projet REIO (Real-time Embedded Integrity Orchestrator)
+## 🎯 Présentation du Projet REIO (Réalisme Expérimental Instrumenté Optimisé)
 
 **REIO** est un framework d'architecture matérielle sécurisée conçu pour immuniser les systèmes embarqués critiques (comme l'automobile ou l'aérospatial) contre les cyberattaques et les injections de pannes physiques. 
 
