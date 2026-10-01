@@ -1,0 +1,29 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date         : Thu Oct  1 02:21:30 2026
+| Host         : PC1-2D running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file H:/REIO/V4/VIVADO/BUILD_BULLETINS/reio_v4_utilization.rpt
+| Design       : reio_l3_decoder
+| Device       : xa7a35tcsg324-1Q
+| Speed File   : -1Q
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-----------------+--------+------------+------------+---------+------+-----+--------+--------+------------+
+|     Instance    | Module | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP Blocks |
++-----------------+--------+------------+------------+---------+------+-----+--------+--------+------------+
+| reio_l3_decoder |  (top) |         12 |         12 |       0 |    0 |   1 |      0 |      0 |          0 |
++-----------------+--------+------------+------------+---------+------+-----+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+
