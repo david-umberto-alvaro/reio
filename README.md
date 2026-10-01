@@ -30,7 +30,7 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 Le projet retrace l'évolution technologique d'un processeur de sécurité à travers deux générations majeures :
 1. 📦 **Génération V3 (Archive) :** Une approche modulaire composée de 11 périphériques fragmentés qui surveillaient le système de manière distribuée.
-2. 🏛️ **Génération V4 (Production) :** Une rupture technologique majeure qui centralise toute la sécurité au sein d'un cœur de contrôle unique et monolithique. Ce processeur est régi par une logique mathématique trivalente formelle, capable de détecter et de confiner une anomalie en moins d'un cycle d'horloge.
+2. 🏛️ **Génération V4 (Production) :** Une rupture technologique majeure qui centralise toute la sécurité au sein d'un cœur de contrôle unique et monolithique. Ce cœur de contrôle est régi par une logique mathématique trivalente formelle, capable de détecter et de confiner une anomalie en moins d'un cycle d'horloge.
 
 ## 🏛️ [REIO V4](./v4/README.md) (Système Monolithique)
 
