@@ -31,7 +31,7 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 La version 4 (Fractal) représente la rupture technologique majeure du framework, centralisant l'intégralité de la sécurité au sein d'un cœur de contrôle unique régi par une logique trivalente formelle.
 
 * **Statut :** PRODUCTION VALIDÉE (Bitstream durci généré et micro-noyau compilé)
-* **Performances Silicium :** Fermeture temporelle stable avec un **WNS de +6,134 ns** sur le domaine synchrone à 100.00 MHz.
+* **Performances Silicium :** Fermeture temporelle stable avec un **WNS de +7,517 ns** sur le domaine synchrone à 100.00 MHz.
 * **Ressources & Énergie :** Empreinte ultra-compacte de **12 Slice LUTs / 1 Registre** pour une enveloppe thermique globale maîtrisée à **73 mW** (1 mW dynamique).
 
 ### 🧠 Aperçu de la Boucle d'Exécution Monolithique V4
