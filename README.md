@@ -27,74 +27,32 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 ---
 
-## 🛠️ 2. Implémentation Physique & Métriques Vivado (PoC)
+## 🏛️ REIO FRACTAL (EN COURS)
+👉 **Accéder au dossier de spécification : [REIO V4 Fractal](./fractal)**
 
-Proof of Concepts (PoC) en **VHDL** et **Rust/C FFI** synthétisés sur cible **AMD/Xilinx Artix-7**.
+La version 4 (Fractal) représente la rupture technologique majeure du framework. Elle abandonne la fragmentation périphérique pour centraliser l'intégralité de la sécurité au sein d'un cœur de contrôle unique régi par une logique trivalente formelle.
+*   **Emplacement :** Répertoire [`/fractal`](./fractal)
+*   **Statut :** En cours de déploiement (Page blanche locale initialisée)
+*   **Innovation :** Décodeur d'interception synchrone à logique trivalente (`reio_l3_decoder`), traitement intensif sur blocs DSP48E1 câblés et écrêtage combinatoire autonome avec retour immédiat à la masse (0V, GND) en moins d'un cycle d'horloge.
 
-- 🧠 **[REIO-AI](./ai)**
-    - **Fonction :** Superviseur logique paracohérent pour la sûreté des accélérateurs IA (NPU/TPU).
-    - **Architecture de Sûreté :** Filtre de congruence paraconcurrent bloquant les hallucinations logiques et les injections adverses avec disjonction matérielle et confinement à 0 Volt durci par Redondance Modulaire Triple (TMR).
-    - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** | **WNS : +7,272 ns** | **WHS : +0,260 ns**). Isolation et forçage du bus sur le tag de sécurité `0xDEADBEEF` exécutés en exactement **1 cycle d'horloge**.
-    - **Ressources :** **55 LUTs / 37 Registres / 0 bloc DSP**, consommation globale ultra-faible de **98 mW** (Dynamique active : 26 mW, Statique passive : 72 mW).
+---
 
-- 🚌 **[REIO-BUS](./bus)**
-    - **Fonction :** Matrice d'interconnexion Crossbar sécurisée et décodeur d'adresse pour l'infrastructure interne du SoC.
-    - **Architecture de Sûreté :** Routage géométrique étanche par partitionnement de bus avec sous-système d'I/O unifié combinant l'intercepteur Flash NVM et l'automate UART face aux alertes de structure (LUT Combining).
-    - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| **WNS : +4,723 ns** \| **WHS : +0,192 ns**). Interception de violation, isolement immédiat de l'UART et effondrement complet à 0 Volt exécutés en exactement **1 cycle d'horloge (10.00 ns)**.
-    - **Ressources :** **89 Slice LUTs / 65 Slice Registers**, consommation globale nominale sous contraintes de **77 mW** (Logique interne active : 6 mW, Fuites statiques et I/O buffers : 71 mW).
+## 💾 ARCHIVE : REIO V3 (Preuve de Concept Modulaire)
+👉 **Architecture périphérique segmentée (11 sous-systèmes autonomes)**
 
-- ⛓ **[REIO-CDC](./cdc)**
-  - **Fonction :** Synchroniseur multi-horloge d'étanchéité physique pour le croisement de domaines asynchrones (Clock Domain Crossing) [index_0.1.8].
-  - **Architecture de Sûreté :** Chaîne de capture séquentielle à triple étage de bascules durcies pour l'absorption et la neutralisation de la métastabilité active induite par la gigue ou les injections de pannes [index_0.1.8].
-  - **Validation :** Validé au routage inter-domaines (**400 MHz ──> 100 MHz** et **66.67 MHz ──> 100 MHz**) [index_0.1.8]. Timing global fermé sans aucune violation : **WNS à +8,926 ns**, **WHS à +0,131 ns** et **WPWS à +4,500 ns** [index_0.1.11]. Transmission étanche en exactement **3 cycles d'horloge** [index_0.1.8].
-  - **Ressources :** **1 Slice LUT / 3 Slice Registers** [index_0.1.12], consommation globale ultra-sobre de **71 mW** (Logique interne active : 1 mW, Fuites statiques d'usine : 70 mW, Puissance d'I/O : 0 mW) [index_0.1.10].
+La version 3 constitue la base historique de validation distribuée du SoC. Chaque fonction critique est isolée dans un sous-module matériel indépendant interconnecté via une matrice Crossbar synchrone. Tous les modules ci-dessous sont fonctionnels, temporellement fermés (STA Vivado au vert) et compilent sous Rust en mode `release` :
 
-- ⛓️ **[REIO-Chain](./chain)**
-    - **Fonction :** Disjoncteur réseau Layer 3 synchrone sur bus 64 bits s'interfaçant avec un bus physique Ethernet.
-    - **Validation :** Validé à **250.00 MHz** (Période : **4.00 ns** \| **WNS : +0,860 ns** \| **WHS : +0,347 ns**). Coupure réseau déterministe et masquage de transaction exécutés en exactement **2 cycles machine**.
-    - **Ressources :** **2 Slice LUTs / 64 Slice Registers**, consommation globale de **71 mW** (Logique interne active : 13 mW, Fuites statiques passives : 58 mW).
-
-- 🔑 **[REIO-Crypt](./crypt)**
-    - **Fonction :** Accélérateur cryptographique découplé matériel pour preuve Zero-Knowledge (ZKP).
-    - **Architecture de Sûreté :** Modèle Hétérogène Découplé (AHD) avec triple pipeline synchrone (brise le chemin critique d'arithmétique non-linéaire) et capteur de détection de glitch de tension.
-    - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| **WNS : +1,158 ns** \| **WHS : +0,196 ns**). Preuve calculée en 16 cycles d'horloge et disjoncteur asynchrone par forçage immédiat à 0 Volt en cas d'attaque par injection.
-    - **Ressources :** **100 Slice LUTs / 135 Slice Registers / 5 Blocs DSP48E1**, consommation globale nominale sous contraintes de **81 mW** (Fuites statiques : 70 mW, Cœur dynamique actif : 11 mW).
-
-- 🚗 **[REIO-Drive](./drive)**
-  - **Fonction :** Bouclier pour bus d'interception (Couplage Direct Stream).
-  - **Architecture de Sûreté :** Conception inspirée des principes de résilience ISO 26262 / ASIL-D (Pattern d'interception combinatoire durcie avec compteur de stabilisation et mode Fail-Safe matériel).
-  - **Validation :** Validé à **66.67 MHz** (Période : **15.00 ns** \| WNS : **+1.039 ns** \| WHS : **+0.279 ns**). Interception et isolation physique du bus automobile exécutées de manière déterministe en **3 cycles d'horloge (45.00 ns)**.
-  - **Ressources :** **6 LUTs / 4 Registres**, consommation active inférieure à **1 mW** (Statique : 72 mW).
-
-- 🎛️ **[REIO-INT](./int)**
-  - **Fonction :** Contrôleur d'interruptions matérielles sécurisé et filtré (Rate Limiter double canal).
-  - **Architecture de Sûreté :** Bouclier anti-saturation combinatoire surveillant le débit des lignes d'IRQ entrantes avec disjonction physique immédiate et masquage à 0 Volt en cas d'attaque par mitraillage (*Interrupt Flooding*).
-  - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **+6,543 ns** \| WHS : **+0,236 ns**). Interception de saturation, coupure nette de la ligne compromise et levée de l'alarme d'infrastructure exécutées en exactement **1 seul cycle d'horloge (10.00 ns)**.
-  - **Ressources :** **27 Slice LUTs / 19 Slice Registers / 4 Blocs CARRY4**, consommation globale ultra-faible de **72 mW** (Logique interne active : 1 mW, Statique : 70 mW, I/O buffers : 1 mW).
-
-- 🛡️ **[REIO-Safe](./safe)**
-    - **Fonction :** Filtre combinatoire d'interception matériel anti-ransomware de stockage.
-    - **Architecture de Sûreté :** Double canal parallèle (Analyse géométrique via Registre Alpha et suivi entropique asymétrique filtré contre le bruit avec seuil critique).
-    - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| **WNS : +5.222 ns** \| **WHS : +0.222 ns**). Coupure électrique nette de l'alimentation d'écriture à **0 Volt** et injection du tag de quarantaine exécutées de manière combinatoire instantanée en **0 cycle de retard (latence sub-nanoseconde)**.
-    - **Ressources :** **28 LUTs / 20 Registres**, consommation globale **92 mW** (Statique : 72 mW, Dynamique : 20 mW).
-
-* 💾 **[REIO-NVM](./nvm)**
-  * **Fonction :** Filtre d'interception en ligne pour la sécurisation des mémoires non-volatiles (MRAM / RRAM).
-  * **Architecture de Sûreté :** Analyse combinatoire continue de la congruence des flux d'écriture pour bloquer instantanément les dérives de charge physique et les injections de fautes.
-  * **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| WNS : **inf** \| WHS : **inf**). Interception de motif de sabotage, mise à la masse de sécurité à 0 Volt et levée du signal d'alerte physique exécutées en exactement **1 seul cycle d'horloge (10.00 ns)**.
-  * **Ressources :** **33 Slice LUTs / 33 Slice Registers**, consommation globale de **336 mW** (Logique interne active : 1 mW, Fuites statiques et I/O buffers : 335 mW).
-
-- 🔋 **[REIO-PWR](./pwr)**
-  - **Fonction :** Gestionnaire d'énergie et contrôleur de séquence de Reset ordonné pour l'infrastructure vitale du SoC.
-  - **Architecture de Sûreté :** Automate de Power-On-Reset asymétrique avec détection de glitch de tension et gel instantané de l'exécution globale du silicium pour empêcher la corruption d'état.
-  - **Validation :** Validé à **100.00 MHz** (Période : **10.00 ns** \| **WNS : +7,259 ns** \| **WHS : +0,212 ns**). Interception de baisse d'alimentation, effondrement des lignes de réveil et levée de l'alarme exécutés en exactement **1 seul cycle d'horloge (10.00 ns)**.
-  - **Ressources :** **14 Slice LUTs / 10 Slice Registers**, consommation globale de **71 mW** (Logique interne active : 1 mW, Fuites statiques passives : 70 mW).
-
-- 🔌 **[REIO-UART](./uart)**
-  - **Fonction :** Contrôleur d'E/S de diagnostic isolé (Hardware Hardened UART IP Core).
-  - **Architecture de Sûreté :** Protection anti-débordement par tampon circulaire matériel rigide couplé à un automate de disjonction combinatoire (Clamp de la ligne TX à 0V en cas de débordement).
-  - **Validation :** Validé à **100.00 MHz** (WNS : **+5,457 ns** \| WHS : **+0,218 ns**). Temps de réaction critique mesuré à **4,559 ns** (chemin critique `baud_counter_reg[3]`), assurant le confinement en exactement **1 seul cycle d'horloge (10.00 ns)**.
-  - **Ressources :** **44 Slice LUTs / 30 Slice Registers / 45 Broches d'I/O (Bonded IOB)**, consommation globale de **71 mW** (Logique interne active : 1 mW, Fuites statiques : 70 mW).
+*   🎛️ **[REIO-PWR](./pwr)** : Séquenceur d'alimentation et gestion des réinitialisations matérielles.
+*   🚗 **[REIO-Drive](./drive)** : Interface de contrôle et de filtrage pour bus automobiles.
+*   🔒 **[REIO-Safe](./safe)** : Disjoncteur logique de sécurité pour les accès au stockage.
+*   🔌 **[REIO-UART](./uart)** : Contrôleur d'I/O série dédié aux tampons de diagnostic.
+*   🔑 **[REIO-Crypt](./crypt)** : Accélérateur cryptographique pour calculs arithmétiques intensifs.
+*   🌐 **[REIO-Chain](./chain)** : Pipeline de filtrage réseau haute fréquence (250 MHz).
+*   🧠 **[REIO-AI](./ai)** : Moniteur d'intégrité et d'analyse comportementale de flux.
+*   📶 **[REIO-CDC](./cdc)** : Barrière de synchronisation anti-métastabilité inter-domaines.
+*   🚌 **[REIO-BUS](./bus)** : Matrice d'interconnexion Crossbar et décodage système.
+*   🚨 **[REIO-INT](./int)** : Écrêteur de requêtes d'interruption et limitation de débit.
+*   💾 **[REIO-NVM](./nvm)** : Filtre d'interception et de protection de la mémoire Flash.
 
 ---
 
