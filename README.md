@@ -29,16 +29,17 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 **REIO** est un framework d'architecture matérielle sécurisée conçu pour immuniser les systèmes embarqués critiques (comme l'automobile ou l'aérospatial) contre les cyberattaques et les injections de pannes physiques. 
 
 Le projet retrace l'évolution technologique d'un framework d'intégrité embarqué à travers deux générations majeures :
-1. 📦 **Génération V3 (Archive) :** Une approche modulaire composée de 11 périphériques fragmentés qui surveillaient le système de manière distribuée.
-2. 🏛️ **Génération V4 (Production) :** Une rupture technologique majeure qui centralise toute la sécurité au sein d'un cœur de contrôle unique et monolithique. Ce cœur de contrôle est régi par une logique mathématique trivalente formelle, capable de détecter et de confiner une anomalie en moins d'un cycle d'horloge.
+1. 📦 [**Génération V3 (Archive)**](./v3/README.md) : Une approche modulaire composée de 11 périphériques fragmentés qui surveillaient le système de manière distribuée.
+2. 🏛️ [**Génération V4 (Production)**](./v4/README.md) : Une rupture technologique majeure qui centralise toute la sécurité au sein d'un cœur de contrôle unique et monolithique. Ce cœur de contrôle est régi par une logique mathématique trivalente formelle, capable de détecter et de confiner une anomalie en moins d'un cycle d'horloge.
 
-## 🏛️ [REIO V4](./v4/README.md) (Système Monolithique)
+## 🏛️ [REIO V4 (Système Monolithique)](./v4/README.md)
 
-La version 4 représente la rupture technologique majeure du framework, centralisant l'intégralité de la sécurité au sein d'un cœur de contrôle unique régi par une logique trivalente formelle.
+Cette quatrième génération concrétise la convergence matérielle et logicielle du framework, garantissant un confinement d'anomalie ultra-déterministe sans le moindre compromis sur les performances physiques de la puce.
 
-* **Statut :** PRODUCTION VALIDÉE (Bitstream durci généré et micro-noyau compilé)
-* **Performances Silicium :** Fermeture temporelle stable avec un **WNS de +7,517 ns** sur le domaine synchrone à 100.00 MHz.
-* **Ressources & Énergie :** Empreinte ultra-compacte de **12 Slice LUTs / 1 Registre** pour une enveloppe thermique globale maîtrisée à **73 mW** (1 mW dynamique).
+*   **Statut du Jalon :** **PRODUCTION VALIDÉE** 🚀 (Bitstream matériel câblé généré et micro-noyau OS compilé en Rust bare-metal).
+*   **Performances Silicium :** Fermeture temporelle d'élite avec un **WNS de +8,936 ns** sur le domaine synchrone d'usine à 100.00 MHz (Chemin critique de 1,064 ns).
+*   **Ressources & Énergie :** Empreinte ultra-compacte de seulement **7 Slice LUTs** et **6 Registres (FF)** pour une enveloppe thermique globale maîtrisée à **76 mW** (2 mW dynamique).
+
 
 ### 🧠 Aperçu de la Boucle d'Exécution Monolithique V4
 
