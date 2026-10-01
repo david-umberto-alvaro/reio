@@ -26,6 +26,9 @@ Le plan de contrôle logiciel Rust (`reio_core_v4`) pilote l'infrastructure via 
     *   **En Lecture :** Capture le registre d'état du décodeur trivalent. Le Bit 0 à `'1'` indique la détection d'une anomalie ou d'un glitch de tension sur le bus.
     *   **En Écriture :** Charge le tampon de transmission de l'I/O série de diagnostic (`O_UART_TXD`) pour l'envoi asynchrone des octets de télémétrie. Un cycle d'écriture forcé à `0x0000_0000` déclenche l'effondrement immédiat et le verrouillage de la puce.
 
+### 🌐 3. Schéma Fonctionnel de la Frontière Matérielle
+
+```text
                   [ BUS AMBA APB MASTER HOST ]
                                |
        (I_PADDR[31:0], I_PWDATA[31:0], I_PSEL, I_PENABLE, I_PWRITE)
@@ -53,3 +56,4 @@ Le plan de contrôle logiciel Rust (`reio_core_v4`) pilote l'infrastructure via 
         v               v                    [ O_UART_TXD ]
  [O_TRIVALENT_FAULT] [O_SECURE_LATCH]      (Signal Série Actif)
  (Alerte Système)    (Maintien à 0V)
+```
