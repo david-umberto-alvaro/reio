@@ -1,4 +1,4 @@
-# REIO V4 FRACTAL — HARDWARE DATASHEET
+# REIO V4 — HARDWARE DATASHEET
 
 ## 🔌 Interface Physique & Cartographie des Registres MMIO
 
