@@ -10,10 +10,10 @@ La version 3 constitue la base historique de validation distribuée du SoC. Chaq
 *   🔑 **[REIO-Crypt](./v3/crypt)** : Accélérateur cryptographique pour calculs arithmétiques intensifs.
 *   🌐 **[REIO-Chain](./v3/chain)** : Pipeline de filtrage réseau haute fréquence (250 MHz).
 *   🧠 **[REIO-AI](./v3/ai)** : Moniteur d'intégrité et d'analyse comportementale de flux.
-*   📶 **[REIO-CDC](./cdc)** : Barrière de synchronisation anti-métastabilité inter-domaines.
-*   🚌 **[REIO-BUS](./bus)** : Matrice d'interconnexion Crossbar et décodage système.
-*   🚨 **[REIO-INT](./int)** : Écrêteur de requêtes d'interruption et limitation de débit.
-*   💾 **[REIO-NVM](./nvm)** : Filtre d'interception et de protection de la mémoire Flash.
+*   📶 **[REIO-CDC](./v3/cdc)** : Barrière de synchronisation anti-métastabilité inter-domaines.
+*   🚌 **[REIO-BUS](./v3/bus)** : Matrice d'interconnexion Crossbar et décodage système.
+*   🚨 **[REIO-INT](./v3/int)** : Écrêteur de requêtes d'interruption et limitation de débit.
+*   💾 **[REIO-NVM](./v3/nvm)** : Filtre d'interception et de protection de la mémoire Flash.
 
 ---
 
