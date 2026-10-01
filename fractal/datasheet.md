@@ -46,7 +46,7 @@ Le plan de contrôle logiciel Rust (`reio_core_v4`) pilote l'infrastructure via 
 |               v (Si Glitch = '1')                v (Si Sane)      |
 |  +---------------------------+     +---------------------------+  |
 |  | Registre de Faille (Sel)  |     | Tampon Diagnostic (UART)  |  |
-|  | r_fault_latch <= '1'       |     | r_tx_shift_reg[9:0]       |  |
+|  | r_fault_latch <= '1'      |     | r_tx_shift_reg[9:0]       |  |
 |  +---------------------------+     +---------------------------+  |
 |               |                                  |                |
 +===============|==================================|================+
