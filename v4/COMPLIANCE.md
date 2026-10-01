@@ -1,4 +1,4 @@
-# REIO V4 FRACTAL — REGULATORY COMPLIANCE REPORT
+# REIO V4 — REGULATORY COMPLIANCE REPORT
 
 ## 🏛️ Attestation de Sûreté Logicielle et Matérielle (Grade Militaire / Auto)
 
