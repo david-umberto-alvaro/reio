@@ -15,6 +15,38 @@ La version 4 (Fractal) supprime la fragmentation en consolidant l'infrastructure
 *   **Worst Hold Slack (WHS) :** **+0,880 ns** (Marge de sécurité thermique certifiée Q-Grade).
 *   **Bilan Électrique Global :** Enveloppe thermique fixée à **73 mW** (72 mW statiques / 1 mW dynamique).
 
+### 🌐 3. Schéma Fonctionnel de la Frontière Matérielle
+
+```text
+                  [ BUS AMBA APB MASTER HOST ]
+                               |
+       (I_PADDR[31:0], I_PWDATA[31:0], I_PSEL, I_PENABLE, I_PWRITE)
+                               |
+                               v
++===================================================================+
+
+| REIO_L3_DECODER (Cœur Monolithique V4)                            |
+|                                                                   |
+|  +-------------------------------------------------------------+  |
+|  | Équation Combinatoire d'Interception (0 Cycle)              |  |
+|  | s_glitch_detected <= '1' SI ADDR=0xFFFFFFFF ET PENABLE='0'  |  |
+|  +-------------------------------------------------------------+  |
+|               |                                  |                |
+|               v (Si Glitch = '1')                v (Si Sane)      |
+|  +---------------------------+     +---------------------------+  |
+|  | Registre de Faille (Sel)  |     | Tampon Diagnostic (UART)  |  |
+|  | r_fault_latch <= '1'       |     | r_tx_shift_reg[9:0]       |  |
+|  +---------------------------+     +---------------------------+  |
+|               |                                  |                |
++===============|==================================|================+
+
+                |                                  |
+        +-------+-------+                          v
+        v               v                    [ O_UART_TXD ]
+ [O_TRIVALENT_FAULT] [O_SECURE_LATCH]      (Signal Série Actif)
+ (Alerte Système)    (Maintien à 0V)
+```
+
 ### 🧠 3. Schéma Cinématique du Micro-Noyau et du Planificateur
 
 ```text
