@@ -55,6 +55,9 @@ La version 3 constitue la base historique de validation distribuée du SoC. Chaq
 *   🚨 **[REIO-INT](./int)** : Écrêteur de requêtes d'interruption et limitation de débit.
 *   💾 **[REIO-NVM](./nvm)** : Filtre d'interception et de protection de la mémoire Flash.
 
+## 📦 ARCHIVE : REIO V3 (Preuve de Concept Modulaire)
+👉 ** Documentation Technique V3: [REIO V3 Archives](./v3)**
+
 ---
 
 ### 🌐 Architecture Fonctionnelle du Pipeline
