@@ -71,4 +71,4 @@ Le framework monolithique REIO V4 intègre désormais une architecture logiciell
 
 ### 🛰️ Validation du Harnais d'Évaluation Systémique
 
-![Rapport de validation du script Python](reio_v4_crash_test3.png)
+![Rapport de validation du script Python](reio_v4_crash_test.png)
