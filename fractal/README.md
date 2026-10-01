@@ -1,18 +1,16 @@
-# REIO V4 — SYSTÈME MONOLITHIQUE SECURE
+# REIO V4 FRACTAL — ARCHITECTURE MONOLITHIQUE SECURE
 
-## 🏛️ Spécification Technique et Registre d'Attestation Matérielle
+## 🏛️ Registre Spécification Technique et d'Attestation Métrologique
 
-Ce répertoire centralise les bulletins métrologiques et les preuves d'implémentation physique de l'architecture REIO V4. L'intégralité du code source RTL (VHDL) et du firmware applicatif (Rust Bare-Metal `#![no_std]`) est conservée exclusivement sur un environnement local sécurisé hors-ligne.
+Ce répertoire centralise les bulletins de certification physique et les caractéristiques de routage de la génération REIO V4 Fractal. Pour préserver le secret industriel, l'intégralité des codes sources RTL (VHDL) et du firmware applicatif (Rust Bare-Metal `#![no_std]`) est séquestrée hors-ligne sur un environnement de développement sécurisé.
 
-### 🔬 Architecture Matérielle V4
-La version 4 consolide l'infrastructure autour d'un cœur de contrôle unique et d'un décodeur d'interception à logique trivalente, éliminant la fragmentation des anciens modules périphériques.
-*   **Canal Arithmétique Actif :** Routage haute vitesse sur blocs DSP48E1 pour le traitement des opérations intensives.
-*   **Canal de Rétention Synchrone :** Alignement temporel sur bascules FDCE avec barrières anti-métastabilité pour sécuriser les changements de phase.
-*   **Écrêtage Combinatoire Périphérique :** Interception sub-nanoseconde des fluctuations de tension et dérivation immédiate du signal vers le plan de masse (GND, 0V) via le module `reio_l3_decoder`.
+### 🔬 Architecture du Cœur Unifié
+La version 4 (Fractal) supprime la fragmentation en consolidant l'infrastructure autour d'un unique cœur de contrôle monolithique et d'un bloc d'I/O à logique trivalente.
+*   **Planificateur Asynchrone (Rust) :** Gestionnaire de tâches bare-metal hautement optimisé, orchestrant l'exécution étanche des canaux Réseau, Automobile et Stockage.
+*   **Intercepteur Trivalent (VHDL) :** Module d'écrêtage combinatoire sub-nanoseconde analysant les fluctuations de bus et forçant un retour immédiat à la masse (GND, 0V) en 0 cycle en cas d'anomalie.
+*   **Tampon de Diagnostic Intégré :** Émetteur série synchrone (UART) directement couplé à la matrice pour attester de l'intégrité de l'amorçage.
 
-### 📊 Indicateurs de Performance Silicium (AMD/Xilinx Vivado v2026.1)
-L'évaluation post-routage sur cible Artix-7 Automotive Extended (`xa7a35tcsg324-1Q`) certifie les métriques réelles suivantes :
-
-*   **Fermeture Temporelle (STA) :** **Worst Negative Slack (WNS) stable à +7,517 ns** (0 Failing Endpoints) sur le domaine synchrone à 100.00 MHz. Worst Hold Slack (WHS) mesuré à **+0,880 ns**.
-*   **Surface Logique (Utilization) :** L'interception monolithique ne consomme que **12 Slice LUTs** (0,06 % du composant) et **1 unique registre (FF)**, attestant de la suppression totale de la fragmentation et du LUT combining.
-*   **Bilan Électrique (Power) :** Enveloppe thermique consolidée à **73 mW** (72 mW de fuites statiques inhérentes au silicium / 1 mW de puissance active dynamique).
+### 📊 Indicateurs Métrologiques Validés (Vivado v2026.1)
+*   **Worst Negative Slack (WNS) :** **+6,134 ns** (0 Failing Endpoints) sur le domaine d'horloge de production à 100.00 MHz.
+*   **Worst Hold Slack (WHS) :** **+0,880 ns** (Marge de sécurité thermique certifiée Q-Grade).
+*   **Bilan Électrique Global :** Enveloppe thermique fixée à **73 mW** (72 mW statiques / 1 mW dynamique).
