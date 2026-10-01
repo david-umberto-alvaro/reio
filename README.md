@@ -12,9 +12,6 @@ Le framework **REIO** (**Réalisme Expérimental Instrumenté Optimisé**) coupl
 
 * **REIO-CORE :** Cadre logique formel s'appuyant sur une approche logique paraconsistante et des machines d'états (FSM) durcies pour garantir un confinement contextuel déterministe malgré les fautes physiques (*bit-flips*). Document de recherche officiel enregistré sous l'identifiant académique permanent : [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20743411.svg)](https://doi.org/10.5281/zenodo.20743411)
 
-### 📐 Cartographie de Co-Design : De la Logique Pure au Silicium
-
-L'infrastructure matérielle implémentée sous Vivado traduit directement les règles de sûreté formalisées dans la notice d'architecture (voir le tableau complet dans les références du dépôt pour chaque axiome **REIO-A1** à **REIO-A6** pointant vers les dossiers `./v3/...`) [image_tca8da.png].
 
 L'infrastructure matérielle implémentée sous Vivado est la traduction physique directe des règles de sûreté formalisées dans la notice d'architecture :
 
