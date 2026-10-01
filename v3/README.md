@@ -3,17 +3,17 @@
 
 La version 3 constitue la base historique de validation distribuée du SoC. Chaque fonction critique est isolée dans un sous-module matériel indépendant interconnecté via une matrice Crossbar synchrone. Tous les modules ci-dessous sont fonctionnels, temporellement fermés (STA Vivado au vert) et compilent sous Rust en mode `release` :
 
-*   🎛️ **[REIO-PWR](./v3/pwr)** : Séquenceur d'alimentation et gestion des réinitialisations matérielles.
-*   🚗 **[REIO-Drive](./v3/drive)** : Interface de contrôle et de filtrage pour bus automobiles.
-*   🔒 **[REIO-Safe](./v3/safe)** : Disjoncteur logique de sécurité pour les accès au stockage.
-*   🔌 **[REIO-UART](./v3/uart)** : Contrôleur d'I/O série dédié aux tampons de diagnostic.
-*   🔑 **[REIO-Crypt](./v3/crypt)** : Accélérateur cryptographique pour calculs arithmétiques intensifs.
-*   🌐 **[REIO-Chain](./v3/chain)** : Pipeline de filtrage réseau haute fréquence (250 MHz).
-*   🧠 **[REIO-AI](./v3/ai)** : Moniteur d'intégrité et d'analyse comportementale de flux.
-*   📶 **[REIO-CDC](./v3/cdc)** : Barrière de synchronisation anti-métastabilité inter-domaines.
-*   🚌 **[REIO-BUS](./v3/bus)** : Matrice d'interconnexion Crossbar et décodage système.
-*   🚨 **[REIO-INT](./v3/int)** : Écrêteur de requêtes d'interruption et limitation de débit.
-*   💾 **[REIO-NVM](./v3/nvm)** : Filtre d'interception et de protection de la mémoire Flash.
+*   🎛️ **[REIO-PWR](./pwr)** : Séquenceur d'alimentation et gestion des réinitialisations matérielles.
+*   🚗 **[REIO-Drive](./drive)** : Interface de contrôle et de filtrage pour bus automobiles.
+*   🔒 **[REIO-Safe](./safe)** : Disjoncteur logique de sécurité pour les accès au stockage.
+*   🔌 **[REIO-UART](./uart)** : Contrôleur d'I/O série dédié aux tampons de diagnostic.
+*   🔑 **[REIO-Crypt](./crypt)** : Accélérateur cryptographique pour calculs arithmétiques intensifs.
+*   🌐 **[REIO-Chain](./chain)** : Pipeline de filtrage réseau haute fréquence (250 MHz).
+*   🧠 **[REIO-AI](./ai)** : Moniteur d'intégrité et d'analyse comportementale de flux.
+*   📶 **[REIO-CDC](./cdc)** : Barrière de synchronisation anti-métastabilité inter-domaines.
+*   🚌 **[REIO-BUS](./bus)** : Matrice d'interconnexion Crossbar et décodage système.
+*   🚨 **[REIO-INT](./int)** : Écrêteur de requêtes d'interruption et limitation de débit.
+*   💾 **[REIO-NVM](./nvm)** : Filtre d'interception et de protection de la mémoire Flash.
 
 ---
 
