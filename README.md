@@ -12,7 +12,6 @@ Le framework **REIO** (**Réalisme Expérimental Instrumenté Optimisé**) coupl
 
 * **REIO-CORE :** Cadre logique formel s'appuyant sur une approche logique paraconsistante et des machines d'états (FSM) durcies pour garantir un confinement contextuel déterministe malgré les fautes physiques (*bit-flips*). Document de recherche officiel enregistré sous l'identifiant académique permanent : [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20743411.svg)](https://doi.org/10.5281/zenodo.20743411)
 
-
 L'infrastructure matérielle implémentée sous Vivado est la traduction physique directe des règles de sûreté formalisées dans la notice d'architecture :
 
 | Axiome | Pilier Théorique | Traduction Matérielle (Vivado) | Impact sur la Sûreté Réelle |
@@ -25,6 +24,13 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 | **REIO-A6** | Attestation Pragmatique | `Chain` • `Safe` • `Crypt` • `CDC` • `NVM` • `BUS` • `PWR` • `Int` • `Uart` | Scellement irréversible de chaque cycle d'évolution pour immuniser le SoC contre la gigue et les injections de pannes. |
 
 ---
+## 🎯 Présentation du Projet REIO (Real-time Embedded Integrity Orchestrator)
+
+**REIO** est un framework d'architecture matérielle sécurisée conçu pour immuniser les systèmes embarqués critiques (comme l'automobile ou l'aérospatial) contre les cyberattaques et les injections de pannes physiques. 
+
+Le projet retrace l'évolution technologique d'un processeur de sécurité à travers deux générations majeures :
+1. 📦 **Génération V3 (Archive) :** Une approche modulaire composée de 11 périphériques fragmentés qui surveillaient le système de manière distribuée.
+2. 🏛️ **Génération V4 (Production) :** Une rupture technologique majeure qui centralise toute la sécurité au sein d'un cœur de contrôle unique et monolithique. Ce processeur est régi par une logique mathématique trivalente formelle, capable de détecter et de confiner une anomalie en moins d'un cycle d'horloge.
 
 ## 🏛️ [REIO V4](./v4/README.md) (Système Monolithique)
 
