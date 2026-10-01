@@ -59,5 +59,31 @@ La version 4 (Fractal) supprime la fragmentation en consolidant l'infrastructure
 +-------------------+--------------------------------+
 ```
 
+### 📊 4. Rapport d'Audit et Banc d'Essai d'Injection de Fautes
+
+```text
+H:\REIO\V4\PYTHON>python reio_v4_crash_test.py
+=======================================================================
+🚀 [REIO V4 TEST] Starting Automated Fault Injection Harness
+=======================================================================
+⏳ [STEP 1] Running nominal environment execution...
+📋 [NOMINAL RESULTS] Total Cycles: 100
+   -> Network Channel State : 1 (ACTIVE)
+   -> Drive Channel State   : 1 (ACTIVE)
+   -> Storage Channel State : 1 (ACTIVE)
+
+⚡ [STEP 2] Injecting physical glitch vector (Forcing Status Bit 0)...
+-----------------------------------------------------------------------
+📋 [CRASH RESULTS] Evaluation post-injection de faute :
+-----------------------------------------------------------------------
+   -> Bus Register Voltage  : 0V (FORCED TO GND)
+   -> Network Channel State : 0 (CLAMPED)
+   -> Drive Channel State   : 0 (CLAMPED)
+   -> Storage Channel State : 1 (RESILIENT)
+
+🎉 [SUCCESS] REIO V4 Fractal validation harness passed.
+             Confinement, isolation, and 0V clamping verified.
+```
+
 
 ![Rapport de validation du script Python](reio_v4_crash_test.png)
