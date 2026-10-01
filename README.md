@@ -14,6 +14,8 @@ Le framework **REIO** (**Réalisme Expérimental Instrumenté Optimisé**) coupl
 
 ### 📐 Cartographie de Co-Design : De la Logique Pure au Silicium
 
+L'infrastructure matérielle implémentée sous Vivado traduit directement les règles de sûreté formalisées dans la notice d'architecture (voir le tableau complet dans les références du dépôt pour chaque axiome **REIO-A1** à **REIO-A6** pointant vers les dossiers `./v3/...`) [image_tca8da.png].
+
 L'infrastructure matérielle implémentée sous Vivado est la traduction physique directe des règles de sûreté formalisées dans la notice d'architecture :
 
 | Axiome | Pilier Théorique | Traduction Matérielle (Vivado) | Impact sur la Sûreté Réelle |
@@ -31,7 +33,7 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 👉 **Accéder au dossier de spécification : [REIO V4 Fractal](./fractal)**
 
 La version 4 (Fractal) représente la rupture technologique majeure du framework, centralisant l'intégralité de la sécurité au sein d'un cœur de contrôle unique régi par une logique trivalente formelle.
-* **Emplacement :** Répertoire [`/fractal`](./fractal)
+
 * **Statut :** PRODUCTION VALIDÉE (Bitstream durci généré et micro-noyau compilé)
 * **Performances Silicium :** Fermeture temporelle stable avec un **WNS de +6,134 ns** sur le domaine synchrone à 100.00 MHz.
 * **Ressources & Énergie :** Empreinte ultra-compacte de **12 Slice LUTs / 1 Registre** pour une enveloppe thermique globale maîtrisée à **73 mW** (1 mW dynamique).
