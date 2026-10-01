@@ -1,4 +1,4 @@
-# 🗺️ System-on-Chip REIO — Master Technical Datasheet
+# 🗺️ System-on-Chip REIO V3— Master Technical Datasheet
 
 ### Executive Product Overview & Compliance Target
 
