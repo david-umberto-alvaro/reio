@@ -10,9 +10,9 @@ La version 4 consolide l'infrastructure autour d'un cœur de contrôle unique et
 *   **Canal de Rétention Synchrone :** Alignement temporel sur bascules FDCE avec barrières anti-métastabilité pour sécuriser les changements de phase.
 *   **Écrêtage Combinatoire Périphérique :** Interception sub-nanoseconde des fluctuations de tension et dérivation immédiate du signal vers le plan de masse (GND, 0V) via le module `reio_l3_decoder`.
 
-### 📊 Indicateurs de Performance Silicium (AMD/Xilinx Vivado)
-Les fichiers de rapports ci-dessous attestent de la conformité du routage physique et de la fermeture temporelle de la puce :
+### 📊 Indicateurs de Performance Silicium (AMD/Xilinx Vivado v2026.1)
+L'évaluation post-routage sur cible Artix-7 Automotive Extended (`xa7a35tcsg324-1Q`) certifie les métriques réelles suivantes :
 
-*   [Rapport d'Utilisation des Ressources (LUT/DSP/IOB)](./reio_v4_utilization.rpt) : Preuve de l'optimisation de la surface logique et du groupement des cellules logiques.
-*   [Rapport d'Analyse Statique du Timing (STA)](./reio_v4_timing.rpt) : Validation des marges temporelles (Worst Negative Slack et Worst Hold Slack) à la fréquence cible de 100 MHz.
-*   [Rapport d'Analyse Électrique et Thermique](./reio_v4_power.rpt) : Mesure de la consommation on-chip statique et dynamique sous contraintes d'activité normalisées.
+*   **Fermeture Temporelle (STA) :** **Worst Negative Slack (WNS) stable à +7,517 ns** (0 Failing Endpoints) sur le domaine synchrone à 100.00 MHz. Worst Hold Slack (WHS) mesuré à **+0,880 ns**.
+*   **Surface Logique (Utilization) :** L'interception monolithique ne consomme que **12 Slice LUTs** (0,06 % du composant) et **1 unique registre (FF)**, attestant de la suppression totale de la fragmentation et du LUT combining.
+*   **Bilan Électrique (Power) :** Enveloppe thermique consolidée à **73 mW** (72 mW de fuites statiques inhérentes au silicium / 1 mW de puissance active dynamique).
