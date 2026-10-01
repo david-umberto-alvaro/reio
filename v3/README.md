@@ -71,20 +71,3 @@ La version 3 constitue la base historique de validation distribuée du SoC. Chaq
 
 ![Console de Crash-Test REIO-SoC](./reio_soc_test.png)
 
-## 📦 3. Structure du Dépôt & Politique d'Accès
-
-Ce dépôt sert de portfolio technique pour démontrer mes compétences en co-design et en intégration matérielle.
-
-### Accès Libre (Modèle Open-Core) :
-*   **Documentation & Méthodologie :** Fichiers textuels d'analyse (`.md`).
-*   **Interfaces de Liaison :** Fichiers d'en-tête standardisés (`.h`) pour l'intégration logicielle.
-*   **Rapports de Synthèse :** Journaux physiques Vivado (`.rpt`) certifiant l'utilisation des ressources logiques, de puissance et le timing post-routage.
-
-## ⚖ Licence & Propriété Intellectuelle
-
-Ce framework est distribué sous un modèle Open-Core strict. Pour consulter l'accord d'audit public et les restrictions de rétro-ingénierie, veuillez vous référer au fichier [LICENSE.md](./LICENSE.md).
-
----
-
-💼 **Besoin d'intégrer REIO sur vos architectures FPGA ou calculateurs critiques ?**
-Pour toute demande d'évaluation du code source complet, d'adaptation d'architecture sur mesure ou de consultation industrielle, l'accès peut être accordé après signature d'un Accord de Confidentialité (NDA). Veuillez soumettre une demande officielle via mon **[Profil LinkedIn](https://www.linkedin.com/in/david-umberto-alvaro-715841399/)**.
