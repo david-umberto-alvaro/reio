@@ -57,3 +57,20 @@ Le plan de contrôle logiciel Rust (`reio_core_v4`) pilote l'infrastructure via 
  [O_TRIVALENT_FAULT] [O_SECURE_LATCH]      (Signal Série Actif)
  (Alerte Système)    (Maintien à 0V)
 ```
+
+       <--- Asynchronous Transition ---><--------- 3-Stage Synchronization Latency Loop --------->
+      0ns                              10ns                             20ns                  30ns
+
+       |                                |                                |                     |
+CLK    _79_    _79_    _79_    _79_    _79_    _79_    _79_    _79_    _79_    _79_    _79_    _79_ 
+_______|  |____|  |____|  |____|  |____|  |____|  |____|  |____|  |____|  |____|  |____|  |____|  |_ (100 MHz)
+
+RESETn _________________________________________________________________|7979797979797979797979797979
+                                                                        (Désactivation du Reset)
+
+I_VALID ________________________________________________________________________|79797979797979797979
+                                                                                (Instruction Valide)
+
+O_FAULT _______________________________________________________________________________________|79797
+                                                                                               (Clear)
+
