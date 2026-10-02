@@ -58,3 +58,5 @@ REIO V4: Starting Automated Trivalent System Source Compilation
 [SUCCESS] REIO V4 System-Level Active Hardware Certification Passed!
 ------------------------------------------------------------------
 ```
+
+![Rapport de validation du script Python](reio_v4_sys_hardware_test.png)
