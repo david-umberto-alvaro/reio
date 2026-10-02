@@ -12,10 +12,7 @@ Le cœur de calcul trivalent isolé REIO V4 est déclaré conforme aux exigences
 
 | IP Core Entity | Fréquence Cible | Primitives LUTs | Primitives Registres | Puissance Totale | Statut de Routage |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **reio_v4_cpu_top** | 100.00 MHz | **20 LUTs** (0.10%) | **10 Registres** (0.02%) | **1.979 W** (1979 mW) | 🟢 Conforme (Design Fully Routed) |
-
-### ⚖️ 3. Attestation de Clôture d'Audit Matériel
-L'intégralité de la suite d'attestation physique (`reio_v4_utilization.rpt`, `reio_v4_timing.rpt`, `reio_v4_power.rpt`) converge au vert absolu sur cible physique Artix-7. La parité entre la grille d'initialisation hexadécimale issue de Rust (`reio_v4_os.mem`) et les blocs BRAM du silicium est validée à zéro dérive.
+| **reio_v4_cpu_top** | 100.00 MHz | **20 LUTs** (0.10%) | **10 Registres** (0.02%) | **73 mW** (0.073 W) | 🟢 Conforme (WNS: +7,517 ns) |
 
 *Fait le 2 octobre 2026.*
 
