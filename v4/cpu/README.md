@@ -1,4 +1,4 @@
-# REIO V4 — Processeur Arithmétique Trivalent Élaboré (Cœur Isolé)
+# REIO V4 — Processeur Arithmétique Trivalent (Cœur Isolé)
 
 Ce répertoire contient la description matérielle (VHDL) et le micrologiciel d'initialisation (Rust Bare-Metal) du cœur de calcul trivalent isolé **REIO V4**. Ce module implémente une logique arithmétique paraconsistante native permettant au processeur d'intercepter et d'absorber l'indétermination logique sans effondrement structurel.
 
