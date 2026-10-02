@@ -40,23 +40,4 @@ Le micrologiciel de contrôle s'exécute en mode *bare-metal* complet sans aucun
 
 Ce log d'audit officiel certifie le comportement en temps réel de la boucle d'homéostasie active lors de l'exécution de l'orchestrateur de co-simulation sous le moteur de simulation **AMD Vivado XSim**.
 
-```text
-H:\REIO\V4\CPU\RUST>python reio_v4_sys_hardware_test.py
-------------------------------------------------------------------
-REIO V4: Executing System-Level Hardware/Software Co-Simulation
-------------------------------------------------------------------
-[INFO] Launching Vivado XSim Engine for Unified System-Level Verification...
-
---- TRANSISTOR-LEVEL EVALUATION LOG ---
-REIO V4: Starting Automated Trivalent System Source Compilation
-[STATUS] System Crossbar integrated in Nominal Confinement State (0x0)
-[ATTACK] Injecting transient hardware glitch... Forcing Bus to (0x2)
-[ACTIVE REGULATION] Micro-kernel intercepted indeterminate state (0x2) on core matrix!
-[ACTIVE REGULATION] Injecting hardware counter-power balance command to 0x0000_0000
-[HOMEOSTASIS SUCCESS] Bus cleared back to stable state (0x0). System remains ONLINE.
-------------------------------------------------------------------
-[SUCCESS] REIO V4 System-Level Active Hardware Certification Passed!
-------------------------------------------------------------------
-```
-
 ![Rapport de validation du script Python](reio_v4_sys_hardware_test.png)
