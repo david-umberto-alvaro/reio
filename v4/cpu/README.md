@@ -8,21 +8,19 @@ Ce répertoire contient la description matérielle (VHDL) et le micrologiciel d'
 
 Les bulletins de performance physique ont été extraits sous **Vivado v2026.1** le *Fri Oct 2 01:20:58 2026* sur la cible logicielle durcie Artix-7 (`xa7a35tcsg324-1Q`).
 
-### 📊 Spécifications de Surface (`reio_v4_utilization.rpt`)
+### 📐 [Spécifications de Surface (reio_v4_utilization.rpt)](reio_v4_utilization.rpt)
 * **Slice LUTs utilisée(s) :** **20 LUTs** (0.10 % de la cible globale).
 * **Slice Registers utilisé(s) :** **10 Registres** configurés comme Flip-Flops (7 FDCE et 3 FDPE).
 * **Primitives d'interconnexion :** 3 MUXF7 instanciés pour la gestion synchrone des trois états logiques.
 * **Distribution spatiale :** Le cœur est compacté sur seulement **7 Slices** physiques de silicium.
 
-### 🔋 Enveloppe Thermique et Énergie ( reio_v4_power.rpt )
-
+### 🔋 [Enveloppe Thermique et Énergie (reio_v4_power.rpt)](reio_v4_power.rpt)
 * **Total On-Chip Power :** **73 mW** (0.073 W)
 * **Dynamic Power :** 3 mW (Slice Logic : <0.001 W | Signals : <0.001 W | I/O : 0.003 W)
 * **Device Static Power :** 70 mW (0.070 W)
 * **Junction Temperature :** 25.4°C
 
-### ⏱ Évaluation Temporelle ( reio_v4_timing.rpt )
-
+### ⏱️ [Évaluation Temporelle (reio_v4_timing.rpt)](reio_v4_timing.rpt)
 * **Design State :** Fully Routed (Routage physique achevé avec succès).
 * **Timing Constraints :** clk_sys_domain contraint à 10.0 ns (100.00 MHz) | **WNS = +7,517 ns** (0 setup violation) | **WHS = +0,880 ns** (Marge Q-Grade OK).
 
