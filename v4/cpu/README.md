@@ -14,15 +14,17 @@ Les bulletins de performance physique ont été extraits sous **Vivado v2026.1**
 * **Primitives d'interconnexion :** 3 MUXF7 instanciés pour la gestion synchrone des trois états logiques.
 * **Distribution spatiale :** Le cœur est compacté sur seulement **7 Slices** physiques de silicium.
 
-### 🔋 Enveloppe Thermique et Énergie (`reio_v4_power.rpt`)
-* **Total On-Chip Power :** **1.979 W**
-* **Dynamic Power :** 1.904 W (Slice Logic : 0.056 W | Signals : 0.112 W | I/O : 1.736 W)
-* **Device Static Power :** 0.075 W
-* **Junction Temperature :** 34.5°C (Température ambiante max supportée : 115.5°C)
+### 🔋 Enveloppe Thermique et Énergie ( reio_v4_power.rpt )
 
-### ⏱️ Évaluation Temporelle (`reio_v4_timing.rpt`)
+* **Total On-Chip Power :** **73 mW** (0.073 W)
+* **Dynamic Power :** 3 mW (Slice Logic : <0.001 W | Signals : <0.001 W | I/O : 0.003 W)
+* **Device Static Power :** 70 mW (0.070 W)
+* **Junction Temperature :** 25.4°C
+
+### ⏱ Évaluation Temporelle ( reio_v4_timing.rpt )
+
 * **Design State :** Fully Routed (Routage physique achevé avec succès).
-* **Timing Constraints :** `WNS = NA` (Routage au plus court chemin exécuté avec succès, aucune violation de contrainte détectée).
+* **Timing Constraints :** clk_sys_domain contraint à 10.0 ns (100.00 MHz) | **WNS = +7,517 ns** (0 setup violation) | **WHS = +0,880 ns** (Marge Q-Grade OK).
 
 ---
 
