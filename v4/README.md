@@ -2,7 +2,7 @@
 
 ## 🏛️ Registre Spécification Technique et d'Attestation Métrologique
 
-Ce répertoire centralise les bulletins de certification physique et les caractéristiques de routage de la génération REIO V4 Fractal. Pour préserver le secret industriel, l'intégralité des codes sources RTL (VHDL) et du firmware applicatif (Rust Bare-Metal `#![no_std]`) est séquestrée hors-ligne sur un environnement de développement sécurisé.
+Ce répertoire centralise les bulletins de certification physique et les caractéristiques de routage de la génération REIO V4. Pour préserver le secret industriel, l'intégralité des codes sources RTL (VHDL) et du firmware applicatif (Rust Bare-Metal `#![no_std]`) est séquestrée hors-ligne sur un environnement de développement sécurisé.
 
 ### 🔬 Architecture du Cœur Unifié
 La version 4 supprime la fragmentation en consolidant l'infrastructure autour d'un unique cœur de contrôle monolithique et d'un bloc d'I/O à logique trivalente.
