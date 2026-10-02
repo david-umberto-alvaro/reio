@@ -64,8 +64,6 @@ La version 4 supprime la fragmentation en consolidant l'infrastructure autour d'
 
 Le framework monolithique REIO V4 intègre désormais une architecture logicielle et matérielle à Homéostasie Paraconsistante Active, validée de bout en bout (HW/SW) sous Vivado v2026.1 et la toolchain Rust bare-metal.
 
-### 🔬 Métriques Physiques Certifiées
-* **Cœur CPU Trivalent :** 20 Slice LUTs | 10 Registres physiques (Routage Artix-7 stable à 100 MHz)
 * **OS du Système Embarqué Global :** 1 928 octets (Cible durcie `x86_64-unknown-none`)
 
 ### 🛰️ Validation du Harnais d'Évaluation Systémique
