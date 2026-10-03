@@ -14,4 +14,5 @@ L'architecture REIO V4 Fractal est certifiée conforme aux exigences strictes de
 | :--- | :---: | :---: | :---: | :---: | :--- |
 | **`reio_l3_decoder`** | 100.00 MHz | **12 LUTs** | **1 Registre (FF)** | **73 mW** (0.073W) | 🟢 Conforme (**WNS : +7,517 ns** / WHS : +0,880 ns) |
 
-**Bilan Documentaire Clos :** L'intégralité de la suite d'attestation (`utilization`, `timing`, `power`, `crash_test`) converge au vert absolu sur cible physique Artix-7. La parité entre la netlist et les structures du micro-noyau Rust est scellée à strictly zéro dérive.
+**Bilan Documentaire Clos :** L'intégralité de l'attestation (`utilization`, `timing`, `power`, `crash_test`) converge au vert absolu sur cible physique Artix-7. La parité entre la netlist et les structures du micro-noyau Rust est scellée sous l'arborescence exclusive `v4/ams/`.
+
