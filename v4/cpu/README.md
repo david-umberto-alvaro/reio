@@ -40,4 +40,4 @@ Le micrologiciel de contrôle s'exécute en mode *bare-metal* complet sans aucun
 
 Ce log d'audit officiel certifie le comportement en temps réel de la boucle d'homéostasie active lors de l'exécution de l'orchestrateur de co-simulation sous le moteur de simulation **AMD Vivado XSim**.
 
-![Rapport de validation du script Python](reio_v4_sys_hardware_test.png)
+![Rapport de validation du script Python](reio_v4_sys_hardware_test2.png)
