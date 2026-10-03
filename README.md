@@ -1,6 +1,6 @@
 # REIO — Framework de Co-Design Hardware/Software pour la Sûreté des Systèmes Embarqués
 
-## 🔬 1. Positionnement Scientifique & Sûreté de Fonctionnement
+## 🔬 Positionnement Scientifique & Sûreté de Fonctionnement
 
 Le framework **REIO** (**Réalisme Expérimental Instrumenté Optimisé**) couple modélisation formelle et contraintes physiques de routage (FPGA). 
 
