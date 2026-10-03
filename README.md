@@ -28,10 +28,12 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 **REIO** est un framework d'architecture matérielle sécurisée conçu pour immuniser les systèmes embarqués critiques (comme l'automobile ou l'aérospatial) contre les cyberattaques et les injections de pannes physiques. 
 
-Le projet retrace l'évolution technologique d'un framework d'intégrité embarqué à travers deux générations majeures :
-1. 📦 [**Génération V3**](./v3/README.md) : Une approche modulaire composée de 11 périphériques fragmentés qui surveillaient le système de manière distribuée.
-2. 🏛️ [**Génération V4**](./v4/soc/README.md) : Une rupture technologique majeure qui centralise toute la sécurité au sein d'un cœur de contrôle unique et monolithique. Ce cœur de contrôle est régi par une logique mathématique trivalente formelle, capable de détecter et de confiner une anomalie en moins d'un cycle d'horloge.
-* 💾 [Accéder au sous-module Cœur CPU Trivalent Isolé (20 LUTs / 73 mW)](./v4/soc/cpu/)
+## 🗺️ Organisation Géographique & Cartographie de la Génération V4
+
+L'infrastructure de la **Génération V4** abandonne la fragmentation périphérique pour centraliser sa logique de sûreté. Chaque domaine matériel et logiciel est consigné de manière étanche et structurée :
+
+*   📂 **[`v4/ams/`](./v4/ams/) (Architecture Monolithique Sûre)** : Base historique et archives de validation de votre tout premier système embarqué monolithique autonome (STA Vivado fermée, rapports de compliance et codes d'origine isolés) [image_EjrDsV.png].
+*   📂 **[`v4/cpu/`](./v4/cpu/) (Cœur CPU Trivalent Isolé)** : Implémentation du processeur mathématique à **20 LUTs / 73 mW** gérant le micro-noyau bare-metal (Certifié résistant à une rafale de 1000 chocs de radiations spatiaux) [image_EjrDsV.png].
 
 ## 🏛️ [REIO V4 (Système Monolithique)](./v4/README.md)
 
