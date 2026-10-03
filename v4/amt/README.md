@@ -1,4 +1,4 @@
-# REIO V4 — ARCHITECTURE MONOLITHIQUE SECURE
+# REIO V4 — ARCHITECTURE MONOLITHIQUE TRIVALENTE
 
 ### 🔬 Architecture du Cœur Unifié
 La version 4 supprime la fragmentation en consolidant l'infrastructure autour d'un unique cœur de contrôle monolithique et d'un bloc d'I/O à logique trivalente.
