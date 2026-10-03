@@ -35,7 +35,7 @@ L'infrastructure de la **Génération V4** abandonne la fragmentation périphér
 *   📂 **[`v4/ams/`](./v4/ams/) (Architecture Monolithique Sûre)** : Base historique et archives de validation de votre tout premier système embarqué monolithique autonome 
 *   📂 **[`v4/cpu/`](./v4/cpu/) (Cœur CPU Trivalent Isolé)** : Implémentation du processeur mathématique à **20 LUTs / 73 mW** gérant le micro-noyau bare-metal (Certifié résistant à une rafale de 1000 chocs de radiations spatiaux).
 
-## 🏛️ [REIO V4 (Système Monolithique)](./v4/README.md)
+## 🏛️ [REIO V4 (Système Monolithique)](./v4/ams/)
 
 Cette quatrième génération concrétise la convergence matérielle et logicielle du framework, garantissant un confinement d'anomalie ultra-déterministe sans le moindre compromis sur les performances physiques de la puce.
 
