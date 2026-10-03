@@ -35,7 +35,7 @@ La Génération V4 introduit un changement de paradigme fondamental pour immunis
 *   **Logique Trivalente Formelle :** Contrairement aux architectures booléennes classiques limitées aux états binaires standard (`0` et `1`), les circuits logiques de REIO V4 intègrent un troisième état matériel d'indétermination active (`2` / ou binaire `10`). Cet état permet de capturer et de propager de manière déterministe le doute ou la corruption d'un signal sans faire dériver l'unité arithmétique.
 *   **Homéostasie Active Dynamique :** Inspirée de la régulation biologique, l'homéostasie active est la capacité des transistors à déclencher de manière autonome et asynchrone une force de rappel pour ré-équilibrer le circuit vers un état stable ou isoler un bus compromis. Cette contre-puissance matérielle s'exécute de manière matérielle en très exactement **1 cycle d'horloge**, garantissant un confinement d'anomalie ultra-déterministe sans saturer le processeur ni dépendre du logiciel hôte.
 
-## 🗺️ Organisation Géographique & Cartographie de la Génération V4
+## 🗺️ [**Organisation Géographique & Cartographie de la Génération V4**](./v4/)
 
 L'infrastructure de la **Génération V4** abandonne la fragmentation périphérique pour centraliser sa logique de sûreté. Chaque domaine matériel et logiciel est consigné de manière étanche et structurée :
 
