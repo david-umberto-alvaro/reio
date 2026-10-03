@@ -39,7 +39,7 @@ La Génération V4 introduit un changement de paradigme fondamental pour immunis
 
 L'infrastructure de la **Génération V4** abandonne la fragmentation périphérique pour centraliser sa logique de sûreté. Chaque domaine matériel et logiciel est consigné de manière étanche et structurée :
 
-*   📂 **[`v4/ams/`](./v4/amt/) (Architecture Monolithique Trivalent)** : Base historique et archives de validation de votre tout premier système embarqué monolithique autonome 
+*   📂 **[`v4/amt/`](./v4/amt/) (Architecture Monolithique Trivalent)** : Base historique et archives de validation de votre tout premier système embarqué monolithique autonome 
 *   📂 **[`v4/cpu/`](./v4/cpu/) (Cœur CPU Trivalent Isolé)** : Implémentation du processeur mathématique à **20 LUTs / 73 mW** gérant le micro-noyau bare-metal (Certifié résistant à une rafale de 1000 chocs de radiations spatiaux).
 *   
 ## 🏛️ ## 🏛️ [**Architecture Monolithique Trivalente (REIO V4 AMT)**](./v4/amt/)
