@@ -32,8 +32,8 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 L'infrastructure de la **Génération V4** abandonne la fragmentation périphérique pour centraliser sa logique de sûreté. Chaque domaine matériel et logiciel est consigné de manière étanche et structurée :
 
-*   📂 **[`v4/ams/`](./v4/ams/) (Architecture Monolithique Sûre)** : Base historique et archives de validation de votre tout premier système embarqué monolithique autonome (STA Vivado fermée, rapports de compliance et codes d'origine isolés) [image_EjrDsV.png].
-*   📂 **[`v4/cpu/`](./v4/cpu/) (Cœur CPU Trivalent Isolé)** : Implémentation du processeur mathématique à **20 LUTs / 73 mW** gérant le micro-noyau bare-metal (Certifié résistant à une rafale de 1000 chocs de radiations spatiaux) [image_EjrDsV.png].
+*   📂 **[`v4/ams/`](./v4/ams/) (Architecture Monolithique Sûre)** : Base historique et archives de validation de votre tout premier système embarqué monolithique autonome 
+*   📂 **[`v4/cpu/`](./v4/cpu/) (Cœur CPU Trivalent Isolé)** : Implémentation du processeur mathématique à **20 LUTs / 73 mW** gérant le micro-noyau bare-metal (Certifié résistant à une rafale de 1000 chocs de radiations spatiaux).
 
 ## 🏛️ [REIO V4 (Système Monolithique)](./v4/README.md)
 
