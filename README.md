@@ -28,13 +28,20 @@ L'infrastructure matérielle implémentée sous Vivado est la traduction physiqu
 
 **REIO** est un framework d'architecture matérielle sécurisée conçu pour immuniser les systèmes embarqués critiques (comme l'automobile ou l'aérospatial) contre les cyberattaques et les injections de pannes physiques. 
 
+### 🧬 Principes de Rupture V4 : Logique Trivalente & Homéostasie Active
+
+La Génération V4 introduit un changement de paradigme fondamental pour immuniser le silicium contre les fautes physiques transitoires induites par l'environnement (rayonnements cosmiques, impulsions électromagnétiques) :
+
+*   **Logique Trivalente Formelle :** Contrairement aux architectures booléennes classiques limitées aux états binaires standard (`0` et `1`), les circuits logiques de REIO V4 intègrent un troisième état matériel d'indétermination active (`2` / ou binaire `10`). Cet état permet de capturer et de propager de manière déterministe le doute ou la corruption d'un signal sans faire dériver l'unité arithmétique.
+*   **Homéostasie Active Dynamique :** Inspirée de la régulation biologique, l'homéostasie active est la capacité des transistors à déclencher de manière autonome et asynchrone une force de rappel pour ré-équilibrer le circuit vers un état stable ou isoler un bus compromis. Cette contre-puissance matérielle s'exécute de manière matérielle en très exactement **1 cycle d'horloge**, garantissant un confinement d'anomalie ultra-déterministe sans saturer le processeur ni dépendre du logiciel hôte.
+
 ## 🗺️ Organisation Géographique & Cartographie de la Génération V4
 
 L'infrastructure de la **Génération V4** abandonne la fragmentation périphérique pour centraliser sa logique de sûreté. Chaque domaine matériel et logiciel est consigné de manière étanche et structurée :
 
 *   📂 **[`v4/ams/`](./v4/ams/) (Architecture Monolithique Sûre)** : Base historique et archives de validation de votre tout premier système embarqué monolithique autonome 
 *   📂 **[`v4/cpu/`](./v4/cpu/) (Cœur CPU Trivalent Isolé)** : Implémentation du processeur mathématique à **20 LUTs / 73 mW** gérant le micro-noyau bare-metal (Certifié résistant à une rafale de 1000 chocs de radiations spatiaux).
-
+*   
 ## 🏛️ [REIO V4 (Système Monolithique)](./v4/ams/)
 
 Cette quatrième génération concrétise la convergence matérielle et logicielle du framework, garantissant un confinement d'anomalie ultra-déterministe sans le moindre compromis sur les performances physiques de la puce.
